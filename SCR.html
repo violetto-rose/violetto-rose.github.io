@@ -4,9 +4,14 @@
 <head>
   <title>Planting Project</title>
   <script>
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    document.body.classList.add("dark-mode");
+} else {
+    document.body.classList.remove("dark-mode");
+}
     document.addEventListener('contextmenu', event => event.preventDefault());
     const images = document.querySelectorAll('img');
-images.forEach(image =>{
+    images.forEach(image =>{
     image.addEventListener('dragstart', event => event.preventDefault());
 });
   </script>
