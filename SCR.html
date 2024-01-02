@@ -3,6 +3,13 @@
 
 <head>
   <title>Planting Project</title>
+  <script>
+    document.addEventListener('contextmenu', event => event.preventDefault());
+    const images = document.querySelectorAll('img');
+images.forEach(image =>{
+    image.addEventListener('dragstart', event => event.preventDefault());
+});
+  </script>
   <link rel="stylesheet" href="scr.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
