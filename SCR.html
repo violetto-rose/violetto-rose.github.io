@@ -4,16 +4,33 @@
 <head>
   <title>Planting Project</title>
   <script>
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    document.body.classList.add("dark-mode");
-} else {
-    document.body.classList.remove("dark-mode");
-}
-    document.addEventListener('contextmenu', event => event.preventDefault());
-    const images = document.querySelectorAll('img');
-    images.forEach(image =>{
-    image.addEventListener('dragstart', event => event.preventDefault());
-});
+    // You can also use this function to disable right-click globally on the page
+    document.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+    });
+    // JavaScript to toggle dark and light themes
+    const switchInput = document.getElementById('theme-switch');
+
+    switchInput.addEventListener('change', function () {
+      if (this.checked) {
+        document.body.classList.add('dark-theme');
+        // Save the theme preference in local storage
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.body.classList.remove('dark-theme');
+        localStorage.setItem('theme', 'light');
+      }
+    });
+
+    // Check for previously saved theme preference in local storage
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      switchInput.checked = true;
+      document.body.classList.add('dark-theme');
+    } else {
+      switchInput.checked = false;
+    }
+
   </script>
   <link rel="stylesheet" href="scr.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -33,7 +50,7 @@
     <main>
       <div class="project-section">
         <div class="image-container">
-          <img src="IMG-20240102-WA0074[1].jpg" alt="Project Image">
+          <img src="IMG-20240102-WA0074[1].jpg" alt="Project Image" oncontextmenu="return false;">
         </div>
         <div class="description">
           <p>
@@ -93,6 +110,8 @@
       </div>
     </main>
   </div>
+  <label for="theme-switch">Switch Theme: </label>
+  <input type="checkbox" id="theme-switch">
 </body>
 
 </html>
