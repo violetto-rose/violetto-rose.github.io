@@ -41,7 +41,6 @@ header {
   .container {
     max-width: 100%;
     margin: 0 auto;
-    padding: 20px;
     text-align: center;
   }
 
@@ -85,7 +84,7 @@ header {
   }
 
   .info-content p {
-    margin-bottom: 15px;
+    margin-bottom: 0;
   }
 
   .team-container {
@@ -107,6 +106,7 @@ header {
   .team-members {
     display: table-cell;
     margin-top: 20px;
+    text-align: left;
   }
 
   .member {
