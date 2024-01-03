@@ -6,8 +6,6 @@
 
 body {
   font-family: Montserrat;
-  background-color: #000000;
-  color: #ffffff;
 }
 
 header {
@@ -15,6 +13,11 @@ header {
   margin: 0 auto;
   padding: 20px;
   text-align: center;
+}
+
+.dark-theme {
+  background-color: #000000;
+  color: #ffffff;
 }
 
 @media only screen and (max-width: 767px) {
