@@ -8,29 +8,6 @@
     document.addEventListener('contextmenu', function (e) {
       e.preventDefault();
     });
-    // JavaScript to toggle dark and light themes
-    const switchInput = document.getElementById('theme-switch');
-
-    switchInput.addEventListener('change', function () {
-      if (this.checked) {
-        document.body.classList.add('dark-theme');
-        // Save the theme preference in local storage
-        localStorage.setItem('theme', 'dark');
-      } else {
-        document.body.classList.remove('dark-theme');
-        localStorage.setItem('theme', 'light');
-      }
-    });
-
-    // Check for previously saved theme preference in local storage
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-      switchInput.checked = true;
-      document.body.classList.add('dark-theme');
-    } else {
-      switchInput.checked = false;
-    }
-
   </script>
   <link rel="stylesheet" href="scr.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -110,8 +87,6 @@
       </div>
     </main>
   </div>
-  <label for="theme-switch">Switch Theme: </label>
-  <input type="checkbox" id="theme-switch">
 </body>
 
 </html>
