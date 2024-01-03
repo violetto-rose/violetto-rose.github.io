@@ -232,19 +232,14 @@ header {
 
   .project-section {
     border: 2px solid #ffffff;
-    padding: 20px;
-    border-radius: 5px;
-    width: 70vw;
   }
 
   .team-divider {
     border: 0;
     border-top: 1px solid #ffffff;
-    width: 100%;
   }
 
   .team-container {
-    max-width: 100%;
     border: 1px solid #ffffff;
   }
 }
