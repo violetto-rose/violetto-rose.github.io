@@ -14,7 +14,7 @@ header {
   padding: 20px;
   text-align: center;
 }
-
+/*Mobile devices*/
 @media only screen and (max-width: 767px) {
   h1 {
     font-size: 5vw;
@@ -75,16 +75,17 @@ header {
 
   .plant-info h2 {
     margin-top: 0;
-    font-size: 4vw;
+    font-size: 5vw;
   }
 
   .info-content h3 {
     margin-top: 20px;
-    font-size: 3vw;
+    font-size: 5vw;
   }
 
   .info-content p {
     margin-bottom: 0;
+    font-size: 4vw;
   }
 
   .team-container {
@@ -118,7 +119,7 @@ header {
     box-sizing: border-box;
   }
 }
-
+/*Big screens*/
 @media only screen and (min-width: 768px) {
   h1 {
     font-size: 4rem;
