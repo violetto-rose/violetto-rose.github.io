@@ -75,6 +75,13 @@ document.addEventListener("DOMContentLoaded", () => {
         tutorial.name.toLowerCase().includes(searchTerm)
       );
 
+      // Show search results container only when there are results
+      if (searchTerm.trim() !== "") {
+        searchResults.style.display = "block";
+      } else {
+        searchResults.style.display = "none";
+      }
+
       searchResults.innerHTML = "";
       filteredTutorials.forEach((tutorial) => {
         const div = document.createElement("div");
@@ -86,6 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
           );
           searchInput.value = "";
           searchResults.innerHTML = "";
+          searchResults.style.display = "none"; // Hide after selection
         };
         searchResults.appendChild(div);
       });
@@ -101,6 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
       !searchResults.contains(e.target)
     ) {
       searchResults.innerHTML = "";
+      searchResults.style.display = "none";
     }
   });
 

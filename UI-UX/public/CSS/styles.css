@@ -26,7 +26,8 @@ html {
 }
 
 #sidebar {
-  width: 300px;
+  width: 250px;
+  min-width: 250px;
   padding: 20px;
   margin-right: 20px;
   overflow-y: auto;
@@ -43,7 +44,9 @@ html {
 }
 
 #search-input {
-  width: 100%;
+  font-size: inherit;
+  width: -webkit-fill-available;
+  outline: none;
   padding: 10px;
   border: none;
   border-radius: 20px;
@@ -89,9 +92,9 @@ html {
   transition: background 0.3s ease;
 }
 
-#sidebar a:hover,
+#sidebar a:hover
 #sidebar a.active {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.3);
 }
 
 #content {
