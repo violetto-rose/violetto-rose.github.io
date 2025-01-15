@@ -12,6 +12,20 @@
     />
   </head>
   <body>
+    <!-- Dark mode toggle -->
+    <button id="dark-mode-toggle" aria-label="Toggle dark mode">
+      <i class="fas fa-moon" style="color: #000000"></i>
+      <i class="fas fa-sun"></i>
+    </button>
+
+    <!-- Move credits outside of container -->
+    <div id="credits-info">
+      <div class="credits-icon">
+        ?
+        <span class="credits-tooltip">Made with ❤️ by Violet</span>
+      </div>
+    </div>
+
     <div class="container">
       <nav id="sidebar" class="glass">
         <h1>UI/UX Lab Tutorial</h1>
@@ -21,7 +35,7 @@
             id="search-input"
             placeholder="Search tutorials..."
           />
-          <div id="search-results" class="glass" style="display: none;"></div>
+          <div id="search-results" class="glass" style="display: none"></div>
         </div>
         <ul id="tutorial-list"></ul>
       </nav>
