@@ -1,26 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+
 body,
 html {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: "Poppins", sans-serif;
   height: 100%;
+  background: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
+  color: #ffffff;
 }
 
 .container {
   display: flex;
   height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 
 #sidebar {
-  width: 250px;
-  background-color: #f0f0f0;
+  width: 300px;
   padding: 20px;
+  margin-right: 20px;
   overflow-y: auto;
 }
 
 #sidebar h1 {
-  font-size: 1.5em;
+  font-size: 1.8em;
   margin-bottom: 20px;
+  text-align: center;
+}
+
+.search-container {
+  margin-bottom: 20px;
+}
+
+#search-input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+#search-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+#search-results {
+  margin-top: 10px;
+  padding: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+#search-results div {
+  padding: 5px;
+  cursor: pointer;
+}
+
+#search-results div:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 #sidebar ul {
@@ -34,17 +82,54 @@ html {
 
 #sidebar a {
   text-decoration: none;
-  color: #333;
+  color: #ffffff;
+  display: block;
+  padding: 10px;
+  border-radius: 10px;
+  transition: background 0.3s ease;
 }
 
-#sidebar a:hover {
-  color: #0066cc;
+#sidebar a:hover,
+#sidebar a.active {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 #content {
   flex-grow: 1;
-  padding: 20px;
+  padding: 30px;
   overflow-y: auto;
+}
+
+#tutorial-content {
+  line-height: 1.6;
+}
+
+#tutorial-content h1,
+#tutorial-content h2,
+#tutorial-content h3 {
+  margin-top: 0;
+}
+
+#tutorial-content a {
+  color: #4fc3f7;
+  text-decoration: none;
+}
+
+#tutorial-content a:hover {
+  text-decoration: underline;
+}
+
+#tutorial-content code {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+#tutorial-content pre {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  border-radius: 10px;
+  overflow-x: auto;
 }
 
 @media (max-width: 768px) {
@@ -54,6 +139,7 @@ html {
 
   #sidebar {
     width: 100%;
-    height: auto;
+    margin-right: 0;
+    margin-bottom: 20px;
   }
 }
