@@ -97,7 +97,7 @@ html {
   display: block;
   padding: 10px;
   border-radius: 10px;
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: background 0.3s ease;
 }
 
 #sidebar a:hover {
@@ -184,12 +184,17 @@ html {
     right: 20px;
   }
 
+  .credits-icon {
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+  }
+
   .credits-tooltip {
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    max-width: 250px;
-    text-align: center;
+    bottom: 25px;
+    left: -100px;
+    font-size: 0.8em;
+    padding: 3px 8px;
   }
 
   #tutorial-content {
@@ -197,18 +202,59 @@ html {
     padding: 15px;
   }
 
-  #tutorial-content table {
-    font-size: 14px;
+  #search-input {
+    width: 100%;
+  }
+}
+
+/* Smaller mobile screens */
+@media (max-width: 480px) {
+  .container {
+    padding: 5px;
   }
 
-  #tutorial-content pre {
-    font-size: 12px;
+  #sidebar {
+    padding: 10px;
+  }
+
+  #dark-mode-toggle {
+    width: 35px;
+    height: 35px;
+    top: 5px;
+  }
+
+  #credits-info {
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .credits-icon {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 0.8em;
+  }
+
+  .credits-tooltip {
+    bottom: 20px;
+    left: -80px;
+    font-size: 0.7em;
+    padding: 2px 6px;
+  }
+
+  #tutorial-content {
     padding: 10px;
   }
 }
 
-/* Responsive font sizes */
-@media (max-width: 480px) {
+/* Ensure text is readable on mobile */
+body {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
   body {
     font-size: 14px;
   }
@@ -217,10 +263,16 @@ html {
     font-size: 1.5em;
   }
 
-  .credits-icon {
-    width: 25px;
-    height: 25px;
-    line-height: 25px;
+  #tutorial-content h1 {
+    font-size: 1.8em;
+  }
+
+  #tutorial-content h2 {
+    font-size: 1.6em;
+  }
+
+  #tutorial-content h3 {
+    font-size: 1.4em;
   }
 }
 
