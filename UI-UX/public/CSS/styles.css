@@ -44,7 +44,7 @@ html {
 }
 
 #search-input {
-  font-size: inherit;
+  font-family: inherit;
   width: -webkit-fill-available;
   outline: none;
   padding: 10px;
