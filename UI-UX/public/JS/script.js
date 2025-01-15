@@ -7,15 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // List of tutorial markdown files
     const tutorials = [
         { name: 'Introduction to UI/UX', file: '../tutorials/intro.md' },
-        { name: 'User Research', file: '../tutorials/about-course.md' },
-        { name: 'Wireframing', file: '../tutorials/setting-up-figma.md' },
-        { name: 'Prototyping', file: '../tutorials/prototyping.md' },
-        { name: 'Usability Testing', file: '../tutorials/usability-testing.md' },
-        { name: 'Color Theory', file: '../tutorials/color-theory.md' },
-        { name: 'Typography in UI', file: '../tutorials/typography.md' },
-        { name: 'Responsive Design', file: '../tutorials/responsive-design.md' },
-        { name: 'Accessibility in UI/UX', file: '../tutorials/accessibility.md' },
-        { name: 'UI Animation', file: '../tutorials/ui-animation.md' }
+        { name: 'About the course', file: '../tutorials/about-course.md' },
+        { name: 'Setting up Figma', file: '../tutorials/setting-up-figma.md' },
     ];
 
     // Populate the sidebar
