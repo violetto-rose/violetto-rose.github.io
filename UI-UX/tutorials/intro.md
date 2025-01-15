@@ -5,7 +5,6 @@ User Interface (UI) and User Experience (UX) design are crucial aspects of creat
 ## What is UI Design?
 
 UI design focuses on the visual elements of a digital product, including:
-
 - Layout
 - Color schemes
 - Typography
@@ -14,7 +13,6 @@ UI design focuses on the visual elements of a digital product, including:
 ## What is UX Design?
 
 UX design is concerned with the overall experience of using a product, including:
-
 - User research
 - Information architecture
 - Interaction design
