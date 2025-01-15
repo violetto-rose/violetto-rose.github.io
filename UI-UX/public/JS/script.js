@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const li = document.createElement("li");
       const a = document.createElement("a");
       a.href = `#${tutorial.file}`;
-      a.textContent = tutorial.name;
+      a.innerHTML = `<i class="fas fa-book-open"></i> ${tutorial.name}`;
       a.onclick = (e) => {
         e.preventDefault();
         loadTutorial(tutorial.file);
@@ -38,20 +38,12 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       const markdown = await response.text();
       tutorialContent.innerHTML = marked.parse(markdown);
-      highlightCode();
       updateURL(filename);
     } catch (error) {
       console.error("Error:", error);
       tutorialContent.innerHTML =
         "<p>Error loading tutorial content. Please try again later.</p>";
     }
-  }
-
-  // Function to highlight code blocks
-  function highlightCode() {
-    document.querySelectorAll("pre code").forEach((block) => {
-      hljs.highlightBlock(block);
-    });
   }
 
   // Function to update URL
@@ -75,17 +67,10 @@ document.addEventListener("DOMContentLoaded", () => {
         tutorial.name.toLowerCase().includes(searchTerm)
       );
 
-      // Show search results container only when there are results
-      if (searchTerm.trim() !== "") {
-        searchResults.style.display = "block";
-      } else {
-        searchResults.style.display = "none";
-      }
-
       searchResults.innerHTML = "";
       filteredTutorials.forEach((tutorial) => {
         const div = document.createElement("div");
-        div.textContent = tutorial.name;
+        div.innerHTML = `<i class="fas fa-search"></i> ${tutorial.name}`;
         div.onclick = () => {
           loadTutorial(tutorial.file);
           updateActiveLink(
@@ -93,7 +78,6 @@ document.addEventListener("DOMContentLoaded", () => {
           );
           searchInput.value = "";
           searchResults.innerHTML = "";
-          searchResults.style.display = "none"; // Hide after selection
         };
         searchResults.appendChild(div);
       });
@@ -109,7 +93,6 @@ document.addEventListener("DOMContentLoaded", () => {
       !searchResults.contains(e.target)
     ) {
       searchResults.innerHTML = "";
-      searchResults.style.display = "none";
     }
   });
 
