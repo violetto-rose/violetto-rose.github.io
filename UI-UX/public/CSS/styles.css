@@ -161,49 +161,105 @@ html {
   color: rgba(255, 255, 255, 0.8);
 }
 
+/* Mobile-first adjustments */
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
-    padding: 10px;
+    padding: 15px;
   }
 
   #sidebar {
     width: 100%;
     margin-right: 0;
-    margin-bottom: 20px;
+    margin-bottom: 0;
+    background: transparent;
+    box-shadow: none;
+    border: none;
   }
 
-  #dark-mode-toggle {
-    width: 40px;
-    height: 40px;
-    top: 10px;
-  }
-
-  #credits-info {
-    bottom: 20px;
-    right: 20px;
-  }
-
-  .credits-icon {
-    width: 25px;
-    height: 25px;
-    line-height: 25px;
-  }
-
-  .credits-tooltip {
-    bottom: 25px;
-    left: -100px;
-    font-size: 0.8em;
-    padding: 3px 8px;
-  }
-
-  #tutorial-content {
-    max-width: 100%;
+  #content {
     padding: 15px;
   }
 
+  /* Adjust title */
+  #sidebar h1 {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    text-align: left;
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  /* Style search input */
   #search-input {
-    width: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    padding: 12px 15px;
+    border-radius: 15px;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+  }
+
+  /* Style sidebar links */
+  #sidebar a {
+    background: rgba(255, 255, 255, 0.2);
+    margin-bottom: 10px;
+    border-radius: 15px;
+    padding: 12px 15px;
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  #sidebar a i {
+    margin-right: 10px;
+  }
+
+  /* Content styling */
+  #tutorial-content {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 20px;
+    margin-top: 15px;
+  }
+
+  #tutorial-content h1 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: rgba(0, 0, 0, 0.9);
+  }
+
+  #tutorial-content h2 {
+    font-size: 1.2em;
+    margin: 20px 0 10px;
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  #tutorial-content p {
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 0.9em;
+    line-height: 1.6;
+  }
+
+  #tutorial-content ul {
+    padding-left: 20px;
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  #tutorial-content li {
+    margin-bottom: 8px;
+    font-size: 0.9em;
+  }
+
+  /* Adjust glass effect */
+  .glass {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+  }
+
+  /* Dark mode adjustments */
+  body.dark-mode #sidebar h1,
+  body.dark-mode #tutorial-content h1,
+  body.dark-mode #tutorial-content h2,
+  body.dark-mode #tutorial-content p,
+  body.dark-mode #tutorial-content li {
+    color: rgba(255, 255, 255, 0.9);
   }
 }
 
