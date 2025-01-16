@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderer: renderer
   });
 
+  // Variables and Constants
   const tutorialList = document.getElementById("tutorial-list");
   const tutorialContent = document.getElementById("tutorial-content");
   const searchInput = document.getElementById("search-input");
@@ -135,13 +136,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Initial setup
-  populateSidebar();
-  loadTutorialFromHash();
-
-  // Listen for hash changes
-  window.addEventListener("hashchange", loadTutorialFromHash);
-
   // Dark mode toggle
   const darkModeToggle = document.getElementById("dark-mode-toggle");
   
@@ -163,42 +157,6 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.removeItem('darkMode');
     }
   });
-
-  // Add these functions to handle skeleton loading
-
-  function createSkeletonLoader(container) {
-    container.innerHTML = `
-        <div class="skeleton-content">
-            <div class="skeleton skeleton-header"></div>
-            <div class="skeleton-paragraph">
-                <div class="skeleton skeleton-text"></div>
-                <div class="skeleton skeleton-text"></div>
-                <div class="skeleton skeleton-text"></div>
-            </div>
-        </div>
-    `;
-  }
-
-  function removeSkeleton(container) {
-    container.innerHTML = ''; // Clear skeleton loader
-  }
-
-  // Example usage in your content loading functions
-  function loadTutorialContent(tutorialId) {
-    const tutorialContent = document.getElementById('tutorial-content');
-    
-    // Show skeleton loader
-    createSkeletonLoader(tutorialContent);
-
-    // Simulate async content loading
-    setTimeout(() => {
-        // Replace with actual content fetching logic
-        tutorialContent.innerHTML = `
-            <h1>Tutorial ${tutorialId}</h1>
-            <p>Actual tutorial content goes here...</p>
-        `;
-    }, 1500); // Simulated 1.5-second loading time
-  }
 
   // Structure View Toggle
   const structureToggle = document.getElementById('structure-toggle');
@@ -249,11 +207,16 @@ document.addEventListener("DOMContentLoaded", () => {
       item.onclick = () => {
         heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
         // Keep the structure view open
-        // structureToggle.classList.remove('open');
-        // structureView.classList.remove('open');
       };
 
       structureSections[level].appendChild(item);
     });
   }
+
+  // Initial setup
+  populateSidebar();
+  loadTutorialFromHash();
+
+  // Listen for hash changes
+  window.addEventListener("hashchange", loadTutorialFromHash);
 });
