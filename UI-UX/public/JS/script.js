@@ -1,4 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Custom marked renderer to add target="_blank" to all links
+  const renderer = new marked.Renderer();
+  const originalLinkRenderer = renderer.link;
+  renderer.link = function(href, title, text) {
+    const link = originalLinkRenderer.call(this, href, title, text);
+    return link.replace('<a', '<a target="_blank" rel="noopener noreferrer"');
+  };
+
+  // Configure marked to use the custom renderer
+  marked.setOptions({
+    renderer: renderer
+  });
+
   const tutorialList = document.getElementById("tutorial-list");
   const tutorialContent = document.getElementById("tutorial-content");
   const searchInput = document.getElementById("search-input");
