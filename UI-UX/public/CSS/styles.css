@@ -132,6 +132,7 @@ html {
 #tutorial-content h2,
 #tutorial-content h3 {
   margin-top: 0;
+  margin-bottom: 10px;
 }
 
 #tutorial-content a {
@@ -627,4 +628,21 @@ body.dark-mode #structure-toggle {
 
 body.dark-mode #structure-view .structure-item:hover {
   background: rgba(100, 100, 100, 0.2);
+}
+
+#tutorial-content hr {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  margin: 20px 0;
+}
+
+body.dark-mode #tutorial-content hr {
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+#tutorial-content h1,
+#tutorial-content h2,
+#tutorial-content h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
 }
