@@ -1,0 +1,191 @@
+[
+  {
+    "subject_number": "C201",
+    "subject_code": "BCS301",
+    "semester": 3,
+    "subject_name": "Mathematics for CSE stream",
+    "credits": 4
+  },
+  {
+    "subject_number": "C202",
+    "subject_code": "BCS302",
+    "semester": 3,
+    "subject_name": "Digital Design & Computer Organization",
+    "credits": 4
+  },
+  {
+    "subject_number": "C203",
+    "subject_code": "BCS303",
+    "semester": 3,
+    "subject_name": "Operating Systems",
+    "credits": 4
+  },
+  {
+    "subject_number": "C204",
+    "subject_code": "BCS304",
+    "semester": 3,
+    "subject_name": "Data Structures and Applications",
+    "credits": 3
+  },
+  {
+    "subject_number": "C205",
+    "subject_code": "BCSL305",
+    "semester": 3,
+    "subject_name": "Data Structures Lab",
+    "credits": 1
+  },
+  {
+    "subject_number": "C206",
+    "subject_code": "BCS306A",
+    "semester": 3,
+    "subject_name": "Object Oriented Programming with Java",
+    "credits": 3
+  },
+  {
+    "subject_number": "C207",
+    "subject_code": "BCSK307",
+    "semester": 3,
+    "subject_name": "Social Connect and Responsibility",
+    "credits": 1
+  },
+  {
+    "subject_number": "C208",
+    "subject_code": "BCG358A",
+    "semester": 3,
+    "subject_name": "Web Application Design with HTML and PHP",
+    "credits": 1
+  },
+  {
+    "subject_number": "C210",
+    "subject_code": "BYOK359",
+    "semester": 3,
+    "subject_name": "Yoga",
+    "credits": 0
+  },
+  {
+    "subject_number": "C211",
+    "subject_code": "BCS401",
+    "semester": 4,
+    "subject_name": "Analysis & Design of Algorithms",
+    "credits": 3
+  },
+  {
+    "subject_number": "C212",
+    "subject_code": "BCG402",
+    "semester": 4,
+    "subject_name": "Computer Graphics and Visualization",
+    "credits": 4
+  },
+  {
+    "subject_number": "C213",
+    "subject_code": "BCS403",
+    "semester": 4,
+    "subject_name": "Database Management System",
+    "credits": 4
+  },
+  {
+    "subject_number": "C214",
+    "subject_code": "BCSL404",
+    "semester": 4,
+    "subject_name": "Analysis & Design of Algorithms Lab",
+    "credits": 1
+  },
+  {
+    "subject_number": "C215",
+    "subject_code": "BCS405A",
+    "semester": 4,
+    "subject_name": "Discrete Mathematical Structures",
+    "credits": 3
+  },
+  {
+    "subject_number": "C216",
+    "subject_code": "BCGL456B",
+    "semester": 4,
+    "subject_name": "Responsive Web design with Bootstrap 5.0",
+    "credits": 1
+  },
+  {
+    "subject_number": "C217",
+    "subject_code": "BBOK407",
+    "semester": 4,
+    "subject_name": "Biology For Computer Engineers",
+    "credits": 2
+  },
+  {
+    "subject_number": "C218",
+    "subject_code": "BUHK408",
+    "semester": 4,
+    "subject_name": "Universal human values course",
+    "credits": 1
+  },
+  {
+    "subject_number": "C219",
+    "subject_code": "BYOK459",
+    "semester": 4,
+    "subject_name": "Yoga",
+    "credits": 0
+  },
+  {
+    "subject_number": "C220",
+    "subject_code": "BCS501",
+    "semester": 5,
+    "subject_name": "Software Engineering & Project Management",
+    "credits": 4
+  },
+  {
+    "subject_number": "C221",
+    "subject_code": "BCS502",
+    "semester": 5,
+    "subject_name": "Computer Networks",
+    "credits": 4
+  },
+  {
+    "subject_number": "C222",
+    "subject_code": "BCS503",
+    "semester": 5,
+    "subject_name": "Theory of Computation",
+    "credits": 4
+  },
+  {
+    "subject_number": "C223",
+    "subject_code": "BCGL504",
+    "semester": 5,
+    "subject_name": "OO Design Pattern Lab",
+    "credits": 1
+  },
+  {
+    "subject_number": "C224",
+    "subject_code": "BCS515B",
+    "semester": 5,
+    "subject_name": "Artificial Intelligence",
+    "credits": 3
+  },
+  {
+    "subject_number": "C225",
+    "subject_code": "BCG586",
+    "semester": 5,
+    "subject_name": "Mini Project",
+    "credits": 2
+  },
+  {
+    "subject_number": "C226",
+    "subject_code": "BRMK557",
+    "semester": 5,
+    "subject_name": "Research Methodology and IPR",
+    "credits": 3
+  },
+  {
+    "subject_number": "C227",
+    "subject_code": "BCS508",
+    "semester": 5,
+    "subject_name": "Environmental Studies and E-waste Management",
+    "credits": 1
+  },
+  {
+    "subject_number": "C228",
+    "subject_code": "BYOK559",
+    "semester": 5,
+    "subject_name": "Yoga",
+    "credits": 0
+  }
+]
