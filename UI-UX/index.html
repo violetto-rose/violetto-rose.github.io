@@ -5,25 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>UI/UX Lab Tutorial</title>
     <link rel="stylesheet" href="public/CSS/styles.css" />
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.6/marked.min.js"
+      integrity="sha512-rvRITpPeEKe4hV9M8XntuXX6nuohzqdR5O3W6nhjTLwkrx0ZgBQuaK4fv5DdOWzs2IaXsGt5h0+nyp9pEuoTXg=="
+      crossorigin="anonymous"
+    ></script>
     <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
       rel="stylesheet"
     />
   </head>
   <body>
-    <!-- Dark mode toggle -->
     <button id="dark-mode-toggle" aria-label="Toggle dark mode">
       <i class="fas fa-moon" style="color: #000000"></i>
       <i class="fas fa-sun"></i>
     </button>
 
-    <!-- Move credits outside of container -->
-    <div id="credits-info">
-      <div class="credits-icon">
-        ?
-        <span class="credits-tooltip">Made with ❤️ by <a target="_blank" href="https://bit.ly/manjumadhav-xo">Violet</a></span>
-      </div>
+    <button id="structure-toggle" aria-label="Toggle structure view">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+
+    <div id="structure-view">
+      <div id="structure-content"></div>
     </div>
 
     <div class="container">
@@ -40,8 +43,27 @@
         <ul id="tutorial-list"></ul>
       </nav>
       <main id="content" class="glass">
-        <div id="tutorial-content"></div>
+        <div id="tutorial-content" class="skeleton-content">
+          <div class="skeleton skeleton-header"></div>
+          <div class="skeleton-paragraph">
+            <div class="skeleton skeleton-text"></div>
+            <div class="skeleton skeleton-text"></div>
+            <div class="skeleton skeleton-text"></div>
+          </div>
+        </div>
       </main>
+    </div>
+
+    <div id="credits-info">
+      <div class="credits-icon">
+        ?
+        <span class="credits-tooltip"
+          >Made with ❤️ by
+          <a target="_blank" href="https://bit.ly/manjumadhav-xo"
+            >Violet</a
+          ></span
+        >
+      </div>
     </div>
     <script src="public/JS/script.js" defer></script>
   </body>

@@ -51,6 +51,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       const markdown = await response.text();
       tutorialContent.innerHTML = marked.parse(markdown);
+      
+      // Generate structure view after content is loaded
+      generateStructureView(tutorialContent);
+      
       updateURL(filename);
     } catch (error) {
       console.error("Error:", error);
@@ -159,4 +163,97 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.removeItem('darkMode');
     }
   });
+
+  // Add these functions to handle skeleton loading
+
+  function createSkeletonLoader(container) {
+    container.innerHTML = `
+        <div class="skeleton-content">
+            <div class="skeleton skeleton-header"></div>
+            <div class="skeleton-paragraph">
+                <div class="skeleton skeleton-text"></div>
+                <div class="skeleton skeleton-text"></div>
+                <div class="skeleton skeleton-text"></div>
+            </div>
+        </div>
+    `;
+  }
+
+  function removeSkeleton(container) {
+    container.innerHTML = ''; // Clear skeleton loader
+  }
+
+  // Example usage in your content loading functions
+  function loadTutorialContent(tutorialId) {
+    const tutorialContent = document.getElementById('tutorial-content');
+    
+    // Show skeleton loader
+    createSkeletonLoader(tutorialContent);
+
+    // Simulate async content loading
+    setTimeout(() => {
+        // Replace with actual content fetching logic
+        tutorialContent.innerHTML = `
+            <h1>Tutorial ${tutorialId}</h1>
+            <p>Actual tutorial content goes here...</p>
+        `;
+    }, 1500); // Simulated 1.5-second loading time
+  }
+
+  // Structure View Toggle
+  const structureToggle = document.getElementById('structure-toggle');
+  const structureView = document.getElementById('structure-view');
+  const structureContent = document.getElementById('structure-content');
+
+  structureToggle.addEventListener('click', () => {
+    structureToggle.classList.toggle('open');
+    structureView.classList.toggle('open');
+    
+    // Move the content area
+    const content = document.getElementById('content');
+    content.classList.toggle('shifted'); // Add or remove the shifted class
+  });
+
+  // Function to generate structure view
+  function generateStructureView(content) {
+    // Clear previous structure
+    structureContent.innerHTML = '';
+
+    // Create headings structure
+    const headings = content.querySelectorAll('h2, h3');
+    
+    if (headings.length === 0) {
+      structureContent.innerHTML = '<p>No structure found</p>';
+      return;
+    }
+
+    const structureSections = {};
+
+    headings.forEach((heading, index) => {
+      const level = heading.tagName.toLowerCase();
+      const text = heading.textContent;
+      
+      if (!structureSections[level]) {
+        const section = document.createElement('div');
+        section.classList.add('structure-section');
+        const sectionTitle = document.createElement('h3');
+        sectionTitle.textContent = level === 'h2' ? 'Sections' : 'Subsections';
+        section.appendChild(sectionTitle);
+        structureSections[level] = section;
+        structureContent.appendChild(section);
+      }
+
+      const item = document.createElement('div');
+      item.classList.add('structure-item');
+      item.textContent = text;
+      item.onclick = () => {
+        heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Keep the structure view open
+        // structureToggle.classList.remove('open');
+        // structureView.classList.remove('open');
+      };
+
+      structureSections[level].appendChild(item);
+    });
+  }
 });

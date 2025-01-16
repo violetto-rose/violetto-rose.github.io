@@ -116,6 +116,11 @@ html {
   overflow-y: auto;
   -webkit-mask-image: -webkit-radial-gradient(white, black);
   mask-image: radial-gradient(white, black);
+  transition: margin-right 0.3s ease;
+}
+
+#content.shifted {
+  margin-right: 300px;
 }
 
 #tutorial-content {
@@ -249,7 +254,7 @@ html {
   position: fixed;
   top: 20px;
   right: 0;
-  z-index: 1000;
+  z-index: 1001;
   background: rgba(255, 255, 255, 0.2);
   border: none;
   border-top-left-radius: 25px;
@@ -260,10 +265,7 @@ html {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: 
-    background 0.3s ease,
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   backdrop-filter: blur(10px);
   color: #ffffff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -283,9 +285,7 @@ html {
 #dark-mode-toggle .fa-moon,
 #dark-mode-toggle .fa-sun {
   position: absolute;
-  transition: 
-    opacity 0.3s ease, 
-    transform 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
   opacity: 1;
   transform: rotate(0deg);
 }
@@ -315,9 +315,15 @@ html {
 }
 
 @keyframes darkModeGlow {
-  0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3); }
-  70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
 }
 
 #dark-mode-toggle:focus {
@@ -374,8 +380,12 @@ body.dark-mode #tutorial-content pre {
 }
 
 @keyframes sunRotate {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 #dark-mode-toggle .fa-sun {
@@ -431,9 +441,7 @@ body.dark-mode #tutorial-content pre {
   white-space: nowrap;
   opacity: 0;
   visibility: hidden;
-  transition: 
-    opacity 0.3s ease,
-    visibility 0.3s;
+  transition: opacity 0.3s ease, visibility 0.3s;
   z-index: 1001;
 }
 
@@ -454,4 +462,170 @@ body.dark-mode .credits-icon {
 
 body.dark-mode .credits-icon:hover {
   background: rgba(255, 255, 255, 0.2);
+}
+
+/* Skeleton Loading Styles */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 10px;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-text {
+  height: 16px;
+  margin-bottom: 10px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.skeleton-text:last-child {
+  width: 80%;
+}
+
+.skeleton-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.skeleton-header {
+  height: 40px;
+  margin-bottom: 20px;
+}
+
+.skeleton-paragraph {
+  display: flex;
+  flex-direction: column;
+}
+
+.skeleton-paragraph .skeleton-text {
+  margin-bottom: 10px;
+}
+
+/* Dark mode skeleton adjustments */
+body.dark-mode .skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(100, 100, 100, 0.1) 0%,
+    rgba(150, 150, 150, 0.2) 50%,
+    rgba(100, 100, 100, 0.1) 100%
+  );
+}
+
+.skeleton-text {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .skeleton-text {
+  background: rgba(100, 100, 100, 0.2);
+}
+
+/* Structure View Styles */
+#structure-view {
+  position: fixed;
+  right: -300px;
+  top: 0;
+  width: 300px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  transition: right 0.3s ease;
+  overflow-y: auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+#structure-view.open {
+  right: 0;
+}
+
+#structure-toggle {
+  position: fixed;
+  top: 80px;
+  right: 0;
+  z-index: 1001;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(10px);
+  color: #000000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+#structure-toggle:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+#structure-toggle i {
+  transition: transform 0.3s ease;
+}
+#structure-toggle:active {
+  transform: scale(0.95);
+}
+
+#structure-toggle.open i {
+  transform: rotate(-180deg);
+}
+
+#structure-view .structure-section {
+  margin-bottom: 15px;
+}
+
+#structure-view .structure-section h3 {
+  margin-bottom: 10px;
+  font-size: 1.1em;
+  color: #000;
+}
+
+#structure-view .structure-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+#structure-view .structure-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Dark mode adjustments for structure view */
+body.dark-mode #structure-view {
+  background: rgba(50, 50, 50, 0.1);
+  color: #e0e0e0;
+}
+
+body.dark-mode #structure-view .structure-section h3 {
+  color: #ffffff;
+}
+
+body.dark-mode #structure-toggle {
+  color: #ffffff;
+}
+
+body.dark-mode #structure-view .structure-item:hover {
+  background: rgba(100, 100, 100, 0.2);
 }
