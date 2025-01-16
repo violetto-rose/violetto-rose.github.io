@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Funnel+Display:wght@300..800&display=swap");
 
 body,
 html {
@@ -257,6 +257,12 @@ body.dark-mode .glass {
   font-size: 1.8em;
   margin-bottom: 20px;
   text-align: center;
+}
+
+#sidebar .title {
+  font-family: "Funnel Display", "Poppins", sans-serif;
+  font-weight: 800;
+  font-size: larger;
 }
 
 .search-container {
