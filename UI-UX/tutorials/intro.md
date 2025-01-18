@@ -19,3 +19,5 @@ UX design is concerned with the overall experience of using a product, including
 - Usability testing
 
 In the following tutorials, we'll dive deeper into each aspect of UI/UX design and provide practical exercises to help you develop your skills.
+
+---

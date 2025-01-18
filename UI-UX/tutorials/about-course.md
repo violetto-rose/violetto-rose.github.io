@@ -31,3 +31,5 @@ At the end of the course the student will be able to:
 - Analyse user requirements and translate the requirements to design prototypes.
 - Demonstrate the UI/UX concepts applied when designing the prototype of apps and Websites.
 - Develop (redesign) the existing apps & Websites with customized design. 
+
+---

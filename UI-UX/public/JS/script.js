@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { name: "Introduction to UI/UX", file: "intro.md" },
     { name: "About the course", file: "about-course.md" },
     { name: "Setting up Figma", file: "setting-up-figma.md" },
-    { name: "Setting up Potpen", file: "setting-up-penpot.md " },
+    { name: "Setting up Penpot", file: "setting-up-penpot.md" },
   ];
 
   // Populate the sidebar
@@ -52,12 +52,29 @@ document.addEventListener("DOMContentLoaded", () => {
         throw new Error("Failed to load tutorial");
       }
       const markdown = await response.text();
-      tutorialContent.innerHTML = marked.parse(markdown);
+
+      const contentWrapper = document.createElement("div");
+      contentWrapper.className = "tutorial-content-wrapper";
+      contentWrapper.innerHTML = marked.parse(markdown);
+      tutorialContent.innerHTML = "";
+      tutorialContent.appendChild(contentWrapper);
+
+      const navigationContainer = document.createElement('div');
+      navigationContainer.className = 'navigation-buttons';
+      tutorialContent.appendChild(navigationContainer);
+
+      // Scroll the content container to the top
+      const contentContainer = document.getElementById("content");
+      contentContainer.scrollTop = 0;
 
       // Generate structure view after content is loaded
-      generateStructureView(tutorialContent);
+      generateStructureView(contentWrapper);
 
+      // Update URL
       updateURL(filename);
+
+      // Add navigation buttons
+      addNavigationButtons(filename, navigationContainer);
     } catch (error) {
       console.error("Error:", error);
       tutorialContent.innerHTML =
@@ -190,7 +207,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const structureSections = {};
 
-    headings.forEach((heading, index) => {
+    headings.forEach((heading) => {
       const level = heading.tagName.toLowerCase();
       const text = heading.textContent;
 
@@ -209,11 +226,43 @@ document.addEventListener("DOMContentLoaded", () => {
       item.textContent = text;
       item.onclick = () => {
         heading.scrollIntoView({ behavior: "smooth", block: "start" });
-        // Keep the structure view open
       };
 
       structureSections[level].appendChild(item);
     });
+  }
+
+  // Function to add navigation buttons
+  function addNavigationButtons(currentFile, navigationContainer) {
+    const currentIndex = tutorials.findIndex(
+      (tutorial) => tutorial.file === currentFile
+    );
+    const prevButton =
+      currentIndex > 0
+        ? `<button id="prev-button">Previous: ${
+            tutorials[currentIndex - 1].name
+          }</button>`
+        : "";
+    const nextButton =
+      currentIndex < tutorials.length - 1
+        ? `<button id="next-button">Next: ${
+            tutorials[currentIndex + 1].name
+          }</button>`
+        : "";
+
+    navigationContainer.innerHTML = `${prevButton}${nextButton}`;
+
+    // Add event listeners for buttons
+    if (currentIndex > 0) {
+      document.getElementById("prev-button").addEventListener("click", () => {
+        loadTutorial(tutorials[currentIndex - 1].file);
+      });
+    }
+    if (currentIndex < tutorials.length - 1) {
+      document.getElementById("next-button").addEventListener("click", () => {
+        loadTutorial(tutorials[currentIndex + 1].file);
+      });
+    }
   }
 
   // Initial setup

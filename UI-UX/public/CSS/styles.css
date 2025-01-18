@@ -1,19 +1,80 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Funnel+Display:wght@300..800&display=swap");
 
+:root {
+  /*Fonts*/
+  --font1: "Poppins";
+  --font2: "Funnel Display";
+  /*Background*/
+  --bg-color1: #8f3ee5;
+  --bg-color2: #639cfd;
+  /*Text*/
+  --text: #000000;
+  --inv-text: #ffffff;
+  --alt-text: #1f1f1f;
+  /*Customs*/
+  --purp: #8f3ee5;
+  --blu: #4da6ff;
+  --shadow: rgba(31, 38, 135, 0.37);
+  --block-quote: rgba(15, 10, 42, 0.1);
+  /*Opacity*/
+  --lp-zero: rgba(255, 255, 255, 0);
+  --lp-zfive: rgba(255, 255, 255, 0.05);
+  --lp-one: rgba(255, 255, 255, 0.1);
+  --lp-two: rgba(255, 255, 255, 0.2);
+  --lp-three: rgba(255, 255, 255, 0.3);
+  --lp-five: rgba(255, 255, 255, 0.5);
+  --lp-eight: rgba(255, 255, 255, 0.8);
+  --dp-one: rgba(0, 0, 0, 0.1);
+  --dp-two: rgba(0, 0, 0, 0.2);
+  --dp-three: rgba(0, 0, 0, 0.3);
+  --dp-five: rgba(0, 0, 0, 0.5);
+  --dp-seven: rgba(0, 0, 0, 0.7);
+  --dp-eight: rgba(0, 0, 0, 0.8);
+  --f-p-one: rgba(50, 50, 50, 0.1);
+  --f-p-five: rgba(50, 50, 50, 0.5);
+  --h-p-two: rgba(100, 100, 100, 0.2);
+  --t-p-five: rgba(200, 200, 200, 0.5);
+}
+
+:root .dark-mode {
+  /*Background*/
+  --bg-color1: #121212;
+  --bg-color2: #1f1f1f;
+  /*Text*/
+  --tone-text: #e0e0e0;
+  --text: #ffffff;
+  --inv-text: #000000;
+  --alt-text: #b0b0b0;
+  /*Customs*/
+  --block-quote: rgba(100, 100, 100, 0.1);
+  --p-one: rgba(100, 100, 100, 0.1);
+  --p-two: rgba(150, 150, 150, 0.2);
+  --p-eight: rgba(220, 220, 220, 0.8);
+}
+
 body,
 html {
   margin: 0;
   padding: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font1), sans-serif;
   height: 100%;
-  background: linear-gradient(45deg, #8f3ee5 0%, #639cfd 100%);
-  color: #000000;
+  background: linear-gradient(
+    45deg,
+    var(--bg-color1) 0%,
+    var(--bg-color2) 100%
+  );
+  color: var(--text);
+  transition: none;
 }
 
 /* Dark mode styles */
 body.dark-mode {
-  background: linear-gradient(45deg, #121212 0%, #1f1f1f 100%);
-  color: #e0e0e0;
+  background: linear-gradient(
+    45deg,
+    var(--bg-color1) 0%,
+    var(--bg-color2) 100%
+  );
+  color: var(--text);
 }
 
 /***************************/
@@ -25,7 +86,7 @@ body.dark-mode {
   top: 20px;
   right: 0;
   z-index: 1001;
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--lp-two);
   border: none;
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
@@ -35,18 +96,18 @@ body.dark-mode {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  color: #ffffff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: var(--text);
+  box-shadow: 0 4px 6px var(--dp-one);
   overflow: hidden;
 }
 
 #dark-mode-toggle:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: var(--lp-three);
   transform: scale(1.1);
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 8px var(--dp-two);
 }
 
 #dark-mode-toggle:active {
@@ -68,7 +129,7 @@ body.dark-mode {
 
 #dark-mode-toggle .fa-moon {
   display: block;
-  color: #000000;
+  color: var(--tone-text);
 }
 
 #dark-mode-toggle .fa-sun {
@@ -92,13 +153,13 @@ body.dark-mode {
 
 @keyframes darkModeGlow {
   0% {
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 0 0 var(--lp-three);
   }
   70% {
-    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 10px var(--lp-zero);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 0 var(--lp-zero);
   }
 }
 
@@ -120,7 +181,7 @@ body.dark-mode {
   top: 80px;
   right: 0;
   z-index: 1001;
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--lp-two);
   border: none;
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
@@ -133,26 +194,29 @@ body.dark-mode {
   transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  color: #000000;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: var(--tone-text);
+  box-shadow: 0 4px 6px var(--dp-one);
   overflow: hidden;
 }
 
 #structure-toggle:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: var(--lp-three);
   transform: scale(1.1);
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 8px var(--dp-two);
 }
 
 #structure-toggle i {
+  display: inline-block; 
   transition: transform 0.3s ease;
+  transform-origin: center;
 }
+
 #structure-toggle:active {
   transform: scale(0.95);
 }
 
 #structure-toggle.open i {
-  transform: rotate(-180deg);
+  transform: rotate(180deg);
 }
 
 /*************************/
@@ -165,7 +229,7 @@ body.dark-mode {
   top: 0;
   width: 300px;
   height: 100%;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--lp-one);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   transition: right 0.3s ease;
@@ -185,7 +249,7 @@ body.dark-mode {
 #structure-view .structure-section h3 {
   margin-bottom: 10px;
   font-size: 1.1em;
-  color: #000;
+  color: var(--tone-text);
 }
 
 #structure-view .structure-item {
@@ -196,25 +260,25 @@ body.dark-mode {
 }
 
 #structure-view .structure-item:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--lp-two);
 }
 
 /* Dark mode styles */
 body.dark-mode #structure-view {
-  background: rgba(50, 50, 50, 0.1);
-  color: #e0e0e0;
+  background: var(--f-p-one);
+  color: var(--tone-text);
 }
 
 body.dark-mode #structure-view .structure-section h3 {
-  color: #ffffff;
+  color: var(--text);
 }
 
 body.dark-mode #structure-toggle {
-  color: #ffffff;
+  color: var(--text);
 }
 
 body.dark-mode #structure-view .structure-item:hover {
-  background: rgba(100, 100, 100, 0.2);
+  background: var(--h-p-two);
 }
 
 /*******************************************/
@@ -229,18 +293,18 @@ body.dark-mode #structure-view .structure-item:hover {
 }
 
 .glass {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--lp-one);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border: 1px solid var(--lp-two);
+  box-shadow: 0 8px 32px 0 var(--shadow);
 }
 
 /* Dark mode styles */
 body.dark-mode .glass {
-  background: rgba(50, 50, 50, 0.1);
-  border-color: rgba(100, 100, 100, 0.2);
+  background: var(--f-p-one);
+  border-color: var(--h-p-two);
 }
 
 /******************/
@@ -253,8 +317,8 @@ body.dark-mode .glass {
   padding: 20px;
   margin-right: 20px;
   overflow-y: auto;
-  -webkit-mask-image: -webkit-radial-gradient(white, black);
-  mask-image: radial-gradient(white, black);
+  -webkit-mask-image: -webkit-radial-gradient(var(--inv-text), var(--text));
+  mask-image: radial-gradient(var(--inv-text), var(--text));
 }
 
 #sidebar h1 {
@@ -264,7 +328,7 @@ body.dark-mode .glass {
 }
 
 #sidebar .title {
-  font-family: "Funnel Display", "Poppins", sans-serif;
+  font-family: var(--font2), var(--font1), sans-serif;
   font-weight: 800;
   font-size: larger;
 }
@@ -280,12 +344,12 @@ body.dark-mode .glass {
   padding: 10px;
   border: none;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.2);
-  color: #000000;
+  background: var(--lp-two);
+  color: var(--text);
 }
 
 #search-input::placeholder {
-  color: rgba(0, 0, 0, 0.7);
+  color: var(--dp-seven);
 }
 
 #search-results {
@@ -294,9 +358,9 @@ body.dark-mode .glass {
   padding: 10px;
   max-height: 200px;
   overflow-y: auto;
-  color: #000000;
-  -webkit-mask-image: -webkit-radial-gradient(white, black);
-  mask-image: radial-gradient(white, black);
+  color: var(--text);
+  -webkit-mask-image: -webkit-radial-gradient(var(--inv-text), var(--text));
+  mask-image: radial-gradient(var(--inv-text), var(--text));
 }
 
 #search-results div {
@@ -307,8 +371,8 @@ body.dark-mode .glass {
 }
 
 #search-results div:hover {
-  color: #000000;
-  background: rgba(255, 255, 255, 0.2);
+  color: var(--text);
+  background: var(--lp-two);
 }
 
 #sidebar ul {
@@ -322,7 +386,7 @@ body.dark-mode .glass {
 
 #sidebar a {
   text-decoration: none;
-  color: #1f1f1f;
+  color: var(--alt-text);
   display: block;
   padding: 10px;
   border-radius: 10px;
@@ -330,29 +394,29 @@ body.dark-mode .glass {
 }
 
 #sidebar a:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #000000;
+  background: var(--lp-one);
+  color: var(--text);
 }
 
 #sidebar a.active {
-  background: rgba(255, 255, 255, 0.2);
-  color: #000000;
+  background: var(--lp-two);
+  color: var(--text);
 }
 
 /* Dark mode styles */
 body.dark-mode #sidebar a {
-  color: #b0b0b0;
+  color: var(--alt-text);
 }
 
 body.dark-mode #sidebar a:hover,
 body.dark-mode #sidebar a.active {
-  color: #ffffff;
+  color: var(--text);
 }
 
 body.dark-mode #search-input,
 body.dark-mode #search-results,
 body.dark-mode #search-results div:hover {
-  color: #ffffff;
+  color: var(--text);
 }
 
 /***********************/
@@ -360,11 +424,12 @@ body.dark-mode #search-results div:hover {
 /***********************/
 
 #content {
+  scroll-behavior: smooth;
   flex-grow: 1;
   padding: 30px;
   overflow-y: auto;
-  -webkit-mask-image: -webkit-radial-gradient(white, black);
-  mask-image: radial-gradient(white, black);
+  -webkit-mask-image: -webkit-radial-gradient(var(--inv-text), var(--text));
+  mask-image: radial-gradient(var(--inv-text), var(--text));
   transition: margin-right 0.3s ease;
 }
 
@@ -385,7 +450,7 @@ body.dark-mode #search-results div:hover {
 }
 
 #tutorial-content a {
-  color: #ffffff;
+  color: var(--inv-text);
   text-decoration: none;
 }
 
@@ -394,58 +459,83 @@ body.dark-mode #search-results div:hover {
 }
 
 #tutorial-content code {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--dp-one);
   padding: 2px 5px;
   border-radius: 5px;
 }
 
 #tutorial-content pre {
-  background: rgba(0, 0, 0, 0.3);
+  background: var(--dp-three);
   padding: 15px;
   border-radius: 10px;
   overflow-x: auto;
 }
 
 #tutorial-content blockquote {
-  border-left: 4px solid rgba(255, 255, 255, 0.5);
+  border-left: 4px solid var(--lp-five);
   padding: 10px 15px;
   margin: 20px 0;
-  background: rgba(15, 10, 42, 0.1);
+  background: var(--block-quote);
   font-style: italic;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--lp-eight);
 }
 
 #tutorial-content hr {
   border: none;
-  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  border-top: 1px solid var(--dp-five);
   margin: 20px 0;
+}
+
+.navigation-buttons {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navigation-buttons button {
+  font-family: inherit;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 25px;
+  background-color: var(--text);
+  color: var(--inv-text);
+  cursor: pointer;
 }
 
 /* Dark mode styles */
 body.dark-mode #tutorial-content th {
-  color: #ffffff;
+  color: var(--text);
 }
 
 body.dark-mode #tutorial-content a {
-  color: #4da6ff;
+  color: var(--blu);
 }
 
 body.dark-mode #tutorial-content blockquote {
-  border-left-color: rgba(200, 200, 200, 0.5);
-  background: rgba(100, 100, 100, 0.1);
-  color: rgba(220, 220, 220, 0.8);
+  border-left-color: var(--t-p-five);
+  background: var(--block-quote);
+  color: var(--p-eight);
 }
 
 body.dark-mode #tutorial-content code {
-  background: rgba(100, 100, 100, 0.2);
+  background: var(--h-p-two);
 }
 
 body.dark-mode #tutorial-content pre {
-  background: rgba(50, 50, 50, 0.5);
+  background: var(--f-p-five);
 }
 
 body.dark-mode #tutorial-content hr {
-  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-top: 1px solid var(--lp-five);
+}
+
+body.dark-mode .navigation-buttons button {
+  transition: background-color 0s, color 0s;
+}
+
+body.dark-mode .navigation-buttons button {
+  color: var(--text);
+  background-color: var(--purp);
 }
 
 /***************************/
@@ -455,9 +545,9 @@ body.dark-mode #tutorial-content hr {
 .skeleton {
   background: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.05) 0%,
-    rgba(255, 255, 255, 0.1) 50%,
-    rgba(255, 255, 255, 0.05) 100%
+    var(--lp-zfive) 0%,
+    var(--lp-one) 50%,
+    var(--lp-zfive) 100%
   );
   background-size: 200% 100%;
   animation: skeleton-loading 1.5s infinite;
@@ -506,14 +596,14 @@ body.dark-mode #tutorial-content hr {
 body.dark-mode .skeleton {
   background: linear-gradient(
     90deg,
-    rgba(100, 100, 100, 0.1) 0%,
-    rgba(150, 150, 150, 0.2) 50%,
-    rgba(100, 100, 100, 0.1) 100%
+    var(--p-one) 0%,
+    var(--p-two) 50%,
+    var(--p-one) 100%
   );
 }
 
 body.dark-mode .skeleton-text {
-  background: rgba(100, 100, 100, 0.2);
+  background: var(--h-p-two);
 }
 
 /***************************/
@@ -531,7 +621,7 @@ body.dark-mode .skeleton-text {
 #content::-webkit-scrollbar-track,
 #search-results::-webkit-scrollbar-track,
 #structure-content::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--lp-one);
   border-radius: 10px;
 }
 
@@ -539,7 +629,7 @@ body.dark-mode .skeleton-text {
 #content::-webkit-scrollbar-thumb,
 #search-results::-webkit-scrollbar-thumb,
 #structure-content::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
+  background: var(--lp-three);
   border-radius: 10px;
   transition: background 0.3s ease;
 }
@@ -548,7 +638,7 @@ body.dark-mode .skeleton-text {
 #content::-webkit-scrollbar-thumb:hover,
 #search-results::-webkit-scrollbar-thumb:hover,
 #structure-content::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--lp-five);
 }
 
 /* For Firefox */
@@ -556,18 +646,18 @@ body.dark-mode .skeleton-text {
 #content,
 #search-results {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.1);
+  scrollbar-color: var(--lp-three) var(--lp-one);
 }
 
 /****************************/
-/* Disable autofill styling */
+/* Autofill styling */
 /****************************/
 
 #search-input:-webkit-autofill,
 #search-input:-webkit-autofill:hover,
 #search-input:-webkit-autofill:focus {
-  -webkit-box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.2) inset;
-  -webkit-text-fill-color: #ffffff;
+  -webkit-box-shadow: 0 0 0px 1000px var(--lp-two) inset;
+  -webkit-text-fill-color: var(--inv-text);
   transition: background-color 5000s ease-in-out 0s;
 }
 
@@ -580,7 +670,7 @@ body.dark-mode .skeleton-text {
   border-collapse: separate;
   border-spacing: 0;
   margin: 20px 0;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--lp-one);
   border-radius: 15px;
   overflow: hidden;
 }
@@ -589,17 +679,17 @@ body.dark-mode .skeleton-text {
 #tutorial-content td {
   padding: 15px 20px;
   text-align: left;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid var(--lp-five);
 }
 
 #tutorial-content th {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--lp-two);
   font-weight: 600;
-  color: #000000;
+  color: var(--text);
 }
 
 #tutorial-content tbody tr:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--lp-one);
   transition: background 0.3s ease;
 }
 
@@ -627,19 +717,19 @@ body.dark-mode .skeleton-text {
   display: inline-block;
   width: 30px;
   height: 30px;
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--lp-two);
   border-radius: 50%;
   text-align: center;
   line-height: 30px;
   cursor: help;
   transition: background 0.3s ease;
-  color: #000000;
+  color: var(--text);
   font-weight: bold;
   position: relative;
 }
 
 .credits-icon:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: var(--lp-three);
 }
 
 .credits-tooltip {
@@ -647,8 +737,8 @@ body.dark-mode .skeleton-text {
   bottom: 30px;
   left: -120px;
   transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.8);
-  color: #ffffff;
+  background: var(--dp-eight);
+  color: var(--inv-text);
   padding: 5px 10px;
   border-radius: 10px;
   white-space: nowrap;
@@ -664,15 +754,20 @@ body.dark-mode .skeleton-text {
 }
 
 .credits-tooltip a {
-  color: #ffffff;
+  color: var(--inv-text);
 }
 
 /* Dark mode adjustments */
+body.dark-mode .credits-tooltip,
+body.dark-mode .credits-tooltip a {
+  color: var(--text);
+}
+
 body.dark-mode .credits-icon {
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
+  background: var(--lp-one);
+  color: --text;
 }
 
 body.dark-mode .credits-icon:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--lp-two);
 }

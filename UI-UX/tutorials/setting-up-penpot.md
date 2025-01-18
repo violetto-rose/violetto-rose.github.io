@@ -28,3 +28,5 @@ Penpot offers extensive resources to help you get started:
 - [Penpot Plugins](https://chatgpt.com/c/678b793f-b89c-8011-9b10-463aa2db1b73#) 
 - [Penpot Community Forum](https://community.penpot.app/)
 - [Penpot Help and Support](https://help.penpot.app/)
+
+---
