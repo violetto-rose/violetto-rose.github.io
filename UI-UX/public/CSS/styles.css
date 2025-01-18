@@ -36,6 +36,7 @@ body.dark-mode {
   justify-content: center;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   color: #ffffff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -130,6 +131,7 @@ body.dark-mode {
   justify-content: center;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   color: #000000;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -164,6 +166,7 @@ body.dark-mode {
   width: 300px;
   height: 100%;
   background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   transition: right 0.3s ease;
   overflow-y: auto;
@@ -227,6 +230,7 @@ body.dark-mode #structure-view .structure-item:hover {
 
 .glass {
   background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -285,6 +289,7 @@ body.dark-mode .glass {
 }
 
 #search-results {
+  display: none;
   margin-top: 10px;
   padding: 10px;
   max-height: 200px;
@@ -468,7 +473,7 @@ body.dark-mode #tutorial-content hr {
   }
 }
 
-.skeleton-text, 
+.skeleton-text,
 .skeleton-li {
   height: 25px;
   margin-bottom: 10px;

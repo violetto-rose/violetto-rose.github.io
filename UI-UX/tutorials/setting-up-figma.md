@@ -1,5 +1,10 @@
 # Steps to Set Up Figma
 
+Figma is a powerful, web-based design and prototyping tool widely used by UI/UX designers for creating user interfaces, wireframes, and interactive prototypes.
+
+> <i class="fa-solid fa-triangle-exclamation"></i> **Note:** If you prefer not to use Figma and wish to explore alternative tools, you may skip this section. For instance, **[Penpot](https://penpot.app/)** is an open-source alternative for UI/UX development, and a **[setup guide](setting-up-penpot.md)** is available for it as well.
+
+---
 ## 1. Sign Up for Figma
 - Visit [Figma](https://www.figma.com/) and create an account using either your school email (preferred) or a personal email.  
 > **Important:** If you sign up using your Google account, you will not be able to change your email address or password directly in Figma. To switch to another email, you must disconnect Google from your account. For details, refer to **[Switch from Google SSO to Email and Password](https://help.figma.com/hc/en-us/articles/360039820114#Google_SSO)**.

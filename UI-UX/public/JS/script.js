@@ -2,14 +2,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // Custom marked renderer to add target="_blank" to all links
   const renderer = new marked.Renderer();
   const originalLinkRenderer = renderer.link;
-  renderer.link = function(href, title, text) {
+  renderer.link = function (href, title, text) {
     const link = originalLinkRenderer.call(this, href, title, text);
-    return link.replace('<a', '<a target="_blank" rel="noopener noreferrer"');
+    return link.replace("<a", '<a target="_blank" rel="noopener noreferrer"');
   };
 
   // Configure marked to use the custom renderer
   marked.setOptions({
-    renderer: renderer
+    renderer: renderer,
   });
 
   // Variables and Constants
@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { name: "Introduction to UI/UX", file: "intro.md" },
     { name: "About the course", file: "about-course.md" },
     { name: "Setting up Figma", file: "setting-up-figma.md" },
+    { name: "Setting up Potpen", file: "setting-up-penpot.md " },
   ];
 
   // Populate the sidebar
@@ -32,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const li = document.createElement("li");
       const a = document.createElement("a");
       a.href = `#${tutorial.file}`;
-      a.innerHTML = `<i class="fas fa-book-open"></i> ${tutorial.name}`;
+      a.innerHTML = `<i class="fas fa-book-open"></i> &nbsp ${tutorial.name}`;
       a.onclick = (e) => {
         e.preventDefault();
         loadTutorial(tutorial.file);
@@ -52,10 +53,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       const markdown = await response.text();
       tutorialContent.innerHTML = marked.parse(markdown);
-      
+
       // Generate structure view after content is loaded
       generateStructureView(tutorialContent);
-      
+
       updateURL(filename);
     } catch (error) {
       console.error("Error:", error);
@@ -86,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
       searchResults.innerHTML = "";
-      
+
       // Show/hide search results based on input
       if (searchTerm.length > 0 && filteredTutorials.length > 0) {
         searchResults.style.display = "block";
@@ -96,7 +97,9 @@ document.addEventListener("DOMContentLoaded", () => {
           div.onclick = () => {
             loadTutorial(tutorial.file);
             updateActiveLink(
-              document.querySelector(`#tutorial-list a[href="#${tutorial.file}"]`)
+              document.querySelector(
+                `#tutorial-list a[href="#${tutorial.file}"]`
+              )
             );
             searchInput.value = "";
             searchResults.style.display = "none"; // Hide results after selection
@@ -138,50 +141,50 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Dark mode toggle
   const darkModeToggle = document.getElementById("dark-mode-toggle");
-  
+
   // Check for saved dark mode preference
-  const savedDarkMode = localStorage.getItem('darkMode');
-  if (savedDarkMode === 'enabled') {
-    document.body.classList.add('dark-mode');
-    darkModeToggle.classList.add('dark-mode');
+  const savedDarkMode = localStorage.getItem("darkMode");
+  if (savedDarkMode === "enabled") {
+    document.body.classList.add("dark-mode");
+    darkModeToggle.classList.add("dark-mode");
   }
 
-  darkModeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    darkModeToggle.classList.toggle('dark-mode');
+  darkModeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+    darkModeToggle.classList.toggle("dark-mode");
 
     // Save preference
-    if (document.body.classList.contains('dark-mode')) {
-      localStorage.setItem('darkMode', 'enabled');
+    if (document.body.classList.contains("dark-mode")) {
+      localStorage.setItem("darkMode", "enabled");
     } else {
-      localStorage.removeItem('darkMode');
+      localStorage.removeItem("darkMode");
     }
   });
 
   // Structure View Toggle
-  const structureToggle = document.getElementById('structure-toggle');
-  const structureView = document.getElementById('structure-view');
-  const structureContent = document.getElementById('structure-content');
+  const structureToggle = document.getElementById("structure-toggle");
+  const structureView = document.getElementById("structure-view");
+  const structureContent = document.getElementById("structure-content");
 
-  structureToggle.addEventListener('click', () => {
-    structureToggle.classList.toggle('open');
-    structureView.classList.toggle('open');
-    
+  structureToggle.addEventListener("click", () => {
+    structureToggle.classList.toggle("open");
+    structureView.classList.toggle("open");
+
     // Move the content area
-    const content = document.getElementById('content');
-    content.classList.toggle('shifted'); // Add or remove the shifted class
+    const content = document.getElementById("content");
+    content.classList.toggle("shifted"); // Add or remove the shifted class
   });
 
   // Function to generate structure view
   function generateStructureView(content) {
     // Clear previous structure
-    structureContent.innerHTML = '';
+    structureContent.innerHTML = "";
 
     // Create headings structure
-    const headings = content.querySelectorAll('h2, h3');
-    
+    const headings = content.querySelectorAll("h2, h3");
+
     if (headings.length === 0) {
-      structureContent.innerHTML = '<p>No structure found</p>';
+      structureContent.innerHTML = "<p>No structure found</p>";
       return;
     }
 
@@ -190,22 +193,22 @@ document.addEventListener("DOMContentLoaded", () => {
     headings.forEach((heading, index) => {
       const level = heading.tagName.toLowerCase();
       const text = heading.textContent;
-      
+
       if (!structureSections[level]) {
-        const section = document.createElement('div');
-        section.classList.add('structure-section');
-        const sectionTitle = document.createElement('h3');
-        sectionTitle.textContent = level === 'h2' ? 'Sections' : 'Subsections';
+        const section = document.createElement("div");
+        section.classList.add("structure-section");
+        const sectionTitle = document.createElement("h3");
+        sectionTitle.textContent = level === "h2" ? "Sections" : "Subsections";
         section.appendChild(sectionTitle);
         structureSections[level] = section;
         structureContent.appendChild(section);
       }
 
-      const item = document.createElement('div');
-      item.classList.add('structure-item');
+      const item = document.createElement("div");
+      item.classList.add("structure-item");
       item.textContent = text;
       item.onclick = () => {
-        heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        heading.scrollIntoView({ behavior: "smooth", block: "start" });
         // Keep the structure view open
       };
 
