@@ -17,9 +17,5 @@ To add a new tutorial:
 1. Create a new Markdown file in the `tutorials` folder.
 2. Add an entry to the `tutorials` array in `script.js`.
 
-## Customization
-
-You can customize the appearance of the website by modifying the `styles.css` file.
-
 ## License
 MIT License
