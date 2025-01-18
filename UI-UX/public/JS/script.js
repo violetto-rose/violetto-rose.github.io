@@ -59,8 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
       tutorialContent.innerHTML = "";
       tutorialContent.appendChild(contentWrapper);
 
-      const navigationContainer = document.createElement('div');
-      navigationContainer.className = 'navigation-buttons';
+      const navigationContainer = document.createElement("div");
+      navigationContainer.className = "navigation-buttons";
       tutorialContent.appendChild(navigationContainer);
 
       // Scroll the content container to the top
@@ -72,6 +72,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Update URL
       updateURL(filename);
+
+      // Update the active link in the sidebar
+      const sidebarLink = document.querySelector(
+        `#tutorial-list a[href="#${filename}"]`
+      );
+      if (sidebarLink) {
+        updateActiveLink(sidebarLink);
+      }
 
       // Add navigation buttons
       addNavigationButtons(filename, navigationContainer);
@@ -252,18 +260,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     navigationContainer.innerHTML = `${prevButton}${nextButton}`;
 
-    // Add event listeners for buttons
-    if (currentIndex > 0) {
-      document.getElementById("prev-button").addEventListener("click", () => {
-        loadTutorial(tutorials[currentIndex - 1].file);
-      });
-    }
-    if (currentIndex < tutorials.length - 1) {
-      document.getElementById("next-button").addEventListener("click", () => {
-        loadTutorial(tutorials[currentIndex + 1].file);
-      });
-    }
+  // Add event listeners for buttons with sidebar link updates
+  if (currentIndex > 0) {
+    document.getElementById("prev-button").addEventListener("click", () => {
+      const prevFile = tutorials[currentIndex - 1].file;
+      loadTutorial(prevFile);
+      const prevLink = document.querySelector(`#tutorial-list a[href="#${prevFile}"]`);
+      if (prevLink) {
+        updateActiveLink(prevLink);
+      }
+    });
   }
+  if (currentIndex < tutorials.length - 1) {
+    document.getElementById("next-button").addEventListener("click", () => {
+      const nextFile = tutorials[currentIndex + 1].file;
+      loadTutorial(nextFile);
+      const nextLink = document.querySelector(`#tutorial-list a[href="#${nextFile}"]`);
+      if (nextLink) {
+        updateActiveLink(nextLink);
+      }
+    });
+  }
+}
+
 
   // Initial setup
   populateSidebar();
