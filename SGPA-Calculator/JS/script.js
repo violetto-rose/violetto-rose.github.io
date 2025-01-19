@@ -8,7 +8,6 @@ if (
 
 // Dark mode toggle functionality
 document.getElementById("darkModeToggle").addEventListener("click", () => {
-  console.log("clicked");
   const html = document.documentElement;
   const isDark = html.classList.toggle("dark");
   localStorage.setItem("darkMode", isDark ? "enabled" : "disabled");
@@ -175,7 +174,7 @@ function calculateSGPA() {
 
   // Check if all non-zero credit subjects have marks
   if (nonZeroCreditMarks.some((input) => !input.value)) {
-    alert("Please enter marks for all subjects with non-zero credits");
+    alert("Please enter marks for all subjects");
     return;
   }
 
