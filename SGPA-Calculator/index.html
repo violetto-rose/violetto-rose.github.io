@@ -1,69 +1,156 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
+<html lang="en" class="light">
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>SGPA Calculator</title>
 
-    <meta name="author" content="violetto-rose" />
-    <meta name="description"
-        content="A project on OBE (Outcome based education) tracker with Course and Program outcome details along with subject information." />
-
-    <script src="https://cdn.tailwindcss.com" defer></script>
-
-    <!--Script-->
+    <meta name="author" content="violetto-fuchsia" />
+    <meta
+      name="description"
+      content="A project on OBE (Outcome based education) tracker with Course and Program outcome details along with subject information."
+    />
+    <link rel="stylesheet" href="dist/styles.css">
     <script src="JS/script.js" defer></script>
-</head>
+  </head>
 
-<!--Body-->
+  <body
+    class="min-h-screen bg-gradient-to-br from-fuchsia-50 to-red-50 dark:from-gray-900 dark:to-gray-800 py-12 px-4 transition-colors duration-200"
+  >
+    <div class="max-w-3xl mx-auto space-y-8">
+      <!-- Dark Mode Toggle -->
+      <div class="flex justify-end lg:fixed top-4 right-4 z-50 ">
+        <button
+          id="darkModeToggle"
+          class="p-2 rounded-lg bg-white dark:bg-gray-700 shadow-lg"
+          aria-label="Toggle dark mode"
+        >
+          <!-- Sun icon for light mode -->
+          <svg
+            class="w-6 h-6 text-gray-800 dark:hidden"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+            />
+          </svg>
+          <!-- Moon icon for dark mode -->
+          <svg
+            class="w-6 h-6 text-gray-200 hidden dark:block"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+            />
+          </svg>
+        </button>
+      </div>
 
-<body>
+      <!-- Header Section -->
+      <div class="text-center space-y-4">
+        <h1
+          class="text-4xl font-bold text-fuchsia-800 dark:text-fuchsia-400 tracking-tight"
+        >
+          SGPA Calculator
+        </h1>
+        <p class="text-lg text-gray-600 dark:text-gray-300">
+          Calculate Your SGPA or CGPA Easily
+        </p>
+      </div>
 
-    <div>
-        <h1>SGPA Calculator</h1>
-    </div>
+      <!-- Form Section -->
+      <form
+        id="sgpaForm"
+        class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 space-y-6"
+      >
+        <div class="space-y-6">
+          <!-- Radio Buttons -->
+          <div class="flex justify-center gap-6">
+            <label class="flex items-center space-x-2 cursor-pointer">
+              <input
+                type="radio"
+                name="gradeType"
+                value="sgpa"
+                checked
+                class="form-radio text-fuchsia-600 focus:ring-fuchsia-500 dark:text-fuchsia-400 dark:focus:ring-fuchsia-400"
+              />
+              <span class="text-gray-700 dark:text-gray-300">SGPA</span>
+            </label>
+            <label class="flex items-center space-x-2 cursor-pointer">
+              <input
+                type="radio"
+                name="gradeType"
+                value="cgpa"
+                class="form-radio text-fuchsia-600 focus:ring-fuchsia-500 dark:text-fuchsia-400 dark:focus:ring-fuchsia-400"
+              />
+              <span class="text-gray-700 dark:text-gray-300">CGPA</span>
+            </label>
+          </div>
 
-    <!--Title-->
-    <div>
-        <p>Calculate Your SGPA or CGPA Easily</p>
-    </div>
+          <!-- Semester Selection -->
+          <div id="semesterContainer" class="space-y-2">
+            <label
+              for="semester"
+              class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
+              Select your semester
+            </label>
+            <select
+              id="semester"
+              name="semester"
+              class="block p-2 w-full rounded-md border-gray-300 dark:border-gray-600 shadow-md focus:border-fuchsia-500 focus:ring-fuchsia-500 focus:outline-none dark:bg-gray-700 dark:text-gray-300"
+            >
+              <option value="3">3rd Semester</option>
+              <option value="4">4th Semester</option>
+              <option value="5">5th Semester</option>
+            </select>
+          </div>
 
-    <!--Selection-->
-    <form id="sgpaForm">
-        <div>
-            <div>
-                <label>
-                    <input type="radio" name="gradeType" value="sgpa" checked> SGPA
-                </label>
-                <label>
-                    <input type="radio" name="gradeType" value="cgpa"> CGPA
-                </label>
-            </div>
-
-            <div id="semesterContainer">
-                <label for="semester">Select your semester</label>
-                <select id="semester" name="semester">
-                    <option value="3">3rd Semester</option>
-                    <option value="4">4th Semester</option>
-                    <option value="5">5th Semester</option>
-                </select>
-            </div>
-
-            <div>
-                <button type="button" id="submitBtn">Submit</button>
-            </div>
+          <!-- Submit Button -->
+          <div class="flex justify-center">
+            <button
+              type="button"
+              id="submitBtn"
+              class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-fuchsia-600 hover:bg-fuchsia-700 dark:bg-fuchsia-500 dark:hover:bg-fuchsia-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-fuchsia-500 transition-colors duration-200"
+            >
+              Calculate
+            </button>
+          </div>
         </div>
-    </form>
+      </form>
 
-    <div id="subjectTableContainer"></div>
-    
-    <!-- Result Section -->
-    <div id="result">
-        <h2></h2> <!-- Placeholder for result -->
-        <h3 id="totalMarks"></h3> <!-- Placeholder for total marks -->
+      <!-- Subject Table Container -->
+      <div
+        id="subjectTableContainer"
+        class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"
+      >
+        <!-- Table will be dynamically inserted here -->
+      </div>
+
+      <!-- Result Section -->
+      <div
+        id="result"
+        class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 text-center space-y-4"
+      >
+        <h2
+          class="text-2xl font-semibold text-gray-800 dark:text-gray-200"
+        ></h2>
+        <h3
+          id="totalMarks"
+          class="text-xl text-gray-700 dark:text-gray-300"
+        ></h3>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>
