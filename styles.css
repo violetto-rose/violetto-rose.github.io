@@ -18,14 +18,31 @@ body {
   padding: 20px;
 }
 
+@media only screen and (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+}
+
 h1 {
   text-align: left;
   width: 100%;
   margin-bottom: 10px;
 }
 
+h1:last-child {
+  color: white;
+  margin-top: 20px;
+}
+
 .content {
   max-width: 1200px;
+}
+
+@media only screen and (max-width: 768px) {
+  .content {
+    max-width: 100%;
+  }
 }
 
 .container {
@@ -54,6 +71,13 @@ h1 {
 .card:hover {
   transform: translateY(-5px);
   box-shadow: 0 12px 40px 0 rgba(159, 159, 159, 0.45);
+}
+
+@media only screen and (max-width: 768px) {
+  .card:active {
+    transform: none;
+    box-shadow: none;
+  }
 }
 
 .card i {
@@ -120,10 +144,6 @@ h1 {
   text-decoration: underline;
 }
 
-#readme-content a:hover {
-  text-decoration: none;
-}
-
 #readme-content code {
   background: rgba(255, 255, 255, 0.2);
   padding: 2px 4px;
@@ -145,6 +165,13 @@ h1 {
   margin: 20px 0;
 }
 
+@media only screen and (max-width: 768px) {
+  #readme-content table {
+    overflow-x: auto;
+    display: block;
+  }
+}
+
 #readme-content th,
 #readme-content td {
   padding: 12px;
@@ -163,4 +190,10 @@ h1 {
 
 #readme-content tr:hover {
   background-color: #393939;
+}
+
+@media only screen and (max-width: 768px) {
+  #readme-content tr:active {
+    background-color: inherit;
+  }
 }

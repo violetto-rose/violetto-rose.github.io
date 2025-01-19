@@ -231,7 +231,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const item = document.createElement("div");
       item.classList.add("structure-item");
-      item.textContent = text;
+      item.textContent = text.replace(/:/g, '');
       item.onclick = () => {
         heading.scrollIntoView({ behavior: "smooth", block: "start" });
       };

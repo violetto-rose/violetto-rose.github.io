@@ -21,6 +21,42 @@ fetch("files.json")
   })
   .catch((error) => console.error("Error loading JSON:", error));
 
+// Detect 5 continuous clicks from mobile devices under 1 second for password-required cards
+let clickCount = 0;
+let clickTimeout;
+let lastClickTime = 0;
+
+document.addEventListener("touchstart", () => {
+  const currentTime = new Date().getTime();
+  const timeDiff = currentTime - lastClickTime;
+
+  if (timeDiff < 500) {
+    clickCount++;
+    clearTimeout(clickTimeout);
+  } else {
+    clickCount = 1;
+  }
+
+  lastClickTime = currentTime;
+
+  if (clickCount === 5) {
+    passwordVisible = !passwordVisible;
+    const cards = document.querySelectorAll(
+      ".card[data-password-required='1']"
+    );
+    cards.forEach((card) => {
+      card.style.display = passwordVisible ? "block" : "none";
+    });
+    clickCount = 0; // Reset the count after detection
+    lastClickTime = 0;
+  } else {
+    clickTimeout = setTimeout(() => {
+      clickCount = 0; // Reset the count if 1 second pass without 5 clicks
+      lastClickTime = 0;
+    }, 1000);
+  }
+});
+
 // Keyboard event listener for toggling password-required cards
 let passwordVisible = false;
 document.addEventListener("keydown", (event) => {
