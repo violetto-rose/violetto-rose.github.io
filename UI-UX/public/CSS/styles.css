@@ -419,8 +419,6 @@ body.dark-mode .glass {
   padding: 20px;
   margin-right: 20px;
   overflow-y: hidden;
-  display: flex;
-  flex-direction: column;
   -webkit-mask-image: -webkit-radial-gradient(var(--inv-text), var(--text));
   mask-image: radial-gradient(var(--inv-text), var(--text));
 }
@@ -429,7 +427,6 @@ body.dark-mode .glass {
   font-size: 1.8em;
   margin-bottom: 20px;
   text-align: center;
-  flex-shrink: 0;
 }
 
 #sidebar .title {
@@ -440,10 +437,10 @@ body.dark-mode .glass {
 
 .search-container {
   margin-bottom: 20px;
-  flex-shrink: 0;
 }
 
 #search-input {
+  box-sizing: border-box;
   font-family: inherit;
   width: 100%;
   outline: none;
