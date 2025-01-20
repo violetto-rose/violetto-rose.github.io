@@ -272,7 +272,9 @@ body.dark-mode {
   backdrop-filter: blur(10px);
   transition: right 0.3s ease;
   overflow-y: auto;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
   box-sizing: border-box;
 }
 
@@ -280,24 +282,34 @@ body.dark-mode {
   right: 0;
 }
 
-#structure-view .structure-section {
-  margin-bottom: 15px;
-}
-
-#structure-view .structure-section h3 {
-  margin-bottom: 10px;
-  font-size: 1.1em;
-  color: var(--tone-text);
-}
-
-#structure-view .structure-item {
+#structure-view .structure-item,
+#structure-view .structure-section,
+#structure-view .structure-subsection {
   padding: 8px 12px;
   cursor: pointer;
   border-radius: 10px;
   transition: background 0.3s ease;
 }
 
-#structure-view .structure-item:hover {
+#structure-view .structure-item {
+  font-size: 1.5rem;
+  padding-bottom: 10px;
+}
+
+#structure-view .structure-section {
+  font-size: 1.25rem;
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+
+#structure-view .structure-subsection {
+  font-size: 1rem;
+  padding-left: 20px;
+}
+
+#structure-view .structure-item:hover,
+#structure-view .structure-section:hover,
+#structure-view .structure-subsection:hover {
   background: var(--lp-two);
 }
 
@@ -308,8 +320,34 @@ body.dark-mode {
     width: 100%;
   }
 
+  #structure-view {
+    padding-top: 100px;
+  }
+
+  #structure-view .structure-item:hover,
+  #structure-view .structure-section:hover,
+  #structure-view .structure-subsection:hover {
+    background: none;
+  }
+}
+
+@media screen and (max-width: 768px) and (min-width: 640px) {
+  #structure-view .structure-item {
+    font-size: 3rem;
+  }
+
   #structure-view .structure-section {
-    margin: 50px 20px;
+    font-size: 2rem;
+  }
+
+  #structure-view .structure-subsection {
+    font-size: 1.75rem;
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  #structure-view {
+    padding-left: 20px;
   }
 }
 
@@ -327,8 +365,22 @@ body.dark-mode #structure-toggle {
   color: var(--text);
 }
 
-body.dark-mode #structure-view .structure-item:hover {
-  background: var(--h-p-two);
+body.dark-mode
+  #structure-view
+  .structure-item:hover
+  body.dark-mode
+  #structure-view
+  .structure-section:hover,
+body.dark-mode #structure-view .structure-subsection:hover {
+  background: var(--dp-five);
+}
+
+@media screen and (max-width: 768px) {
+  body.dark-mode #structure-view .structure-item:hover,
+  body.dark-mode #structure-view .structure-section:hover,
+  body.dark-mode #structure-view .structure-subsection:hover {
+    background: none;
+  }
 }
 
 /*******************************************/
@@ -393,7 +445,7 @@ body.dark-mode .glass {
 
 #search-input {
   font-family: inherit;
-  width: -webkit-fill-available;
+  width: 100%;
   outline: none;
   padding: 10px;
   border: none;
@@ -463,7 +515,7 @@ body.dark-mode .glass {
   #sidebar {
     position: fixed;
     width: auto;
-    left: -302px;
+    left: -320px;
     height: -webkit-fill-available;
     transition: left 0.3s ease;
     z-index: 1;
@@ -722,7 +774,6 @@ body.dark-mode .skeleton {
 body.dark-mode .skeleton-text {
   background: var(--h-p-two);
 }
-
 /***************************/
 /* Custom Scrollbar Styles */
 /***************************/

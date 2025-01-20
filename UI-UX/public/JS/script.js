@@ -325,40 +325,70 @@ document.addEventListener("DOMContentLoaded", () => {
     structureContent.innerHTML = "";
 
     // Create headings structure
-    const headings = content.querySelectorAll("h2, h3");
+    const headings = content.querySelectorAll("h1, h2, h3");
 
     if (headings.length === 0) {
       structureContent.innerHTML = "<p>No structure found</p>";
       return;
     }
 
-    const structureSections = {};
+    let currentSection = null; // Track the current section for subsections
 
     headings.forEach((heading) => {
       const level = heading.tagName.toLowerCase();
       const text = heading.textContent;
 
-      if (!structureSections[level]) {
+      // Handle h1 (top-level section)
+      if (level === "h1") {
+        // Create a new top-level section for h1
         const section = document.createElement("div");
-        section.classList.add("structure-section");
-        const sectionTitle = document.createElement("h3");
-        sectionTitle.textContent = level === "h2" ? "Sections" : "Subsections";
-        section.appendChild(sectionTitle);
-        structureSections[level] = section;
+        section.classList.add("structure-item");
+        section.textContent = text.replace(/:/g, "");
+        section.onclick = () => {
+          heading.scrollIntoView({ behavior: "smooth", block: "start" });
+          if (window.innerWidth <= 768) {
+            closeStructureView();
+          }
+        };
+
         structureContent.appendChild(section);
+
+        currentSection = null;
       }
 
-      const item = document.createElement("div");
-      item.classList.add("structure-item");
-      item.textContent = text.replace(/:/g, "");
-      item.onclick = () => {
-        heading.scrollIntoView({ behavior: "smooth", block: "start" });
-        if (window.innerWidth <= 768) {
-          closeStructureView();
-        }
-      };
+      // Handle h2 (section)
+      if (level === "h2") {
+        // Create a new section for h2
+        const section = document.createElement("div");
+        section.classList.add("structure-section");
+        section.textContent = text.replace(/:/g, "");
+        section.onclick = () => {
+          heading.scrollIntoView({ behavior: "smooth", block: "start" });
+          if (window.innerWidth <= 768) {
+            closeStructureView();
+          }
+        };
 
-      structureSections[level].appendChild(item);
+        structureContent.appendChild(section);
+
+        currentSection = section;
+      }
+
+      // Handle h3 (subsection)
+      if (level === "h3" && currentSection) {
+        const subsection = document.createElement("div");
+        subsection.classList.add("structure-subsection");
+        subsection.textContent = text.replace(/:/g, "");
+        subsection.onclick = () => {
+          heading.scrollIntoView({ behavior: "smooth", block: "start" });
+          if (window.innerWidth <= 768) {
+            closeStructureView();
+          }
+        };
+
+        // Append subsection to the current h2 section
+        currentSection.appendChild(subsection);
+      }
     });
   }
 
