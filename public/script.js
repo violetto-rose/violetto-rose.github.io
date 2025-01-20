@@ -69,7 +69,6 @@ document.addEventListener("keydown", (event) => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Function to find and remove elements by header content
   const removeElements = () => {
     const headers = document.querySelectorAll("h2");
     headers.forEach((header) => {
@@ -115,7 +114,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const processReadme = async () => {
     try {
-      // Ensure marked is available
       if (typeof marked !== "object" || typeof marked.parse !== "function") {
         console.error("Marked library not properly loaded");
         return;
