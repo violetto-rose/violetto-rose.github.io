@@ -1,4 +1,3 @@
-// Fetching the JSON data for the cards
 fetch("public/files.json")
   .then((response) => response.json())
   .then((data) => {
@@ -21,7 +20,6 @@ fetch("public/files.json")
   })
   .catch((error) => console.error("Error loading JSON:", error));
 
-// Password visibility handling code remains the same
 let clickCount = 0;
 let clickTimeout;
 let lastClickTime = 0;
@@ -70,13 +68,11 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-// Wait for the document to be fully loaded
 document.addEventListener("DOMContentLoaded", () => {
   // Function to find and remove elements by header content
   const removeElements = () => {
     const headers = document.querySelectorAll("h2");
     headers.forEach((header) => {
-      // Find and remove social media section
       if (header.textContent === "🌟 Social Media") {
         let nextElement = header.nextElementSibling;
         while (nextElement && nextElement.tagName === "P") {
@@ -87,7 +83,6 @@ document.addEventListener("DOMContentLoaded", () => {
         header.remove();
       }
 
-      // Find and remove tools section
       if (header.textContent === "🛠️ Tools & Technologies") {
         let nextElement = header.nextElementSibling;
         while (
@@ -101,7 +96,6 @@ document.addEventListener("DOMContentLoaded", () => {
         header.remove();
       }
 
-      // Find and remove GitHub stats section
       if (header.textContent === "📊 GitHub Stats") {
         let nextElement = header.nextElementSibling;
         while (
@@ -119,7 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  // Function to process README
   const processReadme = async () => {
     try {
       // Ensure marked is available
@@ -133,26 +126,21 @@ document.addEventListener("DOMContentLoaded", () => {
       );
       const markdown = await response.text();
 
-      // Modify links in the Markdown
       const baseUrl =
         "https://raw.githubusercontent.com/violetto-rose/violetto-rose/refs/heads/main/";
       const modifiedMarkdown = markdown.replace(
         /<img src="(?!http|https)(.*?)"/g,
         (_, p1) => `<img src="${baseUrl}${p1}"`
       );
-
-      // Convert modified Markdown to HTML using marked.parse()
+ 
       const htmlContent = marked.parse(modifiedMarkdown);
       document.getElementById("readme-content").innerHTML = htmlContent;
 
-      // Remove specific elements after content is loaded
-      // Add a small delay to ensure the content is fully rendered
       setTimeout(removeElements, 100);
     } catch (error) {
       console.error("Error processing README:", error);
     }
   };
 
-  // Start processing when everything is loaded
   processReadme();
 });
