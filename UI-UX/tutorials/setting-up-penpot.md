@@ -5,7 +5,6 @@
 [Penpot](https://penpot.app/) is a web-based, open-source [design tool](https://penpot.app/design/design-tool) that serves as an excellent alternative for UI/UX development. Follow the steps below to get started:
 
 ---
-
 ## 1. Sign Up for Penpot
 
 - Visit the [registration page](https://design.penpot.app/#/auth/register) to create a new account.

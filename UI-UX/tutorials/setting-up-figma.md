@@ -29,7 +29,6 @@ Figma is a powerful, web-based design and prototyping tool widely used by UI/UX 
   - [Figma for iOS](https://itunes.apple.com/app/figma-mirror/id1152747299)
 
 ---
-
 ## Learn Figma with the Resource Library
 
 Figma offers a comprehensive [Resource Library](https://www.figma.com/resource-library/) for beginners and professionals, covering:

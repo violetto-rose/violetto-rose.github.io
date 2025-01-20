@@ -9,6 +9,7 @@
 
 > NOTE: Wire frames can be hand-drawn and recorded by the students. Designing and Prototyping can be done using Figma.
 
+---
 ## Experiments:
 | Sl.NO | Experiments (Designing and Prototyping using Figma)                                                                                                                                                                                                                      |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -23,12 +24,13 @@
 | 9     | Educational Website: Create a wireframe, Design and Prototype the UI for an educational website – Include a Homepage with footer, About Us Page, Programs page, Instructors page, Pricing page, Payments page with radial buttons. Design dropdowns for programs button. |
 | 10    | Music Player App: Create a wireframe, Design and prototype the pages with a background and a Rollover button, and Song selection Page with a Home Rollover button. The third page may include animated play and pause button, play music animation, timer animation.     |
 
+---
 ## Course outcomes (Course Skill Set):
 
 At the end of the course the student will be able to:
 - Apply the basics of wireframing in designing apps and Websites.
 - Make use of Figma for designing and prototyping UI/UX for different types of apps and Websites.
-- Analyse user requirements and translate the requirements to design prototypes.
+- Analyze user requirements and translate the requirements to design prototypes.
 - Demonstrate the UI/UX concepts applied when designing the prototype of apps and Websites.
 - Develop (redesign) the existing apps & Websites with customized design. 
 

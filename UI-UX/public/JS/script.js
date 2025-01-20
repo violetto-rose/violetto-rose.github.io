@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Populate the sidebar
   function populateSidebar() {
     tutorialList.innerHTML = "";
+    tutorialList.classList.add("tutorial-list");
     tutorials.forEach((tutorial) => {
       const li = document.createElement("li");
       const a = document.createElement("a");
@@ -41,6 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
       };
       li.appendChild(a);
       tutorialList.appendChild(li);
+      sidebarLinkListeners();
     });
   }
 
@@ -55,7 +57,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const contentWrapper = document.createElement("div");
       contentWrapper.className = "tutorial-content-wrapper";
-      contentWrapper.innerHTML = marked.parse(markdown);
+
+      const parsedContent = marked.parse(markdown);
+      contentWrapper.innerHTML = wrapTables(parsedContent);
+
       tutorialContent.innerHTML = "";
       tutorialContent.appendChild(contentWrapper);
 
@@ -88,6 +93,22 @@ document.addEventListener("DOMContentLoaded", () => {
       tutorialContent.innerHTML =
         "<p>Error loading tutorial content. Please try again later.</p>";
     }
+  }
+
+  // Function to wrap table
+  function wrapTables(content) {
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = content;
+
+    const tables = tempDiv.querySelectorAll("table");
+    tables.forEach((table) => {
+      const wrapper = document.createElement("div");
+      wrapper.className = "table-wrapper";
+      table.parentNode.insertBefore(wrapper, table);
+      wrapper.appendChild(table);
+    });
+
+    return tempDiv.innerHTML;
   }
 
   // Function to update URL
@@ -186,19 +207,117 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Sidebar Toggle
+  const sidebar = document.getElementById("sidebar");
+  const sidebarToggle = document.getElementById("sidebar-toggle");
+
+  function toggleSidebar() {
+    sidebar.classList.toggle("open");
+    sidebarToggle.classList.toggle("open");
+
+    const barsIcon = sidebarToggle.querySelector(".fa-bars");
+    const barsStaggeredIcon = sidebarToggle.querySelector(".fa-bars-staggered");
+
+    if (sidebar.classList.contains("open")) {
+      barsIcon.style.display = "none";
+      barsStaggeredIcon.style.display = "flex";
+      barsStaggeredIcon.style.opacity = "1";
+    } else {
+      barsIcon.style.display = "flex";
+      barsStaggeredIcon.style.display = "none";
+    }
+  }
+
+  // Toggle sidebar when button is clicked
+  sidebarToggle.addEventListener("click", (e) => {
+    e.stopPropagation();
+    toggleSidebar();
+    if (structureView.classList == "open") {
+      closeStructureView();
+    }
+  });
+
+  document.addEventListener("click", (e) => {
+    if (window.innerWidth <= 768) {
+      const isOutsideSidebar = !sidebar.contains(e.target);
+      const isNotToggleButton = !sidebarToggle.contains(e.target);
+      const isNotDarkModeToggle =
+        !darkModeToggle.contains(e.target) &&
+        !darkModeToggle.querySelector("*").contains(e.target);
+
+      if (isOutsideSidebar && isNotToggleButton && isNotDarkModeToggle) {
+        if (sidebar.classList.contains("open")) {
+          toggleSidebar();
+        }
+      }
+    }
+  });
+
+  // Close sidebar when window is resized above tablet breakpoint
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) {
+      sidebar.classList.remove("open");
+      sidebarToggle.classList.remove("open");
+      document.body.style.overflow = "";
+
+      const barsIcon = sidebarToggle.querySelector(".fa-bars");
+      const barsStaggeredIcon =
+        sidebarToggle.querySelector(".fa-bars-staggered");
+      barsIcon.style.display = "flex";
+      barsStaggeredIcon.style.display = "none";
+    }
+  });
+
+  function sidebarLinkListeners() {
+    // Close sidebar when clicking on a tutorial link (mobile only)
+    const tutorialLinks = document.querySelectorAll("#tutorial-list a");
+
+    if (tutorialLinks) {
+      tutorialLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          if (window.innerWidth <= 768 && sidebar.classList.contains("open")) {
+            toggleSidebar();
+          }
+        });
+      });
+    }
+  }
+
+  // Close sidebar when search result is clicked (mobile only)
+  if (searchResults) {
+    searchResults.addEventListener("click", () => {
+      if (window.innerWidth <= 768 && sidebar.classList.contains("open")) {
+        toggleSidebar();
+      }
+    });
+  }
+
   // Structure View Toggle
   const structureToggle = document.getElementById("structure-toggle");
   const structureView = document.getElementById("structure-view");
   const structureContent = document.getElementById("structure-content");
 
   structureToggle.addEventListener("click", () => {
+    toggleStructureView();
+  });
+
+  function toggleStructureView() {
     structureToggle.classList.toggle("open");
     structureView.classList.toggle("open");
 
-    // Move the content area
+    // Move the content area only for screens wider than 768px
     const content = document.getElementById("content");
-    content.classList.toggle("shifted"); // Add or remove the shifted class
-  });
+    if (window.innerWidth > 768) {
+      content.classList.toggle("shifted");
+    }
+  }
+
+  function closeStructureView() {
+    structureToggle.classList.remove("open");
+    structureView.classList.remove("open");
+    const content = document.getElementById("content");
+    content.classList.remove("shifted");
+  }
 
   // Function to generate structure view
   function generateStructureView(content) {
@@ -231,9 +350,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const item = document.createElement("div");
       item.classList.add("structure-item");
-      item.textContent = text.replace(/:/g, '');
+      item.textContent = text.replace(/:/g, "");
       item.onclick = () => {
         heading.scrollIntoView({ behavior: "smooth", block: "start" });
+        if (window.innerWidth <= 768) {
+          closeStructureView();
+        }
       };
 
       structureSections[level].appendChild(item);
@@ -245,44 +367,53 @@ document.addEventListener("DOMContentLoaded", () => {
     const currentIndex = tutorials.findIndex(
       (tutorial) => tutorial.file === currentFile
     );
+
     const prevButton =
       currentIndex > 0
         ? `<button id="prev-button">Previous: ${
             tutorials[currentIndex - 1].name
           }</button>`
-        : "";
+        : `<button id="prev-button" disabled class="invisible">Previous</button>`;
+
     const nextButton =
       currentIndex < tutorials.length - 1
         ? `<button id="next-button">Next: ${
             tutorials[currentIndex + 1].name
           }</button>`
-        : "";
+        : `<button id="next-button" disabled class="invisible">Next</button>`;
 
     navigationContainer.innerHTML = `${prevButton}${nextButton}`;
 
-  // Add event listeners for buttons with sidebar link updates
-  if (currentIndex > 0) {
-    document.getElementById("prev-button").addEventListener("click", () => {
-      const prevFile = tutorials[currentIndex - 1].file;
-      loadTutorial(prevFile);
-      const prevLink = document.querySelector(`#tutorial-list a[href="#${prevFile}"]`);
-      if (prevLink) {
-        updateActiveLink(prevLink);
-      }
-    });
-  }
-  if (currentIndex < tutorials.length - 1) {
-    document.getElementById("next-button").addEventListener("click", () => {
-      const nextFile = tutorials[currentIndex + 1].file;
-      loadTutorial(nextFile);
-      const nextLink = document.querySelector(`#tutorial-list a[href="#${nextFile}"]`);
-      if (nextLink) {
-        updateActiveLink(nextLink);
-      }
-    });
-  }
-}
+    // Add event listeners for buttons with sidebar link updates
+    const prevButtonElement = document.getElementById("prev-button");
+    const nextButtonElement = document.getElementById("next-button");
 
+    if (currentIndex > 0 && prevButtonElement) {
+      prevButtonElement.addEventListener("click", () => {
+        const prevFile = tutorials[currentIndex - 1].file;
+        loadTutorial(prevFile);
+        const prevLink = document.querySelector(
+          `#tutorial-list a[href="#${prevFile}"]`
+        );
+        if (prevLink) {
+          updateActiveLink(prevLink);
+        }
+      });
+    }
+
+    if (currentIndex < tutorials.length - 1 && nextButtonElement) {
+      nextButtonElement.addEventListener("click", () => {
+        const nextFile = tutorials[currentIndex + 1].file;
+        loadTutorial(nextFile);
+        const nextLink = document.querySelector(
+          `#tutorial-list a[href="#${nextFile}"]`
+        );
+        if (nextLink) {
+          updateActiveLink(nextLink);
+        }
+      });
+    }
+  }
 
   // Initial setup
   populateSidebar();
@@ -290,4 +421,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Listen for hash changes
   window.addEventListener("hashchange", loadTutorialFromHash);
+  window.addEventListener("resize", () => {
+    if (window.innerWidth <= 768) {
+      const content = document.getElementById("content");
+      content.classList.remove("shifted");
+    }
+  });
 });

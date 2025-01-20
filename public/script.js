@@ -1,5 +1,5 @@
 // Fetching the JSON data for the cards
-fetch("files.json")
+fetch("public/files.json")
   .then((response) => response.json())
   .then((data) => {
     const container = document.getElementById("card-container");

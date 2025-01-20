@@ -18,7 +18,7 @@ body {
   padding: 20px;
 }
 
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   body {
     overflow-x: hidden;
   }
@@ -39,7 +39,7 @@ h1:last-child {
   max-width: 1200px;
 }
 
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .content {
     max-width: 100%;
   }
@@ -75,7 +75,7 @@ h1:last-child {
   color: #fff;
 }
 
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .card {
     padding: 20px;
   }
@@ -86,7 +86,7 @@ h1:last-child {
   box-shadow: 0 12px 40px 0 rgba(159, 159, 159, 0.45);
 }
 
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .card:active,
   .card:hover {
     transform: none;
@@ -168,7 +168,7 @@ h1:last-child {
   margin: 20px 0;
 }
 
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   #readme-content table {
     overflow-x: auto;
     display: block;
@@ -195,7 +195,7 @@ h1:last-child {
   background-color: #393939;
 }
 
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   #readme-content tr:active,
   #readme-content tr:hover {
     background-color: inherit;
