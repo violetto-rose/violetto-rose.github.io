@@ -60,7 +60,6 @@ h1:last-child {
 .gradient-sphere {
   position: absolute;
   border-radius: 50%;
-  filter: blur(10px);
   opacity: 0.5;
   animation: moveSphere 20s infinite ease-in-out;
 }
@@ -199,7 +198,7 @@ h1:last-child {
   max-width: 1200px;
   width: 100%;
   display: none;
-
+  backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
