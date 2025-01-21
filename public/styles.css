@@ -18,12 +18,6 @@ body {
   padding: 20px;
 }
 
-@media screen and (max-width: 768px) {
-  body {
-    overflow-x: hidden;
-  }
-}
-
 h1 {
   text-align: left;
   width: 100%;
@@ -54,7 +48,7 @@ h1:last-child {
   width: 100%;
   height: 100%;
   z-index: -1;
-  overflow: none;
+  overflow: hidden;
 }
 
 .gradient-sphere {
