@@ -3,30 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>SGPA Calculator</title>
-
-    <meta name="author" content="violetto-fuchsia" />
+    <meta name="author" content="Manju Madhav V A" />
     <meta
       name="description"
-      content="A project on OBE (Outcome based education) tracker with Course and Program outcome details along with subject information."
+      content="Easily calculate your SGPA or CGPA with our user-friendly SGPA Calculator. Calculation is done using VTU 2021 scheme point scale. Perfect for students to track their academic performance."
     />
-    <link rel="stylesheet" href="dist/styles.css">
+    <meta
+      name="keywords"
+      content="SGPA, CGPA, Calculator, Student, Academic, Performance, Grade, Semester, VTU, 2021, 2022"
+    />
+    <link rel="stylesheet" href="dist/styles.css" />
     <script src="JS/script.js" defer></script>
   </head>
-
   <body
     class="min-h-screen bg-gradient-to-br from-fuchsia-50 to-red-50 dark:from-gray-900 dark:to-gray-800 py-12 px-4 transition-colors duration-200"
   >
     <div class="max-w-3xl mx-auto space-y-8">
-      <!-- Dark Mode Toggle -->
-      <div class="flex justify-end lg:fixed top-4 right-4 z-50 ">
+      <div class="flex justify-end lg:fixed top-4 right-4 z-50">
         <button
           id="darkModeToggle"
           class="p-2 rounded-lg bg-white dark:bg-gray-700 shadow-lg"
           aria-label="Toggle dark mode"
         >
-          <!-- Sun icon for light mode -->
           <svg
             class="w-6 h-6 text-gray-800 dark:hidden"
             fill="none"
@@ -40,7 +39,6 @@
               d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
             />
           </svg>
-          <!-- Moon icon for dark mode -->
           <svg
             class="w-6 h-6 text-gray-200 hidden dark:block"
             fill="none"
@@ -57,7 +55,6 @@
         </button>
       </div>
 
-      <!-- Header Section -->
       <div class="text-center space-y-4">
         <h1
           class="text-4xl font-bold text-fuchsia-800 dark:text-fuchsia-400 tracking-tight"
@@ -69,13 +66,11 @@
         </p>
       </div>
 
-      <!-- Form Section -->
       <form
         id="sgpaForm"
         class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 space-y-6"
       >
         <div class="space-y-6">
-          <!-- Radio Buttons -->
           <div class="flex justify-center gap-6">
             <label class="flex items-center space-x-2 cursor-pointer">
               <input
@@ -98,7 +93,6 @@
             </label>
           </div>
 
-          <!-- Semester Selection -->
           <div id="semesterContainer" class="space-y-2">
             <label
               for="semester"
@@ -130,15 +124,10 @@
         </div>
       </form>
 
-      <!-- Subject Table Container -->
       <div
         id="subjectTableContainer"
         class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"
-      >
-        <!-- Table will be dynamically inserted here -->
-      </div>
-
-      <!-- Result Section -->
+      ></div>
       <div
         id="result"
         class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 text-center space-y-4"
