@@ -1,25 +1,32 @@
-// Fetching the JSON data for the cards
-fetch("public/files.json")
-  .then((response) => response.json())
-  .then((data) => {
-    const container = document.getElementById("card-container");
-    data.forEach((item) => {
-      const card = document.createElement("a");
-      card.href = item.link;
-      card.className = "card";
-      card.dataset.passwordRequired = item.password_required;
-      card.innerHTML = `
+function fetchCards() {
+  // Fetching the JSON data for the cards
+  fetch("public/files.json")
+    .then((response) => response.json())
+    .then((data) => {
+      // Add the class 'visible' to all h1 elements with the class 'headers'
+      const header = document.querySelectorAll("h1.headers");
+      header.forEach((h1) => {
+        h1.classList.add("visible");
+      });
+      const container = document.getElementById("card-container");
+      data.forEach((item) => {
+        const card = document.createElement("a");
+        card.href = item.link;
+        card.className = "card";
+        card.dataset.passwordRequired = item.password_required;
+        card.innerHTML = `
         <i class="${item.icon}"></i>
         <h2>${item.name}</h2>
         <p>${item.description}</p>
       `;
-      if (item.password_required) {
-        card.style.display = "none";
-      }
-      container.appendChild(card);
-    });
-  })
-  .catch((error) => console.error("Error loading JSON:", error));
+        if (item.password_required) {
+          card.style.display = "none";
+        }
+        container.appendChild(card);
+      });
+    })
+    .catch((error) => console.error("Error loading JSON:", error));
+}
 
 // Password visibility handling code remains the same
 let clickCount = 0;
@@ -133,6 +140,9 @@ document.addEventListener("DOMContentLoaded", () => {
       );
       const markdown = await response.text();
 
+      const readmeContent = document.getElementById("readme-content");
+      readmeContent.style.display = "block";
+
       // Modify links in the Markdown
       const baseUrl =
         "https://raw.githubusercontent.com/violetto-rose/violetto-rose/refs/heads/main/";
@@ -154,5 +164,6 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // Start processing when everything is loaded
+  fetchCards();
   processReadme();
 });

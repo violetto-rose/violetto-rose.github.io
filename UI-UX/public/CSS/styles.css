@@ -668,6 +668,12 @@ body.dark-mode #search-results div:hover {
   }
 }
 
+@media screen and (min-width: 1080px) {
+  #tutorial-content a {
+    text-decoration: underline;
+  }
+}
+
 /* Dark mode styles */
 body.dark-mode #tutorial-content th {
   color: var(--text);

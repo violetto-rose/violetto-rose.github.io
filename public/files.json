@@ -26,5 +26,19 @@
         "name" : "Resume",
         "description" : "View professional portfolio and experience",
         "password_required" : 1
+    },
+    {
+        "link" : "",
+        "icon" : "",
+        "name" : "<em>Coming Soon</em>",
+        "description" : ".........",
+        "password_required" : 1
+    },
+    {
+        "link" : "",
+        "icon" : "",
+        "name" : "<em>Coming Soon</em>" ,
+        "description" : "..........",
+        "password_required" : 1
     }
 ]
