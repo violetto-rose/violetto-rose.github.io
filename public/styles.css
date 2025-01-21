@@ -8,14 +8,9 @@
 }
 
 body {
-  min-height: 100vh;
   color: #fff;
   background: black;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+  overflow: hidden;
 }
 
 h1 {
@@ -104,6 +99,16 @@ h1:last-child {
 /***********/
 /* Content */
 /***********/
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px;
+  overflow: auto;
+  height: 100vh;
+}
 
 .content {
   max-width: 1200px;
