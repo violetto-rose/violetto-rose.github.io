@@ -668,8 +668,8 @@ body.dark-mode #search-results div:hover {
   }
 }
 
-@media screen and (min-width: 1080px) {
-  #tutorial-content a {
+@media screen and (max-width: 1080px) {
+  #tutorial-content blockquote a {
     text-decoration: underline;
   }
 }
