@@ -2,8 +2,6 @@ function fetchCards() {
   fetch("public/files.json")
     .then((response) => response.json())
     .then((data) => {
-      const header = document.querySelectorAll("headers");
-
       const container = document.getElementById("card-container");
       data.forEach((item) => {
         const card = document.createElement("a");
@@ -19,6 +17,12 @@ function fetchCards() {
           card.style.display = "none";
         }
         container.appendChild(card);
+      });
+      const header = document.querySelectorAll("h1.headers");
+      header.forEach((h1) => {
+        if (h1.textContent === "Apps:") {
+          h1.classList.add("visible");
+        }
       });
     })
     .catch((error) => console.error("Error loading JSON:", error));
@@ -130,6 +134,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const readmeContent = document.getElementById("readme-content");
       readmeContent.style.display = "block";
+      const header = document.querySelectorAll("h1.headers");
+      header.forEach((h1) => {
+        if (h1.textContent === "README:") {
+          h1.classList.add("visible");
+        }
+      });
 
       const baseUrl =
         "https://raw.githubusercontent.com/violetto-rose/violetto-rose/refs/heads/main/";
@@ -149,9 +159,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   fetchCards();
   processReadme();
-
-  const header = document.querySelectorAll("h1.headers");
-  header.forEach((h1) => {
-    h1.classList.add("visible");
-  });
 });
