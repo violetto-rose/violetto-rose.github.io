@@ -147,11 +147,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  fetchCards();
+  processReadme();
+
   const header = document.querySelectorAll("h1.headers");
   header.forEach((h1) => {
     h1.classList.add("visible");
   });
-
-  fetchCards();
-  processReadme();
 });
