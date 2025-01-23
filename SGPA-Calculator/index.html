@@ -105,9 +105,46 @@
               name="semester"
               class="block p-2 w-full rounded-md border-gray-300 dark:border-gray-600 shadow-md focus:border-fuchsia-500 focus:ring-fuchsia-500 focus:outline-none dark:bg-gray-700 dark:text-gray-300"
             >
-              <option value="3">3rd Semester</option>
+              <option value="1">1st Semester</option>
+              <option value="2">2nd Semester</option>
+              <option value="3" selected>3rd Semester</option>
               <option value="4">4th Semester</option>
               <option value="5">5th Semester</option>
+              <option value="6">6th Semester</option>
+              <option value="7">7th Semester</option>
+              <option value="8">8th Semester</option>
+            </select>
+          </div>
+
+          <div id="branchContainer" class="space-y-2">
+            <label
+              for="branch"
+              class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
+              Select your branch
+            </label>
+            <select
+              id="branch"
+              name="branch"
+              class="block p-2 w-full rounded-md border-gray-300 dark:border-gray-600 shadow-md focus:border-fuchsia-500 focus:ring-fuchsia-500 focus:outline-none dark:bg-gray-700 dark:text-gray-300"
+            >
+              <option value="cse">Computer Science and Engineering</option>
+              <option value="ise">Information Science and Engineering</option>
+              <option value="aiml">
+                Artificial Intelligence and Machine Learning
+              </option>
+              <option value="csd">Computer Science and Design</option>
+              <option value="csds">
+                Computer Science and Engineering (Data Science)
+              </option>
+              <option value="ece">
+                Electronics and Communication Engineering
+              </option>
+              <option value="eee">
+                Electrical and Electronics Engineering
+              </option>
+              <option value="me">Mechanical Engineering</option>
+              <option value="cv">Civil Engineering</option>
             </select>
           </div>
 
@@ -118,7 +155,7 @@
               id="submitBtn"
               class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-fuchsia-600 hover:bg-fuchsia-700 dark:bg-fuchsia-500 dark:hover:bg-fuchsia-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-fuchsia-500 transition-colors duration-200"
             >
-              Calculate
+              Submit
             </button>
           </div>
         </div>
