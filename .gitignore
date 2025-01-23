@@ -1,7 +1,8 @@
 # Obsidian folder
 .obsidian/
 
-# Webkit warnings
+# Config
+eslint.config.mjs
 .hintrc
 
 # Node modules

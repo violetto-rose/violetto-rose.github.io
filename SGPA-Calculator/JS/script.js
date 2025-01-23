@@ -268,7 +268,7 @@ function calculateGPA() {
   let totalGradePoints = 0;
   let totalMarks = 0;
 
-  nonZeroCreditMarks.forEach((markInput, index) => {
+  nonZeroCreditMarks.forEach((markInput, _index) => {
     const mark = Number.parseFloat(markInput.value);
     const credit = credits[marks.indexOf(markInput)];
     const gradePoint = getGradePoint(mark);
