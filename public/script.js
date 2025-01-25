@@ -45,6 +45,7 @@ let lastClickTime = 0;
 let passwordVisible = false;
 
 function handleTouchStart() {
+  getRandomTransformValues();
   const currentTime = new Date().getTime();
   const timeDiff = currentTime - lastClickTime;
 
@@ -64,6 +65,7 @@ function handleTouchStart() {
 }
 
 function togglePasswordVisibility() {
+  getRandomTransformValues();
   passwordVisible = !passwordVisible;
   const cards = document.querySelectorAll(".card[data-password-required='1']");
   cards.forEach((card) => {
@@ -131,6 +133,19 @@ function removeElements() {
     }
   });
 }
+
+function getRandomTransformValues() {  
+  const translateX = Math.floor(Math.random() * 200) - 100; // Random between -100 and 100  
+  const translateY = Math.floor(Math.random() * 200) - 100; // Random between -100 and 100  
+  const rotate = Math.floor(Math.random() * 360);           // Random between 0 and 360 degrees  
+  const scale = (Math.random() * (1.5 - 0.5) + 0.5).toFixed(2); // Random scale between 0.5 and 1.5  
+
+  document.documentElement.style.setProperty('--translate-x', `${translateX}px`);  
+  document.documentElement.style.setProperty('--translate-y', `${translateY}px`);  
+  document.documentElement.style.setProperty('--rotate', `${rotate}deg`);  
+  document.documentElement.style.setProperty('--scale', scale);  
+}  
+
 
 document.addEventListener("DOMContentLoaded", () => {
   fetchCards();

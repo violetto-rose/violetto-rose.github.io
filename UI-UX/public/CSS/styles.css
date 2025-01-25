@@ -514,8 +514,11 @@ body.dark-mode .glass {
     width: auto;
     left: -320px;
     height: -webkit-fill-available;
+    height: 100%;
     transition: left 0.3s ease;
     z-index: 1;
+    border-radius: unset;
+    border-top-right-radius: 20px;
     margin-right: 0;
   }
 

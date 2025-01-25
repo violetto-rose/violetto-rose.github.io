@@ -1,5 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
 
+:root {
+  --translate-x: -60px;
+  --translate-y: -55px;
+  --rotate: 20deg;
+  --scale: 1.2;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -8,8 +15,8 @@
 }
 
 body {
-  color: #fff;
-  background: black;
+  color: #ffffff;
+  background: #000000;
   overflow: hidden;
 }
 
@@ -36,7 +43,10 @@ h1:last-child {
 /* Animated Background */
 /***********************/
 
-.animated-background {
+/* Animation inspired from Server124's CodePen:   
+   https://codepen.io/Server124/pen/XJrXLye */
+
+.background {
   position: fixed;
   top: 0;
   left: 0;
@@ -46,7 +56,7 @@ h1:last-child {
   overflow: hidden;
 }
 
-.gradient-sphere {
+.sphere {
   position: absolute;
   border-radius: 50%;
   opacity: 0.5;
@@ -56,43 +66,71 @@ h1:last-child {
 .sphere-1 {
   width: 600px;
   height: 600px;
-  background: linear-gradient(45deg, #ff3366, #ff6b3d);
+  background: linear-gradient(45deg, #40e0d0 0%, #ff8c00 50%, #ff0080 100%);
   top: -300px;
   left: -300px;
-  animation-delay: -5s;
+  animation-delay: -10s;
 }
 
 .sphere-2 {
   width: 500px;
   height: 500px;
-  background: linear-gradient(45deg, #4433ff, #3dceff);
+  background: linear-gradient(45deg, #fdfc47 0%, #24fe41 100%);
   bottom: -250px;
   right: -250px;
-  animation-delay: -2s;
+  animation-delay: -5s;
 }
 
 .sphere-3 {
   width: 400px;
   height: 400px;
-  background: linear-gradient(45deg, #7400ff, #ff00d4);
+  background: linear-gradient(45deg, #000000 0%, #e5008d 50%, #ff070b 100%);
   top: 50%;
   left: 30%;
   animation-delay: -8s;
 }
 
+.sphere-4 {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(
+    45deg,
+    #03001e 0%,
+    #7303c0 33%,
+    #ec38bc 66%,
+    #fdeff9 100%
+  );
+  top: 0%;
+  right: 20%;
+  animation-delay: -2s;
+}
+
 @keyframes moveSphere {
   0%,
   100% {
-    transform: translate(0, 0) rotate(0deg) scale(1);
+    transform: translate(var(--translate-x), var(--translate-y))
+      rotate(var(--rotate)) scale(var(--scale));
   }
   25% {
-    transform: translate(100px, 50px) rotate(90deg) scale(1.1);
+    transform: translate(
+        calc(var(--translate-x) + 100px),
+        calc(var(--translate-y) + 50px)
+      )
+      rotate(calc(var(--rotate) + 90deg)) scale(calc(var(--scale) * 1.1));
   }
   50% {
-    transform: translate(50px, 100px) rotate(180deg) scale(1);
+    transform: translate(
+        calc(var(--translate-x) + 50px),
+        calc(var(--translate-y) + 100px)
+      )
+      rotate(calc(var(--rotate) + 180deg)) scale(var(--scale));
   }
   75% {
-    transform: translate(-50px, 50px) rotate(270deg) scale(0.9);
+    transform: translate(
+        calc(var(--translate-x) - 50px),
+        calc(var(--translate-y) + 50px)
+      )
+      rotate(calc(var(--rotate) + 270deg)) scale(calc(var(--scale) * 0.9));
   }
 }
 
@@ -147,7 +185,7 @@ h1:last-child {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   text-decoration: none;
-  color: #fff;
+  color: #ffffff;
 }
 
 @media screen and (max-width: 768px) {
@@ -205,12 +243,12 @@ h1:last-child {
 #readme-content h1,
 #readme-content h2,
 #readme-content h3 {
-  color: #fff;
+  color: #ffffff;
   margin: 10px 0;
 }
 
 #readme-content p {
-  color: #ddd;
+  color: #dddddd;
   line-height: 1.6;
   margin-bottom: 15px;
 }
@@ -241,7 +279,7 @@ h1:last-child {
   padding: 10px;
   border-radius: 5px;
   overflow-x: auto;
-  color: #fff;
+  color: #ffffff;
 }
 
 #readme-content table {
@@ -261,7 +299,7 @@ h1:last-child {
 #readme-content td {
   padding: 12px;
   text-align: left;
-  border: 1px solid #ddd;
+  border: 1px solid #dddddd;
 }
 
 #readme-content th {
