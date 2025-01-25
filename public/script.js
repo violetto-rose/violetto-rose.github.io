@@ -45,7 +45,6 @@ let lastClickTime = 0;
 let passwordVisible = false;
 
 function handleTouchStart() {
-  getRandomTransformValues();
   const currentTime = new Date().getTime();
   const timeDiff = currentTime - lastClickTime;
 
@@ -58,6 +57,7 @@ function handleTouchStart() {
   lastClickTime = currentTime;
 
   if (clickCount === 5) {
+    getRandomTransformValues();
     togglePasswordVisibility();
     clickCount = 0;
     lastClickTime = 0;
@@ -65,7 +65,6 @@ function handleTouchStart() {
 }
 
 function togglePasswordVisibility() {
-  getRandomTransformValues();
   passwordVisible = !passwordVisible;
   const cards = document.querySelectorAll(".card[data-password-required='1']");
   cards.forEach((card) => {
@@ -75,6 +74,7 @@ function togglePasswordVisibility() {
 
 function handleKeyDown(event) {
   if (event.ctrlKey && event.shiftKey && event.altKey && event.key === "P") {
+    getRandomTransformValues();
     togglePasswordVisibility();
   }
 }
