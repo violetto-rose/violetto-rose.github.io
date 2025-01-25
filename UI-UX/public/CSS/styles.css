@@ -881,11 +881,6 @@ body.dark-mode .skeleton-text {
 }
 
 @media screen and (max-width: 640px) {
-  .table-wrapper table {
-    min-width: 800px;
-  }
-
-  #tutorial-content th:nth-of-type(odd),
   #tutorial-content td:nth-of-type(odd) {
     padding-right: 0;
     width: 1%;

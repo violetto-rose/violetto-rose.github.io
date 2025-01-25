@@ -23,6 +23,10 @@ export async function loadTutorial(filename) {
     tutorialContent.innerHTML = "";
     tutorialContent.appendChild(contentWrapper);
 
+    if (filename === "about-course.md") {
+      adjustTableHeader(filename);
+    }
+
     const navigationContainer = document.createElement("div");
     navigationContainer.className = "navigation-buttons";
     tutorialContent.appendChild(navigationContainer);
@@ -50,6 +54,8 @@ export async function loadTutorial(filename) {
 
     // Lazy load images
     lazyLoadImages(contentWrapper);
+
+    window.addEventListener("resize", () => adjustTableHeader(filename));
   } catch (error) {
     console.error("Error:", error);
     tutorialContent.innerHTML =
@@ -75,6 +81,35 @@ function lazyLoadImages(container) {
     img.src = "";
     imageObserver.observe(img);
   });
+}
+
+// Function to adjust table for mobile devices
+export function adjustTableHeader(filename) {
+  const isMobile = window.innerWidth <= 640; // Define mobile breakpoint
+  const applicableFiles = ["intro.md", "about-course.md"]; // Add your specific filenames here
+
+  if (isMobile && applicableFiles.includes(filename)) {
+    const firstTh = document.querySelector("#tutorial-content th:first-child");
+    if (firstTh) {
+      firstTh.style.display = "none";
+    }
+
+    const secondTh = document.querySelector("#tutorial-content th:last-child");
+    if (secondTh) {
+      secondTh.setAttribute("colspan", "2");
+    }
+  } else {
+    // Reset styles if not mobile or not an applicable file
+    const firstTh = document.querySelector("#tutorial-content th:first-child");
+    if (firstTh) {
+      firstTh.style.display = "";
+    }
+
+    const secondTh = document.querySelector("#tutorial-content th:last-child");
+    if (secondTh) {
+      secondTh.removeAttribute("colspan");
+    }
+  }
 }
 
 // Function to wrap table
