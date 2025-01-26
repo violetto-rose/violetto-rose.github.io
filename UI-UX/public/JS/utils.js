@@ -5,9 +5,6 @@ import { tutorials } from "./sidebar.js";
 export async function loadTutorial(filename) {
   const tutorialContent = document.getElementById("tutorial-content");
   try {
-    // Show loading indicator
-    tutorialContent.innerHTML = '<div class="loading">Loading...</div>';
-
     let response = await caches.match(`tutorials/${filename}`)
     if (!response) {
       // If not in cache, fetch from network
