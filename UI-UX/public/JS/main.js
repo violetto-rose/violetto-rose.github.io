@@ -9,11 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const renderer = new marked.Renderer();
   const originalLinkRenderer = renderer.link;
   renderer.link = function (href, title, text) {
-    if (href.startsWith("https") && !href.startsWith("#")) {
-      const link = originalLinkRenderer.call(this, href, title, text);
-      return link.replace("<a", '<a target="_blank" rel="noopener noreferrer"');
+    const link = originalLinkRenderer.call(this, href, title, text);
+    if (href.href.startsWith("#")) {
+      return link.replace("<a", '<a target="_self" rel="noopener noreferrer"');
     }
-    return originalLinkRenderer.call(this, href, title, text);
+    return link.replace("<a", '<a target="_blank" rel="noopener noreferrer"');
   };
 
   marked.setOptions({ renderer: renderer });
