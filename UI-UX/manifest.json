@@ -1,0 +1,25 @@
+{
+  "name": "UI/UX Tutorial Website",
+  "short_name": "UI/UX Tutorials",
+  "description": "A departmental UI/UX tutorial site for students.",
+  "id": "com.violetto-rose.UI-UX",
+  "start_url": "http://127.0.0.1:5500/UI-UX/",
+  "orientation": "natural",
+  "display_override": ["fullscreen", "minimal-ui", "window-controls-overlay"],
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "public/icon/UI-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "public/icon/UI-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
+
