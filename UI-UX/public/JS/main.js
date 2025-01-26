@@ -9,8 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const renderer = new marked.Renderer();
   const originalLinkRenderer = renderer.link;
   renderer.link = function (href, title, text) {
-    const link = originalLinkRenderer.call(this, href, title, text);
-    return link.replace("<a", '<a target="_blank" rel="noopener noreferrer"');
+    if (href.startsWith("https") && !href.startsWith("#")) {
+      const link = originalLinkRenderer.call(this, href, title, text);
+      return link.replace("<a", '<a target="_blank" rel="noopener noreferrer"');
+    }
+    return originalLinkRenderer.call(this, href, title, text);
   };
 
   marked.setOptions({ renderer: renderer });
