@@ -3,7 +3,7 @@
   "short_name": "UI/UX Tutorials",
   "description": "A departmental UI/UX tutorial site for students.",
   "id": "com.violetto-rose.UI-UX",
-  "start_url": "http://127.0.0.1:5500/UI-UX/",
+  "start_url": "https://violetto-rose.github.io/UI-UX/",
   "orientation": "natural",
   "display_override": ["fullscreen", "minimal-ui", "window-controls-overlay"],
   "display": "standalone",
