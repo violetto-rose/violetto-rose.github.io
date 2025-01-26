@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
       navigator.serviceWorker
-        .register("public/JS/sw.js")
+        .register("public/JS/sw.js", {scope: "/UI-UX/"})
         .then((registration) => {
           console.log(
             "Service Worker registered with scope:",
