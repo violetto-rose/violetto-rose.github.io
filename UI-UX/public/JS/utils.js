@@ -5,17 +5,17 @@ import { tutorials } from "./sidebar.js";
 export async function loadTutorial(filename) {
   const tutorialContent = document.getElementById("tutorial-content");
   try {
-    let response = await caches.match(`tutorials/${filename}`)
-    if (!response) {
-      // If not in cache, fetch from network
-      response = await fetch(`tutorials/${filename}`)
-      // Add to cache for future use
-      const cache = await caches.open("uiux-tutorial-v1")
-      cache.put(`tutorials/${filename}`, response.clone())
-    }
-
+    // let response = await caches.match(`tutorials/${filename}`)
+    // if (!response) {
+    //   // If not in cache, fetch from network
+    //   response = await fetch(`tutorials/${filename}`)
+    //   // Add to cache for future use
+    //   const cache = await caches.open("uiux-tutorial-v1")
+    //   cache.put(`tutorials/${filename}`, response.clone())
+    // }
+    const response = await fetch(`tutorials/${filename}`);
     if (!response.ok) {
-      throw new Error("Failed to load tutorial")
+      throw new Error("Failed to load tutorial");
     }
     const markdown = await response.text();
 
