@@ -17,8 +17,10 @@ export async function loadTutorial(filename) {
     if (!response.ok) {
       throw new Error("Failed to load tutorial");
     }
-    const markdown = await response.text();
+    let markdown = await response.text();
 
+    markdown = markdown.replace(/!\[([^\]]*)\]\(images\//g, '![$1](/UI-UX/tutorials/images/');
+    
     const contentWrapper = document.createElement("div");
     contentWrapper.className = "tutorial-content-wrapper";
 

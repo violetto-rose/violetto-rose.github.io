@@ -46,6 +46,7 @@
   --inv-text: #000000;
   --alt-text: #b0b0b0;
   /*Customs*/
+  --shadow: rgba(0, 0, 0, 0.37);
   --block-quote: rgba(100, 100, 100, 0.1);
   --p-one: rgba(100, 100, 100, 0.1);
   --p-two: rgba(150, 150, 150, 0.2);
@@ -624,6 +625,51 @@ body.dark-mode #search-results div:hover {
   margin: 20px 0;
 }
 
+#tutorial-content img {
+  width: 100%;
+}
+
+#tutorial-content span {
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-shadow: 0 0 20px var(--dp-five);
+}
+
+#tutorial-content .WhatsApp {
+  color: #00d756;
+}
+
+.image-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--lp-one);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+  padding: 20px;
+}
+
+.enlarged-image {
+  max-width: 90%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 8px 32px 0 var(--shadow);
+}
+
+@media (max-width: 768px) {
+  .enlarged-image {
+    max-width: 95%;
+    max-height: 95vh;
+  }
+}
+
 .navigation-buttons {
   margin-top: 20px;
   display: flex;
@@ -702,6 +748,14 @@ body.dark-mode #tutorial-content pre {
 
 body.dark-mode #tutorial-content hr {
   border-top: 1px solid var(--lp-five);
+}
+
+body.dark-mode #tutorial-content span {
+  text-shadow: none;
+}
+
+body.dark-mode .image-overlay {
+  background: var(--f-p-one);
 }
 
 body.dark-mode .navigation-buttons button {
@@ -849,6 +903,11 @@ body.dark-mode .skeleton-text {
   overflow: hidden;
 }
 
+#tutorial-content table a {
+  color: inherit;
+  text-decoration: underline;
+}
+
 .table-wrapper {
   overflow-x: auto;
 }
@@ -885,6 +944,14 @@ body.dark-mode .skeleton-text {
     padding-right: 0;
     width: 1%;
   }
+}
+
+body.dark-mode #tutorial-content table a {
+  text-decoration: none;
+}
+
+body.dark-mode #tutorial-content table a:hover {
+  text-decoration: underline;
 }
 
 /***********************/

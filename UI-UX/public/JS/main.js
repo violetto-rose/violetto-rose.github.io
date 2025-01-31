@@ -3,6 +3,7 @@ import { setupDarkMode } from "./darkMode.js";
 import { setupSidebar } from "./sidebarToggle.js";
 import { setupStructureView } from "./structureView.js";
 import { setupSearch } from "./search.js";
+import { setupImageViewer } from "./imageViewer.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   // Configure marked renderer
@@ -10,10 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const originalLinkRenderer = renderer.link;
   renderer.link = function (href, title, text) {
     const link = originalLinkRenderer.call(this, href, title, text);
-    if (href.href.startsWith("#")) {
-      return link.replace("<a", '<a target="_self" rel="noopener noreferrer"');
+    if (!href.href.startsWith("https")) {
+      return link.replace("<a", '<a target="_blank" rel="noopener noreferrer"').replace('href="', 'href="#');
     }
-    return link.replace("<a", '<a target="_blank" rel="noopener noreferrer"');
+    return link.replace("<a", '<a target="_self" rel="noopener noreferrer"');
   };
 
   marked.setOptions({ renderer: renderer });
@@ -25,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupSidebar();
   setupStructureView();
   setupSearch();
+  setupImageViewer();
 
   // Listen for hash changes
   window.addEventListener("hashchange", loadTutorialFromHash);

@@ -317,7 +317,8 @@ h1:last-child {
 
 @media screen and (max-width: 768px) {
   #readme-content tr:active,
-  #readme-content tr:hover {
+  #readme-content tr:hover,
+  #readme-content tr:nth-child(even) {
     background-color: inherit;
   }
 }
