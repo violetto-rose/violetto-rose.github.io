@@ -118,3 +118,28 @@ Since this is a wireframe, we won't add details to the status bar.
 With these steps completed, we now have a fully structured wireframe for the app, providing a basic layout of the interface.
 
 ![Final Wireframe](images/chat-app-redesign/wireframe.png)
+## 3. Designing
+
+Were gonna need icons for designing this. Easy way to get icons is using plugins.
+
+1. Lets download [Iconify](https://www.figma.com/community/plugin/735098390272716381/iconify)
+
+You can also search for the plugin in figma and run it.
+### ▶ Creating a Frame
+
+Create a frame similarly how you created for wireframe:
+
+1. For this, we'll use the **Android Compact** frame again.
+
+![Creating a Frame](images/chat-app-redesign/design-1.png)
+
+### ▶ Adding the Status Bar
+
+1. Select the **Rectangle Tool** from the toolbar and place it on the canvas.
+2. Set the **width (W) to 412** and **height (H) to 50**, then align it to the top.
+3. Change its color to white.
+
+![Adding the Status Bar](images/chat-app-redesign/design-2.png)
+### ▶ Adding the Icons
+
+1. Run the iconify plugin from [Actions](1.%20Get%20familiar%20with%20tools%20in%20Figma.md)
