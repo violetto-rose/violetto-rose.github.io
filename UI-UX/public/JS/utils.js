@@ -19,8 +19,11 @@ export async function loadTutorial(filename) {
     }
     let markdown = await response.text();
 
-    markdown = markdown.replace(/!\[([^\]]*)\]\(images\//g, '![$1](/UI-UX/tutorials/images/');
-    
+    markdown = markdown.replace(
+      /!\[([^\]]*)\]\(images\//g,
+      "![$1](/UI-UX/tutorials/images/"
+    );
+
     const contentWrapper = document.createElement("div");
     contentWrapper.className = "tutorial-content-wrapper";
 
@@ -78,6 +81,23 @@ function lazyLoadImages(container) {
       if (entry.isIntersecting) {
         const image = entry.target;
         image.src = image.dataset.src;
+
+        image.onload = function () {
+          if (image.naturalWidth < 1000) {
+            image.style.width = "60%";
+
+            const parent = image.parentElement;
+            parent.style.display = "flex";
+            parent.style.justifyContent = "center";
+          } else {
+            image.style.width = "100%";
+
+            const parent = image.parentElement;
+            parent.style.display = "";
+            parent.style.justifyContent = "";
+          }
+        };
+
         observer.unobserve(image);
       }
     });
