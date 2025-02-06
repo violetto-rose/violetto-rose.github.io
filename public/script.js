@@ -114,18 +114,25 @@ function removeElements() {
     "🌟 Social Media",
     "🛠️ Tools & Technologies",
     "📊 GitHub Stats",
+    "🚀 Recent Projects",
   ];
   const headers = document.querySelectorAll("h2");
 
   headers.forEach((header) => {
     if (headersToRemove.includes(header.textContent)) {
       let nextElement = header.nextElementSibling;
+      let prevElement = header.previousElementSibling;
       while (
         nextElement &&
-        ["P", "TABLE", "HR", "DIV"].includes(nextElement.tagName)
+        ["P", "TABLE", "DIV"].includes(nextElement.tagName)
       ) {
         const elementToRemove = nextElement;
         nextElement = nextElement.nextElementSibling;
+        elementToRemove.remove();
+      }
+      while (prevElement && ["HR"].includes(prevElement.tagName)) {
+        const elementToRemove = prevElement;
+        prevElement = prevElement.previousElementSibling;
         elementToRemove.remove();
       }
       header.remove();
@@ -133,18 +140,23 @@ function removeElements() {
   });
 }
 
-function getRandomTransformValues() {  
-  const translateX = Math.floor(Math.random() * 200) - 100; // Random between -100 and 100  
-  const translateY = Math.floor(Math.random() * 200) - 100; // Random between -100 and 100  
-  const rotate = Math.floor(Math.random() * 360);           // Random between 0 and 360 degrees  
-  const scale = (Math.random() * (1.5 - 0.5) + 0.5).toFixed(2); // Random scale between 0.5 and 1.5  
+function getRandomTransformValues() {
+  const translateX = Math.floor(Math.random() * 200) - 100; // Random between -100 and 100
+  const translateY = Math.floor(Math.random() * 200) - 100; // Random between -100 and 100
+  const rotate = Math.floor(Math.random() * 360); // Random between 0 and 360 degrees
+  const scale = (Math.random() * (1.5 - 0.5) + 0.5).toFixed(2); // Random scale between 0.5 and 1.5
 
-  document.documentElement.style.setProperty('--translate-x', `${translateX}px`);  
-  document.documentElement.style.setProperty('--translate-y', `${translateY}px`);  
-  document.documentElement.style.setProperty('--rotate', `${rotate}deg`);  
-  document.documentElement.style.setProperty('--scale', scale);  
-}  
-
+  document.documentElement.style.setProperty(
+    "--translate-x",
+    `${translateX}px`
+  );
+  document.documentElement.style.setProperty(
+    "--translate-y",
+    `${translateY}px`
+  );
+  document.documentElement.style.setProperty("--rotate", `${rotate}deg`);
+  document.documentElement.style.setProperty("--scale", scale);
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   fetchCards();
