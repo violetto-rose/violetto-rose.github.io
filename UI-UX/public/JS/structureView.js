@@ -69,8 +69,6 @@ export function generateStructureView(content) {
       currentSection.appendChild(subsection);
     }
   });
-
-  fastPreScroll();
 }
 
 function createStructureItem(text, heading) {
@@ -106,28 +104,10 @@ function createStructureSubsection(text, heading) {
   return subsection;
 }
 
-function fastPreScroll() {
-  const content = document.getElementById("content");
-  const originalScrollTop = content.scrollTop;
-  const originalScrollBehavior = content.style.scrollBehavior;
-
-  // Temporarily disable smooth scrolling for faster pre-scroll
-  content.style.scrollBehavior = "auto";
-
-  // Scroll to bottom and immediately back to top
-  content.scrollTop = content.scrollHeight;
-  content.scrollTop = originalScrollTop;
-
-  // Restore original scroll behavior
-  setTimeout(() => {
-    content.style.scrollBehavior = originalScrollBehavior;
-  }, 0);
-}
-
 function scrollToHeading(heading) {
   let attempts = 0;
   const maxAttempts = 5;
-  const delay = 50; // Reduced delay for faster response
+  const delay = 50;
 
   function attemptScroll() {
     attempts++;
