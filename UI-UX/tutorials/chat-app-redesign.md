@@ -2,7 +2,7 @@
 
 Let's begin our first experiment: A Chat App Redesign where we will create a wireframe and redesign the user interface of a well-known chat application. We will be using Figma as our design tool throughout this tutorial, as recommended by the university.
 
-For our experiment, we'll focus on <span class="WhatsApp">WhatsApp</span>, a widely-used messaging platform from Meta. WhatsApp exemplifies excellent user interface design through its intuitive navigation, clear visual hierarchy, and consistent design patterns. The app successfully balances functionality with simplicity, making it accessible to users across different age groups and technical backgrounds. Its interface prioritizes the most frequently used features while maintaining a clean, uncluttered appearance.
+For our experiment, we'll focus on <span class="WhatsApp">WhatsApp</span>, a widely-used messaging platform from Meta. WhatsApp exemplifies excellent user interface design through its intuitive navigation, clear visual hierarchy, and consistent design patterns.
 
 ![WhatsApp interface on Apple iOS and Android](images/chat-app-redesign/whatsapp-user-interface.png)
 *New iOS and Android user interface on WhatsApp. Image courtesy of Meta Design, 2024.*
@@ -14,7 +14,7 @@ Lets start with creating home screen interface of WhatsApp
 ## 1. Get familiar with tools in Figma
 
 ![Description about tools in figma](images/chat-app-redesign/tools.jpg)
-For more details about other tools, visit [Figma&#39;s toolbar help page.](https://help.figma.com/hc/en-us/articles/360041064174-Access-design-tools-from-the-toolbar)
+For more details about other tools, visit [Figma&#39;s toolbar help page](https://help.figma.com/hc/en-us/articles/360041064174-Access-design-tools-from-the-toolbar).
 
 ---
 
@@ -130,8 +130,6 @@ With these steps completed, we now have a fully structured wireframe for the app
 
 ![Final Wireframe](images/chat-app-redesign/wireframe.png)
 
-Here's the revised document with improved grammar, clarity, and readability:
-
 ## 3. Designing
 
 We're going to need icons for designing this interface. The easiest way to get icons is by using plugins in Figma.
@@ -152,9 +150,9 @@ We'll create a frame similar to our previous wireframing process:
 
 1. Select the **Frame** tool from the toolbar and place it on the canvas.
 2. Configure the frame with these specific dimensions:
-   - Width: 412 pixels
-   - Height: 50 pixels
-   - Alignment: Top of the screen
+   - Width: **412** pixels
+   - Height: **50** pixels
+   - Alignment: **Top** of the screen
 
 ![Adding the Status Bar](images/chat-app-redesign/design-2.png)
 
@@ -164,26 +162,26 @@ We'll create a frame similar to our previous wireframing process:
 
 ![Iconify plugin](images/chat-app-redesign/design-3.png)
 
-2. Search for a battery icon and select your preferred design.
+1. Search for a **Battery** icon and select your preferred design.
 
 ![Search for desired Icon](images/chat-app-redesign/design-4.png)
 
-3. Import the icon as a frame or component to preserve its scalability.
+2. Import the icon as a frame or component to preserve its scalability.
 
 ![Import the Icon](images/chat-app-redesign/design-5.png)
 
-4. Similarly, import Wi-Fi and Signal icons to complete the system indicators.
-5. Adjust the icons:
-   - Height: 15 pixels
-   - Alignment: Right-center of the status bar
+1. Similarly, import **Wi-Fi** and **Signal** icons to complete the system indicators.
+2. Adjust the icons:
+   - Height: **15** pixels
+   - Alignment: **Right-center** of the status bar
 
 ![Position the Icons](images/chat-app-redesign/design-6.png)
 
-6. Use the **Text Tool (T)** to add the time display.
-7. Configure the time text:
+3. Use the **Text Tool (T)** to add the time display.
+4. Configure the time text:
     - Font: Regular
-    - Size: 18 pixels
-    - Position: x = 20, y = 18
+    - Size: **18** pixels
+    - Position: **x = 20, y = 18**
 
 Note: You can download Helvetica Neue font [here](https://violetto-rose.github.io/UI-UX/public/resources/Helvetica-Neue.zip).
 
@@ -191,66 +189,66 @@ Note: You can download Helvetica Neue font [here](https://violetto-rose.github.i
 
 ### ▶ Adding the WhatsApp Branding
 
-1. Use the **Text Tool (T)** to add "WhatsApp" in the branding area.
-2. Configure the branding text:
-    - Width: 280 pixels
-    - Height: 80 pixels
+5. Use the **Text Tool (T)** to add "WhatsApp" in the branding area.
+6. Configure the branding text:
+    - Width: **280** pixels
+    - Height: **80** pixels
     - Font: Bold
-    - Size: 24 pixels
-    - Color: #2BAF6A
-    - Position: x = 20, y = 50
+    - Size: **24** pixels
+    - Color: **#2BAF6A**
+    - Position: **x = 20, y = 50**
 
 ![Adding the WhatsApp Branding](images/chat-app-redesign/design-8.png)
 
 ### ▶ Adding Camera and Settings Icons
 
-1. Search for Camera and Dot icons in the Iconify plugin.
-2. Prepare the icons:
-    - Height: 20 pixels
-    - Position: Right side of the branding
+7. Search for Camera and Dot icons in the Iconify plugin.
+8. Prepare the icons:
+    - Height: **20** pixels
+    - Position: **Right** side of the branding
 
 ![Adding Camera and Settings Icon](images/chat-app-redesign/design-9.png)
 
 ### ▶ Creating the Search Bar
 
-1. Create a new frame for the search container:
-   - Dimensions: 412 x 50 pixels
+9. Create a new frame for the search container:
+   - Dimensions: **412 x 50** pixels
 
 ![Adding Search Container](images/chat-app-redesign/design-10.png)
 
-2. Add the search bar rectangle:
-   - Dimensions: 372 x 50 pixels
-   - Corner radius: 50 pixels (for rounded edges)
+10. Add the search bar rectangle:
+   - Dimensions: **372 x 50** pixels
+   - Corner radius: **50** pixels (for rounded edges)
    - Alignment: Centered horizontally
 
 ![Adding Search Bar](images/chat-app-redesign/design-11.png)
 
-3. Design the Meta AI icon:
-   - Create an annulus icon (circular shape with a hole)
-   - Dimensions: 20 x 20 pixels
-   - Position: x = 20 (left side of search bar)
+11. Design the Meta AI icon:
+   - Import an annulus icon (circular shape with a hole)
+   - Dimensions: **20 x 20** pixels
+   - Position: **x = 20** (left side of search bar)
 
-4. Style the Meta AI icon:
+12. Style the Meta AI icon:
    - Apply a linear gradient color:
-     * 0%: #E475DC
-     * 50%: #0064DD
-     * 100%: #17E3BB
+     * 0%: **#E475DC**
+     * 50%: **#0064DD**
+     * 100%: **#17E3BB**
    - Add an outside stroke:
-     * Thickness: 1 pixel
+     * Thickness: **1** pixel
      * Use the same gradient color
 
 ![Adding Meta AI Icon](images/chat-app-redesign/design-12.png)
 
-5. Refine the icon placement:
-   - Rotate the annulus to -45 degrees for a dynamic look
+13. Refine the icon placement:
+   - Rotate the annulus to **-45** degrees for a dynamic look
 
 ![Rotating Meta AI Icon](images/chat-app-redesign/design-13.png)
 
-6. Add search bar text:
+14. Add search bar text:
    - Text: "Ask Meta AI or Search"
-   - Font size: 16 pixels
+   - Font size: **16** pixels
    - Font weight: Regular
-   - Color: #686F74
+   - Color: **#686F74**
 
 ![Add Placeholder to Search Bar](images/chat-app-redesign/design-14.png)
 
@@ -258,129 +256,127 @@ Note: You can download Helvetica Neue font [here](https://violetto-rose.github.i
 
 This subtle design element helps improve the mobile interface feel:
 
-1. Create a gesture indicator:
-   - Shape: Rectangle
-   - Dimensions: 90 x 3 pixels
-   - Vertical position: y = 905
-   - Color: #BDBDBD (soft gray)
+15. Create a gesture indicator:
+   - Shape: **Rectangle**
+   - Dimensions: **90 x 3** pixels
+   - Vertical position: **y = 905**
+   - Color: **#BDBDBD**
 
 ![Adding Gesture Bar](images/chat-app-redesign/design-15.png)
 
 ### ▶ Creating the Navigation Bar
 
-The navigation bar is crucial for user movement within the app:
-
 1. Create the navigation frame:
-   - Dimensions: 412 x 100 pixels
-   - Vertical position: y = 797
+   - Dimensions: **412 x 100** pixels
+   - Vertical position: **y = 797**
 
 ![Creating the Navigation Bar](images/chat-app-redesign/design-16.png)
 
 2. Add navigation buttons:
-   - Number of buttons: 4
-   - Individual button dimensions: 70 x 35 pixels
-   - Initial color: #BDBDBD
-   - Corner radius: 50 pixels
-   - Vertical position: y = 15
+   - Number of buttons: **4**
+   - Individual button dimensions: **70 x 35** pixels
+   - Corner radius: **50** pixels
+   - Vertical position: **y = 15**
 
 ![Adding Navigation Bar Buttons](images/chat-app-redesign/design-17.png)
 
 3. Modify button colors:
-   - First button: #D9FDD3 (light green)
-   - Remaining buttons: White
+   - First button: **#D9FDD3**
+   - Remaining buttons: **#FFFFFF**
 
 ![Change Color of Navigation Bar Buttons](images/chat-app-redesign/design-18.png)
 
 4. Add navigation labels:
-   - Font size: 12 pixels
+   - Font size: **12** pixels
    - Font weight: Medium
-   - Labels: Chats, Updates, Communities, Calls
+   - Labels: **Chats, Updates, Communities, Calls**
 
 ![Adding Navigation Bar Text](images/chat-app-redesign/design-19.png)
 
 5. Add navigation icons:
    - Use Iconify plugin to find matching icons
-   - One icon for each label: Chats, Updates, Communities, Calls
+   - One icon for each label: **Chats, Updates, Communities, Calls**
 
 ![Adding Navigation Bar Icons](images/chat-app-redesign/design-20.png)
 
 ### ▶ Adding Filter Buttons
 
-1. Create a dedicated frame for filter buttons:
-   - Dimensions: 412 x 70 pixels
+6. Create a dedicated frame for filter buttons:
+   - Dimensions: **412 x 70** pixels
    - Position: Placed directly below the search bar
 
 ![Adding Filter Buttons Frame](images/chat-app-redesign/design-21.png)
 
-2. Design three distinct filter buttons:
+7. Design three distinct filter buttons:
    - "All" button:
-     * Dimensions: 50 x 30 pixels
+     * Dimensions: **50 x 30** pixels
    - "Unread" button:
-     * Dimensions: 80 x 30 pixels
+     * Dimensions: **80 x 30** pixels
    - "Groups" button:
-     * Dimensions: 80 x 30 pixels
+     * Dimensions: **80 x 30** pixels
 
-3. Apply consistent styling to the buttons:
-   - Corner radius: 50 pixels
+8. Apply consistent styling to the buttons:
+   - Corner radius: **50** pixels
    - Color scheme:
-     * First button (All): #D9FDD3
-     * Other buttons: #F6F5F4
+     * First button (All): **#D9FDD3**
+     * Other buttons: **#F6F5F4**
 
 ![Adding Filter Buttons](images/chat-app-redesign/design-22.png)
 
-4. Add text to the buttons:
+9. Add text to the buttons:
    - Font weight: Bold
-   - Font size: 14 pixels
+   - Font size: **14** pixels
    - Text color variations:
-     * "All" button text: #216947
-     * "Unread" and "Groups" text: #686F74
+     * "All" button text: **#216947**
+     * "Unread" and "Groups" text: **#686F74**
 
 ![Adding Filter Buttons Text](images/chat-app-redesign/design-23.png)
 ![Adding Filter Buttons Text](images/chat-app-redesign/design-24.png)
 
 ### ▶ Creating the Chat List
 
-1. Create the main chat list container:
-   - Dimensions: 412 x 551 pixels
+10. Create the main chat list container:
+   - Dimensions: **412 x 551** pixels
 
 ![Creating the Chat List](images/chat-app-redesign/design-25.png)
 
-2. Design an individual chat preview:
-   - Sub-container dimensions: 412 x 80 pixels
+11. Design an individual chat preview:
+   - Sub-container dimensions: **412 x 80** pixels
    - Represents a single conversation entry
 
 ![Creating individual Chat](images/chat-app-redesign/design-26.png)
 
-1. Add a contact icon:
+12. Add a contact icon:
    - Shape: Circle
-   - Dimensions: 50 x 50 pixels
+   - Dimensions: **50 x 50** pixels
    - Represents the chat partner's profile picture
 
 ![Adding contact icon](images/chat-app-redesign/design-27.png)
 
-2. Include text elements for each chat preview:
+13. Include text elements for each chat preview:
    - Contact name:
-     * Size: 18 pixels
+     * Size: **18** pixels
      * Weight: Bold
-     * Color: #1E1E1E
+     * Color: **#1E1E1E**
    - Last message:
-     * Size: 16 pixels
+     * Size: **16** pixels
      * Weight: Regular
-     * Color: #686F74
+     * Color: **#686F74**
    - Time:
-     * Size: 14 pixels
+     * Size: **14** pixels
      * Weight: Regular
+     * Color: **#686F74**
 
 ![Adding Chat contents](images/chat-app-redesign/design-28.png)
 ![Adding Chat contents](images/chat-app-redesign/design-29.png)
 
-3. Populate the chat list:
+14. Populate the chat list:
    - Duplicate the chat preview container
    - Create multiple entries
 
 ![Populate Chat List](images/chat-app-redesign/design-30.png)
 
-4. Customize chat entries:
+15. Customize chat entries:
    - Modify names, messages, and times
    - Create visual variety
    - Represent different types of conversations
