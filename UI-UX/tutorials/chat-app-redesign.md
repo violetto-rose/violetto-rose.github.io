@@ -130,6 +130,7 @@ With these steps completed, we now have a fully structured wireframe for the app
 
 ![Final Wireframe](images/chat-app-redesign/wireframe.png)
 
+---
 ## 3. Designing
 
 We're going to need icons for designing this interface. The easiest way to get icons is by using plugins in Figma.

@@ -2,7 +2,7 @@ import { populateSidebar, loadTutorialFromHash } from "./sidebar.js";
 import { setupDarkMode } from "./darkMode.js";
 import { setupSidebar } from "./sidebarToggle.js";
 import { setupStructureView } from "./structureView.js";
-import { setupSearch } from "./search.js";
+import { setupSearch, setupSearchShortcut } from "./search.js";
 import { setupImageViewer } from "./imageViewer.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -12,9 +12,11 @@ document.addEventListener("DOMContentLoaded", () => {
   renderer.link = function (href, title, text) {
     const link = originalLinkRenderer.call(this, href, title, text);
     if (!href.href.startsWith("https")) {
-      return link.replace("<a", '<a target="_blank" rel="noopener noreferrer"').replace('href="', 'href="#');
+      return link
+        .replace("<a", '<a target="_self" rel="noopener noreferrer"')
+        .replace('href="', 'href="#');
     }
-    return link.replace("<a", '<a target="_self" rel="noopener noreferrer"');
+    return link.replace("<a", '<a target="_blank" rel="noopener noreferrer"');
   };
 
   marked.setOptions({ renderer: renderer });
@@ -26,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupSidebar();
   setupStructureView();
   setupSearch();
+  setupSearchShortcut();
   setupImageViewer();
 
   // Listen for hash changes

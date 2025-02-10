@@ -43,7 +43,7 @@ export async function loadTutorial(filename) {
 
     // Scroll the content container to the top
     const contentContainer = document.getElementById("content");
-    contentContainer.scrollTop = 0;
+    scrollToTop(contentContainer);
 
     // Generate structure view after content is loaded
     generateStructureView(contentWrapper);
@@ -73,72 +73,6 @@ export async function loadTutorial(filename) {
   }
 }
 
-// Function to lazy load images
-function lazyLoadImages(container) {
-  const images = container.querySelectorAll("img");
-  const imageObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const image = entry.target;
-        image.src = image.dataset.src;
-
-        image.onload = function () {
-          if (image.naturalWidth < 1000) {
-            image.style.width = "60%";
-
-            const parent = image.parentElement;
-            parent.style.display = "flex";
-            parent.style.justifyContent = "center";
-          } else {
-            image.style.width = "100%";
-
-            const parent = image.parentElement;
-            parent.style.display = "";
-            parent.style.justifyContent = "";
-          }
-        };
-
-        observer.unobserve(image);
-      }
-    });
-  });
-
-  images.forEach((img) => {
-    img.dataset.src = img.src;
-    img.src = "";
-    imageObserver.observe(img);
-  });
-}
-
-// Function to adjust table for mobile devices
-export function adjustTableHeader(filename) {
-  const isMobile = window.innerWidth <= 640; // Define mobile breakpoint
-  const applicableFiles = ["intro.md", "about-course.md"]; // Add your specific filenames here
-
-  if (isMobile && applicableFiles.includes(filename)) {
-    const firstTh = document.querySelector("#tutorial-content th:first-child");
-    if (firstTh) {
-      firstTh.style.display = "none";
-    }
-
-    const secondTh = document.querySelector("#tutorial-content th:last-child");
-    if (secondTh) {
-      secondTh.setAttribute("colspan", "2");
-    }
-  } else {
-    // Reset styles if not mobile or not an applicable file
-    const firstTh = document.querySelector("#tutorial-content th:first-child");
-    if (firstTh) {
-      firstTh.style.display = "";
-    }
-
-    const secondTh = document.querySelector("#tutorial-content th:last-child");
-    if (secondTh) {
-      secondTh.removeAttribute("colspan");
-    }
-  }
-}
-
 // Function to wrap table
 function wrapTables(content) {
   const tempDiv = document.createElement("div");
@@ -153,6 +87,69 @@ function wrapTables(content) {
   });
 
   return tempDiv.innerHTML;
+}
+
+// Function to adjust table for mobile devices
+export function adjustTableHeader(filename) {
+  const isMobile = window.innerWidth <= 640;
+  const applicableFiles = ["intro.md", "about-course.md"];
+
+  if (isMobile && applicableFiles.includes(filename)) {
+    const firstTh = document.querySelector("#tutorial-content th:first-child");
+    if (firstTh) {
+      firstTh.style.display = "none";
+    }
+
+    const secondTh = document.querySelector("#tutorial-content th:last-child");
+    if (secondTh) {
+      secondTh.setAttribute("colspan", "2");
+    }
+  } else {
+    const firstTh = document.querySelector("#tutorial-content th:first-child");
+    if (firstTh) {
+      firstTh.style.display = "";
+    }
+
+    const secondTh = document.querySelector("#tutorial-content th:last-child");
+    if (secondTh) {
+      secondTh.removeAttribute("colspan");
+    }
+  }
+}
+
+// Function to scroll to top
+function scrollToTop(container) {
+  if (container) {
+    const isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
+
+    if (isFirefox) {
+      const startTime = performance.now();
+      const duration = 300;
+      const startPosition = container.scrollTop;
+
+      function smoothScroll(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        // Easing function (ease out quad)
+        const easedProgress = progress * (2 - progress);
+
+        container.scrollTop = startPosition * (1 - easedProgress);
+
+        if (elapsed < duration) {
+          requestAnimationFrame(smoothScroll);
+        }
+      }
+
+      requestAnimationFrame(smoothScroll);
+    } else {
+      // For other browsers, use native smooth scroll
+      container.scroll({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }
 }
 
 // Function to update URL
@@ -219,4 +216,41 @@ function addNavigationButtons(currentFile, navigationContainer) {
       }
     });
   }
+}
+
+// Function to lazy load images
+function lazyLoadImages(container) {
+  const images = container.querySelectorAll("img");
+  const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const image = entry.target;
+        image.src = image.dataset.src;
+
+        image.onload = function () {
+          if (image.naturalWidth < 1000) {
+            image.style.width = "60%";
+
+            const parent = image.parentElement;
+            parent.style.display = "flex";
+            parent.style.justifyContent = "center";
+          } else {
+            image.style.width = "100%";
+
+            const parent = image.parentElement;
+            parent.style.display = "";
+            parent.style.justifyContent = "";
+          }
+        };
+
+        observer.unobserve(image);
+      }
+    });
+  });
+
+  images.forEach((img) => {
+    img.dataset.src = img.src;
+    img.src = "";
+    imageObserver.observe(img);
+  });
 }
