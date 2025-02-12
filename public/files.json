@@ -16,8 +16,8 @@
   {
     "link": "ML/",
     "icon": "fas fa-laptop-code",
-    "name": "Machine Learning Lab Resources",
-    "description": "Get all the Machine Learning Lab Resources",
+    "name": "Machine Learning Lab",
+    "description": "Get Machine Learning Lab Resources",
     "password_required": 0
   },
   {
