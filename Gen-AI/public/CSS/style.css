@@ -284,8 +284,8 @@ html {
   #sidebar {
     background-color: var(--bg-color);
     position: fixed;
-    width: 80%;
-    left: -100%;
+    width: 81%;
+    right: -100%;
     margin: 0 20px 0;
     transition: left 0.3s ease;
     z-index: 1;
@@ -294,7 +294,7 @@ html {
   }
 
   #sidebar.open {
-    left: 0;
+    right: 0;
   }
 
   #sidebar ul {
