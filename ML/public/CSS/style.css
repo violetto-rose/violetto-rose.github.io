@@ -72,6 +72,12 @@ li {
   white-space: nowrap;
 }
 
+.copyright-footer p {
+  text-align: center;
+  font-size: 0.8rem;
+  margin: 10px 0 0;
+}
+
 @media (max-width: 768px) {
   body {
     padding: 1rem;

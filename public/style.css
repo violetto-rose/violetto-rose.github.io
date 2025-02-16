@@ -167,10 +167,23 @@ h1:last-child {
   margin-bottom: 50px;
 }
 
+.span-2 {
+  grid-column: span 2;
+}
+
+.span-3 {
+  grid-column: span 3;
+}
+
 @media screen and (max-width: 768px) {
   .container {
     grid-template-columns: 1fr;
     padding: 10px;
+  }
+
+  .span-2,
+  .span-3 {
+    grid-column: span 1;
   }
 }
 

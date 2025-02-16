@@ -2,12 +2,9 @@ async function fetchCards() {
   try {
     const response = await fetch("public/files.json");
     const data = await response.json();
-    const container = document.getElementById("card-container");
 
-    data.forEach((item) => {
-      const card = createCard(item);
-      container.appendChild(card);
-    });
+    const publicCards = data.filter((item) => !item.password_required);
+    renderCards(publicCards);
 
     showHeader("Apps:");
   } catch (error) {
@@ -15,36 +12,59 @@ async function fetchCards() {
   }
 }
 
-function createCard(item) {
+function calculateSpanClasses(items) {
+  const totalCards = items.length;
+  const remainder = totalCards % 3;
+
+  // No special spanning needed if perfectly divisible by 3
+  if (remainder === 0) return new Array(totalCards).fill("");
+
+  const spanClasses = new Array(totalCards).fill("");
+
+  if (remainder === 1) {
+    // Last card spans 3 columns
+    spanClasses[totalCards - 1] = "span-3";
+  } else if (remainder === 2) {
+    spanClasses[totalCards - 1] = "span-2";
+  }
+
+  return spanClasses;
+}
+
+function renderCards(items) {
+  const container = document.getElementById("card-container");
+  container.innerHTML = "";
+  container.className = "container"; // Use existing container class
+
+  if (Array.isArray(items)) {
+    const spanClasses = calculateSpanClasses(items);
+
+    items.forEach((item, index) => {
+      const card = createCard(item, spanClasses[index]);
+      container.appendChild(card);
+    });
+  }
+}
+
+function createCard(item, spanClass) {
   const card = document.createElement("a");
   card.href = item.link;
-  card.className = "card";
-  card.dataset.passwordRequired = item.password_required;
+  card.className = `card ${spanClass}`.trim();
   card.innerHTML = `
     <i class="${item.icon}"></i>
     <h2>${item.name}</h2>
     <p>${item.description}</p>
   `;
-  if (item.password_required) {
-    card.style.display = "none";
-  }
   return card;
-}
-
-function showHeader(text) {
-  const headers = document.querySelectorAll("h1.headers");
-  headers.forEach((h1) => {
-    if (h1.textContent === text) {
-      h1.classList.add("visible");
-    }
-  });
 }
 
 let clickCount = 0;
 let lastClickTime = 0;
-let passwordVisible = false;
+let protectedCardsLoaded = false;
+let protectedCardsData = null;
+let publicCardsData = null;
 
-function handleTouchStart() {
+async function handleTouchStart() {
   const currentTime = new Date().getTime();
   const timeDiff = currentTime - lastClickTime;
 
@@ -57,25 +77,56 @@ function handleTouchStart() {
   lastClickTime = currentTime;
 
   if (clickCount === 5) {
-    togglePasswordVisibility();
+    await toggleProtectedCards();
     clickCount = 0;
     lastClickTime = 0;
   }
 }
 
-function togglePasswordVisibility() {
-  getRandomTransformValues();
-  passwordVisible = !passwordVisible;
-  const cards = document.querySelectorAll(".card[data-password-required='1']");
-  cards.forEach((card) => {
-    card.style.display = passwordVisible ? "block" : "none";
-  });
+async function toggleProtectedCards() {
+  if (!protectedCardsLoaded) {
+    await loadProtectedCards();
+  } else {
+    unloadProtectedCards();
+  }
+}
+
+async function loadProtectedCards() {
+  try {
+    if (!protectedCardsData) {
+      const response = await fetch("public/files.json");
+      const data = await response.json();
+      protectedCardsData = data.filter((item) => item.password_required);
+      publicCardsData = data.filter((item) => !item.password_required);
+    }
+
+    const allCards = [...publicCardsData, ...protectedCardsData];
+
+    renderCards(allCards);
+    protectedCardsLoaded = true;
+  } catch (error) {
+    console.error("Error loading protected cards:", error);
+  }
+}
+
+function unloadProtectedCards() {
+  renderCards(publicCardsData);
+  protectedCardsLoaded = false;
 }
 
 function handleKeyDown(event) {
   if (event.ctrlKey && event.shiftKey && event.altKey && event.key === "P") {
-    togglePasswordVisibility();
+    toggleProtectedCards();
   }
+}
+
+function showHeader(text) {
+  const headers = document.querySelectorAll("h1.headers");
+  headers.forEach((h1) => {
+    if (h1.textContent === text) {
+      h1.classList.add("visible");
+    }
+  });
 }
 
 async function processReadme() {
@@ -159,6 +210,7 @@ function getRandomTransformValues() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  getRandomTransformValues();
   fetchCards();
   processReadme();
   document.addEventListener("touchstart", handleTouchStart);

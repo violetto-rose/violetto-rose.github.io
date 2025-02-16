@@ -7,13 +7,6 @@
     "password_required": 0
   },
   {
-    "link": "SGPA-Calculator/",
-    "icon": "fas fa-school",
-    "name": "SGPA Calculator",
-    "description": "Calculate Your SGPA or CGPA Easily",
-    "password_required": 0
-  },
-  {
     "link": "ML/",
     "icon": "fas fa-laptop-code",
     "name": "Machine Learning Lab",
@@ -21,11 +14,18 @@
     "password_required": 0
   },
   {
-    "link": "",
-    "icon": "",
-    "name": "<em>Coming Soon</em>",
-    "description": "..........",
-    "password_required": 1
+    "link": "Gen-AI/",
+    "icon": "fas fa-microchip",
+    "name": "Generative AI Lab",
+    "description": "Learn Genarative AI and its applications",
+    "password_required": 0
+  },
+  {
+    "link": "SGPA-Calculator/",
+    "icon": "fas fa-school",
+    "name": "SGPA Calculator",
+    "description": "Calculate Your SGPA or CGPA Easily",
+    "password_required": 0
   },
   {
     "link": "Resume/",
@@ -39,6 +39,13 @@
     "icon": "fas fa-leaf",
     "name": "Plantation",
     "description": "Project on Plantation and adoption of a tree (Social Connect & Responsibility)",
+    "password_required": 1
+  },
+  {
+    "link": "",
+    "icon": "",
+    "name": "<em>Coming Soon</em>",
+    "description": "..........",
     "password_required": 1
   }
 ]

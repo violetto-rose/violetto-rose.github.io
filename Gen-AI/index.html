@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UI/UX Lab program</title>
+    <meta name="author" content="Manju Madhav V A" />
+    <meta
+      name="description"
+      content="A program for UI/UX Lab covering various design and development techniques."
+    />
+    <meta
+      name="keywords"
+      content="UI, UX, program, design, development, web design, user experience"
+    />
+    <link rel="icon" type="image/x-icon" href="public/favicon.ico" />
+    <link rel="stylesheet" href="public/CSS/style.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.6/marked.min.js"
+      integrity="sha512-rvRITpPeEKe4hV9M8XntuXX6nuohzqdR5O3W6nhjTLwkrx0ZgBQuaK4fv5DdOWzs2IaXsGt5h0+nyp9pEuoTXg=="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="public/JS/main.js"></script>
+    <script
+      src="https://kit.fontawesome.com/b6a5c8db62.js"
+      crossorigin="anonymous"
+      defer
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <nav id="navbar" class="glass">
+        <h1>Generative AI</h1>
+        <button class="toggle" id="sidebar-toggle" aria-label="Toggle sidebar">
+          <i class="fa-solid fa-bars fa-lg"></i>
+        </button>
+        <div class="search-container">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search programs..."
+          />
+          <span class="search-shortcut-hint"
+            >Ctrl +&nbsp;
+            <div class="box">K</div></span
+          >
+        </div>
+      </nav>
+      <div id="search-results" class="glass"></div>
+      <div class="subcontainer">
+        <main id="sidebar" class="glass">
+          <ul id="program-list" class="skeleton-content">
+            <li class="skeleton skeleton-li"></li>
+            <li class="skeleton skeleton-li"></li>
+            <li class="skeleton skeleton-li"></li>
+            <li class="skeleton skeleton-li"></li>
+            <li class="skeleton skeleton-li"></li>
+            <li class="skeleton skeleton-li"></li>
+            <li class="skeleton skeleton-li"></li>
+            <li class="skeleton skeleton-li"></li>
+          </ul>
+        </main>
+        <main id="content" class="glass">
+          <div id="program-content" class="skeleton-content">
+            <div class="skeleton skeleton-header"></div>
+            <div class="skeleton-paragraph">
+              <div class="skeleton skeleton-text"></div>
+              <div class="skeleton skeleton-text"></div>
+              <div class="skeleton skeleton-text"></div>
+              <div class="skeleton skeleton-text"></div>
+              <div class="skeleton skeleton-text"></div>
+            </div>
+            <br />
+            <div class="skeleton skeleton-header"></div>
+            <div class="skeleton-paragraph">
+              <div class="skeleton skeleton-text"></div>
+              <div class="skeleton skeleton-text"></div>
+              <div class="skeleton skeleton-text"></div>
+              <div class="skeleton skeleton-text"></div>
+              <div class="skeleton skeleton-text"></div>
+            </div>
+          </div>
+        </main>
+      </div>
+      <footer class="copyright-footer">
+        <p>
+          Copyright © 2025 Manju Madhav V A and Dr. Pramod. All rights reserved.
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
