@@ -218,7 +218,7 @@ html {
   #search-results {
     display: none;
     position: fixed;
-    top: 120px;
+    top: 140px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;
@@ -284,10 +284,11 @@ html {
   #sidebar {
     background-color: var(--bg-color);
     position: fixed;
-    width: 81%;
-    right: -100%;
+    width: auto;
+    height: auto;
+    right: -150%;
     margin: 0 20px 0;
-    transition: left 0.3s ease;
+    transition: right 0.3s ease;
     z-index: 1;
     border-radius: unset;
     border-radius: 20px;
@@ -298,7 +299,7 @@ html {
   }
 
   #sidebar ul {
-    padding-bottom: 20px;
+    padding-bottom: 25px;
   }
 }
 
