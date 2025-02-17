@@ -1,6 +1,6 @@
 import { programs } from "./sidebar.js";
+import { initCodeHighlighting, addCopyButtons } from "./prismHighlighter.js";
 
-// Function to load program content with lazy loading
 export async function loadProgram(filename) {
   const programContent = document.getElementById("program-content");
   try {
@@ -24,6 +24,10 @@ export async function loadProgram(filename) {
     programContent.innerHTML = "";
     programContent.appendChild(contentWrapper);
 
+    // Initialize code highlighting on the new content
+    initCodeHighlighting(contentWrapper);
+    addCopyButtons(contentWrapper);
+
     if (filename === "getting-started.md") {
       adjustTableHeader(filename);
     }
@@ -32,27 +36,18 @@ export async function loadProgram(filename) {
     navigationContainer.className = "navigation-buttons";
     programContent.appendChild(navigationContainer);
 
-    // Scroll the content container to the top
+    // Rest of function remains unchanged...
     const contentContainer = document.getElementById("content");
     scrollToTop(contentContainer);
-
-    // Update URL
     updateURL(filename);
-
-    // Update the active link in the sidebar
     const sidebarLink = document.querySelector(
       `#program-list a[href="#${filename}"]`
     );
     if (sidebarLink) {
       updateActiveLink(sidebarLink);
     }
-
-    // Add navigation buttons
     addNavigationButtons(filename, navigationContainer);
-
-    // Lazy load images
     lazyLoadImages(contentWrapper);
-
     window.addEventListener("resize", () => adjustTableHeader(filename));
   } catch (error) {
     console.error("Error:", error);

@@ -399,15 +399,37 @@ html {
 #program-content code {
   font-family: consolas, monospace;
   font-size: 0.9rem;
-  padding: 2px 5px;
   border-radius: 5px;
 }
 
 #program-content pre {
-  background: var(--dp-three);
+  margin: 0;
   padding: 15px;
   border-radius: 10px;
   overflow-x: auto;
+  max-height: 60vh;
+}
+
+.code-block-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.copy-button {
+  margin-right: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  align-self: flex-end;
+  color: var(--text-color);
+  background: var(--bg-color);
+  border-top: 1px solid var(--lp-five);
+  border-right: 1px solid var(--lp-five);
+  border-bottom: none;
+  border-left: 1px solid var(--lp-five);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  cursor: pointer;
 }
 
 #program-content hr {
