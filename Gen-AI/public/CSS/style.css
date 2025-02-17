@@ -5,24 +5,50 @@
   --font1: "Montserrat";
   --font2: "Funnel Display";
   /*Background*/
-  --bg-color: rgb(3, 7, 18);
+  --bg-color: rgb(248, 249, 252);
   /*Text*/
-  --text: #ffffff;
-  --inv-text: #000000;
-  --alt-text: #e0e0e0;
+  --text: #000000;
+  --inv-text: #ffffff;
+  --alt-text: #474747;
   /*Customs*/
-  --shadow: rgba(31, 38, 135, 0.37);
+  --shadow: rgba(0, 0, 0, 0.37);
   /*Opacity*/
-  --lp-zfive: rgba(255, 255, 255, 0.05);
-  --lp-one: rgba(255, 255, 255, 0.1);
-  --lp-two: rgba(255, 255, 255, 0.2);
-  --lp-three: rgba(255, 255, 255, 0.3);
-  --lp-five: rgba(255, 255, 255, 0.5);
-  --dp-one: rgba(0, 0, 0, 0.1);
-  --dp-two: rgba(0, 0, 0, 0.2);
-  --dp-three: rgba(0, 0, 0, 0.3);
-  --dp-five: rgba(0, 0, 0, 0.5);
+  --lp-zfive: rgba(0, 0, 0, 0.05);
+  --dp-zfive: rgba(255, 255, 255, 0.05);
+  --lp-one: rgba(0, 0, 0, 0.1);
+  --dp-one: rgba(255, 255, 255, 0.1);
+  --lp-two: rgba(0, 0, 0, 0.2);
+  --dp-two: rgba(255, 255, 255, 0.2);
+  --lp-three: rgba(0, 0, 0, 0.3);
+  --dp-three: rgba(255, 255, 255, 0.3);
+  --lp-five: rgba(0, 0, 0, 0.5);
+  --dp-five: rgba(255, 255, 255, 0.5);
   --f-p-one: rgba(50, 50, 50, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /*Background*/
+    --bg-color: rgb(3, 7, 18);
+    /*Text*/
+    --text: #ffffff;
+    --inv-text: #000000;
+    --alt-text: #e0e0e0;
+    /*Customs*/
+    --shadow: rgba(31, 38, 135, 0.37);
+    /*Opacity*/
+    --lp-zfive: rgba(255, 255, 255, 0.05);
+    --dp-zfive: rgba(0, 0, 0, 0.05);
+    --lp-one: rgba(255, 255, 255, 0.1);
+    --dp-one: rgba(0, 0, 0, 0.1);
+    --lp-two: rgba(255, 255, 255, 0.2);
+    --dp-two: rgba(0, 0, 0, 0.2);
+    --lp-three: rgba(255, 255, 255, 0.3);
+    --dp-three: rgba(0, 0, 0, 0.3);
+    --lp-five: rgba(255, 255, 255, 0.5);
+    --dp-five: rgba(0, 0, 0, 0.5);
+    --f-p-one: rgba(50, 50, 50, 0.1);
+  }
 }
 
 body,
