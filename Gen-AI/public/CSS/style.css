@@ -151,16 +151,37 @@ html {
   width: 22%;
 }
 
+@media screen and (min-width: 768px) and (max-width: 1080px) {
+  .search-container {
+    width: 30%;
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  .search-container {
+    width: 30%;
+  }
+}
+
 #search-input {
   box-sizing: border-box;
   font-family: inherit;
   width: 100%;
   outline: none;
-  padding: 10px;
+  padding: 10px 10px 10px 40px;
   border: none;
   border-radius: 20px;
   background: var(--lp-two);
   color: var(--text);
+}
+
+.search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text);
+  font-size: 16px;
 }
 
 #search-input::placeholder {
@@ -169,6 +190,12 @@ html {
 
 .search-shortcut-hint {
   display: none;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1080px) {
+  .search-shortcut-hint {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 1080px) {
@@ -284,9 +311,10 @@ html {
   #sidebar {
     background-color: var(--bg-color);
     position: fixed;
-    width: auto;
+    right: -100%;
+    width: calc(100vw - 82px);
+    min-width: unset;
     height: auto;
-    right: -150%;
     margin: 0 20px 0;
     transition: right 0.3s ease;
     z-index: 1;
@@ -299,7 +327,13 @@ html {
   }
 
   #sidebar ul {
-    padding-bottom: 25px;
+    padding-bottom: 0;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1080px) {
+  #sidebar {
+    min-width: 20%;
   }
 }
 
@@ -315,24 +349,6 @@ html {
   -webkit-mask-image: -webkit-radial-gradient(var(--inv-text), var(--text));
   mask-image: radial-gradient(var(--inv-text), var(--text));
   transition: margin-right 0.3s ease;
-}
-
-@media screen and (min-width: 768px) {
-  #content.shifted {
-    margin-right: 300px;
-  }
-}
-
-#program-content {
-  min-width: 800px;
-  margin: 0 auto;
-}
-
-@media screen and (max-width: 768px) {
-  #program-content {
-    min-width: auto;
-    margin: 0 auto;
-  }
 }
 
 #program-content h1,
