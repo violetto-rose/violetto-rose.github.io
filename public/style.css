@@ -149,6 +149,7 @@ h1:last-child {
 }
 
 .content {
+  width: 100%;
   max-width: 1200px;
 }
 
@@ -165,6 +166,12 @@ h1:last-child {
   width: 100%;
   max-width: 1200px;
   margin-bottom: 50px;
+}
+
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+  .container {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
 }
 
 .span-2 {

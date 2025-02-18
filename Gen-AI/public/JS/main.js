@@ -4,6 +4,7 @@ import { setupSearch, setupSearchShortcut } from "./search.js";
 import { setupImageViewer } from "./imageViewer.js";
 import { configureCodeHighlighting } from "./prismHighlighter.js";
 import { initThemeManager } from "./themeManager.js";
+import { setupMenuAnimation } from "./menuManager.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   initThemeManager();
@@ -19,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupSearch();
   setupSearchShortcut();
   setupImageViewer();
+  setupMenuAnimation();
 
   // Listen for hash changes
   window.addEventListener("hashchange", loadProgramsFromHash);

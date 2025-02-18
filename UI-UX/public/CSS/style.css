@@ -75,7 +75,7 @@ html {
 .toggle {
   position: fixed;
   right: 0;
-  z-index: 1000;
+  z-index: 2;
   background: var(--lp-two);
   border: none;
   border-top-left-radius: 25px;
@@ -214,12 +214,26 @@ html {
   }
 }
 
+/**********************/
+/* Menu Toggle Styles */
+/**********************/
+
+#more-options-toggle {
+  top: 80px;
+}
+
+#more-options-toggle:hover {
+  background: var(--lp-three);
+  transform: scale(1.1);
+  box-shadow: 0 6px 8px var(--dp-two);
+}
+
 /***************************/
 /* Structure toggle styles */
 /***************************/
 
 #structure-toggle {
-  top: 80px;
+  top: 140px;
 }
 
 #structure-toggle:hover {
@@ -983,7 +997,7 @@ body.dark-mode #tutorial-content table a:hover {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  z-index: 1000;
+  z-index: 1;
 }
 
 @media screen and (max-width: 768px) {
@@ -1024,7 +1038,7 @@ body.dark-mode #tutorial-content table a:hover {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s;
-  z-index: 1000;
+  z-index: 1;
 }
 
 .credits-icon:hover .credits-tooltip {
@@ -1049,4 +1063,83 @@ body.dark-mode .credits-icon {
 
 body.dark-mode .credits-icon:hover {
   background: var(--lp-two);
+}
+
+/***************/
+/* Menu Styles */
+/***************/
+
+.menu {
+  font-family: var(--font2), sans-serif;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-100%);
+  transition: transform 0.5s ease-in-out;
+}
+
+.menu.active {
+  transform: translateY(0);
+}
+
+.menu .fa-xmark {
+  position: absolute;
+  top: 48px;
+  right: 56px;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 4;
+}
+
+.menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 80%;
+  max-width: 600px;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s;
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.card h1 {
+  position: relative;
+  z-index: 2;
+}
+
+.card.home-card {
+  background: linear-gradient(45deg, #03001e, #7303c0, #ec38bc, #fdeff9);
+}
+
+.card.uiux-card {
+  background: linear-gradient(45deg, #8f3ee5, #639cfd);
+}
+
+.card.genai-card {
+  background: rgb(3, 7, 18);
+  border: 1px solid var(--lp-two);
+}
+
+.card.ml-card {
+  background: #fffb7b;
+  color: #000;
 }

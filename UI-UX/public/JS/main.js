@@ -4,6 +4,7 @@ import { setupSidebar } from "./sidebarToggle.js";
 import { setupStructureView } from "./structureView.js";
 import { setupSearch, setupSearchShortcut } from "./search.js";
 import { setupImageViewer } from "./imageViewer.js";
+import { setupMenuAnimation } from "./menuManager.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   // Configure marked renderer
@@ -30,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupSearch();
   setupSearchShortcut();
   setupImageViewer();
+  setupMenuAnimation();
 
   // Listen for hash changes
   window.addEventListener("hashchange", loadTutorialFromHash);
