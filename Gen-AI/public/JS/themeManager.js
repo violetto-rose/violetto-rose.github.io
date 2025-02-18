@@ -28,7 +28,5 @@ function updateTheme() {
   const themeLink = document.getElementById('prism-theme');
   if (themeLink) {
     themeLink.href = `https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/${theme}.min.css`;
-    console.log(themeLink.href);
-
   }
 }
