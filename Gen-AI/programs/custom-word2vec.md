@@ -1,5 +1,7 @@
 # Train a custom Word2Vec model on a small dataset. Train embeddings on a domain-specific corpus (e.g., legal, medical) and analyze how embeddings capture domain-specific semantics.
 
+### Python Code:
+
 ```python
 from gensim.models import Word2Vec
 from nltk.tokenize import word_tokenize

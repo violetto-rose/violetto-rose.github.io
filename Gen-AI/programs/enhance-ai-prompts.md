@@ -1,5 +1,7 @@
 # Use word embeddings to improve prompts for Generative AI model. Retrieve similar words using word embeddings. Use the similar words to enrich a Gen-AI prompt. Use the AI model to generate responses for the original and enriched prompts. Compare the outputs in terms of detail and relevance.
 
+### Python Code:
+
 ```python
 from gensim.models import Word2Vec
 from nltk.tokenize import word_tokenize
@@ -34,8 +36,9 @@ filtered_words = [word for word, _ in similar_words if word not in stopwords]
 if len(filtered_words) >= 3:
 	enriched_prompt = f"Discuss the importance of {filtered_words[0]}, {filtered_words[1]}, and {filtered_words[2]} in modern science."
 else:
-	enriched_prompt = f"Discuss the importance of {', '.join(filtered_words)} in modern science." # Generate text based on the enriched prompt
+	enriched_prompt = f"Discuss the importance of {', '.join(filtered_words)} in modern science."
 
+# Generate text based on the enriched prompt
 generated_text = generator(enriched_prompt, max_length=100, num_return_sequences=1, truncation=True)
 
 # Print the generated text
