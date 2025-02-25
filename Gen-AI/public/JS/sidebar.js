@@ -8,8 +8,8 @@ const programs = [
   },
   { name: "1. Word Vector Exploration", file: "word-vectors.md" },
   { name: "2. Visualizing Word Embeddings", file: "visualize-embeddings.md" },
-  // { name: "3. Custom Word2Vec Model", file: "custom-word2vec.md" },
-  // { name: "4. Enhancing AI Prompts", file: "enhance-ai-prompts.md" },
+  { name: "3. Custom Word2Vec Model", file: "custom-word2vec.md" },
+  { name: "4. Enhancing AI Prompts", file: "enhance-ai-prompts.md" },
   // {
   //   name: "5. Creative Writing with Embeddings",
   //   file: "creative-writing-embeddings.md",

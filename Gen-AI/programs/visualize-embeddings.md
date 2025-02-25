@@ -1,4 +1,4 @@
-# Use dimensionality reduction (e.g., PCA or t-SNE) to visualize word embeddings for Q1. Select 10 words from a specific domain (e.g., sports, technology) and visualize their embeddings. Analyze clusters and relationships. Generate contextually rich outputs using embeddings. Write a program to generate 5 semantically similar words for a given input.
+	# Use dimensionality reduction (e.g., PCA or t-SNE) to visualize word embeddings for Q1. Select 10 words from a specific domain (e.g., sports, technology) and visualize their embeddings. Analyze clusters and relationships. Generate contextually rich outputs using embeddings. Write a program to generate 5 semantically similar words for a given input.
 ### What is Principal Component Analysis?
 
 Principal Component Analysis (PCA) is a technique used for dimensionality reduction in machine learning. It simplifies a large dataset by transforming it into a smaller set of variables while preserving essential patterns and trends.
@@ -26,25 +26,29 @@ Additionally, `numpy.random.rand()` generates an array of the specified shape, f
 import matplotlib
 matplotlib.use('TkAgg') # Switch backend to TkAgg
 
-from sklearn.decomposition import PCA import matplotlib.pyplot as plt
+from sklearn.decomposition import PCA
+import matplotlib.pyplot as plt
 import numpy as np
 
 # Sample domain words
 words = ['football', 'basketball', 'cricket', 'technology', 'computer', 'robot', 'AI', 'cloud', 'python', 'data']
 
-# Simulate word vectors (replace this with your actual word embeddings) np.random.seed(42) # For reproducibility
+# Simulate word vectors (replace this with your actual word embeddings)
+np.random.seed(42) # For reproducibility
 word_vectors = {word: np.random.rand(100) for word in words} # Each word has a 100-dimensional vector
 
 # Perform PCA
 pca = PCA(n_components=2)
 pca_result = pca.fit_transform([word_vectors[word] for word in words])
 
-# Plot the results plt.figure(figsize=(8, 8))
+# Plot the results
+plt.figure(figsize=(8, 8))
 plt.scatter(pca_result[:, 0], pca_result[:, 1])
 
 # Annotate points
 for i, word in enumerate(words):
-plt.annotate(word, (pca_result[i, 0], pca_result[i, 1]))
-plt.title('Word Embedding Visualization with PCA') plt.show()
-
+	plt.annotate(word, (pca_result[i, 0], pca_result[i, 1]))
+	
+plt.title('Word Embedding Visualization with PCA')
+plt.show()
 ```

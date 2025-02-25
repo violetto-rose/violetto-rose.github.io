@@ -2,7 +2,6 @@
 .obsidian/
 
 # Config
-eslint.config.mjs
 .hintrc
 
 # Node modules
@@ -13,6 +12,3 @@ package.json
 # Tailwind config
 postcss.config.js
 tailwind.config.js
-
-# Test
-test/
