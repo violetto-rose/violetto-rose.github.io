@@ -7,17 +7,17 @@
     "password_required": 0
   },
   {
-    "link": "ML/",
-    "icon": "fas fa-laptop-code",
-    "name": "Machine Learning Lab",
-    "description": "Get Machine Learning Lab Resources",
-    "password_required": 0
-  },
-  {
     "link": "Gen-AI/",
     "icon": "fas fa-microchip",
     "name": "Generative AI Lab",
     "description": "Learn Genarative AI and its applications",
+    "password_required": 0
+  },
+  {
+    "link": "ML/",
+    "icon": "fas fa-laptop-code",
+    "name": "Machine Learning Lab",
+    "description": "Get Machine Learning Lab Resources",
     "password_required": 0
   },
   {
