@@ -1082,7 +1082,7 @@ body.dark-mode .credits-icon:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transform: translateY(-100%);
+  transform: translateY(-150%);
   transition: transform 0.5s ease-in-out;
 }
 

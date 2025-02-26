@@ -29,6 +29,21 @@ function setupMenuAnimation() {
   }
 }
 
+function downloadAllResources() {
+    // URL to the zip file containing all resources
+    const resourceUrl = 'public/resources/ML-Lab-Resources.zip';
+    
+    // Create a temporary anchor element
+    const link = document.createElement('a');
+    link.href = resourceUrl;
+    link.download = 'ML-Lab-Resources.zip';
+    
+    // Append to body, click, and remove
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   setupMenuAnimation();
   document.querySelectorAll("a").forEach((link) => {
