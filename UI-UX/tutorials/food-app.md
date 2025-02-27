@@ -21,7 +21,7 @@ Create a basic wireframe using pen and paper, as demonstrated below:
 
 Note: You can download Metropolis font [here](https://violetto-rose.github.io/UI-UX/public/resources/Metropolis.zip).
 
-### ▶ Creating a Frame
+### ▶ Creating a Landing Page
 
 To create a frame:
 
@@ -235,63 +235,138 @@ To create a frame:
 
 ![](images/food-app/design-22.png)
 
-### ▶ Creating the Flash Sale and Menu
+### ▶ Creating the Food Type Container
+
+1. Create a frame:
+	- Dimensions: **412 x 90** pixels
+	- Layout: Horizontal 
+	- Alignment: Right
+	- Horizontal padding: **0**
+	- Vertical padding: **10, 0** pixels
+2. Add a dummy image for flash sale
 
 ![](images/food-app/design-23.png)
 
-
+3. Create a menu item container:
+	- Dimensions: **308 x 80** pixels
 
 ![](images/food-app/design-24.png)
 
-
+4. Create a menu item:
+	- Dimensions: **80 x 80** pixels
 
 ![](images/food-app/design-25.png)
 
-
+5. Add fast food text element:
+	-  Font: Metropolis
+	- Size: **10** pixels
+	- Weight: Medium
+6. Add a stroke for 1st menu item:
+	- Color: **#1D7548**
+	- Position: Inside
+	- Sides: Bottom
+	- Thickness: **3** pixels
 
 ![](images/food-app/design-26.png)
 
-
+7. Duplicate the menu item
 
 ![](images/food-app/design-27.png)
 
+### ▶ Creating the Filters Container
 
+1. Create a frame:
+	- Dimensions: **412 x 70** pixels
+	- Layout: Horizontal 
+	- Alignment: Center
+	- Horizontal padding: **0**
 
 ![](images/food-app/design-28.png)
 
-
+2. Add a filter button:
+	- Dimensions: **Hug**
+	- Layout: Horizontal 
+	- Alignment: Center
+	- Color: **#202126**
+	- Corner radius: **10** pixels
+	- Gap: **5** pixels
+	- Stroke:
+		- Color: **#302F34**
+		- Position: Inside
 
 ![](images/food-app/design-29.png)
 
-
+3. Add icons and text element
 
 ![](images/food-app/design-30.png)
 
-
+4. Duplicate for different filters
 
 ![](images/food-app/design-31.png)
 
+### ▶ Creating the Explore More Container
 
+1. Create a frame:
+	- Dimensions: **412 x 185** pixels
+	- Layout: Vertical 
+	- Alignment: Left
+	- Horizontal padding: **14** pixels
+	- Vertical padding: **12, 0** pixels
+2. Add a explore more text element
+3. Create a more options container:
+	- Dimensions: **Fill x 148** pixels
+	- Layout: Horizontal 
+	- Alignment: Center
+	- Horizontal padding: **0**
+	- Vertical padding: **5, 0** pixels
+4. Create a offers button:
+	- Dimensions: **120 x 140** pixels
+	- Layout: Vertical 
+	- Alignment: Center
+	- Horizontal padding: **24** pixels
+	- Vertical padding: **55** pixels
+	- Color: **#202028**
+	- Cornering radius: **10** pixels
 
 ![](images/food-app/design-32.png)
 
-
+1. Add icon and text elements
+2. Duplicate for different buttons
 
 ![](images/food-app/design-33.png)
 
+### ▶ Creating the Restaurants Container
 
+1. Create a frame:
+	- Dimensions: **412 x 790** pixels
+	- Layout: Vertical 
+	- Alignment: Top Left
+	- Gap: **15** pixels
+	- Vertical padding: **20, 10** pixels
+2. Add all restaurants text element
+3. Create a restaurants container:
+	- Dimensions: **Fill x 315** pixels
+	- Layout: Vertical 
+	- Alignment: Top Center
+	- Gap, Horizontal padding & Vertical padding: **0**
+	- Color: **#202126**
+	- Cornering radius: **20** pixels
+	- Stroke:
+		- Color: **#333439**
+		- Position: Inside
 
 ![](images/food-app/design-34.png)
 
-
+4. Add a image item:
+	- Dimensions: **392 x 245** pixels
 
 ![](images/food-app/design-35.png)
 
-
+5. Create restaurant cards accordingly
 
 ![](images/food-app/design-36.png)
-
-
+<!--
+### ▶ Creating a Restaurant Page
 
 ![](images/food-app/design-37.png)
 
@@ -329,7 +404,7 @@ To create a frame:
 
 
 
-![](images/food-app/design-46.png)
+![](images/food-app/design-46.png)-->
 
 
 ### ▶ Final Design
