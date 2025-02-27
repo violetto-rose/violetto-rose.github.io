@@ -103,13 +103,13 @@ To create a frame:
 
 ![Adding Buttons Sub-Container](images/chat-app-redesign/design-6.png)
 
-### ▶ Adding Camera and Settings Icons
+### ▶ Adding Scanner, Camera and Settings Icons
 
 1. Search for Scanner, Camera and Dot icons in the Iconify plugin.
 2. Configure icons:
     - Height: **25** pixels
 
-![Adding Camera and Settings Icon](images/chat-app-redesign/design-7.png)
+![Adding Scanner, Camera and Settings Icon](images/chat-app-redesign/design-7.png)
 
 ### ▶ Adding Body Container
 
@@ -149,8 +149,8 @@ To create a frame:
 	- Dimensions: **Fill** 
 	- Layout: Horizontal 
 	- Alignment: Left
-    - Top padding: **2** pixels
-    - Rest of the padding: **0**
+	- Vertical padding: **2, 0** pixels
+    - Horizontal padding: **0**
 4. Add text "Ask Meta AI or Search" inside the frame.
     - Width & Height: **Hug**
     - Font: Regular
@@ -254,8 +254,8 @@ To create a frame:
 	- Width: **Fill**
 	- Height: **Hug**
 	- Gap: Auto
-    - Left padding: **0** 
-    - Rest of the padding: **2** pixels
+    - Horizontal padding: **0, 2** pixels
+    - Vertical padding: **2** pixels
 
 ![Creating Container Last Message and Icon](images/chat-app-redesign/design-19.png)
 

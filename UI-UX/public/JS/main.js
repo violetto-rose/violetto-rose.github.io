@@ -3,7 +3,7 @@ import { setupDarkMode } from "./darkMode.js";
 import { setupSidebar } from "./sidebarToggle.js";
 import { setupStructureView } from "./structureView.js";
 import { setupSearch, setupSearchShortcut } from "./search.js";
-import { setupImageViewer } from "./imageViewer.js";
+import { setupImageViewer } from "./imageHandler.js";
 import { setupMenuAnimation } from "./menuManager.js";
 
 document.addEventListener("DOMContentLoaded", () => {

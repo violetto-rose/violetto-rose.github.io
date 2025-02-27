@@ -1,4 +1,3 @@
-// darkMode.js
 export function setupDarkMode() {
   const darkModeToggle = document.getElementById("dark-mode-toggle");
   const systemPrefersDarkMode = window.matchMedia(

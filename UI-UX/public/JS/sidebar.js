@@ -7,6 +7,7 @@ const tutorials = [
   { name: "Setting up Figma", file: "setting-up-figma.md" },
   { name: "Setting up Penpot", file: "setting-up-penpot.md" },
   { name: "Chat App Redesign", file: "chat-app-redesign.md" },
+  { name: "Food App", file: "food-app.md" }
 ];
 
 export function populateSidebar() {
