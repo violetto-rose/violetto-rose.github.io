@@ -24,6 +24,7 @@ Additionally, `numpy.random.rand()` generates an array of the specified shape, f
 
 ```python
 import matplotlib
+# Note: Use a non-interactive backend, such as 'Agg,' if you are running in an environment that operates headless (e.g., a Jupyter Notebook-like interface without a graphical user interface [GUI], such as Google Colab).
 matplotlib.use('TkAgg') # Switch backend to TkAgg
 
 from sklearn.decomposition import PCA
