@@ -2,7 +2,7 @@
 
 In the context of Generative AI (Gen AI), a "vector" is a mathematical representation of data as a list of numbers, where each number corresponds to a specific feature or attribute. This allows AI algorithms to understand and process information effectively.
 
-![[word_vectors_2.png]]
+![[images/word_vectors_2.png]]
 
 A machine learning algorithm that converts words into vectors captures their meanings and relationships with other words. This process is a core component of Natural Language Processing (NLP).
 
@@ -29,7 +29,7 @@ def custom_word2vec(corpus):
 		min_count=1,	# Minimum frequency for a word to be considered workers=4,	# Number of worker threads
 		epochs=10,	    # Number of training epochs
 	)
-return model
+	return model
 
 # Analyze trained embeddings
 def analyze(model, word):
@@ -48,8 +48,9 @@ corpus = [
 
 model = custom_word2vec(corpus)
 
-print("Analysis for word patient")
+print("Analysis for word patient:")
 analyze(model, "patient")
-print("Analysis for word court")
+print("\nAnalysis for word court:")
+analyze(model, "court")
 
 ```
