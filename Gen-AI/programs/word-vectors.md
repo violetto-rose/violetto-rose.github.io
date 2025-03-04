@@ -10,6 +10,7 @@ One popular method for generating word vectors is called Word2Vec. This algorith
 
 Word2Vec works by training a neural network on a large amount of text data. The neural network learns to predict the probability of a word appearing in the context of other words. By doing this, it learns to represent each word as a vector in a high-dimensional space. These word vectors capture the semantic meaning of words and their relationships with other words.
 
+---
 ### Python Code:
 
 ```python

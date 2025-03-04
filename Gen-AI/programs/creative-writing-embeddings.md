@@ -9,7 +9,7 @@ import nltk
 from transformers import pipeline
 
 # Download NLTK resources
-nltk.download('punkt')
+nltk.download('punkt_tab')
 
 def train_word2vec(corpus):
 	tokens = word_tokenize(corpus.lower())

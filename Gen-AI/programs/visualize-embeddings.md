@@ -20,6 +20,7 @@ When applying PCA, the number of principal components, typically set to 2 for be
 
 Additionally, `numpy.random.rand()` generates an array of the specified shape, filled with random values uniformly distributed between 0 and 1, making it useful for simulations and machine learning tasks.
 
+---
 ### Python Code:
 
 ```python
