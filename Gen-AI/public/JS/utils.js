@@ -1,4 +1,5 @@
 import { programs } from "./sidebar.js";
+import { lazyLoadImages } from "./imageHandler.js"
 import { initCodeHighlighting, addCopyButtons } from "./prismHighlighter.js";
 
 export async function loadProgram(filename) {
@@ -197,24 +198,4 @@ function addNavigationButtons(currentFile, navigationContainer) {
       }
     });
   }
-}
-
-// Function to lazy load images
-function lazyLoadImages(container) {
-  const images = container.querySelectorAll("img");
-  const imageObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const image = entry.target;
-        image.src = image.dataset.src;
-        observer.unobserve(image);
-      }
-    });
-  });
-
-  images.forEach((img) => {
-    img.dataset.src = img.src;
-    img.src = "";
-    imageObserver.observe(img);
-  });
 }

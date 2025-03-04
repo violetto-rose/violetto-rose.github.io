@@ -1,7 +1,7 @@
 import { populateSidebar, loadProgramsFromHash } from "./sidebar.js";
 import { setupSidebar } from "./sidebarToggle.js";
 import { setupSearch, setupSearchShortcut } from "./search.js";
-import { setupImageViewer } from "./imageViewer.js";
+import { setupImageViewer } from "./imageHandler.js";
 import { configureCodeHighlighting } from "./prismHighlighter.js";
 import { initThemeManager } from "./themeManager.js";
 import { setupMenuAnimation } from "./menuManager.js";
