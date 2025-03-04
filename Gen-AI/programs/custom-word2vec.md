@@ -25,8 +25,10 @@ from gensim.models import Word2Vec
 def custom_word2vec(corpus):
 	model = Word2Vec(
 		sentences = corpus,
-		vector_size = 50, # Dimensionality of word vectors window=5,	# Context window size
-		min_count = 1,	  # Minimum frequency for a word to be considered workers=4,	# Number of worker threads
+		vector_size = 50, # Dimensionality of word vectors
+		window = 5,	      # Context window size
+		min_count = 1,	  # Minimum frequency for a word to be considered
+		workers = 4,      # Number of worker threads
 		epochs = 10,	  # Number of training epochs
 	)
 	return model
