@@ -3,31 +3,26 @@
 ### Python Code:
 
 ```python
-from gensim.models import Word2Vec
-from nltk.tokenize import word_tokenize
-import nltk
-from transformers import pipeline
+from gensim.downloader import load
+import random
 
-# Download NLTK resources
-nltk.download('punkt_tab')
+# Load the pre-trained GloVe model
+glove_model = load("glove-wiki-gigaword-50")
 
-def train_word2vec(corpus):
-	tokens = word_tokenize(corpus.lower())
-	model = Word2Vec([tokens], min_count=1, vector_size=100, window=5)
-	return model
-	
-def generate_text_with_gpt2(prompt):
-	generator = pipeline("text-generation", model="gpt2")
-	generated_text = generator(prompt, max_length=100, truncation=True)
-	return generated_text[0]['generated_text']
-	
-if __name__	== "__main__":
-	corpus = "The law of physics governs everything in the universe. Newton's laws are fundamental."
-	model = train_word2vec(corpus)
-	seed_word = "law"
-	similar_words = model.wv.most_similar(seed_word, topn=5)
-	print("Similar words:", similar_words)
-	enriched_prompt = f"Discuss the importance of Newton's laws, motion, and force in modern science."
-	generated_text = generate_text_with_gpt2(enriched_prompt)
-	print(generated_text)
+# Function to construct a meaningful paragraph
+def create_paragraph(topic_word, similar_words):  
+  paragraph = f"The topic of {topic_word} is fascinating, often linked to terms like"
+  random.shuffle(similar_words) # Shuffle to add variety
+
+  for word in similar_words:
+    paragraph += str(word) + ", "
+    
+  paragraph = paragraph.rstrip(", ") + "."
+  return paragraph
+
+topic_word = "hacking"  
+similar_words_with_scores = glove_model.most_similar(topic_word, topn=5)  
+similar_words = [word for word, similarity_score in similar_words_with_scores]  
+paragraph = create_paragraph(topic_word, similar_words)
+print(paragraph)
 ```
