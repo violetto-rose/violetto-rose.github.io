@@ -11,14 +11,13 @@
 > NOTE: Wire frames can be hand-drawn and recorded by the students. Designing and Prototyping can be done using Figma.
 
 ---
-
 ## Experiments:
 
 | Sl.NO | Experiments (Designing and Prototyping using Figma)                                                                                                                                                                                                                          |
 | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 1     | **[Chat App Redesign](chat-app-redesign.md)**: Create a Wireframe and redesign any popular chat app.                                                                                                                                                                         |
-| 2     | **[Food App](food-app.md)**: Create a wireframe, Design and Prototype the UI Pages for the food application.                                                                                                                                                                                |
-| 3     | **Social Media App**: Create a wireframe, Design and Prototype social media photo sharing app.                                                                                                                                                                               |
+| 2     | **[Food App](food-app.md)**: Create a wireframe, Design and Prototype the UI Pages for the food application.                                                                                                                                                                 |
+| 3     | **[Social Media App](social-media-app.md)**: Create a wireframe, Design and Prototype social media photo sharing app.                                                                                                                                                        |
 | 4     | **Product Website**: Design and prototype a product website page. Create web pages and rollovers for the web pages.                                                                                                                                                          |
 | 5     | **Travel Agency Website**: Create a wireframe, Design and prototype the UI for the website including design for Home Page with search bar, Activities page, Client Testimonial Page, Image Gallery.                                                                          |
 | 6     | **UI/UX Designer Portfolio Design**: Create a wireframe, Design and prototype a UI for a portfolio including design for About page, Work showcase page, Blog page, contact page.                                                                                             |
@@ -28,7 +27,6 @@
 | 10    | **Music Player App**: Create a wireframe, Design and prototype the pages with a background and a Rollover button, and Song selection Page with a Home Rollover button. The third page may include animated play and pause button, play music animation, timer animation.     |
 
 ---
-
 ## Course outcomes (Course Skill Set):
 
 At the end of the course the student will be able to:

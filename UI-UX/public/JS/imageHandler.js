@@ -13,7 +13,7 @@ export function setupImageViewer() {
   // Function to handle image click
   function handleImageClick(event) {
     const img = event.target;
-    if (img.tagName === "IMG" && !img.closest(".image-overlay")) {
+    if (img.tagName === "IMG" && !img.closest(".image-overlay") && img.src && !img.src.toLowerCase().endsWith('.svg')) {
       enlargedImg.src = img.src;
       overlay.style.display = "flex";
       document.body.style.overflow = "hidden";
@@ -59,7 +59,7 @@ export function lazyLoadImages(container) {
             // Remove placeholder class once image is loaded
             if (placeholderWrapper) {
               placeholderWrapper.classList.remove("loading");
-              
+
               // Set background to transparent after image loads
               placeholderWrapper.style.backgroundColor = "transparent";
             }
@@ -115,11 +115,16 @@ export function lazyLoadImages(container) {
   );
 
   images.forEach((img) => {
+    // Skip SVGs - load them immediately
+    if (img.src.toLowerCase().endsWith(".svg")) {
+      return;
+    }
+
     // Create a wrapper with aspect ratio placeholder
     const wrapper = document.createElement("div");
     wrapper.className = "image-placeholder-wrapper loading";
 
-    // Determine initial aspect ratio 
+    // Determine initial aspect ratio
     const dataAspectRatio = img.getAttribute("data-aspect-ratio");
     const defaultAspectRatio = "16:9";
     const aspectRatio = dataAspectRatio || defaultAspectRatio;
@@ -172,4 +177,4 @@ export function lazyLoadImages(container) {
 
     imageObserver.observe(img);
   });
-}  
+}

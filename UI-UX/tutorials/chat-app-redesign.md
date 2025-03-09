@@ -7,17 +7,15 @@ For our experiment, we'll focus on <span class="WhatsApp">WhatsApp</span>, a wid
 ![WhatsApp interface on Apple iOS and Android](images/chat-app-redesign/whatsapp-user-interface.png)
 *New iOS and Android user interface on WhatsApp. Image courtesy of Meta Design, 2024.*
 
-Lets start with creating home screen interface of WhatsApp
+Lets start with creating home screen interface of WhatsApp.
 
 ---
-
 ## 1. Get familiar with tools in Figma
 
 ![Description about tools in figma](images/chat-app-redesign/tools.jpg){data-aspect-ratio="4:3"}
 For more details about other tools, visit [Figma&#39;s toolbar help page](https://help.figma.com/hc/en-us/articles/360041064174-Access-design-tools-from-the-toolbar).
 
 ---
-
 ## 2. Wireframing
 
 ### What is a Wireframe?
@@ -37,7 +35,11 @@ We're going to need icons for designing this interface. The easiest way to get i
 
 Pro tip: You can also search for the plugin directly within Figma and run it from the plugins menu.
 
-Note: You can download Helvetica Neue font [here](https://violetto-rose.github.io/UI-UX/public/resources/Helvetica-Neue.zip).
+> **Disclaimer**:
+> 
+> The Helvetica Neue font is the intellectual property of its original author and is provided here for personal use only. This tutorial uses the font for educational purposes only. For commercial use, please ensure you obtain the appropriate license from the author. By downloading, you acknowledge that you respect the rights of the original creator.
+> 
+> Note: You can download Helvetica Neue font **[here](https://violetto-rose.github.io/UI-UX/public/resources/Helvetica-Neue.zip)**.
 
 ### ▶ Creating a Frame
 
@@ -327,3 +329,5 @@ To create a frame:
 With these meticulous steps, we've created a comprehensive, user-friendly design for the WhatsApp interface. The design balances functionality with aesthetic appeal, providing an intuitive user experience.
 
 ![Final Design](images/chat-app-redesign/design.png)
+
+---
