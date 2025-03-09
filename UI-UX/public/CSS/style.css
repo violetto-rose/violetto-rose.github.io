@@ -200,17 +200,14 @@ html {
   #sidebar-toggle .fa-bars-staggered,
   #sidebar-toggle .fa-bars {
     position: absolute;
-    opacity: 1;
   }
 
   #sidebar-toggle .fa-bars {
     display: block;
-    color: var(--text);
   }
 
   #sidebar-toggle .fa-bars-staggered {
     display: none;
-    opacity: 0;
   }
 }
 
@@ -254,6 +251,33 @@ html {
 
 #structure-toggle.open i {
   transform: rotate(180deg);
+}
+
+/****************************/
+/* Fullscreen toggle styles */
+/****************************/
+
+#fullscreen-toggle {
+  display: none;
+  top: 200px;
+}
+
+#fullscreen-toggle:hover {
+  background: var(--lp-three);
+  box-shadow: 0 6px 8px var(--dp-two);
+}
+
+#fullscreen-toggle .fa-up-right-and-down-left-from-center,
+#fullscreen-toggle .fa-down-left-and-up-right-to-center {
+  position: absolute;
+}
+
+#fullscreen-toggle .fa-up-right-and-down-left-from-center {
+  display: block;
+}
+
+#fullscreen-toggle .fa-down-left-and-up-right-to-center {
+  display: none;
 }
 
 /*************************/
@@ -426,8 +450,23 @@ body.dark-mode .glass {
 
 .search-container {
   margin-bottom: 20px;
-  position: relative;
   width: 100%;
+}
+
+.search {
+  position: relative;
+  border-radius: 20px;
+  background: var(--lp-two);
+  box-sizing: border-box;
+}
+
+.search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text);
+  font-size: 16px;
 }
 
 #search-input {
@@ -435,10 +474,9 @@ body.dark-mode .glass {
   font-family: inherit;
   width: 100%;
   outline: none;
-  padding: 10px;
+  padding: 10px 10px 10px 40px;
   border: none;
-  border-radius: 20px;
-  background: var(--lp-two);
+  background: transparent;
   color: var(--text);
 }
 
@@ -455,7 +493,7 @@ body.dark-mode .glass {
     display: flex;
     align-items: center;
     position: absolute;
-    right: 10px;
+    right: 15px;
     top: 50%;
     transform: translateY(-50%);
     color: var(--dp-seven);

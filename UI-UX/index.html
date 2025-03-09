@@ -30,21 +30,30 @@
       crossorigin="anonymous"
       defer
     ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
   </head>
   <body>
     <div class="container">
       <nav id="sidebar" class="glass">
         <h1><span class="title">UI/UX</span><br />Lab Tutorial</h1>
         <div class="search-container">
-          <input
-            type="text"
-            id="search-input"
-            placeholder="Search tutorials..."
-          />
-          <span class="search-shortcut-hint"
-            >Ctrl +&nbsp;
-            <div class="box">K</div></span
-          >
+          <div class="search">
+            <span class="search-icon">
+              <i class="fas fa-search"></i>
+            </span>
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Search tutorials..."
+            />
+            <span class="search-shortcut-hint"
+              >Ctrl +&nbsp;
+              <div class="box">K</div></span
+            >
+          </div>
           <div id="search-results" class="glass"></div>
         </div>
         <ul id="tutorial-list" class="skeleton-content">
@@ -77,14 +86,14 @@
       </main>
     </div>
 
-    <button class="toggle" id="dark-mode-toggle" aria-label="Toggle dark mode">
-      <i class="fa-solid fa-moon"></i>
-      <i class="fa-solid fa-sun"></i>
-    </button>
-
     <button class="toggle" id="sidebar-toggle" aria-label="Toggle sidebar">
       <i class="fa-solid fa-bars"></i>
       <i class="fa-solid fa-bars-staggered"></i>
+    </button>
+
+    <button class="toggle" id="dark-mode-toggle" aria-label="Toggle dark mode">
+      <i class="fa-solid fa-moon"></i>
+      <i class="fa-solid fa-sun"></i>
     </button>
 
     <button class="toggle" id="more-options-toggle" aria-label="More options">
@@ -97,6 +106,15 @@
       aria-label="Toggle structure view"
     >
       <i class="fa-solid fa-chevron-left"></i>
+    </button>
+
+    <button
+      class="toggle"
+      id="fullscreen-toggle"
+      aria-label="Toggle Fullscreen"
+    >
+      <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+      <i class="fa-solid fa-down-left-and-up-right-to-center"></i>
     </button>
 
     <div id="structure-view">

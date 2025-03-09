@@ -5,6 +5,7 @@ import { setupStructureView } from "./structureView.js";
 import { setupSearch, setupSearchShortcut } from "./search.js";
 import { setupImageViewer } from "./imageHandler.js";
 import { setupMenuAnimation } from "./menuManager.js";
+import { enterFullscreen } from "./fullScreen.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   // Configure marked renderer
@@ -23,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
   marked.setOptions({ renderer: renderer });
 
   // Initialize modules
+  enterFullscreen();
   populateSidebar();
   loadTutorialFromHash();
   setupDarkMode();

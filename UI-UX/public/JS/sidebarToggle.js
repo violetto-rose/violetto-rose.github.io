@@ -12,7 +12,6 @@ export function setupSidebar() {
     if (sidebar.classList.contains("open")) {
       barsIcon.style.display = "none"
       barsStaggeredIcon.style.display = "flex"
-      barsStaggeredIcon.style.opacity = "1"
     } else {
       barsIcon.style.display = "flex"
       barsStaggeredIcon.style.display = "none"

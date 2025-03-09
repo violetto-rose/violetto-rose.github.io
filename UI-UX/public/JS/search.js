@@ -34,7 +34,7 @@ export function setupSearch() {
         searchResults.style.display = "block";
         filteredTutorials.forEach((tutorial) => {
           const div = document.createElement("div");
-          div.innerHTML = `<i class="fas fa-search"></i> ${tutorial.name}`;
+          div.innerHTML = `${tutorial.name}`;
           div.onclick = () => {
             loadTutorial(tutorial.file);
             updateActiveLink(
