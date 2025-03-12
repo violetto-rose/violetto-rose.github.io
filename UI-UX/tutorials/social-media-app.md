@@ -142,12 +142,12 @@ Create a basic wireframe using pen and paper, as demonstrated below:
 		- Position: Inside
 		- Sides: Top
 
-![Duplicating Stories](images/social-media-app/design-13.png)
+![Creating the Navigation Bar](images/social-media-app/design-13.png)
 
 2. Add home, search, add box, play list, and profile icons:
 	- Dimensions: **30 x 30** pixels
 
-![Duplicating Stories](images/social-media-app/design-14.png)
+![Adding Navigation Icons](images/social-media-app/design-14.png)
 
 ### ▶ Creating the Body Container
 
@@ -157,8 +157,106 @@ Create a basic wireframe using pen and paper, as demonstrated below:
 	- Alignment: Left
 	- Gap, Horizontal padding & Vertical padding: **0**
 
-![Duplicating Stories](images/social-media-app/design-15.png)
+![Creating the Body Container](images/social-media-app/design-15.png)
 
+### ▶ Creating Posts
+
+Let's create individual posts as shown below, which we will then place inside the body container.
+
+![Creating Posts](images/social-media-app/design-16.png)
+
+### ▶ Creating Posts Container
+
+1. Create a frame:
+	- Dimensions: **Hug**
+	- Layout: Vertical 
+	- Alignment: Top Center
+	- Gap, Horizontal padding & Vertical padding: **0**
+### ▶ Creating Header Sub-Container
+
+1. Create a header container:
+	- Dimensions: **412 x 54** pixels
+	- Layout: Horizontal 
+	- Alignment: Center
+	- Gap: Auto
+	- Vertical padding: **0**
+
+![Creating Header Sub-Container](images/social-media-app/design-17.png)
+
+2. Create a Name Container:
+	- Dimensions: **Fill**
+	- Layout: Horizontal
+	- Alignment: Left
+	- Gap: **6** pixels
+	- Horizontal padding & Vertical padding: **0**
+
+![Creating Name Container](images/social-media-app/design-18.png)
+
+3. Add profile icon from story container.
+4. Add text element for name.
+5. Add verified icon.
+
+![Adding Name Container Elements](images/social-media-app/design-19.png)
+
+6. Add more options icon.
+
+![Adding More Options Icon](images/social-media-app/design-20.png)
+
+### ▶ Creating Post Image Container
+
+1. Create a Image container of required dimensions:
+	- Layout: Horizontal
+	- Alignment: Bottom Left
+	- Horizontal padding & Vertical padding: **14**
+
+![Creating Post Image Container](images/social-media-app/design-21.png)
+
+2. Add a person icon:
+	- Fill: **#000000** at **80%** opacity
+	- Cornering-radius: **50** pixels
+
+![Adding Post Image](images/social-media-app/design-22.png)
+
+### ▶ Creating Button Container
+
+1. Create a Button container:
+	- Dimensions: **412 x 50** pixels
+	- Layout: Horizontal 
+	- Alignment: Center
+	- Vertical padding: **0**
+
+![Creating Button Container](images/social-media-app/design-23.png)
+
+2. Create a like, comment and share sub-container:
+	- Dimensions: **Fill** 
+	- Layout: Horizontal 
+	- Alignment: Left
+	- Horizontal padding & Vertical padding: **0**
+
+![Creating Button Sub-Container](images/social-media-app/design-24.png)
+
+3. Add like, comment, share and bookmark icons.
+
+![Adding Button Icons](images/social-media-app/design-25.png)
+
+![Adding Button Icons](images/social-media-app/design-26.png)
+### ▶ Creating Post Description Container
+
+1. Create a frame:
+	- Dimensions: **Fill x Hug** 
+	- Layout: Vertical 
+	- Alignment: Top Left
+	- Gap, Horizontal padding & Vertical padding: **0**
+
+![Creating Post Description Container](images/social-media-app/design-27.png)
+
+2. Add Text Elements.
+
+![Adding Post Description Text Elements](images/social-media-app/design-28.png)
+
+3. Move branding story and posts containers inside body container.
+
+![Body Container](images/social-media-app/design-30.png)
 ### ▶ Final Design
 
 With these meticulous steps, we've created a comprehensive, user-friendly design for the Zomato interface. The design balances functionality with aesthetic appeal, providing an intuitive user experience.
