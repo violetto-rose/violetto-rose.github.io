@@ -328,6 +328,6 @@ To create a frame:
 
 With these meticulous steps, we've created a comprehensive, user-friendly design for the WhatsApp interface. The design balances functionality with aesthetic appeal, providing an intuitive user experience.
 
-![Final Design](images/chat-app-redesign/design.png)
+![Final Design](images/chat-app-redesign/design.png){data-aspect-ratio="1:1"}
 
 ---

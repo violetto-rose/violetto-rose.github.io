@@ -4,7 +4,7 @@ Let’s kick off our third experiment: a redesign of a social media application 
 
 For this experiment, we will focus on <span class="Instagram">Instagram</span>, a widely-loved social networking service owned by Meta. Instagram exemplifies outstanding user interface design through its visually appealing layout, intuitive navigation, and consistent design patterns. The platform offers users a seamless experience to share photos, connect with friends, and discover new content.
 
-![Instagram interface on Apple iOS](images/social-media-app/instagram-user-interface.webp)
+![Instagram interface on Apple iOS](images/social-media-app/instagram-user-interface.webp){data-aspect-ratio="1:1"}
 *Instagram interface on Apple iOS. Image source: Fast Company, September 2024.*
 
 Let's begin by designing the home screen interface for Instagram, along with the restaurant page interface.
@@ -420,6 +420,6 @@ Let's create individual posts as shown below, which we will then place inside th
 
 With these meticulous steps, we've created a comprehensive, user-friendly design for the Zomato interface. The design balances functionality with aesthetic appeal, providing an intuitive user experience.
 
-![Final Design](images/social-media-app/design.png)
+![Final Design](images/social-media-app/design.png){data-aspect-ratio="1:1"}
 
 ---

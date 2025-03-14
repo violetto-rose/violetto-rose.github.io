@@ -4,7 +4,7 @@ Our second experiment focuses on creating a food app design, where we will devel
 
 For this experiment, we will concentrate on <span class="Zomato">Zomato</span>, a popular food delivery and restaurant discovery platform. Zomato exemplifies excellent user interface design through its user-friendly navigation, organized visual hierarchy, and cohesive design elements. It provides a seamless experience for users to explore restaurants, read reviews, and conveniently place orders.
 
-![Zomato interface on Apple iOS](images/food-app/zomato-user-interface.png)
+![Zomato interface on Apple iOS](images/food-app/zomato-user-interface.png){data-aspect-ratio="1:1"}
 _Zomato interface on Apple iOS. Image source: Zomato Official Website, 2025._
 
 Let's begin by designing the home screen interface for Zomato, along with the restaurant page interface.
@@ -491,6 +491,6 @@ To create a frame:
 
 With these meticulous steps, we've created a comprehensive, user-friendly design for the Zomato interface. The design balances functionality with aesthetic appeal, providing an intuitive user experience.
 
-![Final Design](images/food-app/design.png)
+![Final Design](images/food-app/design.png){data-aspect-ratio="1:1"}
 
 ---
