@@ -65,7 +65,11 @@ html {
     var(--bg-color2) 100%
   );
   color: var(--text);
-  transition: none;
+  transition: background 0.5s ease;
+}
+
+body.dark-mode {
+  transition: background 0.5s ease;
 }
 
 /***************************/
@@ -575,7 +579,7 @@ body.dark-mode .glass {
   #sidebar {
     position: fixed;
     width: auto;
-    left: -320px;
+    left: -100%;
     height: -webkit-fill-available;
     height: 100%;
     transition: left 0.3s ease;
@@ -625,7 +629,7 @@ body.dark-mode .box {
 }
 
 #tutorial-content {
-  min-width: 800px;
+  min-width: 600px;
   max-width: 800px;
   margin: 0 auto;
 }
@@ -704,7 +708,7 @@ body.dark-mode .box {
 }
 
 #tutorial-content span[class] {
-  font-weight: bold;
+  font-weight: 800;
   font-size: 1.5rem;
   position: relative;
   display: inline-block;
@@ -824,6 +828,7 @@ body.dark-mode .box {
   color: var(--inv-text);
   background-color: var(--text);
   cursor: pointer;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 @media screen and (max-width: 640px) {
@@ -903,7 +908,7 @@ body.dark-mode .image-overlay {
 }
 
 body.dark-mode .navigation-buttons button {
-  transition: background-color 0s, color 0s;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 body.dark-mode .navigation-buttons button {

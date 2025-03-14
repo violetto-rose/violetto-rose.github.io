@@ -254,9 +254,168 @@ Let's create individual posts as shown below, which we will then place inside th
 
 ![Adding Post Description Text Elements](images/social-media-app/design-28.png)
 
-3. Move branding story and posts containers inside body container.
+3. Move branding, story and posts containers inside body container.
 
 ![Body Container](images/social-media-app/design-30.png)
+
+### ▶ Creating a Accounts Page and Duplicating Navigation Bar 
+
+1. Create a frame:
+	- We'll use the **Android Compact** frame for this design.
+	- Change the fill color to **#0C0F14**
+2. Add status bar using **Status Bar 1-click** plugin.
+3. Duplicate the navigation bar.
+
+![Creating a Accounts Page and Duplicating Navigation Bar](images/social-media-app/design-31.png)
+
+### ▶ Adding Header Container
+
+1. Create a new frame for the header container:
+2. Configure frame:
+    - Dimensions: **412 x 65** pixels
+    - Layout: Horizontal 
+    - Alignment: Center
+
+![Adding Header Container](images/social-media-app/design-32.png)
+
+3. Add back icon, text container and more options icon.
+
+![Adding Header Elements](images/social-media-app/design-33.png)
+
+### ▶ Adding Account Information Container
+
+1. Create a new frame for the account information container:
+2. Configure frame:
+    - Dimensions: **412 x 220** pixels
+    - Layout: Vertical 
+    - Alignment: Center
+	- Gap, Horizontal padding & Vertical padding: **0**
+
+![Adding Account Information Container](images/social-media-app/design-34.png)
+
+3. Create a new frame for the account status container:
+4. Configure frame:
+    - Dimensions: **Fill**
+    - Layout: Vertical 
+    - Alignment: Center
+5. Add a circle for profile picture:
+	- Dimensions: **80 x 80** pixels
+
+![Adding Account Status Container](images/social-media-app/design-35.png)
+
+6. Create a new frame for the account info:
+7. Configure frame:
+    - Dimensions: **Fill**
+    - Layout: Horizontal
+    - Alignment: Center
+
+![Adding Account Info](images/social-media-app/design-36.png)
+
+8. Create three frames for posts, followers and following:
+9. Configure frame:
+    - Dimensions: **Fill**
+    - Layout: Horizontal
+    - Alignment: Center
+
+![Adding Account Status Sub-Containers](images/social-media-app/design-37.png)
+
+10. Add text elements.
+
+![Adding Text Elements](images/social-media-app/design-38.png)
+
+11. Create a new frame for the about section:
+12. Configure frame:
+    - Dimensions: **Fill**
+    - Layout: Vertical
+    - Alignment: Center
+    - Gap & Vertical Padding: **0**
+
+![Adding About Section](images/social-media-app/design-39.png)
+
+13. Create a new frame for the bio:
+14. Configure frame:
+    - Dimensions: **Fill x Hug**
+    - Layout: Horizontal
+    - Alignment: Center
+	- Gap, Horizontal padding & Vertical padding: **0**
+
+![Adding Bio](images/social-media-app/design-40.png)
+
+15. Add text elements.
+
+![Adding Bio](images/social-media-app/design-41.png)
+
+16. Create a new frame for the button container:
+17. Configure frame:
+    - Dimensions: **Fill**
+    - Layout: Horizontal
+    - Alignment: Center
+	- Gap: **8** pixels
+	- Horizontal padding & Vertical padding: **0**
+
+![Adding Button Container](images/social-media-app/design-42.png)
+
+18. Create three frames for posts, followers and following:
+19. Configure frame:
+    - Width: **Fill, Fill, Hug**
+    - Height: **34** pixels
+    - Alignment: Center
+20. Reduce the vertical and horizontal padding of add button to **5** pixels
+
+![](images/social-media-app/design-43.png)
+
+### ▶ Creating the Account Nav Container
+
+1. Create a frame:
+	- Dimensions: **412 x 70** pixels
+	- Layout: Horizontal 
+	- Alignment: Center
+	- Gap: Auto
+	- Horizontal padding: **25** pixels
+	- & Vertical padding: **0**
+
+![](images/social-media-app/design-44.png)
+
+2. Create three frames for posts, reels and tags:
+3. Configure frame:
+    - Dimensions: **80 x Fill** pixels
+    - Layout: Horizontal
+    - Alignment: Bottom Center
+
+![](images/social-media-app/design-45.png)
+
+4. Add 9 dots, play list and person outline icons.
+
+![](images/social-media-app/design-46.png)
+
+### ▶ Creating Posts Container
+
+1. Create a frame:
+	- Dimensions: **412 x Hug** pixels
+	- Layout: Wrap 
+	- Alignment: Center
+	- Gap, Horizontal padding & Vertical padding: **0**
+
+![](images/social-media-app/design-47.png)
+
+### ▶ Creating Post Sub-Container
+
+1. Create a container:
+	- Dimensions: **137.33 x 137.33** pixels
+
+![](images/social-media-app/design-48.png)
+
+2. Duplicate the frames
+
+![](images/social-media-app/design-49.png)
+
+### ▶ Connect the pages using the Prototype option
+
+1. Connect the **Name** container to the **Account** page to navigate to the account page.
+2. Connect the **Back** button and **Home** button to return to the **Landing** page.
+
+![](images/social-media-app/design-50.png)
+
 ### ▶ Final Design
 
 With these meticulous steps, we've created a comprehensive, user-friendly design for the Zomato interface. The design balances functionality with aesthetic appeal, providing an intuitive user experience.
