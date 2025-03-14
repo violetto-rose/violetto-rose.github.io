@@ -60,17 +60,17 @@ Create a basic wireframe using pen and paper, as demonstrated below:
 
 ![Adding Branding](images/social-media-app/design-3.png)
 
-2. Add arrow icon
+2. Add arrow icon.
 
 ![Adding Arrow Icon](images/social-media-app/design-4.png)
 
-3. Add like and messenger icons
+3. Add like and messenger icons.
 
 ![Adding Like and Messenger Icons](images/social-media-app/design-5.png)
 
 ### ▶ Adding Story Container
 
-1. Create a new frame for the story container:
+1. Create a new frame for the story container.
 2. Configure frame:
     - Dimensions: **412 x 120** pixels
     - Layout: Horizontal 
@@ -80,7 +80,7 @@ Create a basic wireframe using pen and paper, as demonstrated below:
 
 ![Adding Story Container](images/social-media-app/design-6.png)
 
-3. Create a new frame for the your story container:
+3. Create a new frame for the your story container.
 4. Configure frame:
     - Dimensions: **90 x 120** pixels
     - Layout: Vertical 
@@ -109,7 +109,7 @@ Create a basic wireframe using pen and paper, as demonstrated below:
 		- Color: **#000000**
 		- Position: Inside
 		- Thickness: **2** pixels
-9. Add a plus icon
+9. Add a plus icon.
 
 ![Adding Your Story icons](images/social-media-app/design-9.png)
 
@@ -118,14 +118,14 @@ Create a basic wireframe using pen and paper, as demonstrated below:
 
 ![Adding Your Story Text](images/social-media-app/design-10.png)
 
-11. Similarly add other stories
+11. Similarly add other stories.
 12. Add a gradient outline for status:
 	- Color: Linear gradient (**#FFD600** to **#FF7A00** to **#FF0069** to **#D300C5**)
 	- Rotation: **45** degree
 
 ![Creating Other Stories](images/social-media-app/design-11.png)
 
-13. Duplicate the stories
+13. Duplicate the stories.
 
 ![Duplicating Stories](images/social-media-app/design-12.png)
 
@@ -270,7 +270,7 @@ Let's create individual posts as shown below, which we will then place inside th
 
 ### ▶ Adding Header Container
 
-1. Create a new frame for the header container:
+1. Create a new frame for the header container.
 2. Configure frame:
     - Dimensions: **412 x 65** pixels
     - Layout: Horizontal 
@@ -284,7 +284,7 @@ Let's create individual posts as shown below, which we will then place inside th
 
 ### ▶ Adding Account Information Container
 
-1. Create a new frame for the account information container:
+1. Create a new frame for the account information container.
 2. Configure frame:
     - Dimensions: **412 x 220** pixels
     - Layout: Vertical 
@@ -293,7 +293,7 @@ Let's create individual posts as shown below, which we will then place inside th
 
 ![Adding Account Information Container](images/social-media-app/design-34.png)
 
-3. Create a new frame for the account status container:
+3. Create a new frame for the account status container.
 4. Configure frame:
     - Dimensions: **Fill**
     - Layout: Vertical 
@@ -345,7 +345,7 @@ Let's create individual posts as shown below, which we will then place inside th
 
 ![Adding Bio](images/social-media-app/design-41.png)
 
-16. Create a new frame for the button container:
+16. Create a new frame for the button container.
 17. Configure frame:
     - Dimensions: **Fill**
     - Layout: Horizontal
