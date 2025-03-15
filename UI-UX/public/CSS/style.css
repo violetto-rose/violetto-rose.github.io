@@ -345,9 +345,6 @@ body.dark-mode {
     z-index: 1;
     right: -100%;
     width: 100%;
-  }
-
-  #structure-view {
     padding-top: 100px;
   }
 
