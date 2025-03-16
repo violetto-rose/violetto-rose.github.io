@@ -162,12 +162,20 @@ async function processReadme() {
 
 function removeElements() {
   const headersToRemove = [
-    "🌟 Social Media",
-    "🛠️ Tools & Technologies",
-    "📊 GitHub Stats",
-    "🚀 Recent Projects",
+    "💻 Technical Skills",
+    "Programming Languages",
+    "Frontend Development",
+    "Backend Development",
+    "Database Management",
+    "Tools & Technologies",
+    "🏆 Featured Projects",
+    "BhaavChitra | Sentiment Analysis Tool",
+    "Swaad Sanchalan | Restaurant Management System",
+    "OBE Tracker | Educational Outcome Management",
+    "📈 GitHub Stats",
+    "🔗 Connect With Me",
   ];
-  const headers = document.querySelectorAll("h2");
+  const headers = document.querySelectorAll("h2, h3");
 
   headers.forEach((header) => {
     if (headersToRemove.includes(header.textContent)) {
@@ -175,7 +183,7 @@ function removeElements() {
       let prevElement = header.previousElementSibling;
       while (
         nextElement &&
-        ["P", "TABLE", "DIV"].includes(nextElement.tagName)
+        ["P", "TABLE", "DIV", "UL"].includes(nextElement.tagName)
       ) {
         const elementToRemove = nextElement;
         nextElement = nextElement.nextElementSibling;
