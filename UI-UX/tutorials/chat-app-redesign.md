@@ -4,7 +4,7 @@ Let's begin our first experiment: A Chat App Redesign where we will create a wir
 
 For our experiment, we'll focus on <span class="WhatsApp">WhatsApp</span>, a widely-used messaging platform from Meta. WhatsApp exemplifies excellent user interface design through its intuitive navigation, clear visual hierarchy, and consistent design patterns.
 
-![WhatsApp interface on Apple iOS and Android](images/chat-app-redesign/whatsapp-user-interface.png)
+![WhatsApp interface on Apple iOS and Android](images/chat-app-redesign/whatsapp-user-interface.webp)
 *New iOS and Android user interface on WhatsApp. Image courtesy of Meta Design, 2024.*
 
 Lets start with creating home screen interface of WhatsApp.
@@ -12,7 +12,7 @@ Lets start with creating home screen interface of WhatsApp.
 ---
 ## 1. Get familiar with tools in Figma
 
-![Description about tools in figma](images/chat-app-redesign/tools.jpg){data-aspect-ratio="4:3"}
+![Description about tools in figma](images/chat-app-redesign/tools.webp){data-aspect-ratio="4:3"}
 For more details about other tools, visit [Figma&#39;s toolbar help page](https://help.figma.com/hc/en-us/articles/360041064174-Access-design-tools-from-the-toolbar).
 
 ---
@@ -24,7 +24,7 @@ A **wireframe** is a basic visual guide that represents the structure and layout
 
 Create a basic wireframe using pen and paper, as demonstrated below:
 
-![Wireframe](images/chat-app-redesign/wireframe.png){data-aspect-ratio="1:1"}
+![Wireframe](images/chat-app-redesign/wireframe.webp){data-aspect-ratio="1:1"}
 
 ---
 ## 3. Designing
@@ -48,14 +48,14 @@ To create a frame:
 1. We'll use the **Android Compact** frame for this design.
 2. Change the fill color to **#0B1014**
 
-![Creating a Frame](images/chat-app-redesign/design-1.png)
+![Creating a Frame](images/chat-app-redesign/design-1.webp)
 
 ### ▶ Adding the Status Bar
 
 1. Open the Status Bar 1-click plugin from the Actions menu.
 2. Change the height of the status bar to **50** pixels.
 
-![Adding the Status Bar](images/chat-app-redesign/design-2.png)
+![Adding the Status Bar](images/chat-app-redesign/design-2.webp)
 
 ### ▶ Adding Header Container
 
@@ -68,7 +68,7 @@ To create a frame:
     - Gap & Horizontal padding: **10** pixels
     - Vertical padding: **0**
 
-![Adding Header Container](images/chat-app-redesign/design-3.png)
+![Adding Header Container](images/chat-app-redesign/design-3.webp)
 
 ### ▶ Adding Branding Sub-Container
 
@@ -80,7 +80,7 @@ To create a frame:
     - Alignment: Top Left
     - Gap, Horizontal padding & Vertical padding: **10** pixels
 
-![Adding the Branding Sub-Container](images/chat-app-redesign/design-4.png)
+![Adding the Branding Sub-Container](images/chat-app-redesign/design-4.webp)
 
 ### ▶ Adding the WhatsApp Branding
 
@@ -90,7 +90,7 @@ To create a frame:
     - Font: Medium/Bold
     - Size: **24** pixels
 
-![Adding the WhatsApp Branding](images/chat-app-redesign/design-5.png)
+![Adding the WhatsApp Branding](images/chat-app-redesign/design-5.webp)
 
 ### ▶ Adding Buttons Sub-Container
 
@@ -103,7 +103,7 @@ To create a frame:
     - Vertical padding: **10** pixels
     - Horizontal padding: **0**
 
-![Adding Buttons Sub-Container](images/chat-app-redesign/design-6.png)
+![Adding Buttons Sub-Container](images/chat-app-redesign/design-6.webp)
 
 ### ▶ Adding Scanner, Camera and Settings Icons
 
@@ -111,7 +111,7 @@ To create a frame:
 2. Configure icons:
     - Height: **25** pixels
 
-![Adding Scanner, Camera and Settings Icon](images/chat-app-redesign/design-7.png)
+![Adding Scanner, Camera and Settings Icon](images/chat-app-redesign/design-7.webp)
 
 ### ▶ Adding Body Container
 
@@ -125,7 +125,7 @@ To create a frame:
     - Horizontal padding: **0**
     - Vertical padding: **5** pixels
 
-![Adding Body Container](images/chat-app-redesign/design-8.png)
+![Adding Body Container](images/chat-app-redesign/design-8.webp)
 
 ### ▶ Adding Search Container
 
@@ -139,7 +139,7 @@ To create a frame:
     - Horizontal padding: **10** pixels
     - Vertical padding: **0**
 
-![Adding Search Container](images/chat-app-redesign/design-9.png)
+![Adding Search Container](images/chat-app-redesign/design-9.webp)
 
 ### ▶ Creating the Search Bar
 
@@ -159,7 +159,7 @@ To create a frame:
     - Size: **15** pixels
     - Color: **#8F9498**
 
-![Creating the Search Bar](images/chat-app-redesign/design-10.png)
+![Creating the Search Bar](images/chat-app-redesign/design-10.webp)
 
 ### ▶ Adding Filter Button Container
 
@@ -171,7 +171,7 @@ To create a frame:
     - Alignment: Left
     - Horizontal padding: **15** pixels
 
-![Adding Filter Button Container](images/chat-app-redesign/design-11.png)
+![Adding Filter Button Container](images/chat-app-redesign/design-11.webp)
 
 ### ▶ Adding Filter Buttons
 
@@ -189,7 +189,7 @@ To create a frame:
      * First button (All): **#D9FDD3**
      * Other buttons: **#23282C**
 
-![Adding Filter Buttons](images/chat-app-redesign/design-12.png)
+![Adding Filter Buttons](images/chat-app-redesign/design-12.webp)
 
 4. Add text to the buttons:
 	- Font weight: Bold
@@ -198,7 +198,7 @@ To create a frame:
 		 - "All" button text: **#000000**
 		 - "Unread" and "Groups" text: **#8F9498**
 
-![Adding Filter Buttons Text](images/chat-app-redesign/design-13.png)
+![Adding Filter Buttons Text](images/chat-app-redesign/design-13.webp)
 
 ### ▶ Adding Contact Container
 
@@ -211,14 +211,14 @@ To create a frame:
 	- Horizontal padding: **15** pixels
 	- Vertical padding: **4** pixels
 
-![Adding Contact Container](images/chat-app-redesign/design-14.png)
+![Adding Contact Container](images/chat-app-redesign/design-14.webp)
 
 2. Add a profile icon:
 	- Shape: Circle
 	- Dimensions: **50 x 50** pixels
 	- Represents the chat partner's profile picture
 
-![Adding Profile Icon](images/chat-app-redesign/design-15.png)
+![Adding Profile Icon](images/chat-app-redesign/design-15.webp)
 
 4. Create a contact sub-container:
 	- Sub-container dimensions: **Fill**
@@ -229,7 +229,7 @@ To create a frame:
     - Horizontal padding: **0**
     - Vertical padding: **10** pixels
 
-![Creating Contact Sub-Container](images/chat-app-redesign/design-16.png)
+![Creating Contact Sub-Container](images/chat-app-redesign/design-16.webp)
 
 5. Create a container for name and time:
 	- Width: **Fill**
@@ -238,7 +238,7 @@ To create a frame:
     - Horizontal padding: **0**
     - Vertical padding: **2** pixels
 
-![Creating Container for Name and Time](images/chat-app-redesign/design-17.png)
+![Creating Container for Name and Time](images/chat-app-redesign/design-17.webp)
 
 6. Include text elements for name and time:
 	- Contact name:
@@ -250,7 +250,7 @@ To create a frame:
 		- Weight: Regular
 		- Color: **#8F9498**
 
-![Adding Text Elements](images/chat-app-redesign/design-18.png)
+![Adding Text Elements](images/chat-app-redesign/design-18.webp)
 
 7. Create a container for last message and icon:
 	- Width: **Fill**
@@ -259,7 +259,7 @@ To create a frame:
     - Horizontal padding: **0, 2** pixels
     - Vertical padding: **2** pixels
 
-![Creating Container Last Message and Icon](images/chat-app-redesign/design-19.png)
+![Creating Container Last Message and Icon](images/chat-app-redesign/design-19.webp)
 
 8. Include text elements for last message and icon:
 	- Last message:
@@ -268,20 +268,20 @@ To create a frame:
 		- Color: **#8F9498**
 	- Import a pin icon of color **#686F74**
 
-![Adding Text Elements](images/chat-app-redesign/design-20.png)
+![Adding Text Elements](images/chat-app-redesign/design-20.webp)
 
 9. Populate the chat list:
    - Duplicate the contact container
    - Create multiple entries
 
-![Populate Chat List](images/chat-app-redesign/design-21.png)
+![Populate Chat List](images/chat-app-redesign/design-21.webp)
 
 10. Customize chat entries:
    - Modify names, messages, and times
    - Create visual variety
    - Represent different types of conversations
 
-![Customize Chat Entries](images/chat-app-redesign/design-22.png)
+![Customize Chat Entries](images/chat-app-redesign/design-22.webp)
 
 ### ▶ Creating the Navigation Bar
 
@@ -291,7 +291,7 @@ To create a frame:
 	- Alignment: Center
 	- Gap, Horizontal padding & Vertical padding: **0**
 
-![Creating the Navigation Bar](images/chat-app-redesign/design-23.png)
+![Creating the Navigation Bar](images/chat-app-redesign/design-23.webp)
 
 2. Add Chat container:
 	- Width: **100** pixels
@@ -301,7 +301,7 @@ To create a frame:
 	- Gap: **10** pixels
 	- Horizontal padding & Vertical padding: **0**
 
-![Creating the Navigation Bar Buttons](images/chat-app-redesign/design-24.png)
+![Creating the Navigation Bar Buttons](images/chat-app-redesign/design-24.webp)
 
 3. Add Chat Button:
 	- Dimensions: **70 x 35** pixels
@@ -314,7 +314,7 @@ To create a frame:
 	- Font size: **12** pixels
 	- Font weight: Medium
 
-![Adding Navigation Bar Buttons](images/chat-app-redesign/design-25.png)
+![Adding Navigation Bar Buttons](images/chat-app-redesign/design-25.webp)
 
 6. Duplicate the container:
 7. Change the color of remaining buttons to
@@ -322,12 +322,12 @@ To create a frame:
 8. Change navigation labels:
    - Labels: **Updates, Communities, Calls** accordingly
 
-![Duplicate Navigation Bar Buttons](images/chat-app-redesign/design-26.png)
+![Duplicate Navigation Bar Buttons](images/chat-app-redesign/design-26.webp)
 
 ### ▶ Final Design
 
 With these meticulous steps, we've created a comprehensive, user-friendly design for the WhatsApp interface. The design balances functionality with aesthetic appeal, providing an intuitive user experience.
 
-![Final Design](images/chat-app-redesign/design.png){data-aspect-ratio="1:1"}
+![Final Design](images/chat-app-redesign/design.webp){data-aspect-ratio="1:1"}
 
 ---

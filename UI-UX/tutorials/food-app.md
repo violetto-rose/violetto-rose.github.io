@@ -4,7 +4,7 @@ Our second experiment focuses on creating a food app design, where we will devel
 
 For this experiment, we will concentrate on <span class="Zomato">Zomato</span>, a popular food delivery and restaurant discovery platform. Zomato exemplifies excellent user interface design through its user-friendly navigation, organized visual hierarchy, and cohesive design elements. It provides a seamless experience for users to explore restaurants, read reviews, and conveniently place orders.
 
-![Zomato interface on Apple iOS](images/food-app/zomato-user-interface.png){data-aspect-ratio="1:1"}
+![Zomato interface on Apple iOS](images/food-app/zomato-user-interface.webp){data-aspect-ratio="1:1"}
 _Zomato interface on Apple iOS. Image source: Zomato Official Website, 2025._
 
 Let's begin by designing the home screen interface for Zomato, along with the restaurant page interface.
@@ -14,7 +14,7 @@ Let's begin by designing the home screen interface for Zomato, along with the re
 
 Create a basic wireframe using pen and paper, as demonstrated below:
 
-![Wireframe](images/food-app/wireframe.png){data-aspect-ratio="1:1"}
+![Wireframe](images/food-app/wireframe.webp){data-aspect-ratio="1:1"}
 
 ---
 ## 2. Designing
@@ -32,14 +32,14 @@ To create a frame:
 1. We'll use the **Android Compact** frame for this design.
 2. Change the fill color to **#18171C**
 
-![Creating a Frame](images/food-app/design-1.png)
+![Creating a Frame](images/food-app/design-1.webp)
 
 ### ▶ Adding the Status Bar
 
 1. Open the Status Bar 1-click plugin from the Actions menu.
 2. Change the height of the status bar to **50** pixels.
 
-![Adding the Status Bar](images/food-app/design-2.png)
+![Adding the Status Bar](images/food-app/design-2.webp)
 
 ### ▶ Creating the Navigation Bar
 
@@ -52,7 +52,7 @@ To create a frame:
 		- Color: **#29282D**
 		- Position: Inside
 
-![Creating the Navigation Bar](images/food-app/design-3.png)
+![Creating the Navigation Bar](images/food-app/design-3.webp)
 
 ### ▶ Creating the Navigation Container
 
@@ -63,7 +63,7 @@ To create a frame:
 	- Gap, Horizontal padding: **20** pixels
 	- Vertical padding: **10** pixels
 
-![Creating the Navigation Container](images/food-app/design-4.png)
+![Creating the Navigation Container](images/food-app/design-4.webp)
 
 ### ▶ Creating the Blinkit Container
 
@@ -74,7 +74,7 @@ To create a frame:
 	- Gap, Vertical padding: **10** pixels
 	- Horizontal padding: **0**
 
-![Creating the Blinkit Container](images/food-app/design-5.png)
+![Creating the Blinkit Container](images/food-app/design-5.webp)
 
 ### ▶ Adding Blinkit
 
@@ -90,7 +90,7 @@ To create a frame:
 		- Top Left and Bottom Left corner radius: **10** pixels
 		- Top Right and Bottom Right corner radius: **0**
 
-![Adding Blinkit](images/food-app/design-6.png)
+![Adding Blinkit](images/food-app/design-6.webp)
 
 2. Adding Blinkit text element:
 	- Dimensions: **Hug**
@@ -99,13 +99,13 @@ To create a frame:
 	- Weight: Bold
 	- Color: **#18171C** and **#418315**
 
-![Adding Blinkit](images/food-app/design-7.png)
+![Adding Blinkit](images/food-app/design-7.webp)
 
 3. Add arrow icon
 	- Rotation: **-45** degree
 	- Dimensions: **15** pixels
  
-![Adding Blinkit](images/food-app/design-8.png)
+![Adding Blinkit](images/food-app/design-8.webp)
 
 ### ▶ Creating the Delivery Container
 
@@ -121,13 +121,13 @@ To create a frame:
 		- Sides: Top
 		- Thickness: **3** pixels
 
-![Creating the Delivery Container](images/food-app/design-9.png)
+![Creating the Delivery Container](images/food-app/design-9.webp)
 
 2. Add delivery icon
 	- Color: **#269644**
 	- Dimensions: **24** pixels
 
-![Creating the Delivery Container](images/food-app/design-10.png)
+![Creating the Delivery Container](images/food-app/design-10.webp)
 
 3.  Adding delivery text element:
 	- Dimensions: **Hug**
@@ -135,12 +135,12 @@ To create a frame:
 	- Size: **12** pixels
 	- Weight: Medium
 
-![Creating the Delivery Container](images/food-app/design-11.png)
+![Creating the Delivery Container](images/food-app/design-11.webp)
 
 4. Repeat the same for other navigation buttons:
 	- Color: **#85888F**
 
-![Creating the Delivery Container](images/food-app/design-12.png)
+![Creating the Delivery Container](images/food-app/design-12.webp)
 
 ### ▶ Creating the Body Container
 
@@ -151,7 +151,7 @@ To create a frame:
 	- Gap & Horizontal padding: **10** pixels
 	- Vertical padding: **0**
 
-![Creating the Body Container](images/food-app/design-13.png)
+![Creating the Body Container](images/food-app/design-13.webp)
 
 ### ▶ Creating the Location Container
 
@@ -162,7 +162,7 @@ To create a frame:
 	- Gap: **0**
 	- Horizontal padding: **10, 20** pixels
 
-![Creating the Location Container](images/food-app/design-14.png)
+![Creating the Location Container](images/food-app/design-14.webp)
 
 2. Add location icon
 	- Color: **#23933C**
@@ -173,7 +173,7 @@ To create a frame:
 	- Alignment: Left
 	- Gap & Vertical padding: **0**
 
-![Creating the Location Container](images/food-app/design-15.png)
+![Creating the Location Container](images/food-app/design-15.webp)
 
 4. Add place text element:
 	- Font: Metropolis
@@ -181,7 +181,7 @@ To create a frame:
 	- Weight: Semi Bold
 5. Add bottom arrow icon
 
-![Creating the Location Container](images/food-app/design-16.png)
+![Creating the Location Container](images/food-app/design-16.webp)
 
 6. Add location address frame:
 	- Dimensions: **Fill x 25** pixels
@@ -192,7 +192,7 @@ To create a frame:
 7. Add address text element:
 8. Add a **30 x 30** icon
 
-![Creating the Location Container](images/food-app/design-17.png)
+![Creating the Location Container](images/food-app/design-17.webp)
 
 ### ▶ Creating the Search Container
 
@@ -202,7 +202,7 @@ To create a frame:
 	- Alignment: Center
 	- Gap: **0**
 
-![Creating the Search Container](images/food-app/design-18.png)
+![Creating the Search Container](images/food-app/design-18.webp)
 
 ### ▶ Creating the Search Bar
 
@@ -217,16 +217,16 @@ To create a frame:
 		- Color: **#434448**
 		- Position: Inside
 
-![Creating the Search Bar](images/food-app/design-19.png)
+![Creating the Search Bar](images/food-app/design-19.webp)
 
 2. Add search Icon
 3. Add search text element
 
-![Creating the Search Bar](images/food-app/design-20.png)
+![Creating the Search Bar](images/food-app/design-20.webp)
 
 4. Add microphone icon
 
-![Creating the Search Bar](images/food-app/design-21.png)
+![Creating the Search Bar](images/food-app/design-21.webp)
 
 5. Add a veg mode goggle container:
 	- Dimensions: **Fill x 51** pixel
@@ -237,7 +237,7 @@ To create a frame:
 7. Add toggle icon:
 	- Color: **#0BB665**
 
-![Creating the Search Bar](images/food-app/design-22.png)
+![Creating the Search Bar](images/food-app/design-22.webp)
 
 ### ▶ Creating the Food Type Container
 
@@ -249,17 +249,17 @@ To create a frame:
 	- Vertical padding: **10, 0** pixels
 2. Add a dummy image for flash sale
 
-![Creating the Food Type Container](images/food-app/design-23.png)
+![Creating the Food Type Container](images/food-app/design-23.webp)
 
 3. Create a menu item container:
 	- Dimensions: **308 x 80** pixels
 
-![Creating the Food Type Container](images/food-app/design-24.png)
+![Creating the Food Type Container](images/food-app/design-24.webp)
 
 4. Create a menu item:
 	- Dimensions: **80 x 80** pixels
 
-![Creating the Food Type Container](images/food-app/design-25.png)
+![Creating the Food Type Container](images/food-app/design-25.webp)
 
 5. Add fast food text element:
 	-  Font: Metropolis
@@ -271,11 +271,11 @@ To create a frame:
 	- Sides: Bottom
 	- Thickness: **3** pixels
 
-![Creating the Food Type Container](images/food-app/design-26.png)
+![Creating the Food Type Container](images/food-app/design-26.webp)
 
 7. Duplicate the menu item
 
-![Creating the Food Type Container](images/food-app/design-27.png)
+![Creating the Food Type Container](images/food-app/design-27.webp)
 
 ### ▶ Creating the Filters Container
 
@@ -285,7 +285,7 @@ To create a frame:
 	- Alignment: Center
 	- Horizontal padding: **0**
 
-![Creating the Filters Container](images/food-app/design-28.png)
+![Creating the Filters Container](images/food-app/design-28.webp)
 
 2. Add a filter button:
 	- Dimensions: **Hug**
@@ -298,15 +298,15 @@ To create a frame:
 		- Color: **#302F34**
 		- Position: Inside
 
-![Creating the Filters Container](images/food-app/design-29.png)
+![Creating the Filters Container](images/food-app/design-29.webp)
 
 3. Add icons and text element
 
-![Creating the Filters Container](images/food-app/design-30.png)
+![Creating the Filters Container](images/food-app/design-30.webp)
 
 4. Duplicate for different filters
 
-![Creating the Filters Container](images/food-app/design-31.png)
+![Creating the Filters Container](images/food-app/design-31.webp)
 
 ### ▶ Creating the Explore More Container
 
@@ -332,12 +332,12 @@ To create a frame:
 	- Color: **#202028**
 	- Cornering radius: **10** pixels
 
-![Creating the Explore More Container](images/food-app/design-32.png)
+![Creating the Explore More Container](images/food-app/design-32.webp)
 
 1. Add icon and text elements
 2. Duplicate for different buttons
 
-![Creating the Explore More Container](images/food-app/design-33.png)
+![Creating the Explore More Container](images/food-app/design-33.webp)
 
 ### ▶ Creating the Restaurants Container
 
@@ -359,16 +359,16 @@ To create a frame:
 		- Color: **#333439**
 		- Position: Inside
 
-![Creating the Restaurants Container](images/food-app/design-34.png)
+![Creating the Restaurants Container](images/food-app/design-34.webp)
 
 4. Add a image item:
 	- Dimensions: **392 x 245** pixels
 
-![Creating the Restaurants Container](images/food-app/design-35.png)
+![Creating the Restaurants Container](images/food-app/design-35.webp)
 
 5. Create restaurant cards accordingly
 
-![Creating the Restaurants Container](images/food-app/design-36.png)
+![Creating the Restaurants Container](images/food-app/design-36.webp)
 
 ### ▶ Creating a Restaurant Page
 
@@ -387,7 +387,7 @@ To create a frame:
 		- Sides: Bottom
 		- Thickness: **8** pixels
 
-![Creating a Restaurant Page](images/food-app/design-37.png)
+![Creating a Restaurant Page](images/food-app/design-37.webp)
 
 ### ▶ Creating a Options Container
 
@@ -403,7 +403,7 @@ To create a frame:
 	- Gap: **0**
 3. Add icons for back, more people, bookmark and more options
 
-![Creating a Options Container](images/food-app/design-38.png)
+![Creating a Options Container](images/food-app/design-38.webp)
 
 ### ▶ Creating a Restaurant Description Container
 
@@ -427,7 +427,7 @@ To create a frame:
 	- Horizontal padding: **1** pixel
 	- Color: Linear gradient (**#16271F** to **#18171C**)
 
-![Creating a Restaurant Description Container](images/food-app/design-39.png)
+![Creating a Restaurant Description Container](images/food-app/design-39.webp)
 
 4. Create restaurant name container:
 	- Dimensions: **Fill**
@@ -436,7 +436,7 @@ To create a frame:
 	- Gap, Horizontal padding & Vertical padding: **0**
 5. Add restaurant name and information icon
 
-![Creating a Restaurant Description Container](images/food-app/design-40.png)
+![Creating a Restaurant Description Container](images/food-app/design-40.webp)
 
 6. Add ratings container:
 	- Dimensions: **Fill**
@@ -444,7 +444,7 @@ To create a frame:
 	- Alignment: Right
 	- Gap: **6** pixels
 
-![Creating a Restaurant Description Container](images/food-app/design-41.png)
+![Creating a Restaurant Description Container](images/food-app/design-41.webp)
 
 7. Add location container:
 	- Dimensions: **Fill**
@@ -453,7 +453,7 @@ To create a frame:
 	- Gap, Horizontal padding & Vertical padding: **0**
 8. Add distance and schedule sub-containers
 
-![Creating a Restaurant Description Container](images/food-app/design-42.png)
+![Creating a Restaurant Description Container](images/food-app/design-42.webp)
 
 9. Add offers container
 	- Dimensions: **Fill**
@@ -467,30 +467,30 @@ To create a frame:
 		- Position: Inside
 		- Sides: Top
 
-![Creating a Restaurant Description Container](images/food-app/design-43.png)
+![Creating a Restaurant Description Container](images/food-app/design-43.webp)
 
 ### ▶ Creating the Search and Menu Container
 
 1. Create a search bar and a menu button at the bottom, similar to the search bar on the landing page.
 
-![Creating the Search and Menu Container](images/food-app/design-44.png)
+![Creating the Search and Menu Container](images/food-app/design-44.webp)
 
 ### ▶ Create a Body with Filters and Menu Items Container
 
 1. Create filter buttons, flash sale description and menu cards accordingly
 
-![Create a Body with Filters and Menu Items Container](images/food-app/design-45.png)
+![Create a Body with Filters and Menu Items Container](images/food-app/design-45.webp)
 
 ### ▶ Connect the pages using the Prototype option
 
 1. Connect the **Restaurants** container to the **Restaurant** page to navigate to the restaurant page, which contains information about the restaurant and its menu.
 2. Connect the **Back** button to return to the **Landing** page.
 
-![Connect the pages using the Prototype option](images/food-app/design-46.png)
+![Connect the pages using the Prototype option](images/food-app/design-46.webp)
 ### ▶ Final Design
 
 With these meticulous steps, we've created a comprehensive, user-friendly design for the Zomato interface. The design balances functionality with aesthetic appeal, providing an intuitive user experience.
 
-![Final Design](images/food-app/design.png){data-aspect-ratio="1:1"}
+![Final Design](images/food-app/design.webp){data-aspect-ratio="1:1"}
 
 ---
