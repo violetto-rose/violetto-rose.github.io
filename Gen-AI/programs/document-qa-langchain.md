@@ -22,7 +22,10 @@ except FileNotFoundError:
 	exit()
 
 # Define a prompt template
-template = """You are an assistant tasked with analyzing text. Given the following document: {document} Provide a summary in three concise bullet points: """
+template = """
+You are an assistant tasked with analyzing text.
+Given the following document: {document} Provide a summary in three concise bullet points:
+"""
 prompt = PromptTemplate(
 	input_variables=["document"],
 	template=template,

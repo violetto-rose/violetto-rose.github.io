@@ -10,7 +10,11 @@ summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
 
 # Long text to summarize
 long_text = """
-The Indian Penal Code (IPC) is a comprehensive criminal code which covers all aspects of criminal law in India. The IPC was drafted in 1860 and has been amended numerous times over the years. It covers crimes such as theft, murder, defamation, and other offenses. It also outlines the procedures for criminal trials, evidence, and punishment. The IPC serves as the backbone of the criminal justice system in India.
+The Indian Penal Code (IPC) is a comprehensive criminal code which covers all aspects of criminal law in India.
+The IPC was drafted in 1860 and has been amended numerous times over the years.
+It covers crimes such as theft, murder, defamation, and other offenses.
+It also outlines the procedures for criminal trials, evidence, and punishment.
+The IPC serves as the backbone of the criminal justice system in India.
 """
 
 # Adjust max_length based on input length to avoid warnings
