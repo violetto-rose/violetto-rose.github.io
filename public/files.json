@@ -40,12 +40,5 @@
     "name": "Plantation",
     "description": "Project on Plantation and adoption of a tree (Social Connect & Responsibility)",
     "password_required": 1
-  },
-  {
-    "link": "",
-    "icon": "",
-    "name": "<em>Coming Soon</em>",
-    "description": "..........",
-    "password_required": 1
   }
 ]

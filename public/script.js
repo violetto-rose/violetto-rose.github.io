@@ -22,10 +22,10 @@ function calculateSpanClasses(items) {
   const spanClasses = new Array(totalCards).fill("");
 
   if (remainder === 1) {
-    // Last card spans 3 columns
-    spanClasses[totalCards - 1] = "span-3";
+    // First card spans 3 columns
+    spanClasses[0] = "span-3";
   } else if (remainder === 2) {
-    spanClasses[totalCards - 1] = "span-2";
+    spanClasses[0] = "span-2";
   }
 
   return spanClasses;
@@ -49,7 +49,7 @@ function renderCards(items) {
 function createCard(item, spanClass) {
   const card = document.createElement("a");
   card.href = item.link;
-  card.className = `card ${spanClass}`.trim();
+  card.className = `card glass ${spanClass}`.trim();
   card.innerHTML = `
     <i class="${item.icon}"></i>
     <h2>${item.name}</h2>
