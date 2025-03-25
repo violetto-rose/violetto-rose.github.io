@@ -59,11 +59,9 @@ html {
   padding: 0;
   font-family: var(--font1), sans-serif;
   height: 100%;
-  background: linear-gradient(
-    45deg,
-    var(--bg-color1) 0%,
-    var(--bg-color2) 100%
-  );
+  background: linear-gradient(45deg,
+      var(--bg-color1) 0%,
+      var(--bg-color2) 100%);
   color: var(--text);
   transition: background 0.5s ease;
 }
@@ -99,6 +97,7 @@ body.dark-mode {
 }
 
 @media screen and (max-width: 768px) {
+
   .toggle:active,
   .toggle:hover {
     transform: none !important;
@@ -160,9 +159,11 @@ body.dark-mode {
   0% {
     box-shadow: 0 0 0 0 var(--lp-three);
   }
+
   70% {
     box-shadow: 0 0 0 10px var(--lp-zero);
   }
+
   100% {
     box-shadow: 0 0 0 0 var(--lp-zero);
   }
@@ -172,6 +173,7 @@ body.dark-mode {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -185,7 +187,7 @@ body.dark-mode {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1280px) {
   #sidebar-toggle {
     display: flex;
     left: 0;
@@ -290,9 +292,9 @@ body.dark-mode {
 
 #structure-view {
   position: fixed;
-  right: -300px;
+  right: -20rem;
   top: 0;
-  width: 300px;
+  width: 20rem;
   height: 100%;
   background: var(--lp-one);
   -webkit-backdrop-filter: blur(10px);
@@ -340,7 +342,7 @@ body.dark-mode {
   background: var(--lp-two);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1280px) {
   #structure-view {
     z-index: 1;
     right: -100%;
@@ -355,7 +357,7 @@ body.dark-mode {
   }
 }
 
-@media screen and (max-width: 768px) and (min-width: 640px) {
+@media screen and (max-width: 1280px) and (min-width: 640px) {
   #structure-view .structure-item {
     font-size: 3rem;
   }
@@ -369,7 +371,7 @@ body.dark-mode {
   }
 }
 
-@media screen and (min-width: 1080px) {
+@media screen and (min-width: 1280px) {
   #structure-view {
     padding-left: 20px;
   }
@@ -387,7 +389,7 @@ body.dark-mode #structure-view .structure-subsection:hover {
   background: var(--f-p-five);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1280px) {
   body.dark-mode #structure-view .structure-item:hover,
   body.dark-mode #structure-view .structure-section:hover,
   body.dark-mode #structure-view .structure-subsection:hover {
@@ -426,7 +428,7 @@ body.dark-mode .glass {
 /******************/
 
 #sidebar {
-  width: 250px;
+  width: 15rem;
   min-width: 250px;
   padding: 20px;
   margin-right: 20px;
@@ -489,7 +491,7 @@ body.dark-mode .glass {
   display: none;
 }
 
-@media screen and (min-width: 1080px) {
+@media screen and (min-width: 1280px) {
   .search-shortcut-hint {
     display: flex;
     align-items: center;
@@ -505,8 +507,8 @@ body.dark-mode .glass {
   }
 }
 
-#search-input:focus + .search-shortcut-hint,
-#search-results[style*="display: block"] ~ .search-shortcut-hint {
+#search-input:focus+.search-shortcut-hint,
+#search-results[style*="display: block"]~.search-shortcut-hint {
   opacity: 0;
 }
 
@@ -572,7 +574,7 @@ body.dark-mode .glass {
   color: var(--text);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1280px) {
   #sidebar {
     position: fixed;
     width: auto;
@@ -619,9 +621,9 @@ body.dark-mode .box {
   transition: margin-right 0.3s ease;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1280px) {
   #content.shifted {
-    margin-right: 300px;
+    margin-right: 20rem;
   }
 }
 
@@ -749,14 +751,12 @@ body.dark-mode .box {
   mask-position: center;
   -webkit-mask-size: 45%;
   mask-size: 45%;
-  background-image: linear-gradient(
-    45deg,
-    #ffd600,
-    #ff7a00,
-    #ff0069,
-    #d300c5,
-    #7638fa
-  );
+  background-image: linear-gradient(45deg,
+      #ffd600,
+      #ff7a00,
+      #ff0069,
+      #d300c5,
+      #7638fa);
   filter: none;
 }
 
@@ -886,14 +886,12 @@ body.dark-mode #tutorial-content span::after {
 }
 
 body.dark-mode #tutorial-content .Instagram {
-  background: linear-gradient(
-    90deg,
-    #ffd600,
-    #ff7a00,
-    #ff0069,
-    #d300c5,
-    #7638fa
-  );
+  background: linear-gradient(90deg,
+      #ffd600,
+      #ff7a00,
+      #ff0069,
+      #d300c5,
+      #7638fa);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -917,12 +915,10 @@ body.dark-mode .navigation-buttons button {
 /***************************/
 
 .skeleton {
-  background: linear-gradient(
-    90deg,
-    var(--lp-zfive) 0%,
-    var(--lp-one) 50%,
-    var(--lp-zfive) 100%
-  );
+  background: linear-gradient(90deg,
+      var(--lp-zfive) 0%,
+      var(--lp-one) 50%,
+      var(--lp-zfive) 100%);
   background-size: 200% 100%;
   animation: skeleton-loading 1.5s infinite;
   border-radius: 10px;
@@ -932,6 +928,7 @@ body.dark-mode .navigation-buttons button {
   0% {
     background-position: -200% 0;
   }
+
   100% {
     background-position: 200% 0;
   }
@@ -968,12 +965,10 @@ body.dark-mode .navigation-buttons button {
 
 /* Dark mode styles */
 body.dark-mode .skeleton {
-  background: linear-gradient(
-    90deg,
-    var(--p-one) 0%,
-    var(--p-two) 50%,
-    var(--p-one) 100%
-  );
+  background: linear-gradient(90deg,
+      var(--p-one) 0%,
+      var(--p-two) 50%,
+      var(--p-one) 100%);
 }
 
 body.dark-mode .skeleton-text {

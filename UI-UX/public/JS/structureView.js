@@ -1,8 +1,16 @@
 export function setupStructureView() {
   const structureToggle = document.getElementById("structure-toggle");
 
+  if (window.innerWidth > 1280) {
+    toggleStructureView()
+  }
+
   structureToggle.addEventListener("click", () => {
     toggleStructureView();
+    const sidebar = document.getElementById("sidebar");
+    if (sidebar.classList.contains("open")) {
+      window.toggleSidebar();
+    }
   });
 }
 
@@ -15,7 +23,7 @@ function toggleStructureView() {
 
   // Move the content area only for screens wider than 768px
   const content = document.getElementById("content");
-  if (window.innerWidth > 768) {
+  if (window.innerWidth > 1280) {
     content.classList.toggle("shifted");
   }
 }

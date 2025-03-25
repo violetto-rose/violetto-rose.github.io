@@ -1,8 +1,11 @@
+import { closeStructureView } from "./structureView.js"
+
 export function setupSidebar() {
   const sidebar = document.getElementById("sidebar")
   const sidebarToggle = document.getElementById("sidebar-toggle")
 
-  function toggleSidebar() {
+  // Make toggleSidebar available for export
+  window.toggleSidebar = function () {
     sidebar.classList.toggle("open")
     sidebarToggle.classList.toggle("open")
 
@@ -21,7 +24,7 @@ export function setupSidebar() {
   // Toggle sidebar when button is clicked
   sidebarToggle.addEventListener("click", (e) => {
     e.stopPropagation()
-    toggleSidebar()
+    window.toggleSidebar()
     if (document.getElementById("structure-view").classList.contains("open")) {
       closeStructureView()
     }
@@ -29,7 +32,7 @@ export function setupSidebar() {
 
   // Close sidebar when clicking outside (for mobile)
   document.addEventListener("click", (e) => {
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 1280) {
       const isOutsideSidebar = !sidebar.contains(e.target)
       const isNotToggleButton = !sidebarToggle.contains(e.target)
       const isNotDarkModeToggle = !document.getElementById("dark-mode-toggle").contains(e.target)
@@ -44,7 +47,7 @@ export function setupSidebar() {
 
   // Close sidebar when window is resized above tablet breakpoint
   window.addEventListener("resize", () => {
-    if (window.innerWidth > 768) {
+    if (window.innerWidth > 1280) {
       sidebar.classList.remove("open")
       sidebarToggle.classList.remove("open")
       document.body.style.overflow = ""
