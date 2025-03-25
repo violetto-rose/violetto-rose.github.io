@@ -52,7 +52,9 @@ export async function loadTutorial(filename) {
 
     // Scroll the content container to the top
     const contentContainer = document.getElementById("content");
+    const structureContainer = document.getElementById("structure-view");
     scrollToTop(contentContainer);
+    scrollToTop(structureContainer);
 
     // Generate structure view after content is loaded
     generateStructureView(contentWrapper);
