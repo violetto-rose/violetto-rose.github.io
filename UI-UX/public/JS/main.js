@@ -6,6 +6,7 @@ import { setupSearch, setupSearchShortcut } from "./search.js";
 import { setupImageViewer } from "./imageHandler.js";
 import { setupMenuAnimation } from "./menuManager.js";
 import { enterFullscreen } from "./fullScreen.js";
+import { feedbackHandler } from "./feedbackHandler.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   // Configure marked renderer
@@ -34,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupSearchShortcut();
   setupImageViewer();
   setupMenuAnimation();
+  feedbackHandler();
 
   // Listen for hash changes
   window.addEventListener("hashchange", loadTutorialFromHash);

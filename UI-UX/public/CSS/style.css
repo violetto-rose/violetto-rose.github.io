@@ -63,11 +63,6 @@ html {
       var(--bg-color1) 0%,
       var(--bg-color2) 100%);
   color: var(--text);
-  transition: background 0.5s ease;
-}
-
-body.dark-mode {
-  transition: background 0.5s ease;
 }
 
 /***************************/
@@ -270,6 +265,7 @@ body.dark-mode {
 
 #fullscreen-toggle:hover {
   background: var(--lp-three);
+  transform: scale(1.1);
   box-shadow: 0 6px 8px var(--dp-two);
 }
 
@@ -390,6 +386,7 @@ body.dark-mode #structure-view .structure-subsection:hover {
 }
 
 @media screen and (max-width: 1280px) {
+
   body.dark-mode #structure-view .structure-item:hover,
   body.dark-mode #structure-view .structure-section:hover,
   body.dark-mode #structure-view .structure-subsection:hover {
@@ -824,7 +821,7 @@ body.dark-mode .box {
   color: var(--inv-text);
   background-color: var(--text);
   cursor: pointer;
-  transition: background-color 0.5s ease, color 0.5s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 @media screen and (max-width: 640px) {
@@ -899,10 +896,6 @@ body.dark-mode #tutorial-content .Instagram {
 
 body.dark-mode .image-overlay {
   background: var(--f-p-one);
-}
-
-body.dark-mode .navigation-buttons button {
-  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 body.dark-mode .navigation-buttons button {
@@ -1095,11 +1088,11 @@ body.dark-mode #tutorial-content table a:hover {
   text-decoration: underline;
 }
 
-/***********************/
-/* Credits Info Styles */
-/***********************/
+/*******************/
+/* Feedback Styles */
+/*******************/
 
-#credits-info {
+#more-info {
   position: fixed;
   bottom: 30px;
   right: 30px;
@@ -1107,7 +1100,7 @@ body.dark-mode #tutorial-content table a:hover {
 }
 
 @media screen and (max-width: 768px) {
-  #credits-info {
+  #more-info {
     bottom: 10px;
     right: 10px;
   }
@@ -1131,25 +1124,154 @@ body.dark-mode #tutorial-content table a:hover {
   background: var(--lp-three);
 }
 
-.credits-tooltip {
+.modal {
+  display: none;
+  flex-direction: column;
+  align-items: center;
   position: absolute;
-  bottom: 30px;
-  left: -120px;
-  transform: translateX(-50%);
-  background: var(--dp-eight);
-  color: var(--inv-text);
-  padding: 5px 10px;
-  border-radius: 10px;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s;
+  background: linear-gradient(45deg,
+      var(--bg-color1) 0%,
+      var(--bg-color2) 100%);
+  color: var(--text);
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  overflow: hidden;
   z-index: 1;
 }
 
-.credits-icon:hover .credits-tooltip {
-  visibility: visible;
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50vw;
+  height: 100%;
+  gap: 2rem;
+}
+
+.modal-content h2 {
+  text-align: center;
+}
+
+#close-modal {
+  align-items: flex-end;
+  top: 260px;
+  font-size: 32px;
+}
+
+#close-modal:hover {
+  background: var(--lp-three);
+  transform: scale(1.1);
+  box-shadow: 0 6px 8px var(--dp-two);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+  font-family: inherit;
+  color: var(--text);
+  background-color: var(--lp-one);
+  width: calc(100% - 20px);
+  padding: 8px;
+  border: 1px solid var(--dp-five);
+  border-radius: 4px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border: 1px solid var(--text);
+  outline: none;
+}
+
+.form-group textarea {
+  min-height: 5rem;
+  height: 10rem;
+  max-height: 20rem;
+  resize: vertical;
+}
+
+.submit-btn {
+  position: relative;
+  font-family: inherit;
+  font-size: inherit;
+  background-color: var(--text);
+  color: var(--inv-text);
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.submit-btn:disabled {
+  background-color: var(--lp-three);
+  cursor: not-allowed;
+}
+
+.submit-btn.loading {
+  padding-right: 3rem;
+}
+
+.submit-btn.loading::after {
+  content: '';
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid transparent;
+  border-top-color: black;
+  border-radius: 50%;
+  animation: spinner 0.6s linear infinite;
+}
+
+@keyframes spinner {
+  to {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
+.feedback-message {
+  text-align: center;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.feedback-message.show {
   opacity: 1;
+}
+
+.feedback-message.success {
+  background-color: rgba(0, 200, 0, 0.1);
+  color: #00c800;
+}
+
+.feedback-message.error {
+  background-color: rgba(255, 0, 0, 0.1);
+  color: #ff0000;
+}
+
+.credits-tooltip {
+  text-align: center;
+  border-radius: 10px;
+  white-space: nowrap;
+  transition: opacity 0.3s ease, visibility 0.3s;
+  z-index: 1;
+  padding-bottom: 20px;
 }
 
 .credits-tooltip a {
@@ -1157,6 +1279,20 @@ body.dark-mode #tutorial-content table a:hover {
 }
 
 /* Dark mode adjustments */
+body.dark-mode .form-group input,
+body.dark-mode .form-group textarea {
+  border: 1px solid var(--lp-five);
+}
+
+body.dark-mode .form-group input:focus,
+body.dark-mode .form-group textarea:focus {
+  border: 1px solid var(--text);
+}
+
+body.dark-mode .submit-btn {
+  background-color: var(--blu);
+}
+
 body.dark-mode .credits-tooltip,
 body.dark-mode .credits-tooltip a {
   color: var(--text);
