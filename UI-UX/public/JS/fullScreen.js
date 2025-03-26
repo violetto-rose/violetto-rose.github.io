@@ -1,5 +1,6 @@
 export function enterFullscreen() {
     const fullscreenToggle = document.getElementById('fullscreen-toggle');
+    const closeModal = document.querySelector('#close-modal');
 
     // Early return if fullscreen is not supported or element not found
     if (!fullscreenToggle ||
@@ -10,8 +11,11 @@ export function enterFullscreen() {
         return;
     }
 
-    // Only show fullscreen button on non-touch devices
+    // Handle touch devices
     if (window.matchMedia('(pointer: coarse)').matches) {
+        if (closeModal) {
+            closeModal.style.top = '200px';
+        }
         return;
     }
 

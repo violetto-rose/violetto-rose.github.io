@@ -1150,14 +1150,20 @@ body.dark-mode #tutorial-content table a:hover {
   gap: 2rem;
 }
 
+
+@media screen and (max-width: 768px) {
+  .modal-content {
+    width: 70%;
+  }
+}
+
 .modal-content h2 {
   text-align: center;
 }
 
 #close-modal {
-  align-items: flex-end;
+  align-items: center;
   top: 260px;
-  font-size: 32px;
 }
 
 #close-modal:hover {
@@ -1334,8 +1340,8 @@ body.dark-mode .credits-icon:hover {
 
 .menu .fa-xmark {
   position: absolute;
-  top: 48px;
-  right: 56px;
+  top: 50px;
+  right: 50px;
   color: white;
   font-size: 24px;
   cursor: pointer;
