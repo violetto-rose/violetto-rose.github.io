@@ -1220,7 +1220,6 @@ body.dark-mode #tutorial-content table a:hover {
 }
 
 .submit-btn:disabled {
-  background-color: var(--lp-three);
   cursor: not-allowed;
 }
 
@@ -1237,7 +1236,7 @@ body.dark-mode #tutorial-content table a:hover {
   width: 1rem;
   height: 1rem;
   border: 2px solid transparent;
-  border-top-color: black;
+  border-top-color: var(--inv-text);
   border-radius: 50%;
   animation: spinner 0.6s linear infinite;
 }
@@ -1250,25 +1249,32 @@ body.dark-mode #tutorial-content table a:hover {
 
 .feedback-message {
   text-align: center;
-  padding: 1rem;
-  margin-top: 1rem;
-  border-radius: 4px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  padding: 1.5rem;
+  /* margin-top: 1.5rem; */
+  border-radius: 10px;
+  opacity: 1;
+  transition: all 0.3s ease;
+  transform: translateY(-10px);
+  background: var(--lp-one);
+  border: 1px solid var(--text);
+  box-shadow: 0 8px 32px 0 var(--shadow);
 }
 
 .feedback-message.show {
   opacity: 1;
+  transform: translateY(0);
 }
 
 .feedback-message.success {
-  background-color: rgba(0, 200, 0, 0.1);
-  color: #00c800;
+  background: rgba(143, 62, 229, 1);
+  border-color: var(--text);
+  color: var(--text);
 }
 
 .feedback-message.error {
-  background-color: rgba(255, 0, 0, 0.1);
-  color: #ff0000;
+  background: rgba(255, 99, 99, 1);
+  border-color: var(--text);
+  color: var(--text);
 }
 
 .credits-tooltip {
@@ -1297,6 +1303,23 @@ body.dark-mode .form-group textarea:focus {
 
 body.dark-mode .submit-btn {
   background-color: var(--blu);
+}
+
+body.dark-mode .feedback-message {
+  background: var(--f-p-one);
+  border-color: var(--h-p-two);
+}
+
+body.dark-mode .feedback-message.success {
+  background: rgba(143, 62, 229, 0.2);
+  border-color: var(--purp);
+  color: var(--purp);
+}
+
+body.dark-mode .feedback-message.error {
+  background: rgba(255, 99, 99, 0.2);
+  border-color: #ff6363;
+  color: #ff6363;
 }
 
 body.dark-mode .credits-tooltip,
