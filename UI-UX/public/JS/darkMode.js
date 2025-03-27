@@ -16,8 +16,8 @@ export function setupDarkMode() {
     savedDarkMode === "enabled"
       ? true
       : savedDarkMode === "disabled"
-      ? false
-      : systemPrefersDarkMode.matches;
+        ? false
+        : systemPrefersDarkMode.matches;
 
   applyDarkMode(initialDarkMode);
 

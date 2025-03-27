@@ -1,9 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Funnel+Display:wght@300..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Funnel+Display:wght@300..800&family=JetBrains+Mono&display=swap");
 
 :root {
   /*Fonts*/
   --font1: "Montserrat";
   --font2: "Funnel Display";
+  --font3: "JetBrains Mono";
   /*Background*/
   --bg-color: rgb(248, 249, 252);
   /*Text*/
@@ -83,6 +84,7 @@ html {
 }
 
 @media screen and (max-width: 768px) {
+
   .toggle:active,
   .toggle:hover {
     transform: none !important;
@@ -270,8 +272,8 @@ html {
   }
 }
 
-#search-input:focus + .search-shortcut-hint,
-#search-results[style*="display: block"] ~ .search-shortcut-hint {
+#search-input:focus+.search-shortcut-hint,
+#search-results[style*="display: block"]~.search-shortcut-hint {
   opacity: 0;
 }
 
@@ -441,7 +443,7 @@ html {
 }
 
 #program-content code {
-  font-family: consolas, monospace;
+  font-family: var(--font3), consolas, monospace;
   font-size: 0.9rem;
   border-radius: 5px;
 }
@@ -576,12 +578,10 @@ html {
 /***************************/
 
 .skeleton {
-  background: linear-gradient(
-    135deg,
-    var(--lp-zfive) 0%,
-    var(--lp-one) 50%,
-    var(--lp-zfive) 100%
-  );
+  background: linear-gradient(135deg,
+      var(--lp-zfive) 0%,
+      var(--lp-one) 50%,
+      var(--lp-zfive) 100%);
   background-size: 200% 100%;
   animation: skeleton-loading 2s infinite;
   border-radius: 10px;
@@ -591,6 +591,7 @@ html {
   0% {
     background-position: 200% 0;
   }
+
   100% {
     background-position: -200% 0;
   }
@@ -733,6 +734,7 @@ sidebar::-webkit-scrollbar-track,
 }
 
 @media screen and (max-width: 640px) {
+
   #program-content td:nth-of-type(odd),
   #program-content th:first-child {
     padding-right: 0;

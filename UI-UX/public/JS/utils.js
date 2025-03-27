@@ -5,6 +5,28 @@ import { tutorials } from "./sidebar.js";
 // Function to load tutorial content with lazy loading
 export async function loadTutorial(filename) {
   const tutorialContent = document.getElementById("tutorial-content");
+
+  // Show loading skeleton
+  tutorialContent.innerHTML = `
+    <div class="skeleton skeleton-header"></div>
+    <div class="skeleton-paragraph">
+      <div class="skeleton skeleton-text"></div>
+      <div class="skeleton skeleton-text"></div>
+      <div class="skeleton skeleton-text"></div>
+      <div class="skeleton skeleton-text"></div>
+      <div class="skeleton skeleton-text"></div>
+    </div>
+    <br />
+    <div class="skeleton skeleton-header"></div>
+    <div class="skeleton-paragraph">
+      <div class="skeleton skeleton-text"></div>
+      <div class="skeleton skeleton-text"></div>
+      <div class="skeleton skeleton-text"></div>
+      <div class="skeleton skeleton-text"></div>
+      <div class="skeleton skeleton-text"></div>
+    </div>
+  `;
+
   try {
     const response = await fetch(`tutorials/${filename}`);
     if (!response.ok) {
@@ -79,8 +101,7 @@ export async function loadTutorial(filename) {
     window.addEventListener("resize", () => adjustTableHeader(filename));
   } catch (error) {
     console.error("Error:", error);
-    tutorialContent.innerHTML =
-      "<p>Error loading tutorial content. Please try again later.</p>";
+    tutorialContent.innerHTML = "<p>Error loading tutorial content. Please try again later.</p>";
   }
 }
 
