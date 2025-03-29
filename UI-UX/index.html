@@ -46,6 +46,7 @@
       src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
     ></script>
   </head>
+
   <body>
     <div class="container">
       <nav id="sidebar" class="glass">
@@ -63,8 +64,8 @@
             <span class="search-shortcut-hint">
               <div class="box">Ctrl</div>
               &nbsp;
-              <div class="box">K</div></span
-            >
+              <div class="box">K</div>
+            </span>
           </div>
           <div id="search-results" class="glass"></div>
         </div>
@@ -149,11 +150,11 @@
         <form id="feedback-form">
           <div class="form-group">
             <label for="name">Name:</label>
-            <input type="text" id="name" required />
+            <input type="text" id="name" required autocomplete="name" />
           </div>
           <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" id="email" required />
+            <input type="email" id="email" required autocomplete="email" />
           </div>
           <div class="form-group">
             <label for="message">Message:</label>
@@ -176,24 +177,30 @@
     <div class="menu">
       <i class="fa-solid fa-xmark"></i>
       <div class="menu-list">
-        <a href="../" class="card home-card gradient-card"
-          ><h1>Home</h1>
+        <a href="../" class="card home-card gradient-card">
+          <h1>Home</h1>
           <div class="aurora" id="home-card-aurora">
             <div class="aurora__item"></div>
             <div class="aurora__item"></div>
             <div class="aurora__item"></div>
-            <div class="aurora__item"></div></div
-        ></a>
-        <a href="../UI-UX/" class="card uiux-card gradient-card"
-          ><h1>UI/UX Lab</h1>
+            <div class="aurora__item"></div>
+          </div>
+        </a>
+        <a href="../UI-UX/" class="card uiux-card gradient-card">
+          <h1>UI/UX Lab</h1>
           <div class="aurora" id="uiux-card-aurora">
             <div class="aurora__item"></div>
             <div class="aurora__item"></div>
             <div class="aurora__item"></div>
-            <div class="aurora__item"></div></div
-        ></a>
-        <a href="../Gen-AI/" class="card genai-card"><h1>Generative AI</h1></a>
-        <a href="../ML/" class="card ml-card"><h1>Machine Learning Lab</h1></a>
+            <div class="aurora__item"></div>
+          </div>
+        </a>
+        <a href="../Gen-AI/" class="card genai-card">
+          <h1>Generative AI</h1>
+        </a>
+        <a href="../ML/" class="card ml-card">
+          <h1>Machine Learning Lab</h1>
+        </a>
       </div>
     </div>
   </body>

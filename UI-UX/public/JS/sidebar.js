@@ -8,7 +8,8 @@ const tutorials = [
   { name: "Setting up Penpot", file: "setting-up-penpot.md" },
   { name: "Chat App Redesign", file: "chat-app-redesign.md" },
   { name: "Food App", file: "food-app.md" },
-  { name: "Social Media App", file: "social-media-app.md"},
+  { name: "Social Media App", file: "social-media-app.md" },
+  { name: "Product Website", file: "product-website.md" },
 ];
 
 export function populateSidebar() {

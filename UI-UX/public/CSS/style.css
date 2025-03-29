@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Funnel+Display:wght@300..800&display=swap");
+@import url("https://fonts.cdnfonts.com/css/product-sans");
 
 :root {
   /*Fonts*/
@@ -59,9 +60,11 @@ html {
   padding: 0;
   font-family: var(--font1), sans-serif;
   height: 100%;
-  background: linear-gradient(45deg,
-      var(--bg-color1) 0%,
-      var(--bg-color2) 100%);
+  background: linear-gradient(
+    45deg,
+    var(--bg-color1) 0%,
+    var(--bg-color2) 100%
+  );
   color: var(--text);
 }
 
@@ -92,7 +95,6 @@ html {
 }
 
 @media screen and (max-width: 768px) {
-
   .toggle:active,
   .toggle:hover {
     transform: none !important;
@@ -386,7 +388,6 @@ body.dark-mode #structure-view .structure-subsection:hover {
 }
 
 @media screen and (max-width: 1280px) {
-
   body.dark-mode #structure-view .structure-item:hover,
   body.dark-mode #structure-view .structure-section:hover,
   body.dark-mode #structure-view .structure-subsection:hover {
@@ -504,8 +505,8 @@ body.dark-mode .glass {
   }
 }
 
-#search-input:focus+.search-shortcut-hint,
-#search-results[style*="display: block"]~.search-shortcut-hint {
+#search-input:focus + .search-shortcut-hint,
+#search-results[style*="display: block"] ~ .search-shortcut-hint {
   opacity: 0;
 }
 
@@ -748,13 +749,40 @@ body.dark-mode .box {
   mask-position: center;
   -webkit-mask-size: 45%;
   mask-size: 45%;
-  background-image: linear-gradient(45deg,
-      #ffd600,
-      #ff7a00,
-      #ff0069,
-      #d300c5,
-      #7638fa);
+  background-image: linear-gradient(
+    45deg,
+    #ffd600,
+    #ff7a00,
+    #ff0069,
+    #d300c5,
+    #7638fa
+  );
   filter: none;
+}
+
+#tutorial-content span.Google {
+  font-family: "Product Sans", var(--font1);
+  background: linear-gradient(
+    to right,
+    #4285f4 0%,
+    #4285f4 14%,
+    /* G */ #ea4335 14%,
+    #ea4335 24%,
+    /* o */ #fbbc05 24%,
+    #fbbc05 33.5%,
+    /* o */ #4285f4 33.5%,
+    #4285f4 44%,
+    /* g */ #34a853 44%,
+    #34a853 47%,
+    /* l */ #ea4335 47%,
+    #ea4335 60%,
+    /* e */ var(--text) 60%,
+    var(--text) 100% /* store */
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
 }
 
 #tutorial-content img[alt="Instagram Brand Text"] {
@@ -883,12 +911,14 @@ body.dark-mode #tutorial-content span::after {
 }
 
 body.dark-mode #tutorial-content .Instagram {
-  background: linear-gradient(90deg,
-      #ffd600,
-      #ff7a00,
-      #ff0069,
-      #d300c5,
-      #7638fa);
+  background: linear-gradient(
+    90deg,
+    #ffd600,
+    #ff7a00,
+    #ff0069,
+    #d300c5,
+    #7638fa
+  );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -908,10 +938,12 @@ body.dark-mode .navigation-buttons button {
 /***************************/
 
 .skeleton {
-  background: linear-gradient(90deg,
-      var(--lp-zfive) 0%,
-      var(--lp-one) 50%,
-      var(--lp-zfive) 100%);
+  background: linear-gradient(
+    90deg,
+    var(--lp-zfive) 0%,
+    var(--lp-one) 50%,
+    var(--lp-zfive) 100%
+  );
   background-size: 200% 100%;
   animation: skeleton-loading 1.5s infinite;
   border-radius: 10px;
@@ -958,10 +990,12 @@ body.dark-mode .navigation-buttons button {
 
 /* Dark mode styles */
 body.dark-mode .skeleton {
-  background: linear-gradient(90deg,
-      var(--p-one) 0%,
-      var(--p-two) 50%,
-      var(--p-one) 100%);
+  background: linear-gradient(
+    90deg,
+    var(--p-one) 0%,
+    var(--p-two) 50%,
+    var(--p-one) 100%
+  );
 }
 
 body.dark-mode .skeleton-text {
@@ -1129,9 +1163,11 @@ body.dark-mode #tutorial-content table a:hover {
   flex-direction: column;
   align-items: center;
   position: absolute;
-  background: linear-gradient(45deg,
-      var(--bg-color1) 0%,
-      var(--bg-color2) 100%);
+  background: linear-gradient(
+    45deg,
+    var(--bg-color1) 0%,
+    var(--bg-color2) 100%
+  );
   color: var(--text);
   width: 100vw;
   height: 100vh;
@@ -1149,7 +1185,6 @@ body.dark-mode #tutorial-content table a:hover {
   height: 100%;
   gap: 2rem;
 }
-
 
 @media screen and (max-width: 768px) {
   .modal-content {
@@ -1229,7 +1264,7 @@ body.dark-mode #tutorial-content table a:hover {
 }
 
 .submit-btn.loading::after {
-  content: '';
+  content: "";
   position: absolute;
   right: 1rem;
   top: 50%;

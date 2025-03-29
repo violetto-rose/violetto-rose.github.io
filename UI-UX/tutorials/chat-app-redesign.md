@@ -9,6 +9,12 @@ For our experiment, we'll focus on <span class="WhatsApp">WhatsApp</span>, a wid
 
 Lets start with creating home screen interface of WhatsApp.
 
+> **Disclaimer**:  
+> 
+> The images, logos, and brand elements of WhatsApp used in this application redesign are the intellectual property of WhatsApp Inc. and are utilized here for educational purposes only. This website is not affiliated with or endorsed by WhatsApp. All trademarks and copyrights are the property of their respective owners.  
+> 
+>Please ensure that all usage of WhatsApp logos, icons, and products adheres to their brand guidelines. For any commercial use or modifications, please obtain the necessary permissions from WhatsApp.
+
 ---
 ## 1. Get familiar with tools in Figma
 
@@ -60,7 +66,8 @@ To create a frame:
 ### ▶ Adding Header Container
 
 1. Use the **Frame tool (F)** to add frame for header container for branding and buttons.
-2. Configure frame:
+2. To change the layout and alignment, we will set the frame to auto layout by pressing **Shift+A**.
+3. Configure frame:
     - Width: **412 (Hug)** pixels
     - Height: **50** pixels
     - Layout: Horizontal

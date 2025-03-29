@@ -9,6 +9,12 @@ For this experiment, we will focus on <span class="Instagram">Instagram</span>,
 
 Let's begin by designing the home screen interface for Instagram, along with the restaurant page interface.
 
+> **Disclaimer**:
+> 
+> The images, logos, and brand elements of Instagram used in this UI/UX tutorial are the intellectual property of Meta Platforms, Inc. and are utilized here for educational purposes only. This tutorial is not affiliated with or endorsed by Instagram. All trademarks and copyrights are the property of their respective owners.
+> 
+> Please ensure that all usage of Instagram logos, icons, and products adheres to their brand guidelines. For any commercial use or modifications, please obtain the necessary permissions from Instagram.
+
 ---
 ## 1. Wireframing
 

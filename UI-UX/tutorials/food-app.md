@@ -9,6 +9,12 @@ _Zomato interface on Apple iOS. Image source: Zomato Official Website, 2025._
 
 Let's begin by designing the home screen interface for Zomato, along with the restaurant page interface.
 
+> **Disclaimer**:  
+> 
+> The images, logos, and brand elements of Zomato used in this website redesign are the intellectual property of Zomato Media Pvt. Ltd. and are utilized here for educational purposes only. This website is not affiliated with or endorsed by Zomato. All trademarks and copyrights are the property of their respective owners.  
+> 
+> Please ensure that all usage of Zomato logos, icons, and products adheres to their brand guidelines. For any commercial use or modifications, please obtain the necessary permissions from Zomato.
+
 ---
 ## 1. Wireframing
 
@@ -30,7 +36,7 @@ Create a basic wireframe using pen and paper, as demonstrated below:
 To create a frame:
 
 1. We'll use the **Android Compact** frame for this design.
-2. Change the fill color to **#18171C**
+2. Change the fill color to **#18171C**.
 
 ![Creating a Frame](images/food-app/design-1.webp)
 
@@ -179,7 +185,7 @@ To create a frame:
 	- Font: Metropolis
 	- Size: **16** pixels
 	- Weight: Semi Bold
-5. Add bottom arrow icon
+5. Add bottom arrow icon.
 
 ![Creating the Location Container](images/food-app/design-16.webp)
 
@@ -189,8 +195,8 @@ To create a frame:
 	- Alignment: Top Left
 	- Horizontal padding: **0**
 	- Vertical padding: **2** pixels
-7. Add address text element:
-8. Add a **30 x 30** icon
+7. Add address text element.
+8. Add a **30 x 30** icon.
 
 ![Creating the Location Container](images/food-app/design-17.webp)
 
@@ -219,12 +225,11 @@ To create a frame:
 
 ![Creating the Search Bar](images/food-app/design-19.webp)
 
-2. Add search Icon
-3. Add search text element
+2. Add search icon and search text element.
 
 ![Creating the Search Bar](images/food-app/design-20.webp)
 
-4. Add microphone icon
+4. Add a microphone icon.
 
 ![Creating the Search Bar](images/food-app/design-21.webp)
 
@@ -233,7 +238,7 @@ To create a frame:
 	- Layout: Vertical 
 	- Alignment: Center
 	- Gap, Horizontal padding & Vertical padding: **0**
-6. Add veg mode text element
+6. Add veg mode text element.
 7. Add toggle icon:
 	- Color: **#0BB665**
 
@@ -247,7 +252,7 @@ To create a frame:
 	- Alignment: Right
 	- Horizontal padding: **0**
 	- Vertical padding: **10, 0** pixels
-2. Add a dummy image for flash sale
+2. Add a dummy image for flash sale.
 
 ![Creating the Food Type Container](images/food-app/design-23.webp)
 
@@ -273,7 +278,7 @@ To create a frame:
 
 ![Creating the Food Type Container](images/food-app/design-26.webp)
 
-7. Duplicate the menu item
+7. Duplicate the menu item.
 
 ![Creating the Food Type Container](images/food-app/design-27.webp)
 
@@ -300,11 +305,11 @@ To create a frame:
 
 ![Creating the Filters Container](images/food-app/design-29.webp)
 
-3. Add icons and text element
+3. Add icons and text element.
 
 ![Creating the Filters Container](images/food-app/design-30.webp)
 
-4. Duplicate for different filters
+4. Duplicate for different filters.
 
 ![Creating the Filters Container](images/food-app/design-31.webp)
 
@@ -334,8 +339,8 @@ To create a frame:
 
 ![Creating the Explore More Container](images/food-app/design-32.webp)
 
-1. Add icon and text elements
-2. Duplicate for different buttons
+1. Add icon and text elements.
+2. Duplicate for different buttons.
 
 ![Creating the Explore More Container](images/food-app/design-33.webp)
 
@@ -366,7 +371,7 @@ To create a frame:
 
 ![Creating the Restaurants Container](images/food-app/design-35.webp)
 
-5. Create restaurant cards accordingly
+5. Create restaurant cards accordingly.
 
 ![Creating the Restaurants Container](images/food-app/design-36.webp)
 
@@ -401,7 +406,7 @@ To create a frame:
 	- Layout: Vertical
 	- Alignment: Back container: Left; More options container: Right
 	- Gap: **0**
-3. Add icons for back, more people, bookmark and more options
+3. Add icons for back, more people, bookmark and more options.
 
 ![Creating a Options Container](images/food-app/design-38.webp)
 
@@ -434,7 +439,7 @@ To create a frame:
 	- Layout: Horizontal 
 	- Alignment: Left
 	- Gap, Horizontal padding & Vertical padding: **0**
-5. Add restaurant name and information icon
+5. Add restaurant name and information icon.
 
 ![Creating a Restaurant Description Container](images/food-app/design-40.webp)
 
@@ -451,7 +456,7 @@ To create a frame:
 	- Layout: Vertical 
 	- Alignment: Left
 	- Gap, Horizontal padding & Vertical padding: **0**
-8. Add distance and schedule sub-containers
+8. Add distance and schedule sub-containers.
 
 ![Creating a Restaurant Description Container](images/food-app/design-42.webp)
 
