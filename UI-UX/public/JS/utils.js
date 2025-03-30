@@ -5,6 +5,7 @@ import { tutorials } from "./sidebar.js";
 // Function to load tutorial content with lazy loading
 export async function loadTutorial(filename) {
   const tutorialContent = document.getElementById("tutorial-content");
+  const structureContent = document.getElementById("structure-content");
 
   // Show loading skeleton
   tutorialContent.innerHTML = `
@@ -17,6 +18,17 @@ export async function loadTutorial(filename) {
       <div class="skeleton skeleton-text"></div>
     </div>
     <br />
+    <div class="skeleton skeleton-header"></div>
+    <div class="skeleton-paragraph">
+      <div class="skeleton skeleton-text"></div>
+      <div class="skeleton skeleton-text"></div>
+      <div class="skeleton skeleton-text"></div>
+      <div class="skeleton skeleton-text"></div>
+      <div class="skeleton skeleton-text"></div>
+    </div>
+  `;
+  
+  structureContent.innerHTML = `
     <div class="skeleton skeleton-header"></div>
     <div class="skeleton-paragraph">
       <div class="skeleton skeleton-text"></div>

@@ -34,8 +34,10 @@ document.addEventListener("DOMContentLoaded", () => {
   marked.setOptions({ renderer: renderer });
 
   // Initialize modules
-  populateSidebar();
-  loadTutorialFromHash();
+  document.fonts.ready.then(() => {
+    populateSidebar();
+    loadTutorialFromHash();
+  });
   setupImageViewer();
   setupSearch();
   setupSearchShortcut();
