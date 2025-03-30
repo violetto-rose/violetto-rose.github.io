@@ -35,7 +35,7 @@ export function setupSidebar() {
     if (window.innerWidth <= 1280) {
       const isOutsideSidebar = !sidebar.contains(e.target)
       const isNotToggleButton = !sidebarToggle.contains(e.target)
-      const isNotDarkModeToggle = !document.getElementById("dark-mode-toggle").contains(e.target)
+      const isNotDarkModeToggle = !document.getElementById("theme-toggle").contains(e.target)
 
       if (isOutsideSidebar && isNotToggleButton && isNotDarkModeToggle) {
         if (sidebar.classList.contains("open")) {

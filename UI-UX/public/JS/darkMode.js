@@ -1,5 +1,5 @@
 export function setupDarkMode() {
-  const darkModeToggle = document.getElementById("dark-mode-toggle");
+  const darkModeToggle = document.getElementById("theme-toggle");
   const systemPrefersDarkMode = window.matchMedia(
     "(prefers-color-scheme: dark)"
   );

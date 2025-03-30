@@ -101,51 +101,51 @@ html {
   }
 }
 
-#dark-mode-toggle {
+#theme-toggle {
   top: 20px;
 }
 
-#dark-mode-toggle:hover {
+#theme-toggle:hover {
   background: var(--lp-three);
   transform: scale(1.1);
   box-shadow: 0 6px 8px var(--dp-two);
 }
 
-#dark-mode-toggle:active {
+#theme-toggle:active {
   transform: scale(0.95);
 }
 
-#dark-mode-toggle:focus {
+#theme-toggle:focus {
   outline: none;
   animation: darkModeGlow 1.5s ease-out;
 }
 
-#dark-mode-toggle .fa-moon,
-#dark-mode-toggle .fa-sun {
+#theme-toggle .fa-moon,
+#theme-toggle .fa-sun {
   position: absolute;
   transition: opacity 0.3s ease, transform 0.3s ease;
   opacity: 1;
   transform: rotate(0deg);
 }
 
-#dark-mode-toggle .fa-moon {
+#theme-toggle .fa-moon {
   display: block;
   color: var(--text);
 }
 
-#dark-mode-toggle .fa-sun {
+#theme-toggle .fa-sun {
   display: none;
   opacity: 0;
   transform: rotate(180deg);
   animation: sunRotate 10s linear infinite paused;
 }
 
-#dark-mode-toggle.dark-mode .fa-moon {
+#theme-toggle.dark-mode .fa-moon {
   opacity: 0;
   transform: rotate(-180deg);
 }
 
-#dark-mode-toggle.dark-mode .fa-sun {
+#theme-toggle.dark-mode .fa-sun {
   display: block;
   opacity: 1;
   transform: rotate(0deg);
@@ -377,6 +377,8 @@ html {
 
 /* Dark mode styles */
 body.dark-mode #structure-view {
+  -webkit-backdrop-filter: blur(50px);
+  backdrop-filter: blur(50px);
   background: var(--f-p-one);
   color: var(--tone-text);
 }
@@ -392,6 +394,74 @@ body.dark-mode #structure-view .structure-subsection:hover {
   body.dark-mode #structure-view .structure-section:hover,
   body.dark-mode #structure-view .structure-subsection:hover {
     background: none;
+  }
+}
+
+/*******************/
+/* Tool Tip styles */
+/*******************/
+
+.tooltip {
+  position: fixed;
+  background: var(--dp-eight);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  z-index: 3;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.tooltip-right {
+  animation: rightFadeIn 0.2s ease-in-out;
+}
+
+.tooltip-left {
+  animation: leftFadeIn 0.2s ease-in-out;
+}
+
+.tooltip-right::before {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-style: solid;
+  border-width: 5px 5px 5px 0;
+  border-color: transparent var(--dp-eight) transparent transparent;
+}
+
+.tooltip-left::before {
+  content: "";
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-color: transparent transparent transparent var(--dp-eight);
+}
+
+@keyframes rightFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes leftFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -417,6 +487,8 @@ body.dark-mode #structure-view .structure-subsection:hover {
 
 /* Dark mode styles */
 body.dark-mode .glass {
+  -webkit-backdrop-filter: blur(50px);
+  backdrop-filter: blur(50px);
   background: var(--f-p-one);
   border-color: var(--h-p-two);
 }
@@ -446,7 +518,7 @@ body.dark-mode .glass {
 #sidebar .title {
   font-family: var(--font2), var(--font1), sans-serif;
   font-weight: 800;
-  font-size: larger;
+  font-size: 2.5rem;
 }
 
 .search-container {
@@ -596,6 +668,13 @@ body.dark-mode .glass {
 }
 
 /* Dark mode styles */
+body.dark-mode .title {
+  background: linear-gradient(45deg, var(--purp), var(--blu));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 body.dark-mode .search-shortcut-hint,
 body.dark-mode #search-input::placeholder {
   color: var(--lp-seven);
@@ -603,6 +682,12 @@ body.dark-mode #search-input::placeholder {
 
 body.dark-mode .box {
   border-color: var(--lp-five);
+}
+
+@media screen and (max-width: 1280px) {
+  body.dark-mode #sidebar a {
+    color: inherit;
+  }
 }
 
 /***********************/
@@ -1127,6 +1212,7 @@ body.dark-mode #tutorial-content table a:hover {
 /*******************/
 
 #more-info {
+  all: unset;
   position: fixed;
   bottom: 30px;
   right: 30px;
@@ -1398,7 +1484,7 @@ body.dark-mode .credits-icon:hover {
   position: absolute;
   top: 50px;
   right: 50px;
-  color: white;
+  color: #ffffff;
   font-size: 24px;
   cursor: pointer;
   z-index: 4;
@@ -1416,7 +1502,7 @@ body.dark-mode .credits-icon:hover {
   padding: 20px;
   border-radius: 10px;
   text-decoration: none;
-  color: white;
+  color: #ffffff;
   position: relative;
   overflow: hidden;
   transition: transform 0.3s;

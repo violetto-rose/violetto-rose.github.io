@@ -104,7 +104,7 @@
       <i class="fa-solid fa-bars-staggered"></i>
     </button>
 
-    <button class="toggle" id="dark-mode-toggle" aria-label="Toggle dark mode">
+    <button class="toggle" id="theme-toggle" aria-label="Toggle theme">
       <i class="fa-solid fa-moon"></i>
       <i class="fa-solid fa-sun"></i>
     </button>
@@ -134,18 +134,18 @@
       <div id="structure-content"></div>
     </div>
 
-    <div id="more-info">
+    <button id="more-info" aria-label="More Info">
       <div class="credits-icon" id="feedback-trigger">
         <i class="fa-solid fa-question fa-sm"></i>
       </div>
-    </div>
+    </button>
 
     <!-- Add the feedback form -->
     <div id="feedback-modal" class="modal">
       <div class="modal-content">
-        <span class="toggle" id="close-modal" aria-label="Close Modal"
-          ><i class="fa-solid fa-xmark"></i
-        ></span>
+        <button class="toggle" id="close-modal" aria-label="Close Modal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
         <h2>Share Your Thoughts</h2>
         <form id="feedback-form">
           <div class="form-group">
