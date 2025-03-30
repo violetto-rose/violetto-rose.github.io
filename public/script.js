@@ -155,6 +155,7 @@ async function processReadme() {
     readmeContent.innerHTML = htmlContent;
 
     removeElements();
+    readmeContent.innerHTML += `<p style="font-size: 0.5rem; text-align: center; margin-bottom: 0">Ctrl ~ Shift ~ Alt ~ P</p>`;
   } catch (error) {
     console.error("Error processing README:", error);
   }
