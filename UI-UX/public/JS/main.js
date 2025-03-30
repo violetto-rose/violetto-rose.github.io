@@ -1,3 +1,4 @@
+import { setupLoadingBar } from "./loadingBar.js";
 import { populateSidebar, loadTutorialFromHash } from "./sidebar.js";
 import { setupDarkMode } from "./darkMode.js";
 import { setupSidebar } from "./sidebarToggle.js";
@@ -8,6 +9,13 @@ import { setupMenuAnimation } from "./menuManager.js";
 import { enterFullscreen } from "./fullScreen.js";
 import { feedbackHandler } from "./feedbackHandler.js";
 import { setupTooltips } from "./tooltipHandler.js";
+
+setupLoadingBar();
+setupDarkMode();
+setupSidebar();
+setupStructureView();
+enterFullscreen();
+setupMenuAnimation();
 
 document.addEventListener("DOMContentLoaded", () => {
   // Configure marked renderer
@@ -26,16 +34,11 @@ document.addEventListener("DOMContentLoaded", () => {
   marked.setOptions({ renderer: renderer });
 
   // Initialize modules
-  enterFullscreen();
   populateSidebar();
   loadTutorialFromHash();
-  setupDarkMode();
-  setupSidebar();
-  setupStructureView();
+  setupImageViewer();
   setupSearch();
   setupSearchShortcut();
-  setupImageViewer();
-  setupMenuAnimation();
   feedbackHandler();
   setupTooltips();
 

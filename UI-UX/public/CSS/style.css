@@ -469,6 +469,18 @@ body.dark-mode #structure-view .structure-subsection:hover {
 /* Main Container and glassmorphism styles */
 /*******************************************/
 
+#loading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 0.18rem;
+  width: 0;
+  background: linear-gradient(90deg, var(--blu), var(--purp));
+  z-index: 2;
+  transition: width 0.4s ease-out, opacity 0.3s ease-out;
+  box-shadow: 0 0 10px rgb(0, 0, 0);
+}
+
 .container {
   display: flex;
   height: 100%;
@@ -1024,13 +1036,13 @@ body.dark-mode .navigation-buttons button {
 
 .skeleton {
   background: linear-gradient(
-    90deg,
+    45deg,
     var(--lp-zfive) 0%,
     var(--lp-one) 50%,
     var(--lp-zfive) 100%
   );
   background-size: 200% 100%;
-  animation: skeleton-loading 1.5s infinite;
+  animation: skeleton-loading 2s infinite;
   border-radius: 10px;
 }
 
@@ -1071,20 +1083,6 @@ body.dark-mode .navigation-buttons button {
 
 .skeleton-paragraph .skeleton-text {
   margin-bottom: 10px;
-}
-
-/* Dark mode styles */
-body.dark-mode .skeleton {
-  background: linear-gradient(
-    90deg,
-    var(--p-one) 0%,
-    var(--p-two) 50%,
-    var(--p-one) 100%
-  );
-}
-
-body.dark-mode .skeleton-text {
-  background: var(--h-p-two);
 }
 
 /***************************/
