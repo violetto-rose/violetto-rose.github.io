@@ -414,6 +414,6 @@ Through our focused efforts, we have developed a well-structured and visually ap
 
 ![Final Design - B](images/product-website/design-b.webp)
 
-![Final Design - B](images/product-website/design-b.webp)
+![Final Design - C](images/product-website/design-c.webp)
 
 ---
