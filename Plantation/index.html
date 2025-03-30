@@ -26,123 +26,349 @@
       href="public/icons/safari-pinned-tab.svg"
       color="#5bbad5"
     />
-    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="msapplication-TileColor" content="#4CAF50" />
     <meta name="msapplication-TileImage" content="icons/mstile-150x150.png" />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#4CAF50" />
     <meta name="application-name" content="SCR Activity" />
     <meta name="codeswing-config" content="public/codeswing.json" />
 
     <!-- Meta Tags -->
     <meta name="msapplication-config" content="public/browserconfig.xml" />
-    <meta name="theme-color" content="#ffffff" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <meta charset="UTF-8" />
-    <title>Planting Project</title>
-    <script>
-      document.addEventListener("contextmenu", function (e) {
-        e.preventDefault();
-      });
-    </script>
-    <link rel="stylesheet" href="public/CSS/style.css" />
+    <title>Peace Lily Project | Plant & Adopt</title>
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:wght@400;700&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="public/CSS/style.css" />
+    <link rel="stylesheet" href="public/CSS/animations.css" />
+    <link rel="stylesheet" href="public/CSS/responsive.css" />
   </head>
 
   <body>
-    <header>
-      <h1>Project on plantation and adoption of a tree</h1>
-    </header>
-    <div class="container">
-      <main>
-        <div class="project-section">
-          <div class="image-container">
-            <img
-              src="public/images/group_photo.jpg"
-              alt="Project Image"
-              oncontextmenu="return false;"
-            />
-          </div>
-          <div class="description">
-            <p>
-              Project on plantation by 2nd year Computer Science and Design
-              students (Group 5).
-            </p>
-          </div>
-        </div>
-        <div class="plant-info">
-          <h2>Plant Information : Spathiphyllum wallisii (Peace lily)</h2>
-          <br />
-          <div class="info-content">
-            <h3><u>Origin of the Plant</u></h3>
-            <p>
-              Spathiphyllum wallisii, commonly known as peace lily, is a species
-              of flowering plant native to the tropical regions of the Americas,
-              primarily found in Central and South America. It was first
-              described by the German-Belgian botanist Gustav Wallis in the 19th
-              century and was named after him.
-            </p>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="logo">
+        <img src="public/icons/leaf-logo.svg" alt="Leaf Logo" />
+        <span>Peace Lily Project</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#plant-info">Plant Info</a></li>
+        <li><a href="#team">Team</a></li>
+        <li>
+          <button
+            id="dark-mode-toggle"
+            class="dark-mode-toggle"
+            aria-label="Toggle Dark Mode"
+          >
+            <i class="fas fa-moon"></i>
+          </button>
+        </li>
+      </ul>
+      <div class="nav-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </nav>
 
-            <h3><u>Usage in Daily Life</u></h3>
-            <p>
-              Peace lilies (Spathiphyllum wallisii) are popular indoor plants
-              due to their attractive foliage and white flowers. They are
-              commonly used as decorative elements in homes, offices, and public
-              spaces because of their ability to thrive in low-light conditions.
-              Besides their aesthetic appeal, peace lilies are also known for
-              their air-purifying qualities, helping to filter toxins from
-              indoor air, making them a practical and aesthetically pleasing
-              addition to indoor environments. Additionally, they are relatively
-              low maintenance, requiring moderate watering and occasional
-              fertilization, making them suitable for people with varying levels
-              of gardening experience.
-            </p>
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+      <div class="hero-content">
+        <h1 class="fade-in">Project on Plantation and Adoption of a Tree</h1>
+        <p class="slide-up">Nurturing nature, one peace lily at a time</p>
+        <a href="#about" class="btn btn-primary pulse">Learn More</a>
+      </div>
+      <div class="hero-image fade-in">
+        <img src="public/images/group_photo.webp" alt="Project Image" />
+      </div>
+      <div class="scroll-indicator">
+        <span>Scroll Down</span>
+        <i class="fas fa-chevron-down bounce"></i>
+      </div>
+    </section>
 
-            <h3><u>Appearance in Literature and Folklore</u></h3>
+    <!-- About Section -->
+    <section id="about" class="about-section">
+      <div class="container">
+        <h2 class="section-title">About Our Project</h2>
+        <div class="about-content">
+          <div class="about-image fade-in-left">
+            <img src="public/images/group_photo.webp" alt="Project Team" />
+          </div>
+          <div class="about-text fade-in-right">
             <p>
-              Peace lilies, or Spathiphyllum wallisii, don't have a significant
-              presence in traditional folklore or ancient literature, as they
-              are a relatively modern discovery and cultivated plant species.
-              However, in contemporary literature and cultural references, peace
-              lilies often symbolize tranquility, peace, and purity due to their
-              elegant white flowers and graceful appearance. Their association
-              with peace has led to their inclusion in various modern works of
-              fiction, poems, and sometimes as symbolic elements in art or
-              storytelling to represent harmony or serenity. While they might
-              not have ancient mythological ties, their symbolism in modern
-              culture as a representation of calmness and purity has made them
-              recognizable and valued beyond their botanical significance.
+              Welcome to our plantation project by 2nd year Computer Science and
+              Design students (Group 5). We've adopted and are nurturing a Peace
+              Lily (Spathiphyllum wallisii) as part of our commitment to
+              environmental sustainability.
             </p>
-          </div>
-        </div>
-        <div class="team-container">
-          <h2 class="team-heading">Team Members</h2>
-          <hr class="team-divider" />
-          <div class="team-members">
-            <div class="member">
-              <h3>Kartik Gopal Madivala</h3>
-            </div>
-            <div class="member">
-              <h3>Kruthika B I</h3>
-            </div>
-            <div class="member">
-              <h3>Manju Madhav V A</h3>
-            </div>
-            <div class="member">
-              <h3>Meghana K M</h3>
-            </div>
-            <div class="member">
-              <h3>Nandhitha G P</h3>
+            <p>
+              Our project aims to promote awareness about the importance of
+              plants in our ecosystem and encourage more people to adopt and
+              care for plants in their daily lives.
+            </p>
+            <div class="eco-facts">
+              <div class="fact">
+                <i class="fas fa-leaf"></i>
+                <span>Plants improve air quality</span>
+              </div>
+              <div class="fact">
+                <i class="fas fa-tint"></i>
+                <span>Peace lilies need moderate watering</span>
+              </div>
+              <div class="fact">
+                <i class="fas fa-sun"></i>
+                <span>Thrives in indirect sunlight</span>
+              </div>
             </div>
           </div>
         </div>
-      </main>
-    </div>
+      </div>
+    </section>
+
+    <!-- Plant Info Section -->
+    <section id="plant-info" class="plant-info-section">
+      <div class="container">
+        <h2 class="section-title">Peace Lily: Nature's Air Purifier</h2>
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="origin">Origin</button>
+          <button class="tab-btn" data-tab="usage">Daily Usage</button>
+          <button class="tab-btn" data-tab="literature">
+            Literature & Folklore
+          </button>
+          <button class="tab-btn" data-tab="care">Care Guide</button>
+        </div>
+
+        <div class="tab-content">
+          <div class="tab-pane active" id="origin">
+            <div class="info-card fade-in">
+              <div class="info-image">
+                <img
+                  src="public/images/peace-lily-origin.webp"
+                  alt="Peace Lily Origin"
+                />
+              </div>
+              <div class="info-text">
+                <h3>Origin of the Plant</h3>
+                <p>
+                  Spathiphyllum wallisii, commonly known as peace lily, is a
+                  species of flowering plant native to the tropical regions of
+                  the Americas, primarily found in Central and South America. It
+                  was first described by the German-Belgian botanist Gustav
+                  Wallis in the 19th century and was named after him.
+                </p>
+                <div class="info-highlight">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span>Native to: Central and South America</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane" id="usage">
+            <div class="info-card fade-in">
+              <div class="info-image">
+                <img
+                  src="public/images/peace-lily-usage.webp"
+                  alt="Peace Lily Usage"
+                />
+              </div>
+              <div class="info-text">
+                <h3>Usage in Daily Life</h3>
+                <p>
+                  Peace lilies are popular indoor plants due to their attractive
+                  foliage and white flowers. They are commonly used as
+                  decorative elements in homes, offices, and public spaces
+                  because of their ability to thrive in low-light conditions.
+                </p>
+                <p>
+                  Besides their aesthetic appeal, peace lilies are also known
+                  for their air-purifying qualities, helping to filter toxins
+                  from indoor air, making them a practical and aesthetically
+                  pleasing addition to indoor environments.
+                </p>
+                <div class="info-highlight">
+                  <i class="fas fa-wind"></i>
+                  <span
+                    >Removes toxins like benzene, formaldehyde, and
+                    trichloroethylene</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane" id="literature">
+            <div class="info-card fade-in">
+              <div class="info-image">
+                <img
+                  src="public/images/peace-lily-literature.webp"
+                  alt="Peace Lily in Literature"
+                />
+              </div>
+              <div class="info-text">
+                <h3>Appearance in Literature and Folklore</h3>
+                <p>
+                  Peace lilies don't have a significant presence in traditional
+                  folklore or ancient literature, as they are a relatively
+                  modern discovery and cultivated plant species.
+                </p>
+                <p>
+                  In contemporary literature and cultural references, peace
+                  lilies often symbolize tranquility, peace, and purity due to
+                  their elegant white flowers and graceful appearance. Their
+                  association with peace has led to their inclusion in various
+                  modern works of fiction, poems, and sometimes as symbolic
+                  elements in art or storytelling to represent harmony or
+                  serenity.
+                </p>
+                <div class="info-highlight">
+                  <i class="fas fa-dove"></i>
+                  <span>Symbolizes: Peace, purity, and prosperity</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane" id="care">
+            <div class="info-card fade-in">
+              <div class="info-image">
+                <img
+                  src="public/images/peace-lily-care.webp"
+                  alt="Peace Lily Care"
+                />
+              </div>
+              <div class="info-text">
+                <h3>Care Guide</h3>
+                <div class="care-instructions">
+                  <div class="care-item">
+                    <i class="fas fa-tint"></i>
+                    <h4>Watering</h4>
+                    <p>
+                      Water when the top inch of soil is dry. Peace lilies will
+                      droop when thirsty.
+                    </p>
+                  </div>
+                  <div class="care-item">
+                    <i class="fas fa-sun"></i>
+                    <h4>Light</h4>
+                    <p>
+                      Thrives in low to medium indirect light. Avoid direct
+                      sunlight.
+                    </p>
+                  </div>
+                  <div class="care-item">
+                    <i class="fas fa-thermometer-half"></i>
+                    <h4>Temperature</h4>
+                    <p>
+                      Prefers 65-85°F (18-29°C). Keep away from cold drafts.
+                    </p>
+                  </div>
+                  <div class="care-item">
+                    <i class="fas fa-seedling"></i>
+                    <h4>Fertilizer</h4>
+                    <p>
+                      Feed monthly during growing season with diluted houseplant
+                      fertilizer.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section - Updated -->
+    <section id="team" class="team-section">
+      <div class="container">
+        <h2 class="section-title">Our Team</h2>
+        <div class="team-grid">
+          <div class="team-member fade-in">
+            <h3>Kartik Gopal Madivala</h3>
+          </div>
+          <div class="team-member fade-in">
+            <h3>Kruthika B I</h3>
+          </div>
+          <div class="team-member fade-in">
+            <h3>Manju Madhav V A</h3>
+          </div>
+          <div class="team-member fade-in">
+            <h3>Meghana K M</h3>
+          </div>
+          <div class="team-member fade-in">
+            <h3>Nandhitha G P</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <img src="public/icons/leaf-logo.svg" alt="Leaf Logo" />
+            <h3>Peace Lily Project</h3>
+          </div>
+          <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#hero">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#plant-info">Plant Info</a></li>
+              <li><a href="#team">Team</a></li>
+            </ul>
+          </div>
+          <div class="footer-contact">
+            <h4>Contact Us</h4>
+            <p><i class="fas fa-envelope"></i> peacelily@project.edu</p>
+            <p><i class="fas fa-phone"></i> +91 XXXXXXXXXX</p>
+            <div class="social-icons">
+              <a href="https://www.instagram.com" title="Follow us on Instagram"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="https://www.x.com" title="Follow us on X (Twitter)"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="https://www.facebook.com" title="Follow us on Facebook"
+                ><i class="fab fa-facebook"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2023 Peace Lily Project. All rights reserved.</p>
+          <p>Made with <i class="fas fa-heart"></i> by CSD Students</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to Top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="public/js/main.js"></script>
+    <script src="public/js/animations.js"></script>
   </body>
 </html>
