@@ -84,7 +84,6 @@ html {
 }
 
 @media screen and (max-width: 768px) {
-
   .toggle:active,
   .toggle:hover {
     transform: none !important;
@@ -272,8 +271,8 @@ html {
   }
 }
 
-#search-input:focus+.search-shortcut-hint,
-#search-results[style*="display: block"]~.search-shortcut-hint {
+#search-input:focus + .search-shortcut-hint,
+#search-results[style*="display: block"] ~ .search-shortcut-hint {
   opacity: 0;
 }
 
@@ -578,10 +577,12 @@ html {
 /***************************/
 
 .skeleton {
-  background: linear-gradient(135deg,
-      var(--lp-zfive) 0%,
-      var(--lp-one) 50%,
-      var(--lp-zfive) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--lp-zfive) 0%,
+    var(--lp-one) 50%,
+    var(--lp-zfive) 100%
+  );
   background-size: 200% 100%;
   animation: skeleton-loading 2s infinite;
   border-radius: 10px;
@@ -734,7 +735,6 @@ sidebar::-webkit-scrollbar-track,
 }
 
 @media screen and (max-width: 640px) {
-
   #program-content td:nth-of-type(odd),
   #program-content th:first-child {
     padding-right: 0;
@@ -777,14 +777,25 @@ sidebar::-webkit-scrollbar-track,
   transform: translateY(0);
 }
 
-.menu .fa-xmark {
+.menu #close-menu {
+  all: unset;
+  background: white;
+  border-radius: 50px;
   position: absolute;
   top: 48px;
   right: 56px;
-  color: white;
-  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  aspect-ratio: 1/1;
   cursor: pointer;
   z-index: 4;
+}
+
+.menu .fa-xmark {
+  color: #ffffff;
+  font-size: 24px;
 }
 
 .menu-list {

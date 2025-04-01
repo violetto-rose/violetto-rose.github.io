@@ -1,7 +1,7 @@
 function setupMenuAnimation() {
   const menuToggleButton = document.querySelector('#more-options-toggle');
   const menu = document.querySelector('.menu');
-  const backButton = document.querySelector('.menu .fa-xmark');
+  const backButton = document.querySelector('#close-menu');
   const homeCard = document.querySelector('.card[href="/"]');
   const uiuxCard = document.querySelector('.card[href="UI-UX/"]');
   const genaiCard = document.querySelector('.card[href="Gen-AI/"]');
@@ -30,18 +30,18 @@ function setupMenuAnimation() {
 }
 
 function downloadAllResources() {
-    // URL to the zip file containing all resources
-    const resourceUrl = 'public/resources/ML-Lab-Resources.zip';
-    
-    // Create a temporary anchor element
-    const link = document.createElement('a');
-    link.href = resourceUrl;
-    link.download = 'ML-Lab-Resources.zip';
-    
-    // Append to body, click, and remove
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  // URL to the zip file containing all resources
+  const resourceUrl = 'public/resources/ML-Lab-Resources.zip';
+
+  // Create a temporary anchor element
+  const link = document.createElement('a');
+  link.href = resourceUrl;
+  link.download = 'ML-Lab-Resources.zip';
+
+  // Append to body, click, and remove
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
 
 document.addEventListener("DOMContentLoaded", function () {

@@ -1,7 +1,7 @@
 export function setupMenuAnimation() {
     const menuToggleButton = document.querySelector('#more-options-toggle');
     const menu = document.querySelector('.menu');
-    const backButton = document.querySelector('.menu .fa-xmark');
+    const backButton = document.querySelector('#close-menu');
     const homeCard = document.querySelector('.card[href="/"]');
     const uiuxCard = document.querySelector('.card[href="UI-UX/"]');
     const genaiCard = document.querySelector('.card[href="Gen-AI/"]');

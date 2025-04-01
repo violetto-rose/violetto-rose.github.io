@@ -1,6 +1,6 @@
 # Social Media App
 
-Let’s kick off our third experiment: a redesign of a social media application where we will create a wireframe and user interface for a popular platform.
+Let’s kick off our third experiment: a redesign of a social media application where we will create a wireframe, user interface and prototype for a popular platform.
 
 For this experiment, we will focus on <span class="Instagram">Instagram</span>, a widely-loved social networking service owned by Meta. Instagram exemplifies outstanding user interface design through its visually appealing layout, intuitive navigation, and consistent design patterns. The platform offers users a seamless experience to share photos, connect with friends, and discover new content.
 

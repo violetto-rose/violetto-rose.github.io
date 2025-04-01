@@ -212,14 +212,25 @@ li {
   transform: translateY(0);
 }
 
-.menu .fa-xmark {
+.menu #close-menu {
+  all: unset;
+  color: var(--text-color);
+  border-radius: 50px;
   position: absolute;
   top: 48px;
   right: 56px;
-  color: var(--text-color);
-  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  aspect-ratio: 1/1;
   cursor: pointer;
   z-index: 4;
+}
+
+.menu .fa-xmark {
+  color: #ffffff;
+  font-size: 24px;
 }
 
 .menu-list {

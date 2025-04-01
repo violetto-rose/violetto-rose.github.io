@@ -2,7 +2,7 @@ export function setupMenuAnimation() {
     const mobileMoreButton = document.querySelector('.toggle.more#mobile');
     const pcMoreButton = document.querySelector('.toggle.more#pc');
     const menu = document.querySelector('.menu');
-    const backButton = document.querySelector('.menu .fa-xmark');
+    const backButton = document.querySelector('#close-menu');
     const homeCard = document.querySelector('.card[href="/"]');
     const uiuxCard = document.querySelector('.card[href="UI-UX/"]');
     const genaiCard = document.querySelector('.card[href="Gen-AI/"]');

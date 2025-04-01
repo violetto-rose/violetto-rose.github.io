@@ -1478,14 +1478,25 @@ body.dark-mode .credits-icon:hover {
   transform: translateY(0);
 }
 
-.menu .fa-xmark {
+.menu #close-menu {
+  all: unset;
+  background: var(--lp-one);
+  border-radius: 50px;
   position: absolute;
   top: 50px;
   right: 50px;
-  color: #ffffff;
-  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  aspect-ratio: 1/1;
   cursor: pointer;
   z-index: 4;
+}
+
+.menu .fa-xmark {
+  color: #ffffff;
+  font-size: 24px;
 }
 
 .menu-list {

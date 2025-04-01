@@ -1,6 +1,6 @@
 # Product Website
 
-Our fourth experiment focuses on creating a product website design, where we will develop a wireframe and user interface for a well-known tech platform, as well as a prototype.
+Our fourth experiment focuses on designing and prototyping a product website page, including developing web pages, wireframes, user interfaces, and rollovers for a well-known tech platform.
 
 For this experiment, we will concentrate on <span class="Google">Google Store</span>, a prominent online destination for purchasing Google hardware and accessories. Google Store exemplifies excellent user interface design through its intuitive navigation, clear visual hierarchy, and cohesive design elements. It provides a seamless experience for users to browse products, read specifications, and conveniently make purchases.
 

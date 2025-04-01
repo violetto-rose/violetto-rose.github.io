@@ -1,53 +1,48 @@
 # Build a chatbot for the Indian Penal Code. We'll start by downloading the official Indian Penal Code document, and then we'll create a chatbot that can interact with it. Users will be able to ask questions about the Indian Penal Code and have a conversation with it.
 
+This code allows us to interact with an IPC PDF document. We can extract text from it and easily look up specific sections right from the console. Here’s how it all works:
+
+1. **Extracting Text**: We’re using the **fitz** library to read the contents of the IPC PDF. The `extract` function goes through each page of the PDF and pulls out the text, so we have all the information we need right at our fingertips.
+2. **Searching Sections**: When we want to find a specific section, we can use the `search` function. This function looks through the extracted text to find lines that match our query, and it does so in a case-insensitive way—so we don’t have to worry about how we type our search terms.
+3. **Chatbot Interface**: The `chatbot` function creates a simple interactive interface. Users can ask questions about the IPC, and it responds by providing the relevant text from the document. This makes it super easy to find the information we need without scrolling through pages of legal text.
+4. **Exit Option**: The program keeps running, allowing us to ask as many questions as we want. When we’re done, we can just type “exit,” and the program will close.
+
+> Get the IPC PDF document [here](https://drive.google.com/file/d/1e09QDtNREkvcDg3YFR74h7tyZmGMoo7n/view?usp=drivesdk)
+
+---
 ### Python Code:
 
 ```python
-import re
+import fitz # PyMuPDF
 
-# Function to load the IPC document
-def load_ipc_text(file_path):
-	with open(file_path, 'r', encoding='utf-8') as file:
-		return file.read()
-		
-# Function to search for the relevant section based on the question
-def search_ipc_section(question, ipc_text):
-	# Extract the section number from the question (e.g., "Section 302")
-	match = re.search(r"section (\d+)", question, re.IGNORECASE)
-		
-	if match:
-		section_number = match.group(1) # Get the section number from the question
-			
-		# Search for the section in the IPC text
-		section_pattern = rf"(?<=Section {section_number}\.)(.*?)(?=Section \d+\.|$)"
-		section_match = re.search(section_pattern, ipc_text, re.DOTALL)
-			
-		if section_match:
-			return section_match.group(0).strip()
-		else:
-			return f"Sorry, Section {section_number} not found in the IPC."
-	else:
-		return "Please ask about a specific section number (e.g., 'What is Section 302?')"
+# Step 1: Extract Text from IPC PDF using PyMuPDF
+def extract(file):  
+	text = ""  
+	with fitz.open(file) as pdf:  
+		for page in pdf:  
+			text += page.get_text() # Extract text from each page  
+	return text
 
-# Main function to run the IPC chatbot
-def ipc_chatbot():
-	# Load the IPC document
-	ipc_text = load_ipc_text('ipc.txt') # Ensure 'ipc.txt' file is in the correct path
-	print("Indian Penal Code Chatbot :")
-	print("You can ask about any section of the IPC. Type 'exit' to quit.")
-		
-	while True:
-		# Take user input
-		question = input("You: ")
-		if question.lower() == 'exit':
+# Step 2: Search for Relevant Sections in IPC
+def search(query, ipc):  
+	query = query.lower()  
+	lines = ipc.split("\n")  
+	results = [line for line in lines if query in line.lower()]  
+	return results if results else ["No relevant section found."]
+
+# Step 3: Main Chatbot Function
+def chatbot():  
+	print("Loading IPC document...")  
+	ipc = extract("IPC.pdf")  
+	while True:  
+		query = input("Ask a question about the IPC (type 'exit' to quit): ")  
+		if query.lower() == "exit":  
+			print("Goodbye!")  
 			break
-			
-		# Get the answer from the IPC text
-		answer = search_ipc_section(question, ipc_text)
-			
-		# Display the response
-		print("Bot:", answer)
+	    results = search(query, ipc)  
+	    print("\n".join(results))  
+	    print("-" * 50)  
 
-if name__ == "__main__":
-	ipc_chatbot()
+# Start the chatbot
+chatbot()
 ```
