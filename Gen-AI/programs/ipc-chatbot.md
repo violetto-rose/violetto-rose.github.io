@@ -7,9 +7,10 @@ This code allows us to interact with an IPC PDF document. We can extract text fr
 3. **Chatbot Interface**: The `chatbot` function creates a simple interactive interface. Users can ask questions about the IPC, and it responds by providing the relevant text from the document. This makes it super easy to find the information we need without scrolling through pages of legal text.
 4. **Exit Option**: The program keeps running, allowing us to ask as many questions as we want. When we’re done, we can just type “exit,” and the program will close.
 
-> Get the IPC PDF document [here](https://drive.google.com/file/d/1e09QDtNREkvcDg3YFR74h7tyZmGMoo7n/view?usp=drivesdk)
+> Get the IPC PDF document [here](https://drive.google.com/file/d/1e09QDtNREkvcDg3YFR74h7tyZmGMoo7n/view?usp=drivesdk).
 
 ---
+
 ### Python Code:
 
 ```python

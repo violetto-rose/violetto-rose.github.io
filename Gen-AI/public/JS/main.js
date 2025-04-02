@@ -11,6 +11,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // Configure marked renderer with code highlighting
   const renderer = new marked.Renderer();
   configureCodeHighlighting(renderer);
+  const originalLinkRenderer = renderer.link;
+  renderer.link = function (href, title, text) {
+    const link = originalLinkRenderer.call(this, href, title, text);
+    if (!href.href.startsWith("https")) {
+      return link
+        .replace("<a", '<a target="_self" rel="noopener noreferrer"')
+        .replace('href="', 'href="#');
+    }
+    return link.replace("<a", '<a target="_blank" rel="noopener noreferrer"');
+  };
   marked.setOptions({ renderer: renderer });
 
   // Initialize modules

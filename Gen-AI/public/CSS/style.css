@@ -441,6 +441,11 @@ html {
   }
 }
 
+#program-content a,
+#program-content a:visited {
+  color: #639cfd;
+}
+
 #program-content code {
   font-family: var(--font3), consolas, monospace;
   font-size: 0.9rem;
