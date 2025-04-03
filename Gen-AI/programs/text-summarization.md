@@ -1,5 +1,7 @@
 # Summarize long texts using a pre-trained summarization model using Hugging face model. Load the summarization pipeline. Take a passage as input and obtain the summarized text.
 
+---
+
 ### What is Text Summarization?
 
 Text summarization is the process of reducing a longer piece of text to its essential points, making it easier to understand and digest. It’s useful for quickly grasping the main ideas without reading everything.
@@ -42,3 +44,4 @@ summarized_text = summarize_text(text)
 print("Original Text:\n", text)
 print("\nSummarized Text:\n", summarized_text)
 ```
+---

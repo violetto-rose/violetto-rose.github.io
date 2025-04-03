@@ -1,4 +1,5 @@
 # Generative AI (BAIL657C)
+---
 ## Experiments:
 
 | Sl.NO | Experiments                                                                                                                                                                                                                                                                                                                                                                                                                                        |
@@ -13,3 +14,5 @@
 | 8.    | [Install langchain, cohere (for key), langchain-community. Get the API key (By logging into Cohere and obtaining the cohere key). Load a text document from your google drive. Create a prompt template to display the output in a particular manner.](document-qa-langchain.md)                                                                                                                                                                   |
 | 9.    | [Take the Institution name as input. Use Pydantic to define the schema for the desired output and create a custom output parser. Invoke the Chain and Fetch Results. Extract the below Institution related details from Wikipedia: The founder of the Institution. When it was founded. The current branches in the institution. How many employees are working in it. A brief 4-line summary of the institution.](institution-info-extraction.md) |
 | 10.   | [Build a chatbot for the Indian Penal Code. We'll start by downloading the official Indian Penal Code document, and then we'll create a chatbot that can interact with it. Users will be able to ask questions about the Indian Penal Code and have a conversation with it.](ipc-chatbot.md)                                                                                                                                                       |
+
+---

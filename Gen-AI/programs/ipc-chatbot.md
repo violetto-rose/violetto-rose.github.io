@@ -1,16 +1,16 @@
 # Build a chatbot for the Indian Penal Code. We'll start by downloading the official Indian Penal Code document, and then we'll create a chatbot that can interact with it. Users will be able to ask questions about the Indian Penal Code and have a conversation with it.
 
-This code allows us to interact with an IPC PDF document. We can extract text from it and easily look up specific sections right from the console. Here’s how it all works:
+---
 
-1. **Extracting Text**: We’re using the **fitz** library to read the contents of the IPC PDF. The `extract` function goes through each page of the PDF and pulls out the text, so we have all the information we need right at our fingertips.
-2. **Searching Sections**: When we want to find a specific section, we can use the `search` function. This function looks through the extracted text to find lines that match our query, and it does so in a case-insensitive way—so we don’t have to worry about how we type our search terms.
-3. **Chatbot Interface**: The `chatbot` function creates a simple interactive interface. Users can ask questions about the IPC, and it responds by providing the relevant text from the document. This makes it super easy to find the information we need without scrolling through pages of legal text.
-4. **Exit Option**: The program keeps running, allowing us to ask as many questions as we want. When we’re done, we can just type “exit,” and the program will close.
+Imagine having a virtual assistant to help you navigate the Indian Penal Code (IPC) effortlessly. This chatbot interacts with an IPC PDF document, making legal information easily accessible. Here’s how it works:
+
+1. **Extracting Text**: The **fitz** library reads the IPC document, using the `extract` function to pull text from every page. You’ll have all the essential information right at your fingertips.
+2. **Searching Sections**: Need to find a specific section? The `search` function scans the extracted text for your queries in a case-insensitive way, ensuring you get relevant results without worrying about case sensitivity.
+3. **Chatbot Interface**: Engage with the `chatbot` function to ask questions about the IPC. It provides relevant text directly from the document, making it easy to find information without sifting through pages of legal jargon.
 
 > Get the IPC PDF document [here](https://drive.google.com/file/d/1e09QDtNREkvcDg3YFR74h7tyZmGMoo7n/view?usp=drivesdk).
 
 ---
-
 ### Python Code:
 
 ```python
@@ -47,3 +47,4 @@ def chatbot():
 # Start the chatbot
 chatbot()
 ```
+---

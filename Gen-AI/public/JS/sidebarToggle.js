@@ -15,7 +15,7 @@ export function setupSidebar() {
 
   // Close sidebar when clicking outside (for mobile)
   document.addEventListener("click", (e) => {
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 1080) {
       const isOutsideSidebar = !sidebar.contains(e.target);
       const isNotToggleButton = !sidebarToggle.contains(e.target);
       if (isOutsideSidebar && isNotToggleButton) {
@@ -28,7 +28,7 @@ export function setupSidebar() {
 
   // Close sidebar when window is resized above tablet breakpoint
   window.addEventListener("resize", () => {
-    if (window.innerWidth > 768) {
+    if (window.innerWidth > 1080) {
       sidebar.classList.remove("open");
       sidebarToggle.classList.remove("open");
       document.body.style.overflow = "";

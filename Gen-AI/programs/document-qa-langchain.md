@@ -1,5 +1,7 @@
 # Install LangChain, Cohere (for key), LangChain-community. Get the API key( By logging into Cohere and obtaining the Cohere key). Load a text document from your Google Drive . Create a prompt template to display the output in a particular manner.
 
+---
+
 ### Python Code:
 
 ```python
@@ -44,3 +46,4 @@ response = llm.invoke(formatted_prompt)
 print("Response:")
 print(response)
 ```
+---

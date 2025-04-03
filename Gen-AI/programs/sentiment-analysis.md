@@ -1,5 +1,7 @@
 # Use a pre-trained Hugging Face model to analyze sentiment in text. Assume a real-world application, Load the sentiment analysis pipeline. Analyze the sentiment by giving sentences to input.
 
+---
+
 ### What is Sentiment Analysis?
 
 Sentiment analysis is the process of determining whether a piece of text expresses a positive, negative, or neutral sentiment. It's widely used in analyzing customer feedback, reviews, and social media to understand public opinion.
@@ -37,3 +39,4 @@ for feedback in customer_feedback:
         print(f"Sentiment: {sentiment_label} (Confidence: {sentiment_score:.2f})\n")
 
 ```
+---

@@ -1,5 +1,7 @@
 # Use dimensionality reduction (e.g., PCA or t-SNE) to visualize word embeddings for Q1. Select 10 words from a specific domain (e.g., sports, technology) and visualize their embeddings. Analyze clusters and relationships. Generate contextually rich outputs using embeddings. Write a program to generate 5 semantically similar words for a given input.
 
+---
+
 ### What is Principal Component Analysis?
 
 Principal Component Analysis (PCA) is a technique used for dimensionality reduction in machine learning. It simplifies a large dataset by transforming it into a smaller set of variables while preserving essential patterns and trends.
@@ -58,3 +60,4 @@ for i, word in enumerate(words):
 plt.title('Word Embedding Visualization with PCA')
 plt.show()
 ```
+---

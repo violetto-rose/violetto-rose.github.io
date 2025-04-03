@@ -6,50 +6,25 @@
   --font2: "Funnel Display";
   --font3: "JetBrains Mono";
   /*Background*/
-  --bg-color: rgb(248, 249, 252);
+  --bg-color: rgb(3, 7, 18);
   /*Text*/
-  --text: #000000;
-  --inv-text: #ffffff;
-  --alt-text: #474747;
+  --text: #ffffff;
+  --inv-text: #000000;
+  --alt-text: #e0e0e0;
   /*Customs*/
-  --shadow: rgba(0, 0, 0, 0.37);
+  --shadow: rgba(31, 38, 135, 0.37);
   /*Opacity*/
-  --lp-zfive: rgba(0, 0, 0, 0.05);
-  --dp-zfive: rgba(255, 255, 255, 0.05);
-  --lp-one: rgba(0, 0, 0, 0.1);
-  --dp-one: rgba(255, 255, 255, 0.1);
-  --lp-two: rgba(0, 0, 0, 0.2);
-  --dp-two: rgba(255, 255, 255, 0.2);
-  --lp-three: rgba(0, 0, 0, 0.3);
-  --dp-three: rgba(255, 255, 255, 0.3);
-  --lp-five: rgba(0, 0, 0, 0.5);
-  --dp-five: rgba(255, 255, 255, 0.5);
+  --lp-zfive: rgba(255, 255, 255, 0.05);
+  --dp-zfive: rgba(0, 0, 0, 0.05);
+  --lp-one: rgba(255, 255, 255, 0.1);
+  --dp-one: rgba(0, 0, 0, 0.1);
+  --lp-two: rgba(255, 255, 255, 0.2);
+  --dp-two: rgba(0, 0, 0, 0.2);
+  --lp-three: rgba(255, 255, 255, 0.3);
+  --dp-three: rgba(0, 0, 0, 0.3);
+  --lp-five: rgba(255, 255, 255, 0.5);
+  --dp-five: rgba(0, 0, 0, 0.5);
   --f-p-one: rgba(50, 50, 50, 0.1);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    /*Background*/
-    --bg-color: rgb(3, 7, 18);
-    /*Text*/
-    --text: #ffffff;
-    --inv-text: #000000;
-    --alt-text: #e0e0e0;
-    /*Customs*/
-    --shadow: rgba(31, 38, 135, 0.37);
-    /*Opacity*/
-    --lp-zfive: rgba(255, 255, 255, 0.05);
-    --dp-zfive: rgba(0, 0, 0, 0.05);
-    --lp-one: rgba(255, 255, 255, 0.1);
-    --dp-one: rgba(0, 0, 0, 0.1);
-    --lp-two: rgba(255, 255, 255, 0.2);
-    --dp-two: rgba(0, 0, 0, 0.2);
-    --lp-three: rgba(255, 255, 255, 0.3);
-    --dp-three: rgba(0, 0, 0, 0.3);
-    --lp-five: rgba(255, 255, 255, 0.5);
-    --dp-five: rgba(0, 0, 0, 0.5);
-    --f-p-one: rgba(50, 50, 50, 0.1);
-  }
 }
 
 body,
@@ -148,7 +123,7 @@ html {
   width: 100%;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1080px) {
   #navbar {
     display: flex;
     align-items: center;
@@ -327,7 +302,7 @@ html {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1080px) {
   #mobile {
     display: block;
   }
@@ -378,7 +353,7 @@ html {
   color: var(--text);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1080px) {
   #sidebar {
     background-color: var(--bg-color);
     position: fixed;
@@ -402,12 +377,6 @@ html {
   }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1080px) {
-  #sidebar {
-    min-width: 20%;
-  }
-}
-
 /***********************/
 /* Content view styles */
 /***********************/
@@ -426,7 +395,7 @@ html {
 #program-content h2,
 #program-content h3 {
   margin-top: 0;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   letter-spacing: -0.05rem;
   font-weight: 600;
 }
@@ -444,6 +413,15 @@ html {
 #program-content a,
 #program-content a:visited {
   color: #639cfd;
+}
+
+#program-content blockquote {
+  border-left: 4px solid var(--shadow);
+  padding: 10px 15px;
+  margin: 20px 0;
+  background: var(--lp-one);
+  font-style: italic;
+  color: var(--text);
 }
 
 #program-content code {
@@ -484,7 +462,7 @@ html {
 
 #program-content hr {
   border: none;
-  border-top: 1px solid var(--dp-five);
+  border-top: 1px solid var(--lp-five);
   margin: 20px 0;
 }
 
@@ -534,6 +512,7 @@ html {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
 }
 
 .navigation-buttons button:disabled {
@@ -556,7 +535,7 @@ html {
   cursor: pointer;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 1080px) {
   .navigation-buttons {
     margin-top: 20px;
     display: grid;
@@ -569,11 +548,6 @@ html {
 
   .navigation-buttons #next-button {
     grid-column: 3/3;
-  }
-
-  .navigation-buttons button:nth-of-type(odd) {
-    color: var(--text);
-    background-color: var(--inv-text);
   }
 }
 
@@ -784,7 +758,7 @@ sidebar::-webkit-scrollbar-track,
 
 .menu #close-menu {
   all: unset;
-  background: white;
+  background: var(--alt-text);
   border-radius: 50px;
   position: absolute;
   top: 48px;
@@ -799,7 +773,7 @@ sidebar::-webkit-scrollbar-track,
 }
 
 .menu .fa-xmark {
-  color: #ffffff;
+  color: var(--bg-color);
   font-size: 24px;
 }
 

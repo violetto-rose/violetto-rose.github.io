@@ -1,5 +1,7 @@
 # Take the Institution name as input. Use Pydantic to define the schema for the desired output and create a custom output parser. Invoke the Chain and Fetch Results. Extract the below Institution related details from Wikipedia: The founder of the Institution. When it was founded. The current branches in the institution . How many employees are working in it. A brief 4-line summary of the institution.
 
+---
+
 ### Python Code:
 
 ```python
@@ -42,3 +44,4 @@ details = InstitutionDetails(
 # Output the details in JSON format using model_dump_json
 print(details.model_dump_json())
 ```
+---

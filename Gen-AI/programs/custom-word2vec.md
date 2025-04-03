@@ -1,5 +1,7 @@
 # Train a custom Word2Vec model on a small dataset. Train embeddings on a domain-specific corpus (e.g., legal, medical) and analyze how embeddings capture domain-specific semantics.
 
+---
+
 In the context of Generative AI (Gen AI), a "vector" is a mathematical representation of data as a list of numbers, where each number corresponds to a specific feature or attribute. This allows AI algorithms to understand and process information effectively.
 
 ![Word Vectors](images/word_vectors_2.png)
@@ -56,3 +58,4 @@ print("\nAnalysis for word court:")
 analyze(model, "court")
 
 ```
+---

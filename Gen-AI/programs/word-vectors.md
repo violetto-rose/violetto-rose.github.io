@@ -1,5 +1,7 @@
 # Explore pre-trained word vectors. Explore word relationships using vector arithmetic. Perform arithmetic operations and analyze results.
 
+---
+
 Word embeddings (also called word vectors) represent each word numerically in such a way that the vector corresponds to how that word is used or what it means. Vector encodings are learned by considering the context in which the words appear. Words that appear in similar contexts will have similar vectors. For example, vectors for "leopard", "lion", and "tiger" will be close together, while they'll be far away from "planet" and "castle".
 
 Even cooler, relations between words can be examined with mathematical operations. Subtracting the vectors for "man" and "woman" will return another vector. If you add that to the vector for "king" the result is close to the vector for "queen."
@@ -50,3 +52,4 @@ def explore_word_relationships(model_path):
 model_path = '/home/pc/Downloads/GoogleNews-vectors-negative300.bin'  # Modify as per your path   
 explore_word_relationships(model_path)
 ```
+---
