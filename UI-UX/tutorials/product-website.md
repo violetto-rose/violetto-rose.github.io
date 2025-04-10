@@ -25,11 +25,13 @@ Create a basic wireframe using pen and paper, as demonstrated below:
 ---
 ## 2. Designing
 
-> **Disclaimer**:
+> **Disclaimer**:  
 > 
-> The images of Google Pixel devices and other products used in this tutorial are the intellectual property of Google LLC and are provided here for educational purposes only. All trademarks and copyrights are owned by their respective companies. By using these images, you acknowledge that you respect the rights of the original creators. For any commercial use or modifications, please ensure you obtain the necessary permissions from the copyright holders.
+> The images of Google Pixel devices and other products used in this tutorial are the intellectual property of Google LLC and are provided here for educational purposes only. All trademarks and copyrights are owned by their respective companies. By using these images, you acknowledge that you respect the rights of the original creators. For any commercial use or modifications, please ensure you obtain the necessary permissions from the copyright holders.  
+> You can download the Google Pixel images and other products **[here](https://violetto-rose.github.io/UI-UX/public/resources/pixel-images.zip)**.
 > 
-> You can download the Google Pixel images and other products **[here](https://violetto-rose.github.io/UI-UX/public/resources/pixel-images.zip)**.
+> The Product Sans font is the intellectual property of Google LLC and is provided here for personal use only. This tutorial uses the font for educational purposes only. For commercial use, please ensure you obtain the appropriate license from the author. By downloading, you acknowledge that you respect the rights of the original creator.  
+> You can download the Product Sans font **[here](https://violetto-rose.github.io/UI-UX/public/resources/Product-Sans.zip)**.
 
 ### ▶ Creating Browse Phones Button and Learn More Button Components
 

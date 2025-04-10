@@ -13,6 +13,8 @@
 ---
 ## Experiments:
 
+Get the laboratory manual [here](https://violetto-rose.github.io/UI-UX/public/resources/UI-UX-Laboratory-Manual.pdf).
+
 | Sl.NO | Experiments (Designing and Prototyping using Figma)                                                                                                                                                                                                                          |
 | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 1     | **[Chat App Redesign](chat-app-redesign.md)**: Create a Wireframe and redesign any popular chat app.                                                                                                                                                                         |
