@@ -24,7 +24,6 @@
   --lp-two: rgba(255, 255, 255, 0.2);
   --lp-three: rgba(255, 255, 255, 0.3);
   --lp-five: rgba(255, 255, 255, 0.5);
-  --lp-eight: rgba(255, 255, 255, 0.8);
   --dp-one: rgba(0, 0, 0, 0.1);
   --dp-two: rgba(0, 0, 0, 0.2);
   --dp-three: rgba(0, 0, 0, 0.3);
@@ -78,8 +77,7 @@ html {
   z-index: 3;
   background: var(--lp-two);
   border: none;
-  border-top-left-radius: 25px;
-  border-bottom-left-radius: 25px;
+  border-radius: 25px 0 0 25px;
   width: 50px;
   height: 50px;
   display: flex;
@@ -189,10 +187,7 @@ html {
     display: flex;
     left: 0;
     top: 20px;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
+    border-radius: 0 25px 25px 0;
   }
 
   #sidebar-toggle:hover {
@@ -772,17 +767,51 @@ body.dark-mode .box {
   text-decoration: underline;
 }
 
-#tutorial-content code {
-  background: var(--dp-one);
-  padding: 2px 5px;
-  border-radius: 5px;
+.code-block-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.7rem;
+  padding-left: 0.6rem;
+  background: var(--lp-five);
+  border-bottom: 1px solid var(--alt-text);
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+}
+
+.copy-button {
+  all: unset;
+  padding: 0.5rem 1rem;
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+.copy-button:hover {
+  background: var(--inv-text);
 }
 
 #tutorial-content pre {
-  background: var(--dp-three);
+  margin: 0;
   padding: 15px;
-  border-radius: 10px;
-  overflow-x: auto;
+  border-radius: 0 0 10px 10px;
+  border: none;
+  font-family: inherit;
+  overflow-x: hidden;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+#tutorial-content code {
+  font-size: 1em;
+  font-family: inherit;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 #tutorial-content blockquote {
@@ -791,7 +820,6 @@ body.dark-mode .box {
   margin: 20px 0;
   background: var(--block-quote);
   font-style: italic;
-  color: var(--lp-eight);
 }
 
 #tutorial-content hr {
@@ -800,7 +828,7 @@ body.dark-mode .box {
   margin: 20px 0;
 }
 
-#tutorial-content span[class] {
+#tutorial-content span:not(.code-block-wrapper span) {
   font-weight: 800;
   font-size: 1.5rem;
   position: relative;
@@ -808,7 +836,7 @@ body.dark-mode .box {
   overflow: visible;
 }
 
-#tutorial-content span[class]::after {
+#tutorial-content span:not(.code-block-wrapper span)::after {
   content: "";
   position: absolute;
   top: -100%;
@@ -836,8 +864,7 @@ body.dark-mode .box {
   color: var(--inv-text);
 }
 
-#tutorial-content span.Instagram::after {
-  background-image: url(../resources/stroke.svg);
+#tutorial-content span.Instagram:not(.code-block-wrapper span)::after {
   -webkit-mask-image: url(../resources/stroke.svg);
   mask-image: url(../resources/stroke.svg);
   -webkit-mask-repeat: no-repeat;
@@ -985,25 +1012,21 @@ body.dark-mode #tutorial-content a::after {
   filter: invert(100%);
 }
 
+body.dark-mode .code-header {
+  background: var(--dp-three);
+}
+
 body.dark-mode #tutorial-content blockquote {
   border-left-color: var(--t-p-five);
   background: var(--block-quote);
   color: var(--p-eight);
 }
 
-body.dark-mode #tutorial-content code {
-  background: var(--h-p-two);
-}
-
-body.dark-mode #tutorial-content pre {
-  background: var(--f-p-five);
-}
-
 body.dark-mode #tutorial-content hr {
   border-top: 1px solid var(--lp-five);
 }
 
-body.dark-mode #tutorial-content span::after {
+body.dark-mode #tutorial-content span:not(.code-block-wrapper span)::after {
   background-image: none;
 }
 

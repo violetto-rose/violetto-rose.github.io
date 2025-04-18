@@ -1,6 +1,7 @@
 import { generateStructureView } from "./structureView.js";
 import { lazyLoadImages } from "./imageHandler.js"
 import { tutorials } from "./sidebar.js";
+import { initCodeHighlighting, addCopyButtons } from "./prismHighlighter.js";
 
 // Function to load tutorial content with lazy loading
 export async function loadTutorial(filename) {
@@ -27,7 +28,7 @@ export async function loadTutorial(filename) {
       <div class="skeleton skeleton-text"></div>
     </div>
   `;
-  
+
   structureContent.innerHTML = `
     <div class="skeleton skeleton-header"></div>
     <div class="skeleton-paragraph">
@@ -62,6 +63,10 @@ export async function loadTutorial(filename) {
 
     const parsedContent = marked.parse(markdown);
     contentWrapper.innerHTML = wrapTables(parsedContent);
+
+    // Initialize code highlighting on the new content
+    initCodeHighlighting(contentWrapper);
+    addCopyButtons(contentWrapper);
 
     // After parsing, process images to add aspect ratio
     const images = contentWrapper.querySelectorAll("img");

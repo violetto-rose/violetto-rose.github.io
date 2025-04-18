@@ -37,7 +37,6 @@ export async function loadProgram(filename) {
     navigationContainer.className = "navigation-buttons";
     programContent.appendChild(navigationContainer);
 
-    // Rest of function remains unchanged...
     const contentContainer = document.getElementById("content");
     scrollToTop(contentContainer);
     updateURL(filename);

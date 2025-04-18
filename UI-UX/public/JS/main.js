@@ -4,6 +4,8 @@ import { setupDarkMode } from "./darkMode.js";
 import { setupSidebar } from "./sidebarToggle.js";
 import { setupStructureView } from "./structureView.js";
 import { setupSearch, setupSearchShortcut } from "./search.js";
+import { configureCodeHighlighting } from "./prismHighlighter.js";
+import { initThemeManager } from "./themeManager.js";
 import { setupImageViewer } from "./imageHandler.js";
 import { setupMenuAnimation } from "./menuManager.js";
 import { enterFullscreen } from "./fullScreen.js";
@@ -18,8 +20,10 @@ enterFullscreen();
 setupMenuAnimation();
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Configure marked renderer
+  initThemeManager();
+  // Configure marked renderer with code highlighting
   const renderer = new marked.Renderer();
+  configureCodeHighlighting(renderer);
   const originalLinkRenderer = renderer.link;
   renderer.link = function (href, title, text) {
     const link = originalLinkRenderer.call(this, href, title, text);

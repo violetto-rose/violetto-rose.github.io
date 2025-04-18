@@ -1,9 +1,10 @@
 export function setupTooltips() {
-    // Check if device has hover capability
+    // Check if device has both hover and pointer capabilities
     const hasHover = window.matchMedia('(hover: hover)').matches;
+    const hasPointer = window.matchMedia('(pointer: fine)').matches;
     
-    // Only proceed if device supports hover
-    if (!hasHover) return;
+    // Only proceed if device supports both hover and pointer
+    if (!hasHover || !hasPointer) return;
 
     const toggleButtons = document.querySelectorAll('button[aria-label]');
 
@@ -13,6 +14,9 @@ export function setupTooltips() {
         tooltip.textContent = button.getAttribute('aria-label');
 
         button.addEventListener('mouseenter', () => {
+            // Don't show tooltip if button is active
+            if (button.classList.contains('active')) return;
+            
             document.body.appendChild(tooltip);
             const buttonRect = button.getBoundingClientRect();
             const tooltipRect = tooltip.getBoundingClientRect();
