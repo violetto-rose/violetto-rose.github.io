@@ -1,6 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Funnel+Display:wght@300..800&display=swap");
-@import url("https://fonts.cdnfonts.com/css/product-sans");
-
 :root {
   /*Fonts*/
   --font1: "Poppins";
@@ -485,17 +482,25 @@ body.dark-mode #structure-view .structure-subsection:hover {
 
 .glass {
   background: var(--lp-one);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(50px);
+  backdrop-filter: blur(50px);
   border-radius: 20px;
   border: 1px solid var(--lp-two);
   box-shadow: 0 8px 32px 0 var(--shadow);
 }
 
+@media screen and (max-width: 640px) {
+  .container {
+    padding: 0;
+  }
+
+  .glass {
+    border-radius: 0;
+  }
+}
+
 /* Dark mode styles */
 body.dark-mode .glass {
-  -webkit-backdrop-filter: blur(50px);
-  backdrop-filter: blur(50px);
   background: var(--f-p-one);
   border-color: var(--h-p-two);
 }
@@ -661,7 +666,6 @@ body.dark-mode .glass {
     transition: left 0.3s ease;
     z-index: 2;
     border-radius: unset;
-    border-top-right-radius: 20px;
     margin-right: 0;
   }
 
@@ -705,7 +709,7 @@ body.dark-mode .box {
   scroll-behavior: smooth;
   flex-grow: 1;
   padding: 30px;
-  overflow-y: auto;
+  overflow: hidden auto;
   -webkit-mask-image: -webkit-radial-gradient(var(--inv-text), var(--text));
   mask-image: radial-gradient(var(--inv-text), var(--text));
   transition: margin-right 0.3s ease;
@@ -771,6 +775,7 @@ body.dark-mode .box {
   position: relative;
   display: flex;
   flex-direction: column;
+  margin-bottom: 1.5rem;
 }
 
 .code-header {
@@ -778,7 +783,7 @@ body.dark-mode .box {
   justify-content: space-between;
   align-items: center;
   font-size: 0.7rem;
-  padding-left: 0.6rem;
+  padding-left: 1rem;
   background: var(--lp-five);
   border-bottom: 1px solid var(--alt-text);
   border-radius: 10px 10px 0 0;
@@ -828,7 +833,7 @@ body.dark-mode .box {
   margin: 20px 0;
 }
 
-#tutorial-content span:not(.code-block-wrapper span) {
+#tutorial-content span.brand {
   font-weight: 800;
   font-size: 1.5rem;
   position: relative;
@@ -836,14 +841,14 @@ body.dark-mode .box {
   overflow: visible;
 }
 
-#tutorial-content span:not(.code-block-wrapper span)::after {
+#tutorial-content span.brand::after {
   content: "";
   position: absolute;
   top: -100%;
   left: -100%;
   right: -100%;
   bottom: -100%;
-  background-image: url(../resources/stroke.svg);
+  background-image: url(../assets/stroke.svg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 45%;
@@ -852,21 +857,21 @@ body.dark-mode .box {
   filter: invert(100%);
 }
 
-#tutorial-content span.WhatsApp {
+#tutorial-content span.brand.WhatsApp {
   color: #00d756;
 }
 
-#tutorial-content span.Zomato {
+#tutorial-content span.brand.Zomato {
   color: #e23744;
 }
 
-#tutorial-content span.Instagram {
+#tutorial-content span.brand.Instagram {
   color: var(--inv-text);
 }
 
-#tutorial-content span.Instagram:not(.code-block-wrapper span)::after {
-  -webkit-mask-image: url(../resources/stroke.svg);
-  mask-image: url(../resources/stroke.svg);
+#tutorial-content span.brand.Instagram::after {
+  -webkit-mask-image: url(../assets/stroke.svg);
+  mask-image: url(../assets/stroke.svg);
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-position: center;
@@ -884,7 +889,7 @@ body.dark-mode .box {
   filter: none;
 }
 
-#tutorial-content span.Google {
+#tutorial-content span.brand.Google {
   font-family: "Product Sans", var(--font1);
   background: linear-gradient(
     to right,
@@ -909,6 +914,10 @@ body.dark-mode .box {
   position: relative;
 }
 
+#tutorial-content span.brand.TripAdvisor {
+  color: #34e0a1;
+}
+
 #tutorial-content img[alt="Instagram Brand Text"] {
   height: 1.5rem;
 }
@@ -916,6 +925,19 @@ body.dark-mode .box {
 #tutorial-content span:has(img[alt="Instagram Brand Text"]) {
   display: inline-flex;
   gap: 0.2rem;
+}
+
+.hex-color {
+  cursor: pointer;
+  padding: 0 10px;
+  border-radius: 20px;
+  color: var(--inv-text);
+  background-color: var(--alt-text);
+  transition: all 0.2s;
+}
+
+.hex-color:hover {
+  filter: brightness(110%);
 }
 
 .image-overlay {
@@ -1106,6 +1128,20 @@ body.dark-mode .navigation-buttons button {
 
 .skeleton-paragraph .skeleton-text {
   margin-bottom: 10px;
+}
+
+/********************/
+/* Selection Styles */
+/********************/
+
+::selection {
+  background-color: beige;
+  color: navy;
+}
+
+::-moz-selection {
+  background-color: beige;
+  color: navy;
 }
 
 /***************************/

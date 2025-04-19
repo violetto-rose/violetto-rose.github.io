@@ -62,11 +62,28 @@ export async function loadTutorial(filename) {
     contentWrapper.className = "tutorial-content-wrapper";
 
     const parsedContent = marked.parse(markdown);
-    contentWrapper.innerHTML = wrapTables(parsedContent);
+    const processedContent = wrapHexColors(parsedContent);
+    contentWrapper.innerHTML = wrapTables(processedContent);
 
     // Initialize code highlighting on the new content
     initCodeHighlighting(contentWrapper);
     addCopyButtons(contentWrapper);
+
+    // Click handlers for hex colors
+    const hexColors = contentWrapper.querySelectorAll('.hex-color');
+    hexColors.forEach(span => {
+      span.addEventListener('click', function () {
+        const color = this.getAttribute('data-color');
+        navigator.clipboard.writeText(color);
+
+        // Optional: Show feedback
+        const originalText = this.textContent;
+        this.textContent = 'Copied!';
+        setTimeout(() => {
+          this.textContent = originalText;
+        }, 1000);
+      });
+    });
 
     // After parsing, process images to add aspect ratio
     const images = contentWrapper.querySelectorAll("img");
@@ -121,6 +138,37 @@ export async function loadTutorial(filename) {
     tutorialContent.innerHTML = "<p>Error loading tutorial content. Please try again later.</p>";
   }
 }
+
+// Function to wrap hex colors in clickable spans
+function wrapHexColors(content) {
+  return content.replace(
+    /#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6})\b/g,
+    (match, color) => {
+      const fullColor = color.length === 3
+        ? `#${color[0]}${color[0]}${color[1]}${color[1]}${color[2]}${color[2]}`
+        : `#${color}`;
+      const textColor = getContrastColor(fullColor);
+      return `<span class="hex-color" 
+        data-color="${fullColor}" 
+        style="background-color: ${fullColor}; color: ${textColor};">${match}</span>`;
+    }
+  );
+}
+
+// Helper function to determine contrasting text color
+function getContrastColor(hexcolor) {
+  // Convert hex to RGB
+  const r = parseInt(hexcolor.slice(1, 3), 16);
+  const g = parseInt(hexcolor.slice(3, 5), 16);
+  const b = parseInt(hexcolor.slice(5, 7), 16);
+
+  // Calculate relative luminance
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+
+  // Return black or white based on background luminance
+  return luminance > 0.5 ? '#000000' : '#ffffff';
+}
+
 
 // Function to wrap table
 function wrapTables(content) {

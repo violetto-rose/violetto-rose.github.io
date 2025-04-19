@@ -10,6 +10,7 @@ const tutorials = [
   { name: "Food App", file: "food-app.md" },
   { name: "Social Media App", file: "social-media-app.md" },
   { name: "Product Website", file: "product-website.md" },
+  { name: "Travel Agency Website", file: "travel-agency-website.md" },
 ];
 
 export function populateSidebar() {

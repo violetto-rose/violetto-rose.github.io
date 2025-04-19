@@ -12,6 +12,12 @@ export function setupTooltips() {
         const tooltip = document.createElement('div');
         tooltip.className = 'tooltip';
         tooltip.textContent = button.getAttribute('aria-label');
+        
+        // Prevent touch events from triggering the tooltip
+        button.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            return;
+        }, { passive: false });
 
         button.addEventListener('mouseenter', () => {
             // Don't show tooltip if button is active
