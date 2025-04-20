@@ -56,13 +56,43 @@
       .status-text {
         position: absolute;
         text-align: center;
-        font-size: 1em;
+        font-size: clamp(0.8em, 3vw, 1.2em);
         z-index: 10;
         text-transform: uppercase;
-        letter-spacing: 0.5em;
+        letter-spacing: clamp(0.2em, 1.5vw, 0.5em);
         opacity: 0.7;
+        width: 90%;
+        max-width: 600px;
+        padding: 1rem;
       }
 
+      @media screen and (max-width: 768px) {
+        .node {
+          transform: scale(0.8);
+        }
+
+        .connection {
+          opacity: 0.05;
+        }
+
+        .signal {
+          transform: scale(0.7);
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .node {
+          transform: scale(0.6);
+        }
+
+        .connection {
+          opacity: 0.03;
+        }
+
+        .signal {
+          transform: scale(0.5);
+        }
+      }
       .node {
         position: absolute;
         background-color: var(--accent-color);
@@ -147,12 +177,13 @@
             const node = document.createElement("div");
             node.classList.add("node");
 
-            const size = Math.random() * 10 + 5;
+            const baseSize = Math.min(window.innerWidth, window.innerHeight) * 0.015;
+            const size = Math.random() * baseSize + baseSize * 0.5;
             node.style.width = `${size}px`;
             node.style.height = `${size}px`;
 
             const angle = (i / this.nodeCount) * Math.PI * 2;
-            const radius = Math.min(this.width, this.height) * 0.3;
+            const radius = Math.min(this.width, this.height) * (window.innerWidth <= 768 ? 0.25 : 0.3);
 
             const x = this.width / 2 + Math.cos(angle) * radius;
             const y = this.height / 2 + Math.sin(angle) * radius;
@@ -226,37 +257,38 @@
 
       // Interaction
       canvas.addEventListener("click", () => {
-        const signals = 3;
+        const signals = window.innerWidth <= 480 ? 2 : 3;
+        const maxSize = Math.min(window.innerWidth, window.innerHeight) * 0.3;
+        
         for (let i = 0; i < signals; i++) {
           const signal = document.createElement("div");
           signal.classList.add("signal");
-
-          signal.style.width = `${Math.random() * 300 + 100}px`;
+        
+          const size = Math.random() * maxSize + (maxSize * 0.3);
+          signal.style.width = `${size}px`;
           signal.style.height = signal.style.width;
-          signal.style.left = `${Math.random() * window.innerWidth}px`;
-          signal.style.top = `${Math.random() * window.innerHeight}px`;
-
+          signal.style.left = `${Math.random() * (window.innerWidth - size)}px`;
+          signal.style.top = `${Math.random() * (window.innerHeight - size)}px`;
+        
           canvas.appendChild(signal);
-
+        
           setTimeout(() => {
-            signal.style.transform = "scale(3)";
+            signal.style.transform = window.innerWidth <= 768 ? "scale(2)" : "scale(3)";
             signal.style.opacity = 1;
-
+        
             setTimeout(() => {
               signal.remove();
-            }, 500);
+            }, window.innerWidth <= 480 ? 400 : 500);
           }, 50);
         }
 
-        // Randomize status text
         const texts = [
           "SYSTEM RECALIBRATING",
           "OPTIMIZING NETWORK",
           "REALIGNING PROTOCOLS",
           "QUANTUM SYNCHRONIZATION",
         ];
-        statusText.textContent =
-          texts[Math.floor(Math.random() * texts.length)];
+        statusText.textContent = texts[Math.floor(Math.random() * texts.length)];
       });
 
       // Responsive resize

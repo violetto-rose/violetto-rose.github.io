@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 - Page Not Found</title>
+    <link rel="stylesheet" href="public/style.css" />
+    <style>
+      .rain-404 {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #1a1c20 0%, #2c3e50 100%);
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .rain-layer {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+      }
+
+      .raindrop {
+        position: absolute;
+        width: clamp(1px, 0.3vw, 2px);
+        height: clamp(15px, 4vw, 25px);
+        background: linear-gradient(transparent, rgba(255, 255, 255, 0.6));
+        animation: rain 1s linear infinite;
+        will-change: transform;
+        opacity: 0;
+      }
+
+      @keyframes rain {
+        0% {
+          transform: translateY(-100%) rotate(2deg);
+          opacity: 0;
+        }
+        50% {
+          opacity: 0.8;
+          transform: translateY(50vh) rotate(-2deg);
+        }
+        100% {
+          transform: translateY(100vh) rotate(2deg);
+          opacity: 0;
+        }
+      }
+
+      .content-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 1;
+        padding: clamp(1.5rem, 5vw, 2.5rem);
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: clamp(10px, 3vw, 20px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        max-width: min(90vw, 600px);
+        margin: clamp(10px, 3vw, 20px);
+        width: 100%;
+      }
+
+      .error-code {
+        text-align: center;
+        font-size: clamp(4rem, 15vw, 8rem);
+        font-weight: bold;
+        margin: 0;
+        background: linear-gradient(45deg, #6b8cce, #a3bded);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        line-height: 1;
+      }
+
+      .error-message {
+        text-align: center;
+        font-size: clamp(1.1rem, 3vw, 1.5rem);
+        margin: clamp(0.5rem, 2vw, 1rem) 0;
+        color: #a3bded;
+        max-width: 100%;
+        padding: 0 1rem;
+      }
+
+      .home-button {
+        display: inline-block;
+        padding: clamp(0.8rem, 2vw, 1rem) clamp(1.5rem, 4vw, 2rem);
+        margin-top: clamp(1.5rem, 4vw, 2rem);
+        background: linear-gradient(45deg, #6b8cce, #a3bded);
+        color: white;
+        text-decoration: none;
+        border-radius: clamp(20px, 5vw, 30px);
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        font-size: clamp(0.9rem, 2.5vw, 1rem);
+      }
+
+      .home-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(107, 140, 206, 0.4);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="rain-404">
+      <div class="rain-layer" id="rainLayer"></div>
+      <div class="content-container">
+        <h1 class="error-code">404</h1>
+        <p class="error-message">
+          Looks like this page got swept away by the rain
+        </p>
+        <a href="/" class="home-button">Find Shelter</a>
+      </div>
+    </div>
+
+    <script>
+      function createRaindrops() {
+        const rainLayer = document.getElementById("rainLayer");
+        const isMobile = window.innerWidth <= 768;
+        const dropDensity = isMobile ? 15 : 10;
+        const numberOfDrops = Math.floor(window.innerWidth / dropDensity);
+
+        for (let i = 0; i < numberOfDrops; i++) {
+          const drop = document.createElement("div");
+          drop.className = "raindrop";
+          drop.style.left = `${Math.random() * 100}%`;
+          drop.style.animationDuration = `${
+            Math.random() * 0.5 + (isMobile ? 0.9 : 0.7)
+          }s`;
+          drop.style.animationDelay = `${Math.random() * (isMobile ? 3 : 2)}s`;
+          rainLayer.appendChild(drop);
+        }
+      }
+
+      window.addEventListener("load", createRaindrops);
+      window.addEventListener("resize", () => {
+        const rainLayer = document.getElementById("rainLayer");
+        rainLayer.innerHTML = "";
+        createRaindrops();
+      });
+    </script>
+  </body>
+</html>

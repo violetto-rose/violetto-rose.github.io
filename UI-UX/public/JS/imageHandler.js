@@ -60,6 +60,12 @@ export function lazyLoadImages(container) {
             if (placeholderWrapper) {
               placeholderWrapper.classList.remove("loading");
 
+              // Remove the placeholder loader element
+              const loader = placeholderWrapper.querySelector('.image-placeholder-loader');
+              if (loader) {
+                loader.remove();
+              }
+
               // Set background to transparent after image loads
               placeholderWrapper.style.backgroundColor = "transparent";
             }

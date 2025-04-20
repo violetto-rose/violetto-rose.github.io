@@ -658,7 +658,6 @@ body.dark-mode .glass {
   display: none;
   margin-top: 10px;
   padding: 10px;
-  max-height: 200px;
   overflow-y: auto;
   color: var(--text);
   -webkit-mask-image: -webkit-radial-gradient(var(--inv-text), var(--text));
@@ -1518,7 +1517,7 @@ body.dark-mode .credits-icon:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
+  width: 30px;
   aspect-ratio: 1/1;
   cursor: pointer;
   z-index: 4;
@@ -1526,7 +1525,6 @@ body.dark-mode .credits-icon:hover {
 
 .menu .fa-xmark {
   color: #ffffff;
-  font-size: 24px;
 }
 
 .menu-list {

@@ -20,7 +20,7 @@ Let’s begin the design process by developing the home screen interface for Tri
 
 Create a basic wireframe using pen and paper, as demonstrated below:
 
-![Wireframe](images/travel-agency-website/wireframe.webp)
+![Wireframe](images/travel-agency-website/wireframe.webp){data-aspect-ratio="4:3"}
 
 ---
 ## 2. Designing
@@ -655,10 +655,10 @@ talk.
 
 Through our focused efforts, we have developed a well-structured and visually appealing design for the TripAdvisor interface. This design prioritizes user engagement and ease of navigation, ensuring a seamless experience for travelers exploring destinations, accommodations, and activities. Our interface aims to inspire users while simplifying the process of planning their trips, making travel discovery enjoyable and efficient.
 
-![](images/travel-agency-website/design-a.webp)
+![Final Design](images/travel-agency-website/design-a.webp){data-aspect-ratio="4:3"}
 
-![](images/travel-agency-website/design-b.webp)
+![Final Design](images/travel-agency-website/design-b.webp){data-aspect-ratio="4:3"}
 
-![](images/travel-agency-website/design-c.webp)
+![Final Design](images/travel-agency-website/design-c.webp){data-aspect-ratio="4:3"}
 
 ---
