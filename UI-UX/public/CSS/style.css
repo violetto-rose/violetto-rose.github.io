@@ -392,7 +392,6 @@ html {
     z-index: 2;
     right: -100%;
     width: 100%;
-    padding-top: 100px;
   }
 
   #structure-view .structure-item:hover,
