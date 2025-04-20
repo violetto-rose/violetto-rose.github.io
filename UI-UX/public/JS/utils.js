@@ -134,8 +134,14 @@ export async function loadTutorial(filename) {
 
     window.addEventListener("resize", () => adjustTableHeader(filename));
   } catch (error) {
-    console.error("Error:", error);
-    tutorialContent.innerHTML = "<p>Error loading tutorial content. Please try again later.</p>";
+    tutorialContent.innerHTML = `
+      <div class="error-container">
+        <h2>Oops! Something went wrong</h2>
+        <p>We encountered an error while loading the tutorial content.</p>
+        <p class="error-details">Error: ${error.message}</p>
+        <button onclick="window.location.reload()">Try Again</button>
+      </div>
+    `;
   }
 }
 

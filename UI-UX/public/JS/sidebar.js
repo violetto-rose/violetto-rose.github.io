@@ -11,6 +11,7 @@ const tutorials = [
   { name: "Social Media App", file: "social-media-app.md" },
   { name: "Product Website", file: "product-website.md" },
   { name: "Travel Agency Website", file: "travel-agency-website.md" },
+  { name: "UI/UX Designer Portfolio Design", file: "uiux-designer-portfolio-design.md" }
 ];
 
 export function populateSidebar() {
