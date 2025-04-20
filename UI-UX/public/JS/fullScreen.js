@@ -14,7 +14,7 @@ export function enterFullscreen() {
     // Handle touch devices
     if (window.matchMedia('(pointer: coarse)').matches) {
         if (closeModal) {
-            closeModal.style.top = '200px';
+            closeModal.style.top = '20px';
         }
         return;
     }
