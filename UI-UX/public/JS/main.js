@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const originalLinkRenderer = renderer.link;
   renderer.link = function (href, title, text) {
     const link = originalLinkRenderer.call(this, href, title, text);
-    if (!href.href.startsWith("https")) {
+    if (!href.href.startsWith("http://") && !href.href.startsWith("https://")) {
       return link
         .replace("<a", '<a target="_self" rel="noopener noreferrer"')
         .replace('href="', 'href="#');
