@@ -715,7 +715,7 @@ body.dark-mode .glass {
     width: auto;
     left: -100%;
     height: -webkit-fill-available;
-    height: 100%;
+    height: 100vh;
     transition: left 0.3s ease;
     z-index: 2;
     border-radius: unset;
@@ -728,6 +728,12 @@ body.dark-mode .glass {
 
   #sidebar ul {
     padding-bottom: 20px;
+  }
+}
+
+@media screen and (min-width: 640px) and (max-width: 1280px) {
+  #sidebar {
+    border-radius: 0 20px 0 0;
   }
 }
 

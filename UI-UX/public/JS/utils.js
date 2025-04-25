@@ -106,12 +106,6 @@ export async function loadTutorial(filename) {
     navigationContainer.className = "navigation-buttons";
     tutorialContent.appendChild(navigationContainer);
 
-    // Scroll the content container to the top
-    const contentContainer = document.getElementById("content");
-    const structureContainer = document.getElementById("structure-view");
-    scrollToTop(contentContainer);
-    scrollToTop(structureContainer);
-
     // Generate structure view after content is loaded
     generateStructureView(contentWrapper);
 
@@ -175,7 +169,6 @@ function getContrastColor(hexcolor) {
   return luminance > 0.5 ? '#000000' : '#ffffff';
 }
 
-
 // Function to wrap table
 function wrapTables(content) {
   const tempDiv = document.createElement("div");
@@ -216,41 +209,6 @@ export function adjustTableHeader(filename) {
     const secondTh = document.querySelector("#tutorial-content th:last-child");
     if (secondTh) {
       secondTh.removeAttribute("colspan");
-    }
-  }
-}
-
-// Function to scroll to top
-function scrollToTop(container) {
-  if (container) {
-    const isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
-
-    if (isFirefox) {
-      const startTime = performance.now();
-      const duration = 300;
-      const startPosition = container.scrollTop;
-
-      function smoothScroll(currentTime) {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-
-        // Easing function (ease out quad)
-        const easedProgress = progress * (2 - progress);
-
-        container.scrollTop = startPosition * (1 - easedProgress);
-
-        if (elapsed < duration) {
-          requestAnimationFrame(smoothScroll);
-        }
-      }
-
-      requestAnimationFrame(smoothScroll);
-    } else {
-      // For other browsers, use native smooth scroll
-      container.scroll({
-        top: 0,
-        behavior: "smooth",
-      });
     }
   }
 }
