@@ -569,8 +569,6 @@ body.dark-mode .glass {
   padding: 20px;
   margin-right: 20px;
   overflow-y: hidden;
-  -webkit-mask-image: -webkit-radial-gradient(var(--inv-text), var(--text));
-  mask-image: radial-gradient(var(--inv-text), var(--text));
   display: flex;
   flex-direction: column;
 }
@@ -660,8 +658,6 @@ body.dark-mode .glass {
   padding: 10px;
   overflow-y: auto;
   color: var(--text);
-  -webkit-mask-image: -webkit-radial-gradient(var(--inv-text), var(--text));
-  mask-image: radial-gradient(var(--inv-text), var(--text));
 }
 
 #search-results div {
@@ -769,8 +765,6 @@ body.dark-mode .box {
   flex-grow: 1;
   padding: 30px;
   overflow: hidden auto;
-  -webkit-mask-image: -webkit-radial-gradient(var(--inv-text), var(--text));
-  mask-image: radial-gradient(var(--inv-text), var(--text));
   transition: margin-right 0.3s ease;
 }
 
