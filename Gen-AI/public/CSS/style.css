@@ -8,9 +8,9 @@
   /*Background*/
   --bg-color: rgb(3, 7, 18);
   /*Text*/
-  --text: #ffffff;
-  --inv-text: #000000;
-  --alt-text: #e0e0e0;
+  --text: rgb(255, 255, 255);
+  --inv-text: rgb(0, 0, 0);
+  --alt-text: rgb(224, 224, 224);
   /*Customs*/
   --shadow: rgba(31, 38, 135, 0.37);
   /*Opacity*/
@@ -410,8 +410,7 @@ html {
   }
 }
 
-#program-content a,
-#program-content a:visited {
+#program-content a {
   color: #639cfd;
 }
 
@@ -687,7 +686,13 @@ sidebar::-webkit-scrollbar-track,
 }
 
 #program-content table a {
-  color: inherit;
+  color: var(--alt-text);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+#program-content table a:hover {
+  color: var(--text);
   text-decoration: underline;
 }
 
@@ -758,7 +763,7 @@ sidebar::-webkit-scrollbar-track,
 
 .menu #close-menu {
   all: unset;
-  background: var(--alt-text);
+  background: var(--shadow);
   border-radius: 50px;
   position: absolute;
   top: 48px;
