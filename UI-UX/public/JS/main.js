@@ -11,6 +11,7 @@ import { setupMenuAnimation } from "./menuManager.js";
 import { enterFullscreen } from "./fullScreen.js";
 import { feedbackHandler } from "./feedbackHandler.js";
 import { setupTooltips } from "./tooltipHandler.js";
+import { showUpdateNotification } from "./notificationHandler.js";
 
 setupLoadingBar();
 setupDarkMode();
@@ -45,6 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupSearchShortcut();
   feedbackHandler();
   setupTooltips();
+  showUpdateNotification();
 
   // Listen for hash changes
   window.addEventListener("hashchange", loadTutorialFromHash);
