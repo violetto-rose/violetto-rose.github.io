@@ -1315,6 +1315,12 @@ body.dark-mode #tutorial-content table a:hover {
   top: 260px;
 }
 
+@media screen and (max-width: 640px) {
+  #close-modal {
+    top: 20px;
+  }
+}
+
 #close-modal:hover {
   background: var(--lp-three);
   transform: scale(1.1);
@@ -1426,13 +1432,13 @@ body.dark-mode #tutorial-content table a:hover {
   color: var(--text);
 }
 
-.credits-tooltip {
+.credits-info {
   text-align: center;
   white-space: nowrap;
   padding-bottom: 20px;
 }
 
-.credits-tooltip a {
+.credits-info a {
   color: var(--inv-text);
 }
 
@@ -1468,8 +1474,8 @@ body.dark-mode .feedback-message.error {
   color: #ff6363;
 }
 
-body.dark-mode .credits-tooltip,
-body.dark-mode .credits-tooltip a {
+body.dark-mode .credits-info,
+body.dark-mode .credits-info a {
   color: var(--text);
 }
 
