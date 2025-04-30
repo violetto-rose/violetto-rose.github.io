@@ -1,7 +1,7 @@
 :root {
   /*Fonts*/
   --font1: "Poppins";
-  --font2: "Funnel Display";
+  --font2: "Unbounded";
   /*Background*/
   --bg-color1: #8f3ee5;
   --bg-color2: #639cfd;
@@ -1624,6 +1624,81 @@ body.dark-mode .credits-icon:hover {
 
 .skeleton-paragraph .skeleton-text {
   margin-bottom: 10px;
+}
+
+/***********************/
+/* Pop-up notification */
+/***********************/
+
+.update-notification {
+  position: fixed;
+  bottom: 20px;
+  right: -100%;
+  padding: 15px;
+  color: #000;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px var(--dp-one);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: right 0.5s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+.update-notification.show {
+  right: 20px;
+}
+
+.update-notification.hide {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.update-notification-text {
+  display: inline-flex;
+  gap: 10px;
+}
+
+.update-notification p {
+  margin: 0;
+}
+
+.update-notification a {
+  color: #217bfe;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.update-notification a:hover {
+  text-decoration: underline;
+}
+
+.close-notification {
+  color: #000;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 10px;
+}
+
+@media screen and (max-width: 640px) {
+  .update-notification {
+    bottom: unset;
+    width: calc(100vw - 50px);
+
+    top: 10px;
+  }
+
+  .update-notification.show {
+    right: 10px;
+  }
+
+  .update-notification-text {
+    display: inline;
+  }
 }
 
 /********************/
