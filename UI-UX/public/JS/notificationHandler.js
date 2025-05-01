@@ -1,28 +1,68 @@
+export const notifications = [
+    {
+        description: "The lab manual has been updated!",
+        link: "#about-course.md",
+        linkName: "View updates",
+        expiryDate: new Date("2025-05-06T00:00:00")
+    },
+    {
+        description: "E-Commerce Website Redesign now available",
+        link: "#e-commerce-website.md",
+        linkName: "Click here",
+        expiryDate: new Date("2025-05-06T00:00:00")
+    },
+    {
+        description: "New course on AI and ML available",
+        link: "#ai-ml-course.md",
+        linkName: "Enroll now",
+        expiryDate: new Date("2025-05-06T00:00:00")
+    }
+];
+
 export function showUpdateNotification() {
-    const notification = document.createElement('div');
-    notification.className = 'update-notification';
-    notification.innerHTML = `
-        <div class="update-notification-text">
-          <p>The lab manual has been updated!</p>
-          <a href="#about-course.md">View updates</a>
-        </div>
-        <button class="close-notification">&times;</button>
-    `;
+    const activeNotifications = notifications.filter(notification => {
+        const currentDate = new Date();
+        return currentDate < notification.expiryDate;
+    });
 
-    document.body.appendChild(notification);
+    if (activeNotifications.length === 0) return;
 
-    setTimeout(() => {
-        notification.classList.add('show');
-    }, 10);
+    let notificationContainer = document.querySelector('.notification-container');
+    if (!notificationContainer) {
+        notificationContainer = document.createElement('div');
+        notificationContainer.className = 'notification-container';
+        document.body.appendChild(notificationContainer);
+    }
 
-    const removeNotification = () => {
-        notification.classList.add('hide');
+    activeNotifications.forEach((notificationData, index) => {
         setTimeout(() => {
-            notification.remove();
-        }, 300);
-    };
+            const notification = document.createElement('div');
+            notification.className = 'update-notification';
+            notification.innerHTML = `
+                <p>${notificationData.description} <a href="${notificationData.link}">${notificationData.linkName}</a></p>
+                <button class="close-notification">&times;</button>
+            `;
 
-    setTimeout(removeNotification, 5000);
+            notificationContainer.appendChild(notification);
 
-    notification.querySelector('.close-notification').addEventListener('click', removeNotification);
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 10);
+
+            const removeNotification = () => {
+                notification.classList.add('hide');
+                setTimeout(() => {
+                    notification.remove();
+                    const remainingNotifications = notificationContainer.querySelectorAll('.update-notification');
+                    remainingNotifications.forEach((notification, idx) => {
+                        notification.style.transform = idx === 0 ? 'translateY(0)' : `translateY(-${100}%)`;
+                    });
+                }, 5000);
+            };
+
+            setTimeout(removeNotification, 5000);
+
+            notification.querySelector('.close-notification').addEventListener('click', removeNotification);
+        }, index * 1000);
+    });
 }
