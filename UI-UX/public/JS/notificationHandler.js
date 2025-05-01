@@ -5,18 +5,6 @@ export const notifications = [
         linkName: "View updates",
         expiryDate: new Date("2025-05-06T00:00:00")
     },
-    {
-        description: "E-Commerce Website Redesign now available",
-        link: "#e-commerce-website.md",
-        linkName: "Click here",
-        expiryDate: new Date("2025-05-06T00:00:00")
-    },
-    {
-        description: "New course on AI and ML available",
-        link: "#ai-ml-course.md",
-        linkName: "Enroll now",
-        expiryDate: new Date("2025-05-06T00:00:00")
-    }
 ];
 
 export function showUpdateNotification() {
