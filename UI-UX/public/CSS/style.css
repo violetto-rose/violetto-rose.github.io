@@ -824,6 +824,27 @@ body.dark-mode .box {
   text-decoration: underline;
 }
 
+#tutorial-content .fa-arrow-right {
+  display: inline-block;
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateX(0);
+  }
+  40% {
+    transform: translateX(-20px);
+  }
+  60% {
+    transform: translateX(-14px);
+  }
+}
+
 .code-block-wrapper {
   position: relative;
   display: flex;
@@ -1434,8 +1455,14 @@ body.dark-mode #tutorial-content table a:hover {
 
 .credits-info {
   text-align: center;
-  white-space: nowrap;
   padding-bottom: 20px;
+}
+
+@media screen and (max-width: 640px) {
+  .credits-info p:last-child {
+    padding: 0 0.5rem 1rem;
+    font-size: 16px;
+  }
 }
 
 .credits-info a {
@@ -1679,6 +1706,7 @@ body.dark-mode .credits-icon:hover {
 }
 
 .update-notification a {
+  font-family: inherit;
   color: #217bfe;
   text-decoration: none;
   font-weight: 500;

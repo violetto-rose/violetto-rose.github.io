@@ -1,7 +1,7 @@
 export const notifications = [
     {
         description: "The lab manual has been updated!",
-        link: "#about-course.md",
+        link: "./public/resources/UI-UX-Laboratory-Manual.pdf",
         linkName: "View updates",
         expiryDate: new Date("2025-05-06T00:00:00")
     },
