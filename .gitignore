@@ -13,8 +13,9 @@ package.json
 postcss.config.js
 tailwind.config.js
 
-# VS configuration
+# IDE configuration
 .vscode/
+.trae/
 
-# EmailJS configuration
-UI-UX/public/JS/config.js
+# API configuration
+config.js

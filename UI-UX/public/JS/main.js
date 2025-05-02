@@ -12,6 +12,7 @@ import { enterFullscreen } from "./fullScreen.js";
 import { feedbackHandler } from "./feedbackHandler.js";
 import { setupTooltips } from "./tooltipHandler.js";
 import { showUpdateNotification } from "./notificationHandler.js";
+import { initializeAuth } from './auth.js';
 
 setupLoadingBar();
 setupDarkMode();
@@ -46,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupSearchShortcut();
   feedbackHandler();
   setupTooltips();
+  initializeAuth();
   showUpdateNotification();
 
   // Listen for hash changes

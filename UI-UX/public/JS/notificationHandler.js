@@ -1,56 +1,127 @@
-export const notifications = [
-    {
-        description: "The lab manual has been updated!",
-        link: "./public/resources/UI-UX-Laboratory-Manual.pdf",
-        linkName: "View updates",
-        expiryDate: new Date("2025-05-06T00:00:00")
-    },
-];
+import { db } from './firebaseConfig.js';
+import { ref, onValue, push, update, remove } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
 
 export function showUpdateNotification() {
-    const activeNotifications = notifications.filter(notification => {
-        const currentDate = new Date();
-        return currentDate < notification.expiryDate;
-    });
+    const notificationsRef = ref(db, 'notifications');
+    let notificationContainer = null;
 
-    if (activeNotifications.length === 0) return;
+    onValue(notificationsRef, (snapshot) => {
+        const titleElement = document.querySelector('.title');
+        if (titleElement && titleElement.classList.contains('admin-mode')) {
+            if (notificationContainer) {
+                notificationContainer.remove();
+                notificationContainer = null;
+            }
+            return;
+        }
 
-    let notificationContainer = document.querySelector('.notification-container');
-    if (!notificationContainer) {
-        notificationContainer = document.createElement('div');
-        notificationContainer.className = 'notification-container';
-        document.body.appendChild(notificationContainer);
-    }
+        const notifications = [];
+        snapshot.forEach((childSnapshot) => {
+            const notification = childSnapshot.val();
+            const currentDate = new Date();
+            const expiryDate = new Date(notification.expiryDate);
 
-    activeNotifications.forEach((notificationData, index) => {
-        setTimeout(() => {
-            const notification = document.createElement('div');
-            notification.className = 'update-notification';
-            notification.innerHTML = `
-                <p>${notificationData.description} <a href="${notificationData.link}">${notificationData.linkName}</a></p>
-                <button class="close-notification">&times;</button>
-            `;
+            if (currentDate < expiryDate) {
+                notifications.push(notification);
+            }
+        });
 
-            notificationContainer.appendChild(notification);
+        if (notifications.length === 0) {
+            if (notificationContainer) {
+                notificationContainer.remove();
+                notificationContainer = null;
+            }
+            return;
+        }
 
+        if (!notificationContainer) {
+            notificationContainer = document.createElement('div');
+            notificationContainer.className = 'notification-container';
+            document.body.appendChild(notificationContainer);
+        }
+
+        notifications.forEach((notificationData, index) => {
             setTimeout(() => {
-                notification.classList.add('show');
-            }, 10);
+                const notification = document.createElement('div');
+                notification.className = 'update-notification';
+                notification.innerHTML = `
+                    <p>${notificationData.description} <a href="${notificationData.link}">${notificationData.linkName}</a></p>
+                    <button class="close-notification">&times;</button>
+                `;
 
-            const removeNotification = () => {
-                notification.classList.add('hide');
+                notificationContainer.appendChild(notification);
+
                 setTimeout(() => {
-                    notification.remove();
-                    const remainingNotifications = notificationContainer.querySelectorAll('.update-notification');
-                    remainingNotifications.forEach((notification, idx) => {
-                        notification.style.transform = idx === 0 ? 'translateY(0)' : `translateY(-${100}%)`;
-                    });
-                }, 5000);
-            };
+                    notification.classList.add('show');
+                }, 10);
 
-            setTimeout(removeNotification, 5000);
+                const removeNotification = () => {
+                    notification.classList.add('hide');
+                    setTimeout(() => {
+                        notification.remove();
+                        const remainingNotifications = notificationContainer.querySelectorAll('.update-notification');
+                        remainingNotifications.forEach((notification, idx) => {
+                            notification.style.transform = idx === 0 ? 'translateY(0)' : `translateY(-${100}%)`;
+                        });
+                    }, 5000);
+                };
 
-            notification.querySelector('.close-notification').addEventListener('click', removeNotification);
-        }, index * 1000);
+                setTimeout(removeNotification, 5000);
+
+                notification.querySelector('.close-notification').addEventListener('click', removeNotification);
+            }, index * 1000);
+        });
     });
 }
+
+export class NotificationManager {
+    constructor() {
+        this.notificationsRef = ref(db, 'notifications');
+    }
+
+    async createNotification(notification) {
+        try {
+            const newNotificationRef = push(this.notificationsRef);
+            await update(newNotificationRef, notification);
+            return newNotificationRef.key;
+        } catch (error) {
+            console.error('Error creating notification:', error);
+            throw error;
+        }
+    }
+
+    async updateNotification(notificationId, updates) {
+        try {
+            const notificationRef = ref(db, `notifications/${notificationId}`);
+            await update(notificationRef, updates);
+        } catch (error) {
+            console.error('Error updating notification:', error);
+            throw error;
+        }
+    }
+
+    async deleteNotification(notificationId) {
+        try {
+            const notificationRef = ref(db, `notifications/${notificationId}`);
+            await remove(notificationRef);
+        } catch (error) {
+            console.error('Error deleting notification:', error);
+            throw error;
+        }
+    }
+
+    onNotificationsChange(callback) {
+        onValue(this.notificationsRef, (snapshot) => {
+            const notifications = [];
+            snapshot.forEach((childSnapshot) => {
+                notifications.push({
+                    id: childSnapshot.key,
+                    ...childSnapshot.val()
+                });
+            });
+            callback(notifications);
+        });
+    }
+}
+
+export const notificationManager = new NotificationManager();
