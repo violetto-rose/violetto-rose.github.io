@@ -600,7 +600,7 @@ body.dark-mode .glass {
 
 #sidebar h1 {
   font-size: 1.8em;
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
   text-align: center;
 }
 
@@ -1476,13 +1476,6 @@ body.dark-mode #tutorial-content table a:hover {
   padding-bottom: 20px;
 }
 
-@media screen and (max-width: 640px) {
-  .credits-info p:last-child {
-    padding: 0 0.5rem 1rem;
-    font-size: 16px;
-  }
-}
-
 .credits-info a {
   color: var(--inv-text);
 }
@@ -1586,7 +1579,7 @@ body.dark-mode .credits-icon:hover {
 }
 
 .authentication .admin-panel {
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
   display: grid;
   gap: 1rem;
   width: 100%;
@@ -1756,7 +1749,7 @@ body.dark-mode .credits-icon:hover {
 @media screen and (max-width: 1280px) {
   #dashboard {
     overflow: hidden auto;
-    padding: 1rem 2rem;
+    padding: 2rem;
   }
 
   #dashboard #close-dashboard {
@@ -1803,6 +1796,11 @@ body.dark-mode .credits-icon:hover {
     gap: 10px;
     flex-direction: column;
     align-items: unset;
+  }
+
+  .dashboard-bento .glass {
+    border: 1px solid;
+    border-radius: 20px;
   }
 }
 
