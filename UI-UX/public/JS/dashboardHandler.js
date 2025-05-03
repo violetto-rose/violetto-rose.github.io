@@ -49,7 +49,9 @@ export class DashboardHandler {
                     <div class="bento-box glass notifications-section">
                         <h3>Notifications</h3>
                         <button class="button add-notification-btn"><span class="btn-text">Add New Notification</span><i class="fa-solid fa-plus btn-icon"></i></button>
-                        <div class="notifications-list"></div>
+                        <div class="notifications-list-container">
+                            <div class="notifications-list"></div>
+                        </div>
                     </div>
                     <div class="bento-box glass stats-section">
                         <h3>Statistics</h3>
@@ -86,10 +88,23 @@ export class DashboardHandler {
             };
 
             try {
+                const submitBtn = form.querySelector('.submit-btn');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Saving...';
+
                 await notificationManager.createNotification(formData);
                 form.reset();
+
+                submitBtn.textContent = 'Saved!';
+                setTimeout(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Save';
+                }, 2000);
             } catch (error) {
                 alert('Error saving notification: ' + error.message);
+                const submitBtn = form.querySelector('.submit-btn');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Save';
             }
         });
     }
@@ -103,13 +118,19 @@ export class DashboardHandler {
         form.link.value = notification?.link || '';
         form.linkName.value = notification?.linkName || '';
         if (notification?.expiryDate) {
-            form.expiryDate.value = notification.expiryDate.split('.')[0];
+            const date = new Date(notification.expiryDate);
+            const localDateTime = new Date(date.getTime() - date.getTimezoneOffset() * 60000)
+                .toISOString()
+                .slice(0, 16);
+            form.expiryDate.value = localDateTime;
         } else {
             form.expiryDate.value = '';
         }
 
         const newForm = form.cloneNode(true);
         form.parentNode.replaceChild(newForm, form);
+
+        newForm.dataset.editMode = notification ? notification.id : '';
 
         newForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -121,24 +142,40 @@ export class DashboardHandler {
             };
 
             try {
-                if (notification) {
-                    await notificationManager.updateNotification(notification.id, formData);
+                const submitBtn = newForm.querySelector('.submit-btn');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Saving...';
+
+                if (newForm.dataset.editMode) {
+                    await notificationManager.updateNotification(newForm.dataset.editMode, formData);
+                } else {
+                    await notificationManager.createNotification(formData);
                 }
+
                 newForm.reset();
+                newForm.dataset.editMode = '';
+                formTitle.textContent = 'Add Notification';
+
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Saved!';
+
+                setTimeout(() => {
+                    if (submitBtn) {
+                        submitBtn.textContent = 'Save';
+                    }
+                }, 1000);
             } catch (error) {
                 alert('Error saving notification: ' + error.message);
+                const submitBtn = newForm.querySelector('.submit-btn');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Save';
             }
         });
 
         newForm.querySelector('.cancel-btn').addEventListener('click', () => {
-            if (notification) {
-                newForm.description.value = notification.description;
-                newForm.link.value = notification.link;
-                newForm.linkName.value = notification.linkName;
-                newForm.expiryDate.value = notification.expiryDate.split('.')[0];
-            } else {
-                newForm.reset();
-            }
+            newForm.reset();
+            newForm.dataset.editMode = '';
+            formTitle.textContent = 'Add Notification';
         });
     }
 
@@ -178,7 +215,14 @@ export class DashboardHandler {
             <div class="notification-item" data-id="${notification.id}">
                 <div class="notification-content">
                     <p>${notification.description}</p>
-                    <small>Expires: ${new Date(notification.expiryDate).toLocaleString()}</small>
+                    <small>Expires: ${new Date(notification.expiryDate).toLocaleString('en-GB', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+        })}</small>
                 </div>
                 <div class="notification-actions">
                     <button class="button edit-btn">Edit</button>
