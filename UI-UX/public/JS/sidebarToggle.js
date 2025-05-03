@@ -36,8 +36,9 @@ export function setupSidebar() {
       const isOutsideSidebar = !sidebar.contains(e.target)
       const isNotToggleButton = !sidebarToggle.contains(e.target)
       const isNotDarkModeToggle = !document.getElementById("theme-toggle").contains(e.target)
+      const isNotInDashboard = !document.querySelector('.dashboard')?.contains(e.target)
 
-      if (isOutsideSidebar && isNotToggleButton && isNotDarkModeToggle) {
+      if (isOutsideSidebar && isNotToggleButton && isNotDarkModeToggle && isNotInDashboard) {
         if (sidebar.classList.contains("open")) {
           toggleSidebar()
         }

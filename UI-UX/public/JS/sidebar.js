@@ -1,7 +1,6 @@
 import { loadTutorial, updateActiveLink } from "./utils.js";
 
-// List of tutorial markdown files
-const tutorials = [
+export const tutorials = [
   { name: "Introduction to UI/UX", file: "intro.md" },
   { name: "About the course", file: "about-course.md" },
   { name: "Setting up Figma", file: "setting-up-figma.md" },
@@ -23,7 +22,7 @@ export function populateSidebar() {
     const li = document.createElement("li");
     const a = document.createElement("a");
     a.href = `#${tutorial.file}`;
-    a.innerHTML = `<i class="fas fa-book-open"></i> &nbsp ${tutorial.name}`;
+    a.innerHTML = `<i class="fas fa-book-open"></i>&nbsp;${tutorial.name}`;
     a.onclick = (e) => {
       e.preventDefault();
       loadTutorial(tutorial.file);
@@ -63,6 +62,3 @@ export function loadTutorialFromHash() {
     updateActiveLink(document.querySelector("#tutorial-list a"));
   }
 }
-
-// Export tutorials for use in other modules
-export { tutorials };

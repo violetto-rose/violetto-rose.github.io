@@ -95,6 +95,12 @@ html {
   box-shadow: 0 6px 8px var(--dp-two);
 }
 
+.toggle:active {
+  background: var(--lp-five);
+  transform: scale(1);
+  box-shadow: none;
+}
+
 @media screen and (max-width: 768px) {
   .toggle:active,
   .toggle:hover {
@@ -322,7 +328,15 @@ html {
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  transform: scale(1.02);
+}
+
+.button:active {
+  transform: scale(0.95);
 }
 
 .button.loading {
@@ -364,6 +378,7 @@ body.dark-mode .button {
   top: 0;
   width: 20rem;
   height: 100%;
+  border-left: 1px solid var(--lp-two);
   background: var(--lp-one);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
@@ -450,6 +465,7 @@ body.dark-mode #structure-view {
   backdrop-filter: blur(50px);
   background: var(--f-p-one);
   color: var(--tone-text);
+  border-color: var(--h-p-two);
 }
 
 body.dark-mode #structure-view .structure-item:hover,
@@ -1394,12 +1410,6 @@ body.dark-mode #tutorial-content table a:hover {
   }
 }
 
-#close-modal:hover {
-  background: var(--lp-three);
-  transform: scale(1.1);
-  box-shadow: 0 6px 8px var(--dp-two);
-}
-
 .form-group {
   margin-bottom: 15px;
 }
@@ -1432,12 +1442,17 @@ body.dark-mode #tutorial-content table a:hover {
   resize: vertical;
 }
 
-.submit-btn {
-  left: 50%;
-  transform: translateX(-50%);
+.feedback-btn-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.submit-btn:disabled {
+.feedback-submit-btn {
+  width: max-content;
+}
+
+.feedback-submit-btn:disabled {
   cursor: not-allowed;
 }
 
@@ -1564,18 +1579,27 @@ body.dark-mode .credits-icon:hover {
 }
 
 .authentication .popup {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 20px;
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  text-align: center;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 var(--shadow);
   background-color: var(--inv-text);
   color: var(--text);
   padding: 0.5rem 1rem;
   font-size: 0.8em;
-  white-space: nowrap;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transform: translateY(-100%);
+  transition: all 0.3s ease;
+}
+
+.authentication .popup p {
+  margin: unset;
 }
 
 .authentication .admin-panel {
@@ -1583,6 +1607,10 @@ body.dark-mode .credits-icon:hover {
   display: grid;
   gap: 1rem;
   width: 100%;
+}
+
+body.dark-mode .authentication .popup {
+  background-color: var(--purp);
 }
 
 /******************************/
@@ -1667,11 +1695,6 @@ body.dark-mode .credits-icon:hover {
   justify-content: flex-end;
 }
 
-.notification-form .submit-btn {
-  left: unset;
-  transform: unset;
-}
-
 .notifications-section {
   grid-column: 2;
   grid-row: 1 / 2;
@@ -1705,6 +1728,14 @@ body.dark-mode .credits-icon:hover {
   flex-grow: 1;
   overflow: hidden auto;
   margin-top: 15px;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-size: 24px;
 }
 
 .notifications-list {

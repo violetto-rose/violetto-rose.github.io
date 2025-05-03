@@ -183,6 +183,9 @@ export class DashboardHandler {
         const addBtn = this.dashboard.querySelector('.add-notification-btn');
         addBtn.addEventListener('click', () => this.showNotificationForm());
 
+        const listContainer = this.dashboard.querySelector('.notifications-list');
+        listContainer.innerHTML = '<div class="loading-spinner"><i class="fa-solid fa-spinner fa-spin-pulse"></i></div>';
+
         notificationManager.onNotificationsChange((notifications) => {
             this.renderNotifications(notifications);
             this.updateNotificationStats(notifications);

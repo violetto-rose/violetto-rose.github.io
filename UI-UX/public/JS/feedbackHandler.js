@@ -8,7 +8,7 @@ export function feedbackHandler() {
     const trigger = document.getElementById('feedback-trigger');
     const closeBtn = document.querySelector('#close-modal');
     const feedbackForm = document.getElementById('feedback-form');
-    const submitBtn = feedbackForm.querySelector('.submit-btn');
+    const feedbackSubmit = feedbackForm.querySelector('.feedback-submit-btn');
 
     // Open modal
     trigger.addEventListener('click', () => {
@@ -25,9 +25,9 @@ export function feedbackHandler() {
         e.preventDefault();
 
         // Show loading state
-        submitBtn.disabled = true;
-        submitBtn.classList.add('loading');
-        submitBtn.textContent = 'Sending...';
+        feedbackSubmit.disabled = true;
+        feedbackSubmit.classList.add('loading');
+        feedbackSubmit.textContent = 'Sending...';
 
         try {
             const templateParams = {
@@ -48,9 +48,9 @@ export function feedbackHandler() {
             console.error('Error:', error);
             showMessage('Failed to send message. Please try again.', 'error');
         } finally {
-            submitBtn.disabled = false;
-            submitBtn.classList.remove('loading');
-            submitBtn.textContent = 'Send Feedback';
+            feedbackSubmit.disabled = false;
+            feedbackSubmit.classList.remove('loading');
+            feedbackSubmit.textContent = 'Send Feedback';
         }
     });
 }

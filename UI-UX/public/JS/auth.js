@@ -58,11 +58,25 @@ export function initializeAuth() {
     };
 
     const showError = (element, message) => {
-        element.textContent = message;
+        let errorMessage;
+
+        switch (message.split('/')[1]?.split(')')[0]) {
+            case 'invalid-credential':
+                errorMessage = 'Invalid email or password.';
+                break;
+            case 'too-many-requests':
+                errorMessage = 'Too many login attempts.';
+                break;
+            default:
+                errorMessage = 'An error occurred. Please try again.';
+        }
+        element.innerHTML = `<i class="fa-solid fa-triangle-exclamation fa-xl"></i><p>${errorMessage}</p>`;
         element.style.opacity = '1';
+        element.style.transform = "translateY(0)";
         setTimeout(() => {
             element.style.opacity = '0';
-        }, 3000);
+            element.style.transform = "translateY(-100%)";
+        }, 4000);
     };
 
     const setupLoginForm = () => {
