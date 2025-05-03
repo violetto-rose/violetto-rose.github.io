@@ -736,6 +736,10 @@ sidebar::-webkit-scrollbar-track,
   margin: 10px 0 0;
 }
 
+.copyright-footer a {
+  color: var(--text);
+}
+
 /***************/
 /* Menu Styles */
 /***************/
@@ -778,7 +782,7 @@ sidebar::-webkit-scrollbar-track,
 }
 
 .menu .fa-xmark {
-  color: var(--bg-color);
+  color: var(--text);
   font-size: 24px;
 }
 
