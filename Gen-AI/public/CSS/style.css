@@ -82,7 +82,7 @@ html {
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 20px;
+  padding: 20px 20px 10px;
   box-sizing: border-box;
 }
 
