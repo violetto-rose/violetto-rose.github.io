@@ -30,15 +30,9 @@ To explore the tutorials and applications, visit the [GitHub Pages site](https:/
 
 ---
 
-## 🤝 Contributing
-
-We welcome contributions to improve and expand the tutorials and applications. If you have suggestions or would like to contribute, please fork the repository and submit a pull request.
-
----
-
 ## 📜 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the GNU General Public License v3 - see the [LICENSE](LICENSE) file for details.
 
 ---
 
