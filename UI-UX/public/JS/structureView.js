@@ -39,9 +39,13 @@ export function closeStructureView() {
 }
 
 export function generateStructureView(content) {
-  const structureContent = document.getElementById("structure-content");
-  // Clear previous structure
-  structureContent.innerHTML = "";
+  const structureView = document.getElementById("structure-view");
+  const structureContent = document.createElement("div");
+  structureContent.id = "structure-content";
+  structureContent.style.overflowY = "auto";
+  structureContent.style.flex = "1";
+  structureView.innerHTML = ""; // Clear previous structure
+  structureView.appendChild(structureContent);
 
   // Create headings structure
   const headings = content.querySelectorAll("h1, h2, h3");
@@ -52,6 +56,43 @@ export function generateStructureView(content) {
   }
 
   let currentSection = null; // Track the current section for subsections
+  const structureItems = new Map(); // Store references to structure items
+
+  // Create Intersection Observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const heading = entry.target;
+      const structureItem = structureItems.get(heading);
+      
+      if (structureItem) {
+        if (entry.isIntersecting) {
+          // Remove highlight from all items
+          document.querySelectorAll('.structure-item, .structure-section, .structure-subsection').forEach(item => {
+            item.classList.remove('active');
+          });
+          // Add highlight to current item
+          structureItem.classList.add('active');
+          
+          // Scroll the structure view to keep the active item in view
+          const itemRect = structureItem.getBoundingClientRect();
+          const containerRect = structureContent.getBoundingClientRect();
+          
+          // Calculate if the item is outside the visible area
+          if (itemRect.top < containerRect.top || itemRect.bottom > containerRect.bottom) {
+            // Calculate the scroll position to keep the item in the upper portion of the viewport
+            const scrollTop = structureItem.offsetTop - 100; // Offset from top to keep it visible
+            structureContent.scrollTo({
+              top: Math.max(0, scrollTop), // Ensure we don't scroll past the top
+              behavior: 'smooth'
+            });
+          }
+        }
+      }
+    });
+  }, {
+    rootMargin: '-20% 0px -70% 0px', // Adjust these values to control when the highlight triggers
+    threshold: 0
+  });
 
   headings.forEach((heading) => {
     const level = heading.tagName.toLowerCase();
@@ -61,6 +102,7 @@ export function generateStructureView(content) {
     if (level === "h1") {
       const section = createStructureItem(text, heading);
       structureContent.appendChild(section);
+      structureItems.set(heading, section);
       currentSection = null;
     }
 
@@ -68,6 +110,7 @@ export function generateStructureView(content) {
     if (level === "h2") {
       const section = createStructureSection(text, heading);
       structureContent.appendChild(section);
+      structureItems.set(heading, section);
       currentSection = section;
     }
 
@@ -75,7 +118,11 @@ export function generateStructureView(content) {
     if (level === "h3" && currentSection) {
       const subsection = createStructureSubsection(text, heading);
       currentSection.appendChild(subsection);
+      structureItems.set(heading, subsection);
     }
+
+    // Observe the heading
+    observer.observe(heading);
   });
 }
 

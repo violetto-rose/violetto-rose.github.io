@@ -383,11 +383,16 @@ body.dark-mode .button {
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   transition: right 0.3s ease;
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
   padding: 40px;
   box-sizing: border-box;
+}
+
+#structure-content {
+  flex: 1;
+  overflow-y: auto;
+  border-radius: 10px;
 }
 
 #structure-view.open {
@@ -397,10 +402,22 @@ body.dark-mode .button {
 #structure-view .structure-item,
 #structure-view .structure-section,
 #structure-view .structure-subsection {
-  padding: 8px 12px;
   cursor: pointer;
+  padding: 8px 12px;
+  transition: all 0.3s ease;
   border-radius: 10px;
-  transition: background 0.3s ease;
+}
+
+#structure-view .structure-item.active,
+#structure-view .structure-section.active,
+#structure-view .structure-subsection.active {
+  background: var(--lp-two);
+}
+
+body.dark-mode #structure-view .structure-item.active,
+body.dark-mode #structure-view .structure-section.active,
+body.dark-mode #structure-view .structure-subsection.active {
+  background: var(--dp-two);
 }
 
 #structure-view .structure-item {
@@ -455,7 +472,7 @@ body.dark-mode .button {
 
 @media screen and (min-width: 1280px) {
   #structure-view {
-    padding-left: 20px;
+    padding: 20px 40px 20px 20px;
   }
 }
 
@@ -725,6 +742,7 @@ body.dark-mode .glass {
 
 #tutorial-list {
   overflow-y: auto;
+  border-radius: 10px;
 }
 
 #sidebar ul {
@@ -2086,7 +2104,8 @@ body.dark-mode .authentication .popup {
 #content::-webkit-scrollbar,
 #search-results::-webkit-scrollbar,
 #structure-content::-webkit-scrollbar,
-.notifications-list-container::-webkit-scrollbar {
+.notifications-list-container::-webkit-scrollbar,
+iframe::-webkit-scrollbar {
   width: 4px;
 }
 
@@ -2094,7 +2113,8 @@ body.dark-mode .authentication .popup {
 #content::-webkit-scrollbar-track,
 #search-results::-webkit-scrollbar-track,
 #structure-content::-webkit-scrollbar-track,
-.notifications-list-container::-webkit-scrollbar-track {
+.notifications-list-container::-webkit-scrollbar-track,
+iframe::-webkit-scrollbar-track {
   background: var(--lp-one);
   border-radius: 10px;
 }
@@ -2103,7 +2123,8 @@ body.dark-mode .authentication .popup {
 #content::-webkit-scrollbar-thumb,
 #search-results::-webkit-scrollbar-thumb,
 #structure-content::-webkit-scrollbar-thumb,
-.notifications-list-container::-webkit-scrollbar-thumb {
+.notifications-list-container::-webkit-scrollbar-thumb,
+iframe::-webkit-scrollbar-thumb {
   background: var(--lp-three);
   border-radius: 10px;
   transition: background 0.3s ease;
@@ -2113,7 +2134,8 @@ body.dark-mode .authentication .popup {
 #content::-webkit-scrollbar-thumb:hover,
 #search-results::-webkit-scrollbar-thumb:hover,
 #structure-content::-webkit-scrollbar-thumb:hover,
-.notifications-list-container::-webkit-scrollbar-thumb:hover {
+.notifications-list-container::-webkit-scrollbar-thumb:hover,
+iframe::-webkit-scrollbar-thumb:hover {
   background: var(--lp-five);
 }
 
@@ -2121,7 +2143,9 @@ body.dark-mode .authentication .popup {
 #tutorial-list,
 #content,
 #search-results,
-.notifications-list-container {
+#structure-content,
+.notifications-list-container,
+iframe {
   scrollbar-width: thin;
   scrollbar-color: var(--lp-three) var(--lp-one);
 }
