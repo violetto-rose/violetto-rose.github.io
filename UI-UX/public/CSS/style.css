@@ -411,13 +411,7 @@ body.dark-mode .button {
 #structure-view .structure-item.active,
 #structure-view .structure-section.active,
 #structure-view .structure-subsection.active {
-  background: var(--lp-two);
-}
-
-body.dark-mode #structure-view .structure-item.active,
-body.dark-mode #structure-view .structure-section.active,
-body.dark-mode #structure-view .structure-subsection.active {
-  background: var(--dp-two);
+  background: var(--f-p-five);
 }
 
 #structure-view .structure-item {
@@ -2047,7 +2041,7 @@ body.dark-mode .authentication .popup {
 }
 
 .update-notification a {
-  font-family: inherit;
+  font-family: var(--font1), sans-serif;
   color: #217bfe;
   text-decoration: none;
   font-weight: 500;
