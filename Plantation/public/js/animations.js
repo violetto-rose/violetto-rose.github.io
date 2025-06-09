@@ -60,25 +60,4 @@ document.addEventListener("DOMContentLoaded", function () {
     .forEach((item) => {
       observer.observe(item);
     });
-
-  // Smooth scrolling for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault();
-
-      const targetId = this.getAttribute("href");
-      if (targetId === "#") return;
-
-      const targetElement = document.querySelector(targetId);
-      if (targetElement) {
-        const navbarHeight = document.querySelector(".navbar").offsetHeight;
-        const targetPosition = targetElement.offsetTop - navbarHeight;
-
-        window.scrollTo({
-          top: targetPosition,
-          behavior: "smooth",
-        });
-      }
-    });
-  });
 });

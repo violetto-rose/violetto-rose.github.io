@@ -155,7 +155,9 @@ async function processReadme() {
     readmeContent.innerHTML = htmlContent;
 
     removeElements();
-    readmeContent.innerHTML += `<p style="font-size: 0.5rem; text-align: center; margin-bottom: 0">Ctrl ~ Shift ~ Alt ~ P</p>`;
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    const hintText = isTouchDevice ? '5 taps to unlock' : 'Ctrl ~ Shift ~ Alt ~ P';
+    readmeContent.innerHTML += `<p style="font-size: 0.5rem; text-align: center; margin-bottom: 0">${hintText}</p>`;
   } catch (error) {
     console.error("Error processing README:", error);
   }

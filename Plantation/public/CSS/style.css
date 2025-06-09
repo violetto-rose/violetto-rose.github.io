@@ -11,6 +11,7 @@
   --black: #000;
   --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   --transition: all 0.3s ease;
+  --scroll-padding-top: 0; /* Default value, will be set by JS */
 
   /* Dark mode variables (will be used when .dark-mode class is applied) */
   --dm-primary-color: #66bb6a;
@@ -29,10 +30,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 body {
@@ -276,6 +273,9 @@ section {
 
 /* About Section */
 .about-section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
   background-color: var(--white);
 }
 
@@ -341,6 +341,7 @@ section {
 /* Plant Info Section */
 .plant-info-section {
   background-color: var(--light-color);
+  height: 100vh;
   position: relative;
   overflow: hidden;
 }
@@ -585,17 +586,11 @@ section {
   padding: 60px 0 20px;
 }
 
-.footer-content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 40px;
-  margin-bottom: 40px;
-}
-
 .footer-logo {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  margin-bottom: 40px;
 }
 
 .footer-logo img {
@@ -607,72 +602,6 @@ section {
   color: var(--light-color);
   font-size: 1.5rem;
   margin-bottom: 15px;
-}
-
-.footer-links h4,
-.footer-contact h4 {
-  color: var(--light-color);
-  font-size: 1.2rem;
-  margin-bottom: 20px;
-  position: relative;
-}
-
-.footer-links h4::after,
-.footer-contact h4::after {
-  content: "";
-  position: absolute;
-  bottom: -8px;
-  left: 0;
-  width: 40px;
-  height: 3px;
-  background-color: var(--accent-color);
-}
-
-.footer-links ul {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.footer-links a {
-  color: var(--light-color);
-  transition: var(--transition);
-}
-
-.footer-links a:hover {
-  color: var(--accent-color);
-  padding-left: 5px;
-}
-
-.footer-contact p {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 15px;
-  color: var(--light-color);
-}
-
-.social-icons {
-  display: flex;
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.social-icons a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  color: var(--dm-black);
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  transition: var(--transition);
-}
-
-.social-icons a:hover {
-  background-color: var(--accent-color);
-  transform: translateY(-5px);
 }
 
 .footer-bottom {

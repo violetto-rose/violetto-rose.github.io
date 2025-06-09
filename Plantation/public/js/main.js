@@ -24,7 +24,22 @@ document.addEventListener("DOMContentLoaded", function () {
   // Close mobile menu when clicking a link
   const navItems = document.querySelectorAll(".nav-links a");
   navItems.forEach((item) => {
-    item.addEventListener("click", function () {
+    item.addEventListener("click", function (e) {
+      e.preventDefault(); // Prevent default anchor jump
+
+      const targetId = this.getAttribute("href").substring(1);
+      const targetSection = document.getElementById(targetId);
+
+      if (targetSection) {
+        const targetPosition =
+          targetSection.getBoundingClientRect().top + window.pageYOffset;
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth",
+        });
+      }
+
       if (navLinks.classList.contains("active")) {
         navLinks.classList.remove("active");
         const icon = navToggle.querySelector("i");
@@ -32,6 +47,16 @@ document.addEventListener("DOMContentLoaded", function () {
         icon.classList.add("fa-bars");
       }
     });
+  });
+
+  // Navbar scroll effect
+  const navbar = document.querySelector(".navbar");
+  window.addEventListener("scroll", function () {
+    if (window.pageYOffset > 50) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
   });
 
   // Tabs functionality
@@ -77,29 +102,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Navbar scroll effect
-  const navbar = document.querySelector(".navbar");
-
-  window.addEventListener("scroll", function () {
-    if (window.pageYOffset > 50) {
-      navbar.classList.add("scrolled");
-    } else {
-      navbar.classList.remove("scrolled");
-    }
-  });
-
   // Dark mode toggle
   const darkModeToggle = document.getElementById("dark-mode-toggle");
   const body = document.body;
-  
+
   // Check for saved dark mode preference
   if (localStorage.getItem("darkMode") === "enabled") {
     body.classList.add("dark-mode");
     updateDarkModeIcon(true);
   }
-  
+
   if (darkModeToggle) {
-    darkModeToggle.addEventListener("click", function() {
+    darkModeToggle.addEventListener("click", function () {
       if (body.classList.contains("dark-mode")) {
         body.classList.remove("dark-mode");
         localStorage.setItem("darkMode", "disabled");
@@ -111,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
-  
+
   function updateDarkModeIcon(isDarkMode) {
     const icon = darkModeToggle.querySelector("i");
     if (isDarkMode) {
