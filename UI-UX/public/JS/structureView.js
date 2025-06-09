@@ -55,7 +55,6 @@ export function generateStructureView(content) {
     return;
   }
 
-  let currentSection = null; // Track the current section for subsections
   const structureItems = new Map(); // Store references to structure items
 
   // Create Intersection Observer
@@ -103,7 +102,6 @@ export function generateStructureView(content) {
       const section = createStructureItem(text, heading);
       structureContent.appendChild(section);
       structureItems.set(heading, section);
-      currentSection = null;
     }
 
     // Handle h2 (section)
@@ -111,13 +109,12 @@ export function generateStructureView(content) {
       const section = createStructureSection(text, heading);
       structureContent.appendChild(section);
       structureItems.set(heading, section);
-      currentSection = section;
     }
 
     // Handle h3 (subsection)
-    if (level === "h3" && currentSection) {
+    if (level === "h3") {
       const subsection = createStructureSubsection(text, heading);
-      currentSection.appendChild(subsection);
+      structureContent.appendChild(subsection);
       structureItems.set(heading, subsection);
     }
 
