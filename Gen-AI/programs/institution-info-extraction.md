@@ -2,6 +2,15 @@
 
 ---
 
+Imagine having a smart assistant that can instantly fetch and organize detailed information about any institution from Wikipedia. This tool makes it effortless to gather key facts about educational institutions, companies, or organizations. Here's how it works:
+
+1. **Smart Data Structure**: Using Pydantic, we create a reliable framework that ensures all institution details are properly organized and validated, just like having a well-organized filing system for your data.
+2. **Wikipedia Connection**: The tool seamlessly connects to Wikipedia's vast knowledge base, acting as your personal research assistant to gather accurate information about any institution.
+3. **Intelligent Extraction**: It automatically identifies and extracts crucial details like founding dates, founders, and current operations, saving you hours of manual research.
+4. **Clean Presentation**: All the gathered information is neatly formatted into a structured output, making it perfect for use in applications, reports, or presentations.
+
+---
+
 ### Python Code:
 
 ```python

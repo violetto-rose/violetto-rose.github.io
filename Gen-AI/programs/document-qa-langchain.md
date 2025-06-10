@@ -1,6 +1,17 @@
 # Install LangChain, Cohere (for key), LangChain-community. Get the API key( By logging into Cohere and obtaining the Cohere key). Load a text document from your Google Drive . Create a prompt template to display the output in a particular manner.
 
-Get the text file [here](https://violetto-rose.github.io/Gen-AI/public/resources/8prg.txt).
+---
+
+### What is Document Q&A with LangChain?
+
+Document Q&A with LangChain is a powerful way to analyze and extract information from text documents using AI. This implementation uses Cohere's language model to process and summarize document content. Here's how it works:
+
+1. **Document Loading**: The code loads a text document from your local file system, making it available for processing.
+2. **Prompt Engineering**: A custom prompt template is created to guide the AI in how to analyze and present the information.
+3. **AI Processing**: Using Cohere's language model, the document is processed and analyzed according to the prompt template.
+4. **Output Generation**: The AI generates a structured response based on the document content and prompt instructions.
+
+> Get the text file [here](https://violetto-rose.github.io/Gen-AI/public/resources/8prg.txt).
 
 ---
 
