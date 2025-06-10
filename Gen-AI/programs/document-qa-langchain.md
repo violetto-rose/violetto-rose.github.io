@@ -1,5 +1,7 @@
 # Install LangChain, Cohere (for key), LangChain-community. Get the API key( By logging into Cohere and obtaining the Cohere key). Load a text document from your Google Drive . Create a prompt template to display the output in a particular manner.
 
+Get the text file [here](https://violetto-rose.github.io/Gen-AI/public/resources/8prg.txt).
+
 ---
 
 ### Python Code:
@@ -46,4 +48,5 @@ response = llm.invoke(formatted_prompt)
 print("Response:")
 print(response)
 ```
+
 ---
