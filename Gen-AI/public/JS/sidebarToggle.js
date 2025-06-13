@@ -1,10 +1,15 @@
 export function setupSidebar() {
   const sidebar = document.getElementById("sidebar");
   const sidebarToggle = document.getElementById("sidebar-toggle");
+  const content = document.getElementById("content");
 
   function toggleSidebar() {
     sidebar.classList.toggle("open");
-
+    if (window.innerWidth <= 1080) {
+      if (sidebar.classList.contains("open")) {
+        document.documentElement.style.setProperty('--content-height', `${content.offsetHeight}px`);
+      }
+    }
   }
 
   // Toggle sidebar when button is clicked

@@ -18,6 +18,30 @@ export function setupSearch() {
   const searchInput = document.getElementById("search-input");
   const searchHint = document.querySelector(".search-shortcut-hint");
   const searchResults = document.getElementById("search-results");
+  const searchToggle = document.getElementById("search-toggle");
+  const searchContainer = document.querySelector(".search-container");
+
+  // Mobile search toggle functionality
+  if (searchToggle && searchContainer) {
+    searchToggle.addEventListener("click", () => {
+      searchContainer.classList.toggle("active");
+      if (searchContainer.classList.contains("active")) {
+        searchInput.focus();
+      }
+    });
+
+    // Close search when clicking outside
+    document.addEventListener("click", (e) => {
+      if (
+        !searchContainer.contains(e.target) &&
+        !searchToggle.contains(e.target) &&
+        searchContainer.classList.contains("active")
+      ) {
+        searchContainer.classList.remove("active");
+        closeSearch();
+      }
+    });
+  }
 
   if (searchInput) {
     searchInput.addEventListener("input", () => {
@@ -54,18 +78,6 @@ export function setupSearch() {
       }
     });
   }
-
-  // Close search results when clicking outside
-  document.addEventListener("click", (e) => {
-    if (
-      searchInput &&
-      searchResults &&
-      !searchInput.contains(e.target) &&
-      !searchResults.contains(e.target)
-    ) {
-      closeSearch();
-    }
-  });
 
   // Handle focus/blur events
   if (searchInput && searchHint) {
