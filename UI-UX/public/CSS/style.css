@@ -56,6 +56,7 @@ html {
   padding: 0;
   font-family: var(--font1), sans-serif;
   height: 100vh;
+  height: 100dvh;
   background: linear-gradient(
     45deg,
     var(--bg-color1) 0%,
@@ -87,6 +88,9 @@ html {
   color: var(--text);
   box-shadow: 0 4px 6px var(--dp-one);
   overflow: hidden;
+  &:focus-visible {
+    outline: 2px solid var(--text);
+  }
 }
 
 .toggle:hover {
@@ -378,6 +382,7 @@ body.dark-mode .button {
   top: 0;
   width: 20rem;
   height: 100vh;
+  height: 100dvh;
   border-left: 1px solid var(--lp-two);
   background: var(--lp-one);
   -webkit-backdrop-filter: blur(10px);
@@ -598,6 +603,7 @@ body.dark-mode #structure-view .structure-subsection:hover {
 .container {
   display: flex;
   height: 100vh;
+  height: 100dvh;
   padding: 20px;
   box-sizing: border-box;
 }
@@ -695,6 +701,10 @@ body.dark-mode .glass {
   border: none;
   background: transparent;
   color: var(--text);
+  border-radius: 20px;
+  &:focus-visible {
+    outline: 2px solid var(--text);
+  }
 }
 
 #search-input::placeholder {
@@ -774,6 +784,9 @@ body.dark-mode .glass {
   padding: 10px;
   border-radius: 10px;
   transition: background 0.3s ease;
+  &:focus-visible {
+    outline: 2px solid var(--text);
+  }
 }
 
 #sidebar a:hover {
@@ -793,6 +806,7 @@ body.dark-mode .glass {
     left: -100%;
     height: -webkit-fill-available;
     height: 100vh;
+    height: 100dvh;
     transition: left 0.3s ease;
     z-index: 2;
     border-radius: unset;
@@ -817,6 +831,7 @@ body.dark-mode .glass {
 @media screen and (max-width: 640px) {
   #sidebar {
     height: 90vh;
+    height: 90dvh;
   }
 
   #sidebar.glass {
@@ -894,6 +909,9 @@ body.dark-mode .box {
 #tutorial-content a {
   color: var(--inv-text);
   text-decoration: none;
+  &:focus-visible {
+    outline: none;
+  }
 }
 
 @media screen and (min-width: 1080px) {
@@ -959,7 +977,6 @@ body.dark-mode .box {
   background: var(--lp-five);
   border-bottom: 1px solid var(--alt-text);
   border-radius: 10px 10px 0 0;
-  overflow: hidden;
 }
 
 .copy-button {
@@ -967,6 +984,11 @@ body.dark-mode .box {
   padding: 0.5rem 1rem;
   align-self: flex-end;
   cursor: pointer;
+  border-radius: 0 10px 0 0;
+  z-index: 1; 
+  &:focus-visible {
+    outline: 2px solid var(--text);
+  }
 }
 
 .copy-button:hover {
@@ -982,6 +1004,9 @@ body.dark-mode .box {
   overflow-x: hidden;
   white-space: pre-wrap;
   word-break: break-word;
+  &:focus-visible {
+    outline: 2px solid var(--text);
+  }
 }
 
 #tutorial-content code {
@@ -1096,6 +1121,7 @@ body.dark-mode .box {
 
 #tutorial-content span:has(img[alt="Instagram Brand Text"]) {
   display: inline-flex;
+  flex-wrap: wrap;
   gap: 0.2rem;
 }
 
@@ -1115,6 +1141,7 @@ body.dark-mode .box {
 #tutorial-content iframe {
   width: 100%;
   height: 100vh;
+  height: 100dvh;
   border: 2px solid var(--lp-two);
   border-radius: 10px;
   box-shadow: 0 4px 12px var(--shadow);
@@ -1146,15 +1173,25 @@ body.dark-mode .box {
 .enlarged-image {
   max-width: 90%;
   max-height: 90vh;
+  max-height: 90dvh;
   object-fit: contain;
   border-radius: 10px;
   box-shadow: 0 8px 32px 0 var(--shadow);
+  transition: transform 0.2s ease-out;
+  cursor: default;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  pointer-events: auto;
 }
 
 @media (max-width: 768px) {
   .enlarged-image {
     max-width: 95%;
     max-height: 95vh;
+    max-height: 95dvh;
   }
 }
 
@@ -1183,6 +1220,9 @@ body.dark-mode .box {
   background-color: var(--text);
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
+  &:focus-visible {
+    outline: 2px solid var(--inv-text);
+  }
 }
 
 @media screen and (max-width: 640px) {
@@ -1218,6 +1258,8 @@ body.dark-mode .box {
   align-items: center;
   text-align: center;
   margin-top: 20vh;
+  height: 100dvh;
+  height: 100dvh;
 }
 
 .error-container button {
@@ -1281,6 +1323,9 @@ body.dark-mode .image-overlay {
 body.dark-mode .navigation-buttons button {
   color: var(--text);
   background-color: var(--purp);
+  &:focus-visible {
+    outline: 2px solid var(--text);
+  }
 }
 
 body.dark-mode .error-container button:hover {
@@ -1365,6 +1410,11 @@ body.dark-mode #tutorial-content table a:hover {
   z-index: 1;
 }
 
+#more-info:focus {
+  border-radius: 50%;
+  outline: 2px solid var(--text);
+}
+
 @media screen and (max-width: 640px) {
   #more-info {
     bottom: 60px;
@@ -1403,6 +1453,7 @@ body.dark-mode #tutorial-content table a:hover {
   color: var(--text);
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   top: 0;
   left: 0;
   overflow: hidden;
@@ -1480,6 +1531,9 @@ body.dark-mode #tutorial-content table a:hover {
 
 .feedback-submit-btn {
   width: max-content;
+  &:focus-visible {
+    outline: 2px solid var(--inv-text);
+  }
 }
 
 .feedback-submit-btn:disabled {
@@ -1523,6 +1577,9 @@ body.dark-mode #tutorial-content table a:hover {
 
 .credits-info a {
   color: var(--inv-text);
+  &:focus-visible {
+    outline: none;
+  }
 }
 
 /* Dark mode styles */
@@ -1534,6 +1591,10 @@ body.dark-mode .form-group textarea {
 body.dark-mode .form-group input:focus,
 body.dark-mode .form-group textarea:focus {
   border: 1px solid var(--text);
+}
+
+body.dark-mode .feedback-submit-btn:focus {
+  outline: 2px solid var(--text);
 }
 
 body.dark-mode .feedback-message {
@@ -1717,6 +1778,8 @@ body.dark-mode .authentication .popup {
 .notification-form .form-group textarea {
   height: 30vh;
   max-height: 30vh;
+  height: 30dvh;
+  max-height: 30dvh;
 }
 
 .form-actions {
@@ -1770,6 +1833,7 @@ body.dark-mode .authentication .popup {
 
 .notifications-list {
   height: 45vh;
+  height: 45dvh;
 }
 
 .notification-item {
@@ -1878,6 +1942,7 @@ body.dark-mode .authentication .popup {
   left: 0;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   background-color: #000;
   z-index: 3;
   display: flex;
@@ -1906,6 +1971,9 @@ body.dark-mode .authentication .popup {
   aspect-ratio: 1/1;
   cursor: pointer;
   z-index: 4;
+  &:focus-visible {
+    outline: 2px solid var(--text);
+  }
 }
 
 .menu .fa-xmark {
@@ -1931,6 +1999,9 @@ body.dark-mode .authentication .popup {
   height: 80px;
   display: flex;
   align-items: center;
+  &:focus-visible {
+    outline: 2px solid var(--text);
+  }
 }
 
 .card h1 {

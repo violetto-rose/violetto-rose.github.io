@@ -187,6 +187,7 @@ section {
 /* Hero Section */
 .hero-section {
   height: 100vh;
+  height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -274,6 +275,7 @@ section {
 /* About Section */
 .about-section {
   height: 100vh;
+  height: 100dvh;
   display: flex;
   align-items: center;
   background-color: var(--white);
@@ -342,6 +344,7 @@ section {
 .plant-info-section {
   background-color: var(--light-color);
   height: 100vh;
+  height: 100dvh;
   position: relative;
   overflow: hidden;
 }
@@ -411,6 +414,7 @@ section {
   overflow: hidden;
   box-shadow: var(--shadow);
   height: 60vh;
+  height: 60dvh;
 }
 
 .info-image {

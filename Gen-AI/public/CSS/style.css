@@ -470,6 +470,7 @@ html {
   border-radius: 10px;
   overflow-x: auto;
   max-height: 60vh;
+  max-height: 60dvh;
   line-height: 1.5;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -537,6 +538,7 @@ html {
 .enlarged-image {
   max-width: 90%;
   max-height: 90vh;
+  max-height: 90dvh;
   object-fit: contain;
   border-radius: 10px;
   box-shadow: 0 8px 32px 0 var(--shadow);
@@ -548,6 +550,7 @@ html {
   .enlarged-image {
     max-width: 95%;
     max-height: 95vh;
+    max-height: 95dvh;
   }
 }
 

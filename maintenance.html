@@ -4,298 +4,45 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Website Under Maintenance</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      :root {
-        --bg-primary: #121212;
-        --accent-color: #00ffaa;
-        --text-color: #e0e0e0;
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: "Space Mono", monospace;
-        background-color: var(--bg-primary);
-        color: var(--text-color);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        overflow: hidden;
-        perspective: 1000px;
-      }
-
-      .maintenance-canvas {
-        position: relative;
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-      }
-
-      .signal {
-        position: absolute;
-        border: 2px solid var(--accent-color);
-        border-radius: 50%;
-        opacity: 0;
-        transition: all 0.5s ease;
-      }
-
-      .status-text {
-        position: absolute;
-        text-align: center;
-        font-size: clamp(0.8em, 3vw, 1.2em);
-        z-index: 10;
-        text-transform: uppercase;
-        letter-spacing: clamp(0.2em, 1.5vw, 0.5em);
-        opacity: 0.7;
-        width: 90%;
-        max-width: 600px;
-        padding: 1rem;
-      }
-
-      @media screen and (max-width: 768px) {
-        .node {
-          transform: scale(0.8);
-        }
-
-        .connection {
-          opacity: 0.05;
-        }
-
-        .signal {
-          transform: scale(0.7);
-        }
-      }
-
-      @media screen and (max-width: 480px) {
-        .node {
-          transform: scale(0.6);
-        }
-
-        .connection {
-          opacity: 0.03;
-        }
-
-        .signal {
-          transform: scale(0.5);
-        }
-      }
-      .node {
-        position: absolute;
-        background-color: var(--accent-color);
-        border-radius: 50%;
-        transform-origin: center;
-        transition: all 0.3s ease;
-      }
-
-      .connection {
-        position: absolute;
-        background-color: rgba(0, 255, 170, 0.1);
-        transform-origin: left center;
-      }
-
-      @keyframes pulse {
-        0% {
-          transform: scale(1);
-          opacity: 0.5;
-        }
-        50% {
-          transform: scale(1.2);
-          opacity: 1;
-        }
-        100% {
-          transform: scale(1);
-          opacity: 0.5;
-        }
-      }
-
-      @keyframes rotate {
-        from {
-          transform: rotate(0deg);
-        }
-        to {
-          transform: rotate(360deg);
-        }
-      }
-
-      @keyframes glitch {
-        2%,
-        64% {
-          transform: translate(2px, 0) skew(0deg);
-        }
-        4%,
-        60% {
-          transform: translate(-2px, 0) skew(0deg);
-        }
-        62% {
-          transform: translate(0, 0) skew(5deg);
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="public/style.css" />
   </head>
   <body>
-    <div class="maintenance-canvas" id="maintenanceCanvas">
-      <div class="status-text" id="statusText">SYSTEM RECALIBRATION</div>
+    <div class="rain">
+      <div class="rain-layer" id="rainLayer"></div>
+      <div class="content-container glass">
+        <h1 class="clip-text">Maintenance Mode</h1>
+        <p class="text">
+          We're sorry, but our website is currently undergoing maintenance.
+        </p>
+        <a href="/" class="home-button">Check Back Later</a>
+      </div>
     </div>
 
     <script>
-      const canvas = document.getElementById("maintenanceCanvas");
-      const statusText = document.getElementById("statusText");
+      function createRaindrops() {
+        const rainLayer = document.getElementById("rainLayer");
+        const isMobile = window.innerWidth <= 768;
+        const dropDensity = isMobile ? 15 : 10;
+        const numberOfDrops = Math.floor(window.innerWidth / dropDensity);
 
-      class MaintenanceSystem {
-        constructor(canvas) {
-          this.canvas = canvas;
-          this.nodes = [];
-          this.connections = [];
-          this.width = window.innerWidth;
-          this.height = window.innerHeight;
-          this.nodeCount = 12;
-          this.init();
-        }
-
-        init() {
-          this.createNodes();
-          this.createConnections();
-          this.startAnimation();
-        }
-
-        createNodes() {
-          for (let i = 0; i < this.nodeCount; i++) {
-            const node = document.createElement("div");
-            node.classList.add("node");
-
-            const baseSize = Math.min(window.innerWidth, window.innerHeight) * 0.015;
-            const size = Math.random() * baseSize + baseSize * 0.5;
-            node.style.width = `${size}px`;
-            node.style.height = `${size}px`;
-
-            const angle = (i / this.nodeCount) * Math.PI * 2;
-            const radius = Math.min(this.width, this.height) * (window.innerWidth <= 768 ? 0.25 : 0.3);
-
-            const x = this.width / 2 + Math.cos(angle) * radius;
-            const y = this.height / 2 + Math.sin(angle) * radius;
-
-            node.style.left = `${x}px`;
-            node.style.top = `${y}px`;
-
-            this.canvas.appendChild(node);
-            this.nodes.push(node);
-          }
-        }
-
-        createConnections() {
-          for (let i = 0; i < this.nodes.length; i++) {
-            for (let j = i + 1; j < this.nodes.length; j++) {
-              if (Math.random() > 0.5) {
-                const connection = document.createElement("div");
-                connection.classList.add("connection");
-
-                const startNode = this.nodes[i];
-                const endNode = this.nodes[j];
-
-                const startRect = startNode.getBoundingClientRect();
-                const endRect = endNode.getBoundingClientRect();
-
-                const startX = startRect.left + startRect.width / 2;
-                const startY = startRect.top + startRect.height / 2;
-                const endX = endRect.left + endRect.width / 2;
-                const endY = endRect.top + endRect.height / 2;
-
-                const length = Math.sqrt(
-                  Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2)
-                );
-
-                const angle =
-                  (Math.atan2(endY - startY, endX - startX) * 180) / Math.PI;
-
-                connection.style.width = `${length}px`;
-                connection.style.height = "1px";
-                connection.style.left = `${startX}px`;
-                connection.style.top = `${startY}px`;
-                connection.style.transform = `rotate(${angle}deg)`;
-
-                this.canvas.appendChild(connection);
-                this.connections.push(connection);
-              }
-            }
-          }
-        }
-
-        startAnimation() {
-          this.nodes.forEach((node, index) => {
-            node.style.animation = `
-                        pulse ${Math.random() * 2 + 1}s 
-                        ${Math.random()}s 
-                        infinite alternate
-                    `;
-          });
-
-          this.animateConnections();
-        }
-
-        animateConnections() {
-          this.connections.forEach((connection) => {
-            connection.style.opacity = Math.random() * 0.3;
-          });
+        for (let i = 0; i < numberOfDrops; i++) {
+          const drop = document.createElement("div");
+          drop.className = "raindrop";
+          drop.style.left = `${Math.random() * 100}%`;
+          drop.style.top = `${Math.random() * 100}%`;
+          drop.style.animationDuration = `${
+            Math.random() * 0.5 + (isMobile ? 0.9 : 0.7)
+          }s`;
+          drop.style.animationDelay = `${Math.random() * (isMobile ? 3 : 2)}s`;
+          rainLayer.appendChild(drop);
         }
       }
 
-      const maintenanceSystem = new MaintenanceSystem(canvas);
-
-      // Interaction
-      canvas.addEventListener("click", () => {
-        const signals = window.innerWidth <= 480 ? 2 : 3;
-        const maxSize = Math.min(window.innerWidth, window.innerHeight) * 0.3;
-        
-        for (let i = 0; i < signals; i++) {
-          const signal = document.createElement("div");
-          signal.classList.add("signal");
-        
-          const size = Math.random() * maxSize + (maxSize * 0.3);
-          signal.style.width = `${size}px`;
-          signal.style.height = signal.style.width;
-          signal.style.left = `${Math.random() * (window.innerWidth - size)}px`;
-          signal.style.top = `${Math.random() * (window.innerHeight - size)}px`;
-        
-          canvas.appendChild(signal);
-        
-          setTimeout(() => {
-            signal.style.transform = window.innerWidth <= 768 ? "scale(2)" : "scale(3)";
-            signal.style.opacity = 1;
-        
-            setTimeout(() => {
-              signal.remove();
-            }, window.innerWidth <= 480 ? 400 : 500);
-          }, 50);
-        }
-
-        const texts = [
-          "SYSTEM RECALIBRATING",
-          "OPTIMIZING NETWORK",
-          "REALIGNING PROTOCOLS",
-          "QUANTUM SYNCHRONIZATION",
-        ];
-        statusText.textContent = texts[Math.floor(Math.random() * texts.length)];
-      });
-
-      // Responsive resize
+      window.addEventListener("load", createRaindrops);
       window.addEventListener("resize", () => {
-        canvas.innerHTML = "";
-        statusText.textContent = "SYSTEM RECALIBRATION";
-        new MaintenanceSystem(canvas);
+        const rainLayer = document.getElementById("rainLayer");
+        rainLayer.innerHTML = "";
+        createRaindrops();
       });
     </script>
   </body>
