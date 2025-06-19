@@ -79,7 +79,7 @@
       <aside id="sidebar" class="glass">
         <h1><span class="title">UI/UX</span><br />Lab Tutorial</h1>
         <div class="authentication"></div>
-        <div class="search-container">
+        <div class="search-container hidden">
           <div class="search">
             <span class="search-icon">
               <i class="fas fa-search"></i>
@@ -95,7 +95,7 @@
               <div class="box">K</div>
             </span>
           </div>
-          <div id="search-results" class="glass"></div>
+          <div id="search-results"></div>
         </div>
         <ul id="tutorial-list">
           <li class="skeleton skeleton-li"></li>
@@ -108,30 +108,32 @@
           <li class="skeleton skeleton-li"></li>
         </ul>
       </aside>
-      <main id="content" class="glass" tabindex="-1">
-        <div id="tutorial-content" class="skeleton-content">
-          <div class="skeleton skeleton-header"></div>
-          <div class="skeleton-paragraph">
-            <div class="skeleton skeleton-text"></div>
-            <div class="skeleton skeleton-text"></div>
-            <div class="skeleton skeleton-text"></div>
-            <div class="skeleton skeleton-text"></div>
-            <div class="skeleton skeleton-text"></div>
-            <div class="skeleton skeleton-text"></div>
-            <div class="skeleton skeleton-text"></div>
-          </div>
-          <br />
-          <div class="skeleton skeleton-header"></div>
-          <div class="skeleton-paragraph">
-            <div class="skeleton skeleton-text"></div>
-            <div class="skeleton skeleton-text"></div>
-            <div class="skeleton skeleton-text"></div>
+      <main class="main glass" tabindex="-1">
+        <div id="content">
+          <div id="tutorial-content" class="skeleton-content">
+            <div class="skeleton skeleton-header"></div>
+            <div class="skeleton-paragraph">
+              <div class="skeleton skeleton-text"></div>
+              <div class="skeleton skeleton-text"></div>
+              <div class="skeleton skeleton-text"></div>
+              <div class="skeleton skeleton-text"></div>
+              <div class="skeleton skeleton-text"></div>
+              <div class="skeleton skeleton-text"></div>
+              <div class="skeleton skeleton-text"></div>
+            </div>
+            <br />
+            <div class="skeleton skeleton-header"></div>
+            <div class="skeleton-paragraph">
+              <div class="skeleton skeleton-text"></div>
+              <div class="skeleton skeleton-text"></div>
+              <div class="skeleton skeleton-text"></div>
+            </div>
           </div>
         </div>
       </main>
       <div id="dashboard" class="glass"></div>
     </div>
-    <div class="button-container">
+    <div class="glass" id="button-container">
       <button class="toggle" id="sidebar-toggle" aria-label="Toggle sidebar">
         <i class="fa-solid fa-bars"></i>
         <i class="fa-solid fa-bars-staggered"></i>
@@ -164,7 +166,7 @@
       </button>
     </div>
 
-    <aside id="structure-view">
+    <aside id="structure-view" class="glass">
       <div id="structure-content">
         <div class="skeleton skeleton-header"></div>
         <div class="skeleton-paragraph">

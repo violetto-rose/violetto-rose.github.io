@@ -4,10 +4,15 @@ import { loadTutorial, updateActiveLink } from "./utils.js";
 function closeSearch() {
   const searchInput = document.getElementById("search-input");
   const searchHint = document.querySelector(".search-shortcut-hint");
+  const searchContainer = document.querySelector(".search-container");
   const searchResults = document.getElementById("search-results");
 
-  searchResults.style.display = "none";
+  searchContainer.classList.remove("open");
+  searchContainer.classList.add("hidden");
   searchInput.value = "";
+  if (searchResults) {
+    searchResults.classList.remove("glass");
+  }
   if (searchHint && window.innerWidth >= 1080) {
     searchHint.style.opacity = "0.7";
   }
@@ -18,40 +23,67 @@ export function setupSearch() {
   const searchInput = document.getElementById("search-input");
   const searchHint = document.querySelector(".search-shortcut-hint");
   const searchResults = document.getElementById("search-results");
+  const searchContainer = document.querySelector(".search-container");
+  let searchTimeout;
+
+  // Ensure search container starts hidden
+  if (searchContainer) {
+    searchContainer.classList.add("hidden");
+    searchContainer.classList.remove("open");
+  }
 
   if (searchInput) {
     searchInput.addEventListener("input", () => {
       const searchTerm = searchInput.value.toLowerCase();
-      const filteredTutorials = tutorials.filter((tutorial) =>
-        tutorial.name.toLowerCase().includes(searchTerm)
-      );
 
-      searchResults.innerHTML = "";
-
-      // Show/hide search results based on input
-      if (searchTerm.length > 0 && filteredTutorials.length > 0) {
-        if (searchHint) searchHint.style.opacity = "0";
-        searchResults.style.display = "block";
-        filteredTutorials.forEach((tutorial) => {
-          const div = document.createElement("div");
-          div.innerHTML = `${tutorial.name}`;
-          div.onclick = () => {
-            loadTutorial(tutorial.file);
-            updateActiveLink(
-              document.querySelector(
-                `#tutorial-list a[href="#${tutorial.file}"]`
-              )
-            );
-            closeSearch();
-          };
-          searchResults.appendChild(div);
-        });
-      } else {
-        searchResults.style.display = "none";
-        if (searchHint && !searchInput.value && window.innerWidth >= 1080) {
-          searchHint.style.opacity = "0.7";
-        }
+      // Clear previous timeout
+      if (searchTimeout) {
+        clearTimeout(searchTimeout);
       }
+
+      // Hide search hint immediately when typing starts
+      if (searchTerm.length > 0 && searchHint) {
+        searchHint.style.opacity = "0";
+      }
+
+      // Add delay to allow for result fetching and appending
+      searchTimeout = setTimeout(() => {
+        const filteredTutorials = tutorials.filter((tutorial) =>
+          tutorial.name.toLowerCase().includes(searchTerm)
+        );
+
+        // Clear results first
+        searchResults.innerHTML = "";
+
+        // Show/hide search results based on input
+        if (searchTerm.length > 0 && filteredTutorials.length > 0) {
+          // Populate results
+          filteredTutorials.forEach((tutorial) => {
+            const div = document.createElement("div");
+            div.innerHTML = `${tutorial.name}`;
+            div.onclick = () => {
+              loadTutorial(tutorial.file);
+              updateActiveLink(
+                document.querySelector(
+                  `#tutorial-list a[href="#${tutorial.file}"]`
+                )
+              );
+              closeSearch();
+            };
+            searchResults.appendChild(div);
+          });
+
+          // Show container only after results are populated
+          searchContainer.classList.remove("hidden");
+          searchContainer.classList.add("open");
+          searchResults.classList.add("glass");
+        } else {
+          // Hide container when no results or empty search
+          searchContainer.classList.remove("open");
+          searchContainer.classList.add("hidden");
+          searchResults.classList.remove("glass");  
+        }
+      }, 150); // 150ms delay to allow for smooth result population
     });
   }
 
@@ -76,7 +108,7 @@ export function setupSearch() {
     searchInput.addEventListener("blur", () => {
       if (
         !searchInput.value &&
-        searchResults.style.display !== "block" &&
+        !searchContainer.classList.contains("open") &&
         window.innerWidth >= 1080
       ) {
         searchHint.style.opacity = "0.7";

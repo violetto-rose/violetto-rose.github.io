@@ -6,6 +6,10 @@ export function initializeAuth() {
     const authContainer = document.querySelector('.authentication');
     const title = document.querySelector('.title');
 
+    // Initialize with hidden class
+    authContainer.classList.add('hidden');
+    authContainer.classList.remove('show');
+
     const createLoginForm = () => `
         <div class="auth-modal">
             <form id="auth-form">
@@ -47,6 +51,7 @@ export function initializeAuth() {
                     await signOut(auth);
                     dashboardHandler.toggle(false);
                     authContainer.classList.remove('show');
+                    authContainer.classList.add('hidden');
                 } catch (error) {
                     const errorPopup = document.querySelector('.popup');
                     showError(errorPopup, error.message);
@@ -96,6 +101,7 @@ export function initializeAuth() {
                 await signInWithEmailAndPassword(auth, email, password);
                 title.classList.add('admin-mode');
                 authContainer.classList.remove('show');
+                authContainer.classList.add('hidden');
             } catch (error) {
                 showError(errorPopup, error.message);
             } finally {
@@ -106,12 +112,19 @@ export function initializeAuth() {
     };
 
     title.addEventListener('click', () => {
-        authContainer.classList.toggle('show');
+        if (authContainer.classList.contains('show')) {
+            authContainer.classList.remove('show');
+            authContainer.classList.add('hidden');
+        } else {
+            authContainer.classList.remove('hidden');
+            authContainer.classList.add('show');
+        }
     });
 
     authContainer.addEventListener('click', (e) => {
         if (e.target === authContainer) {
             authContainer.classList.remove('show');
+            authContainer.classList.add('hidden');
         }
     });
 
@@ -123,6 +136,7 @@ export function initializeAuth() {
         }
         updateAuthUI(user);
         authContainer.classList.remove('show');
+        authContainer.classList.add('hidden');
     });
 
     updateAuthUI(auth.currentUser);

@@ -12,7 +12,6 @@
   /*Customs*/
   --purp: #8f3ee5;
   --blu: #4da6ff;
-  --shadow: rgba(31, 38, 135, 0.37);
   --block-quote: rgba(15, 10, 42, 0.1);
   /*Opacity*/
   --lp-zero: rgba(255, 255, 255, 0);
@@ -43,7 +42,6 @@
   --inv-text: #000000;
   --alt-text: #b0b0b0;
   /*Customs*/
-  --shadow: rgba(0, 0, 0, 0.37);
   --block-quote: rgba(100, 100, 100, 0.1);
   --p-one: rgba(100, 100, 100, 0.1);
   --p-two: rgba(150, 150, 150, 0.2);
@@ -63,6 +61,83 @@ html {
     var(--bg-color2) 100%
   );
   color: var(--text);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/*******************************************/
+/* Main Container and glassmorphism styles */
+/*******************************************/
+
+#loading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 0.18rem;
+  width: 0;
+  background: linear-gradient(90deg, var(--blu), var(--purp));
+  z-index: 2;
+  transition: width 0.4s ease-out, opacity 0.3s ease-out;
+  box-shadow: 0 0 10px rgb(0, 0, 0);
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  height: 100dvh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.glass {
+  background: var(--lp-one);
+  -webkit-backdrop-filter: blur(50px);
+  backdrop-filter: blur(50px);
+  border-radius: 20px;
+  border: 1px solid var(--lp-two);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px,
+    rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
+    rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+  position: relative;
+}
+
+@media screen and (max-width: 640px) {
+  body.dark-mode .glass::before {
+    content: "";
+    background-color: rgba(0, 0, 0, 0.3);
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+
+.glass::after {
+  content: "";
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 182px;
+  opacity: 0.1;
+  inset: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@media screen and (max-width: 640px) {
+  .container {
+    padding: 0;
+  }
+}
+
+/* Dark mode styles */
+body.dark-mode .glass {
+  background: var(--f-p-one);
+  border-color: var(--h-p-two);
 }
 
 /***************************/
@@ -86,7 +161,8 @@ html {
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   color: var(--text);
-  box-shadow: 0 4px 6px var(--dp-one);
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.05) 0px 8px 32px;
   overflow: hidden;
   &:focus-visible {
     outline: 2px solid var(--text);
@@ -96,7 +172,8 @@ html {
 .toggle:hover {
   background: var(--lp-three);
   transform: scale(1.1);
-  box-shadow: 0 6px 8px var(--dp-two);
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
 }
 
 .toggle:active {
@@ -267,8 +344,18 @@ html {
 /* Button Container Styles*/
 /**************************/
 
+@media screen and (min-width: 640px) {
+  #button-container {
+    -webkit-backdrop-filter: unset;
+    backdrop-filter: unset;
+    border: unset !important;
+    border-radius: unset !important;
+    box-shadow: unset !important;
+  }
+}
+
 @media screen and (max-width: 640px) {
-  .button-container {
+  #button-container {
     position: fixed;
     bottom: 0;
     width: 100vw;
@@ -277,11 +364,13 @@ html {
     background: var(--lp-one);
     -webkit-backdrop-filter: blur(50px);
     backdrop-filter: blur(50px);
+    border: unset;
+    border-radius: unset;
     border-top: 1px solid var(--lp-two);
     z-index: 3;
   }
 
-  .button-container > .toggle {
+  #button-container > .toggle {
     position: static;
     background: unset;
     border: unset;
@@ -312,9 +401,8 @@ html {
   }
 
   /* Dark mode styles */
-  body.dark-mode .button-container {
+  body.dark-mode #button-container {
     background: var(--f-p-one);
-    border-color: var(--h-p-two);
   }
 }
 
@@ -332,15 +420,12 @@ html {
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .button:hover {
-  transform: scale(1.02);
-}
-
-.button:active {
-  transform: scale(0.95);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 .button.loading {
@@ -375,7 +460,6 @@ body.dark-mode .button {
 /*************************/
 /* Structure View Styles */
 /*************************/
-
 #structure-view {
   position: fixed;
   right: -20rem;
@@ -384,6 +468,9 @@ body.dark-mode .button {
   height: 100vh;
   height: 100dvh;
   border-left: 1px solid var(--lp-two);
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
   background: var(--lp-one);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
@@ -392,6 +479,7 @@ body.dark-mode .button {
   flex-direction: column;
   padding: 40px;
   box-sizing: border-box;
+  border-radius: 0;
 }
 
 #structure-content {
@@ -409,7 +497,7 @@ body.dark-mode .button {
 #structure-view .structure-subsection {
   cursor: pointer;
   padding: 8px 12px;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease;
   border-radius: 10px;
 }
 
@@ -447,6 +535,14 @@ body.dark-mode .button {
   background: var(--lp-one);
 }
 
+@media screen and (max-width: 640px) {
+  #structure-view {
+    padding-bottom: 90px;
+    border: unset;
+    border-radius: unset;
+  }
+}
+
 @media screen and (max-width: 1280px) {
   #structure-view {
     z-index: 2;
@@ -463,7 +559,7 @@ body.dark-mode .button {
 
 @media screen and (max-width: 1280px) and (min-width: 640px) {
   #structure-view .structure-item {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 
   #structure-view .structure-section {
@@ -584,56 +680,6 @@ body.dark-mode #structure-view .structure-subsection:hover {
   }
 }
 
-/*******************************************/
-/* Main Container and glassmorphism styles */
-/*******************************************/
-
-#loading-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 0.18rem;
-  width: 0;
-  background: linear-gradient(90deg, var(--blu), var(--purp));
-  z-index: 2;
-  transition: width 0.4s ease-out, opacity 0.3s ease-out;
-  box-shadow: 0 0 10px rgb(0, 0, 0);
-}
-
-.container {
-  display: flex;
-  height: 100vh;
-  height: 100dvh;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-.glass {
-  background: var(--lp-one);
-  -webkit-backdrop-filter: blur(50px);
-  backdrop-filter: blur(50px);
-  border-radius: 20px;
-  border: 1px solid var(--lp-two);
-  box-shadow: 0 8px 32px 0 var(--shadow);
-}
-
-@media screen and (max-width: 640px) {
-  .container {
-    padding: 0;
-  }
-
-  .glass {
-    border: unset;
-    border-radius: 0;
-  }
-}
-
-/* Dark mode styles */
-body.dark-mode .glass {
-  background: var(--f-p-one);
-  border-color: var(--h-p-two);
-}
-
 /******************/
 /* Sidebar styles */
 /******************/
@@ -674,6 +720,20 @@ body.dark-mode .glass {
 .search-container {
   margin-bottom: 20px;
   width: 100%;
+}
+
+.search-container.hidden #search-results {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 10px;
+  margin-top: 0;
+}
+
+.search-container.open #search-results {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 10px;
+  margin-top: 10px;
 }
 
 .search {
@@ -727,7 +787,7 @@ body.dark-mode .glass {
     opacity: 0.7;
     font-size: 0.8em;
     pointer-events: none;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.3s ease;
   }
 }
 
@@ -743,11 +803,8 @@ body.dark-mode .glass {
 }
 
 #search-results {
-  display: none;
-  margin-top: 10px;
-  padding: 10px;
-  overflow-y: auto;
   color: var(--text);
+  transition: max-height 0.3s ease, padding 0.3s ease, margin-top 0.3s ease;
 }
 
 #search-results div {
@@ -758,7 +815,6 @@ body.dark-mode .glass {
 }
 
 #search-results div:hover {
-  color: var(--text);
   background: var(--lp-two);
 }
 
@@ -835,6 +891,7 @@ body.dark-mode .glass {
   }
 
   #sidebar.glass {
+    border: unset;
     border-right: 1px solid var(--lp-two);
   }
 }
@@ -873,16 +930,30 @@ body.dark-mode .box {
 /* Content view styles */
 /***********************/
 
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+  transition: margin-right 0.3s ease;
+}
+
+@media screen and (max-width: 640px) {
+  .main {
+    border: unset;
+    border-radius: unset;
+  }
+}
+
 #content {
   scroll-behavior: smooth;
   flex-grow: 1;
   padding: 30px;
   overflow: hidden auto;
-  transition: margin-right 0.3s ease;
 }
 
 @media screen and (min-width: 1280px) {
-  #content.shifted {
+  .main.shifted {
     margin-right: 20rem;
   }
 }
@@ -985,7 +1056,7 @@ body.dark-mode .box {
   align-self: flex-end;
   cursor: pointer;
   border-radius: 0 10px 0 0;
-  z-index: 1; 
+  z-index: 1;
   &:focus-visible {
     outline: 2px solid var(--text);
   }
@@ -1131,7 +1202,7 @@ body.dark-mode .box {
   border-radius: 20px;
   color: var(--inv-text);
   background-color: var(--alt-text);
-  transition: all 0.2s;
+  transition: filter 0.2s ease;
 }
 
 .hex-color:hover {
@@ -1144,14 +1215,14 @@ body.dark-mode .box {
   height: 100dvh;
   border: 2px solid var(--lp-two);
   border-radius: 10px;
-  box-shadow: 0 4px 12px var(--shadow);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   zoom: 0.5;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 #tutorial-content iframe:hover {
   border-color: var(--lp-three);
-  box-shadow: 0 6px 16px var(--shadow);
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
 .image-overlay {
@@ -1176,7 +1247,9 @@ body.dark-mode .box {
   max-height: 90dvh;
   object-fit: contain;
   border-radius: 10px;
-  box-shadow: 0 8px 32px 0 var(--shadow);
+  background-color: #000000;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
   transition: transform 0.2s ease-out;
   cursor: default;
   -webkit-user-drag: none;
@@ -1219,7 +1292,7 @@ body.dark-mode .box {
   color: var(--inv-text);
   background-color: var(--text);
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease;
   &:focus-visible {
     outline: 2px solid var(--inv-text);
   }
@@ -1410,7 +1483,7 @@ body.dark-mode #tutorial-content table a:hover {
   z-index: 1;
 }
 
-#more-info:focus {
+#more-info:focus-visible {
   border-radius: 50%;
   outline: 2px solid var(--text);
 }
@@ -1546,11 +1619,13 @@ body.dark-mode #tutorial-content table a:hover {
   margin-top: 1.5rem;
   border-radius: 10px;
   opacity: 1;
-  transition: all 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease,
+    border 0.3s ease, box-shadow 0.3s ease;
   transform: translateY(-10px);
   background: var(--lp-one);
   border: 1px solid var(--text);
-  box-shadow: 0 8px 32px 0 var(--shadow);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 }
 
 .feedback-message.show {
@@ -1633,17 +1708,28 @@ body.dark-mode .credits-icon:hover {
 /**************************/
 
 .authentication {
-  display: none;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  transition: grid-template-rows 0.3s ease;
+  margin: 0 0 1rem;
+}
+
+.authentication.hidden {
+  grid-template-rows: 0fr;
 }
 
 .authentication.show {
-  display: flex;
+  grid-template-rows: 1fr;
+}
+
+.authentication > * {
+  min-height: 0;
+  overflow: hidden;
 }
 
 .authentication .auth-modal {
-  padding-bottom: 2rem;
+  display: flex;
+  justify-content: start;
+  align-items: start;
 }
 
 .authentication #auth-form {
@@ -1679,14 +1765,16 @@ body.dark-mode .credits-icon:hover {
   left: 20px;
   right: 20px;
   border-radius: 20px;
-  box-shadow: 0 8px 32px 0 var(--shadow);
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
   background-color: var(--inv-text);
   color: var(--text);
   padding: 0.5rem 1rem;
   font-size: 0.8em;
   opacity: 0;
   transform: translateY(-100%);
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .authentication .popup p {
@@ -1694,10 +1782,9 @@ body.dark-mode .credits-icon:hover {
 }
 
 .authentication .admin-panel {
-  padding-bottom: 1rem;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
-  width: 100%;
 }
 
 body.dark-mode .authentication .popup {
@@ -1710,17 +1797,15 @@ body.dark-mode .authentication .popup {
 
 #dashboard {
   position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  inset: 0;
   padding: 2.5rem 4rem;
   margin: 0 auto;
   transform: translateY(100%);
   transition: transform 0.3s ease-in-out;
   z-index: 3;
-  -webkit-backdrop-filter: blur(100px);
-  backdrop-filter: blur(100px);
+  background-color: var(--lp-one);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   border: unset;
   border-radius: unset;
   overflow: hidden;
@@ -1756,7 +1841,6 @@ body.dark-mode .authentication .popup {
 .bento-box {
   padding: 20px;
   overflow: hidden;
-  transition: all 0.3s ease;
 }
 
 .bento-box h3 {
@@ -1832,8 +1916,8 @@ body.dark-mode .authentication .popup {
 }
 
 .notifications-list {
-  height: 45vh;
-  height: 45dvh;
+  height: 50vh;
+  height: 50dvh;
 }
 
 .notification-item {
@@ -1931,6 +2015,10 @@ body.dark-mode .authentication .popup {
   }
 }
 
+body.dark-mode #dashboard {
+  background: var(--f-p-one);
+}
+
 /***************/
 /* Menu Styles */
 /***************/
@@ -1995,7 +2083,7 @@ body.dark-mode .authentication .popup {
   color: #ffffff;
   position: relative;
   overflow: hidden;
-  transition: transform 0.3s;
+  transition: transform 0.3s ease;
   height: 80px;
   display: flex;
   align-items: center;
@@ -2104,7 +2192,8 @@ body.dark-mode .authentication .popup {
   color: #000;
   background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 2px 10px var(--dp-one);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -2112,7 +2201,7 @@ body.dark-mode .authentication .popup {
   width: fit-content;
   opacity: 0;
   transform: translateX(100%);
-  transition: all 0.5s ease;
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .update-notification.show {

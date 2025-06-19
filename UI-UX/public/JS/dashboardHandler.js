@@ -11,7 +11,7 @@ export class DashboardHandler {
 
         this.dashboard = document.createElement('div');
         this.dashboard.id = 'dashboard';
-        this.dashboard.className = 'dashboard glass';
+        this.dashboard.className = 'dashboard';
 
         this.dashboard.innerHTML = `
                 <div class="dashboard-header">

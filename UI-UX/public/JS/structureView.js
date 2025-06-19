@@ -22,20 +22,20 @@ function toggleStructureView() {
   structureView.classList.toggle("open");
 
   // Move the content area only for screens wider than 768px
-  const content = document.getElementById("content");
+  const main = document.querySelector("main");
   if (window.innerWidth > 1280) {
-    content.classList.toggle("shifted");
+    main.classList.toggle("shifted");
   }
 }
 
 export function closeStructureView() {
   const structureToggle = document.getElementById("structure-toggle");
   const structureView = document.getElementById("structure-view");
-  const content = document.getElementById("content");
+  const main = document.querySelector("main");
 
   structureToggle.classList.remove("open");
   structureView.classList.remove("open");
-  content.classList.remove("shifted");
+  main.classList.remove("shifted");
 }
 
 export function generateStructureView(content) {
