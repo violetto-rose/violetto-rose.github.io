@@ -11,15 +11,27 @@ export function enterFullscreen() {
         return;
     }
 
-    // Handle touch devices
-    if (window.matchMedia('(pointer: coarse)').matches) {
+    // Enhanced mobile device detection
+    const isMobileDevice = 
+        // Check for touch capability
+        window.matchMedia('(pointer: coarse)').matches ||
+        // Check for small screen size
+        window.matchMedia('(max-width: 640px)').matches ||
+        // Check for touch events support
+        ('ontouchstart' in window) ||
+        // Check user agent for mobile indicators
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    // Handle mobile devices - hide fullscreen button and return early
+    if (isMobileDevice) {
+        fullscreenToggle.style.display = 'none';
         if (closeModal) {
             closeModal.style.top = '20px';
         }
         return;
     }
 
-    // Make button visible
+    // Make button visible for desktop/PC browsers only
     fullscreenToggle.style.display = 'flex';
 
     // Use standardized API with vendor prefixes as fallback
