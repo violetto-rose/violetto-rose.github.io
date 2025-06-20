@@ -50,7 +50,6 @@ export function setupDarkMode() {
       );
     } catch (error) {
       // If view transition fails, just apply the changes normally
-      console.log("View transition failed, applying changes normally");
     }
   }
 

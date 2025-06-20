@@ -1,4 +1,4 @@
-import { setupLoadingBar } from "./loadingBar.js";
+import { setupLoadingOverlay } from "./loading.js";
 import { populateSidebar, loadTutorialFromHash } from "./sidebar.js";
 import { setupDarkMode } from "./darkMode.js";
 import { setupSidebar } from "./sidebarToggle.js";
@@ -15,7 +15,7 @@ import { setupSounds } from "./soundHandler.js";
 import { showUpdateNotification } from "./notificationHandler.js";
 import { initializeAuth } from './auth.js';
 
-setupLoadingBar();
+setupLoadingOverlay();
 setupDarkMode();
 setupSidebar();
 setupStructureView();
