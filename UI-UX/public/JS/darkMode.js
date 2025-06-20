@@ -4,10 +4,54 @@ export function setupDarkMode() {
     "(prefers-color-scheme: dark)"
   );
 
-  // Function to apply dark mode
-  function applyDarkMode(isDark) {
-    document.body.classList.toggle("dark-mode", isDark);
-    darkModeToggle.classList.toggle("dark-mode", isDark);
+  // Function to apply dark mode with view transition
+  async function applyDarkMode(isDark) {
+    // Check if View Transitions API is supported
+    if (!document.startViewTransition || !darkModeToggle) {
+      // Fallback for browsers that don't support View Transitions API
+      document.body.classList.toggle("dark-mode", isDark);
+      darkModeToggle.classList.toggle("dark-mode", isDark);
+      return;
+    }
+
+    // Use View Transitions API
+    const transition = document.startViewTransition(() => {
+      document.body.classList.toggle("dark-mode", isDark);
+      darkModeToggle.classList.toggle("dark-mode", isDark);
+    });
+
+    // Wait for the transition to be ready, then add the circular animation
+    try {
+      await transition.ready;
+
+      const { top, left, width, height } =
+        darkModeToggle.getBoundingClientRect();
+      const right = window.innerWidth - left;
+      const bottom = window.innerHeight - top;
+      console.log(
+        `top: ${top}, left: ${left}, width: ${width}, height: ${height}, right: ${right}, bottom: ${bottom}`
+      );
+      const maxRadius =
+        Math.hypot(Math.max(left, right), Math.max(top, bottom)) + 19; // +19 for the icon size
+      document.documentElement.animate(
+        {
+          clipPath: [
+            `circle(0px at ${left + width / 2}px ${top + height / 2}px)`,
+            `circle(${maxRadius}px at ${left + width / 2}px ${
+              top + height / 2
+            }px)`,
+          ],
+        },
+        {
+          duration: 500,
+          easing: "ease-in-out",
+          pseudoElement: "::view-transition-new(root)",
+        }
+      );
+    } catch (error) {
+      // If view transition fails, just apply the changes normally
+      console.log("View transition failed, applying changes normally");
+    }
   }
 
   // Check for saved preference or system preference
@@ -16,23 +60,29 @@ export function setupDarkMode() {
     savedDarkMode === "enabled"
       ? true
       : savedDarkMode === "disabled"
-        ? false
-        : systemPrefersDarkMode.matches;
+      ? false
+      : systemPrefersDarkMode.matches;
 
-  applyDarkMode(initialDarkMode);
+  // Apply initial dark mode without transition
+  document.body.classList.toggle("dark-mode", initialDarkMode);
+  if (darkModeToggle) {
+    darkModeToggle.classList.toggle("dark-mode", initialDarkMode);
+  }
 
   // Dark mode toggle event
-  darkModeToggle.addEventListener("click", () => {
-    const isDark = !document.body.classList.contains("dark-mode");
-    applyDarkMode(isDark);
+  if (darkModeToggle) {
+    darkModeToggle.addEventListener("click", async () => {
+      const isDark = !document.body.classList.contains("dark-mode");
+      await applyDarkMode(isDark);
 
-    // Save preference
-    if (isDark) {
-      localStorage.setItem("darkMode", "enabled");
-    } else {
-      localStorage.setItem("darkMode", "disabled");
-    }
-  });
+      // Save preference
+      if (isDark) {
+        localStorage.setItem("darkMode", "enabled");
+      } else {
+        localStorage.setItem("darkMode", "disabled");
+      }
+    });
+  }
 
   // Listen for system dark mode changes
   systemPrefersDarkMode.addEventListener("change", (e) => {

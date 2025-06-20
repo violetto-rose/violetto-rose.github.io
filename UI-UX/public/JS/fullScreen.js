@@ -65,8 +65,8 @@ export function enterFullscreen() {
 
     // Use function reference for consistent event handling
     function handleFullscreenChange() {
-        const upIcon = fullscreenToggle.querySelector('.fa-up-right-and-down-left-from-center');
-        const downIcon = fullscreenToggle.querySelector('.fa-down-left-and-up-right-to-center');
+        const upIcon = fullscreenToggle.querySelector('.fa-expand');
+        const downIcon = fullscreenToggle.querySelector('.fa-compress');
 
         const isFullscreen = doc.fullscreenElement ||
             doc.webkitFullscreenElement ||

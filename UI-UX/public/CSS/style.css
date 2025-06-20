@@ -61,7 +61,10 @@ html {
     var(--bg-color2) 100%
   );
   color: var(--text);
-  transition: background 0.3s ease, color 0.3s ease;
+}
+
+i {
+  font-size: 1rem;
 }
 
 /*******************************************/
@@ -256,6 +259,21 @@ body.dark-mode .glass {
   }
 }
 
+/* View Transitions API styles */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 999;
+}
+
 /*************************/
 /* Sidebar toggle styles */
 /*************************/
@@ -325,16 +343,16 @@ body.dark-mode .glass {
   top: 200px;
 }
 
-#fullscreen-toggle .fa-up-right-and-down-left-from-center,
-#fullscreen-toggle .fa-down-left-and-up-right-to-center {
+#fullscreen-toggle .fa-expand,
+#fullscreen-toggle .fa-compress {
   position: absolute;
 }
 
-#fullscreen-toggle .fa-up-right-and-down-left-from-center {
+#fullscreen-toggle .fa-expand {
   display: block;
 }
 
-#fullscreen-toggle .fa-down-left-and-up-right-to-center {
+#fullscreen-toggle .fa-compress {
   display: none;
 }
 

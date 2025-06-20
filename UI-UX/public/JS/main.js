@@ -11,6 +11,7 @@ import { setupMenuAnimation } from "./menuManager.js";
 import { enterFullscreen } from "./fullScreen.js";
 import { feedbackHandler } from "./feedbackHandler.js";
 import { setupTooltips } from "./tooltipHandler.js";
+import { setupSounds } from "./soundHandler.js";
 import { showUpdateNotification } from "./notificationHandler.js";
 import { initializeAuth } from './auth.js';
 
@@ -47,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupSearchShortcut();
   feedbackHandler();
   setupTooltips();
+  setupSounds();
   initializeAuth();
   showUpdateNotification();
 
