@@ -5,7 +5,6 @@
   "id": "com.violetto-rose.UI-UX",
   "start_url": "https://violetto-rose.github.io/UI-UX/",
   "orientation": "natural",
-  "display_override": ["fullscreen", "minimal-ui", "window-controls-overlay"],
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",
