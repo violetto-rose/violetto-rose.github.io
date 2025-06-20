@@ -6,6 +6,8 @@ export function setupImageViewer() {
 
   const enlargedImg = document.createElement("img");
   enlargedImg.className = "enlarged-image";
+  enlargedImg.alt = "Enlarged image";
+  enlargedImg.ariaLabel = "Enlarged image";
   enlargedImg.draggable = false;
 
   overlay.appendChild(enlargedImg);
@@ -45,7 +47,7 @@ export function setupImageViewer() {
   function getCenter(touches) {
     return {
       x: (touches[0].clientX + touches[1].clientX) / 2,
-      y: (touches[0].clientY + touches[1].clientY) / 2
+      y: (touches[0].clientY + touches[1].clientY) / 2,
     };
   }
 
@@ -53,10 +55,16 @@ export function setupImageViewer() {
   function constrainPan() {
     const rect = enlargedImg.getBoundingClientRect();
     const overlayRect = overlay.getBoundingClientRect();
-    
-    const maxTranslateX = Math.max(0, (rect.width * scale - overlayRect.width) / 2);
-    const maxTranslateY = Math.max(0, (rect.height * scale - overlayRect.height) / 2);
-    
+
+    const maxTranslateX = Math.max(
+      0,
+      (rect.width * scale - overlayRect.width) / 2
+    );
+    const maxTranslateY = Math.max(
+      0,
+      (rect.height * scale - overlayRect.height) / 2
+    );
+
     translateX = Math.max(-maxTranslateX, Math.min(maxTranslateX, translateX));
     translateY = Math.max(-maxTranslateY, Math.min(maxTranslateY, translateY));
   }
@@ -64,7 +72,12 @@ export function setupImageViewer() {
   // Function to handle image click
   function handleImageClick(event) {
     const img = event.target;
-    if (img.tagName === "IMG" && !img.closest(".image-overlay") && img.src && !img.src.toLowerCase().endsWith('.svg')) {
+    if (
+      img.tagName === "IMG" &&
+      !img.closest(".image-overlay") &&
+      img.src &&
+      !img.src.toLowerCase().endsWith(".svg")
+    ) {
       enlargedImg.src = img.src;
       overlay.style.display = "flex";
       document.body.style.overflow = "hidden";
@@ -88,7 +101,7 @@ export function setupImageViewer() {
       startX = touch.clientX - translateX;
       startY = touch.clientY - translateY;
       isDragging = false;
-      
+
       // Double tap detection
       const currentTime = new Date().getTime();
       const timeDiff = currentTime - lastTouchTime;
@@ -118,7 +131,7 @@ export function setupImageViewer() {
 
   function handleTouchMove(event) {
     event.preventDefault();
-    
+
     if (event.touches.length === 1 && scale > 1) {
       // Single finger pan
       const touch = event.touches[0];
@@ -132,23 +145,23 @@ export function setupImageViewer() {
       const currentDistance = getDistance(event.touches);
       const scaleChange = currentDistance / initialDistance;
       const newScale = Math.max(0.5, Math.min(5, scale * scaleChange));
-      
+
       if (newScale !== scale) {
         const center = getCenter(event.touches);
         const rect = enlargedImg.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
-        
+
         // Adjust translation to zoom towards center of pinch
         const scaleDiff = newScale - scale;
-        translateX -= (center.x - centerX) * scaleDiff / scale;
-        translateY -= (center.y - centerY) * scaleDiff / scale;
-        
+        translateX -= ((center.x - centerX) * scaleDiff) / scale;
+        translateY -= ((center.y - centerY) * scaleDiff) / scale;
+
         scale = newScale;
         constrainPan();
         updateImageTransform();
       }
-      
+
       initialDistance = currentDistance;
     }
   }
@@ -165,20 +178,20 @@ export function setupImageViewer() {
   function handleWheel(event) {
     if (overlay.style.display === "flex") {
       event.preventDefault();
-      
+
       const delta = event.deltaY > 0 ? 0.9 : 1.1;
       const newScale = Math.max(0.5, Math.min(5, scale * delta));
-      
+
       if (newScale !== scale) {
         const rect = enlargedImg.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
-        
+
         // Zoom towards mouse position
         const scaleDiff = newScale - scale;
-        translateX -= (event.clientX - centerX) * scaleDiff / scale;
-        translateY -= (event.clientY - centerY) * scaleDiff / scale;
-        
+        translateX -= ((event.clientX - centerX) * scaleDiff) / scale;
+        translateY -= ((event.clientY - centerY) * scaleDiff) / scale;
+
         scale = newScale;
         constrainPan();
         updateImageTransform();
@@ -196,7 +209,7 @@ export function setupImageViewer() {
       isMouseDragging = true;
       mouseStartX = event.clientX - translateX;
       mouseStartY = event.clientY - translateY;
-      enlargedImg.style.cursor = 'grabbing';
+      enlargedImg.style.cursor = "grabbing";
     }
   }
 
@@ -211,7 +224,7 @@ export function setupImageViewer() {
 
   function handleMouseUp() {
     isMouseDragging = false;
-    enlargedImg.style.cursor = scale > 1 ? 'grab' : 'default';
+    enlargedImg.style.cursor = scale > 1 ? "grab" : "default";
   }
 
   // Double click zoom for desktop
@@ -263,12 +276,12 @@ export function setupImageViewer() {
 
   // Update cursor based on zoom level
   function updateCursor() {
-    enlargedImg.style.cursor = scale > 1 ? 'grab' : 'default';
+    enlargedImg.style.cursor = scale > 1 ? "grab" : "default";
   }
 
   // Update cursor when zoom changes
   const originalUpdateTransform = updateImageTransform;
-  updateImageTransform = function() {
+  updateImageTransform = function () {
     originalUpdateTransform();
     updateCursor();
   };
@@ -294,7 +307,9 @@ export function lazyLoadImages(container) {
               placeholderWrapper.classList.remove("loading");
 
               // Remove the placeholder loader element
-              const loader = placeholderWrapper.querySelector('.image-placeholder-loader');
+              const loader = placeholderWrapper.querySelector(
+                ".image-placeholder-loader"
+              );
               if (loader) {
                 loader.remove();
               }

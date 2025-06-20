@@ -35,7 +35,7 @@
 :root .dark-mode {
   /*Background*/
   --bg-color1: #121212;
-  --bg-color2: #1f1f1f;
+  --bg-color2: #121212;
   /*Text*/
   --tone-text: #e0e0e0;
   --text: #ffffff;
@@ -52,6 +52,7 @@ body,
 html {
   margin: 0;
   padding: 0;
+  font-display: swap;
   font-family: var(--font1), sans-serif;
   height: 100vh;
   height: 100dvh;
@@ -436,12 +437,7 @@ body.dark-mode .glass {
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.button:hover {
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  transition: transform 0.3s ease;
 }
 
 .button.loading {
@@ -520,6 +516,7 @@ body.dark-mode .button {
 #structure-view .structure-item.active,
 #structure-view .structure-section.active,
 #structure-view .structure-subsection.active {
+  color: var(--text);
   background: var(--lp-two);
 }
 
@@ -1373,6 +1370,10 @@ body.dark-mode #tutorial-content a::after {
   filter: invert(100%);
 }
 
+body.dark-mode #tutorial-content .fa-triangle-exclamation {
+  color: yellow;
+}
+
 body.dark-mode .code-header {
   background: var(--dp-three);
 }
@@ -1380,7 +1381,6 @@ body.dark-mode .code-header {
 body.dark-mode #tutorial-content blockquote {
   border-left-color: var(--t-p-five);
   background: var(--block-quote);
-  color: var(--p-eight);
 }
 
 body.dark-mode #tutorial-content hr {
@@ -1523,6 +1523,9 @@ body.dark-mode #tutorial-content table a:hover {
   color: var(--text);
   font-weight: bold;
   position: relative;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.05) 0px 8px 32px;
+  transition: background 0.3s ease;
 }
 
 .credits-icon:hover {
@@ -1726,7 +1729,6 @@ body.dark-mode .credits-icon:hover {
 .authentication {
   display: grid;
   transition: grid-template-rows 0.3s ease;
-  margin: 0 0 1rem;
 }
 
 .authentication.hidden {
@@ -1735,6 +1737,7 @@ body.dark-mode .credits-icon:hover {
 
 .authentication.show {
   grid-template-rows: 1fr;
+  margin: 0 0 1rem;
 }
 
 .authentication > * {

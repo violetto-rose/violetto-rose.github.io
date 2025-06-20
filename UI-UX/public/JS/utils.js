@@ -1,5 +1,5 @@
 import { generateStructureView } from "./structureView.js";
-import { lazyLoadImages } from "./imageHandler.js"
+import { lazyLoadImages } from "./imageHandler.js";
 import { tutorials } from "./sidebar.js";
 import { initCodeHighlighting, addCopyButtons } from "./prismHighlighter.js";
 
@@ -70,14 +70,14 @@ export async function loadTutorial(filename) {
     addCopyButtons(contentWrapper);
 
     // Click handlers for hex colors
-    const hexColors = contentWrapper.querySelectorAll('.hex-color');
-    hexColors.forEach(span => {
-      span.addEventListener('click', function () {
-        const color = this.getAttribute('data-color');
+    const hexColors = contentWrapper.querySelectorAll(".hex-color");
+    hexColors.forEach((span) => {
+      span.addEventListener("click", function () {
+        const color = this.getAttribute("data-color");
         navigator.clipboard.writeText(color);
 
         const originalText = this.textContent;
-        this.textContent = 'Copied!';
+        this.textContent = "Copied!";
         setTimeout(() => {
           this.textContent = originalText;
         }, 1000);
@@ -143,9 +143,10 @@ function wrapHexColors(content) {
   return content.replace(
     /#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6})\b/g,
     (match, color) => {
-      const fullColor = color.length === 3
-        ? `#${color[0]}${color[0]}${color[1]}${color[1]}${color[2]}${color[2]}`
-        : `#${color}`;
+      const fullColor =
+        color.length === 3
+          ? `#${color[0]}${color[0]}${color[1]}${color[1]}${color[2]}${color[2]}`
+          : `#${color}`;
       const textColor = getContrastColor(fullColor);
       return `<span class="hex-color" 
         data-color="${fullColor}" 
@@ -165,7 +166,7 @@ function getContrastColor(hexcolor) {
   const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
 
   // Return black or white based on background luminance
-  return luminance > 0.5 ? '#000000' : '#ffffff';
+  return luminance > 0.5 ? "#000000" : "#ffffff";
 }
 
 // Function to wrap table
@@ -233,14 +234,16 @@ function addNavigationButtons(currentFile, navigationContainer) {
 
   const prevButton =
     currentIndex > 0
-      ? `<button id="prev-button">Previous: ${tutorials[currentIndex - 1].name
-      }</button>`
+      ? `<button id="prev-button" aria-label="Previous tutorial">Previous: ${
+          tutorials[currentIndex - 1].name
+        }</button>`
       : `<button id="prev-button" disabled class="invisible">Previous</button>`;
 
   const nextButton =
     currentIndex < tutorials.length - 1
-      ? `<button id="next-button">Next: ${tutorials[currentIndex + 1].name
-      }</button>`
+      ? `<button id="next-button" aria-label="Next tutorial">Next: ${
+          tutorials[currentIndex + 1].name
+        }</button>`
       : `<button id="next-button" disabled class="invisible">Next</button>`;
 
   navigationContainer.innerHTML = `${prevButton}${nextButton}`;

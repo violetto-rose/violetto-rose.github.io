@@ -2,7 +2,7 @@ export function setupStructureView() {
   const structureToggle = document.getElementById("structure-toggle");
 
   if (window.innerWidth > 1280) {
-    toggleStructureView()
+    toggleStructureView();
   }
 
   structureToggle.addEventListener("click", () => {
@@ -42,6 +42,7 @@ export function generateStructureView(content) {
   const structureView = document.getElementById("structure-view");
   const structureContent = document.createElement("div");
   structureContent.id = "structure-content";
+  structureContent.setAttribute("tabindex", "-1");
   structureContent.style.overflowY = "auto";
   structureContent.style.flex = "1";
   structureView.innerHTML = ""; // Clear previous structure
@@ -58,40 +59,50 @@ export function generateStructureView(content) {
   const structureItems = new Map(); // Store references to structure items
 
   // Create Intersection Observer
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      const heading = entry.target;
-      const structureItem = structureItems.get(heading);
-      
-      if (structureItem) {
-        if (entry.isIntersecting) {
-          // Remove highlight from all items
-          document.querySelectorAll('.structure-item, .structure-section, .structure-subsection').forEach(item => {
-            item.classList.remove('active');
-          });
-          // Add highlight to current item
-          structureItem.classList.add('active');
-          
-          // Scroll the structure view to keep the active item in view
-          const itemRect = structureItem.getBoundingClientRect();
-          const containerRect = structureContent.getBoundingClientRect();
-          
-          // Calculate if the item is outside the visible area
-          if (itemRect.top < containerRect.top || itemRect.bottom > containerRect.bottom) {
-            // Calculate the scroll position to keep the item in the upper portion of the viewport
-            const scrollTop = structureItem.offsetTop - 100; // Offset from top to keep it visible
-            structureContent.scrollTo({
-              top: Math.max(0, scrollTop), // Ensure we don't scroll past the top
-              behavior: 'smooth'
-            });
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const heading = entry.target;
+        const structureItem = structureItems.get(heading);
+
+        if (structureItem) {
+          if (entry.isIntersecting) {
+            // Remove highlight from all items
+            document
+              .querySelectorAll(
+                ".structure-item, .structure-section, .structure-subsection"
+              )
+              .forEach((item) => {
+                item.classList.remove("active");
+              });
+            // Add highlight to current item
+            structureItem.classList.add("active");
+
+            // Scroll the structure view to keep the active item in view
+            const itemRect = structureItem.getBoundingClientRect();
+            const containerRect = structureContent.getBoundingClientRect();
+
+            // Calculate if the item is outside the visible area
+            if (
+              itemRect.top < containerRect.top ||
+              itemRect.bottom > containerRect.bottom
+            ) {
+              // Calculate the scroll position to keep the item in the upper portion of the viewport
+              const scrollTop = structureItem.offsetTop - 100; // Offset from top to keep it visible
+              structureContent.scrollTo({
+                top: Math.max(0, scrollTop), // Ensure we don't scroll past the top
+                behavior: "smooth",
+              });
+            }
           }
         }
-      }
-    });
-  }, {
-    rootMargin: '-20% 0px -70% 0px', // Adjust these values to control when the highlight triggers
-    threshold: 0
-  });
+      });
+    },
+    {
+      rootMargin: "-20% 0px -70% 0px", // Adjust these values to control when the highlight triggers
+      threshold: 0,
+    }
+  );
 
   headings.forEach((heading) => {
     const level = heading.tagName.toLowerCase();

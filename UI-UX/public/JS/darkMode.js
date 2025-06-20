@@ -26,11 +26,11 @@ export function setupDarkMode() {
 
       const { top, left, width, height } =
         darkModeToggle.getBoundingClientRect();
-      const right = window.innerWidth - left;
-      const bottom = window.innerHeight - top;
-      console.log(
-        `top: ${top}, left: ${left}, width: ${width}, height: ${height}, right: ${right}, bottom: ${bottom}`
-      );
+      // Use documentElement dimensions to exclude browser UI elements (address bar, etc.) on mobile
+      const viewportWidth = document.documentElement.clientWidth;
+      const viewportHeight = document.documentElement.clientHeight;
+      const right = viewportWidth - left;
+      const bottom = viewportHeight - top;
       const maxRadius =
         Math.hypot(Math.max(left, right), Math.max(top, bottom)) + 19; // +19 for the icon size
       document.documentElement.animate(

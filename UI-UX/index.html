@@ -25,6 +25,8 @@
       as="style"
     />
     <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/unbounded" />
+    <link rel="stylesheet" href="../public/aurora.css" />
+    <link rel="stylesheet" href="public/CSS/style.css" />
     <title>UI/UX Lab Tutorial</title>
     <meta name="author" content="Manju Madhav V A" />
     <meta
@@ -37,8 +39,6 @@
     />
     <link rel="icon" type="image/x-icon" href="public/icon/favicon.ico" />
     <link rel="apple-touch-icon" href="public/icon/UI-180.png" />
-    <link rel="stylesheet" href="../public/aurora.css" />
-    <link rel="stylesheet" href="public/CSS/style.css" />
     <link rel="manifest" href="manifest.json" />
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.6/marked.min.js"
@@ -50,13 +50,6 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
       defer
     ></script>
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"
       defer
@@ -65,7 +58,6 @@
     <script
       src="https://kit.fontawesome.com/b6a5c8db62.js"
       crossorigin="anonymous"
-      defer
     ></script>
     <script
       type="text/javascript"
@@ -76,7 +68,7 @@
   <body>
     <div id="loading-bar"></div>
     <div class="container">
-      <aside id="sidebar" class="glass">
+      <aside id="sidebar" class="glass" aria-label="Sidebar">
         <h1><span class="title">UI/UX</span><br />Lab Tutorial</h1>
         <div class="authentication"></div>
         <div class="search-container hidden">
@@ -84,11 +76,15 @@
             <span class="search-icon">
               <i class="fas fa-search"></i>
             </span>
+            <label for="search-input"></label>
             <input
               type="text"
               id="search-input"
               placeholder="Search tutorials..."
+              autocomplete="off"
+              aria-label="Search tutorials"
             />
+
             <span class="search-shortcut-hint">
               <div class="box">Ctrl</div>
               &nbsp;
@@ -108,7 +104,7 @@
           <li class="skeleton skeleton-li"></li>
         </ul>
       </aside>
-      <main class="main glass" tabindex="-1">
+      <main class="main glass" tabindex="-1" aria-label="Main content">
         <div id="content">
           <div id="tutorial-content" class="skeleton-content">
             <div class="skeleton skeleton-header"></div>
@@ -133,18 +129,33 @@
       </main>
       <div id="dashboard" class="glass"></div>
     </div>
-    <div class="glass" id="button-container">
-      <button class="toggle" id="sidebar-toggle" aria-label="Toggle sidebar">
+    <div class="glass" id="button-container" aria-label="Button container">
+      <button
+        class="toggle"
+        id="sidebar-toggle"
+        aria-label="Toggle sidebar"
+        type="button"
+      >
         <i class="fa-solid fa-bars"></i>
         <i class="fa-solid fa-bars-staggered"></i>
       </button>
 
-      <button class="toggle" id="theme-toggle" aria-label="Toggle theme">
+      <button
+        class="toggle"
+        id="theme-toggle"
+        aria-label="Toggle theme"
+        type="button"
+      >
         <i class="fa-solid fa-moon"></i>
         <i class="fa-solid fa-sun"></i>
       </button>
 
-      <button class="toggle" id="more-options-toggle" aria-label="More options">
+      <button
+        class="toggle"
+        id="more-options-toggle"
+        aria-label="More options"
+        type="button"
+      >
         <i class="fa-solid fa-ellipsis-vertical fa-lg"></i>
       </button>
 
@@ -152,6 +163,7 @@
         class="toggle"
         id="structure-toggle"
         aria-label="Toggle structure view"
+        type="button"
       >
         <i class="fa-solid fa-chevron-left"></i>
       </button>
@@ -160,13 +172,14 @@
         class="toggle"
         id="fullscreen-toggle"
         aria-label="Toggle Fullscreen"
+        type="button"
       >
         <i class="fas fa-expand"></i>
         <i class="fas fa-compress"></i>
       </button>
     </div>
 
-    <aside id="structure-view" class="glass">
+    <aside id="structure-view" class="glass" aria-label="Structure view">
       <div id="structure-content">
         <div class="skeleton skeleton-header"></div>
         <div class="skeleton-paragraph">
@@ -182,15 +195,20 @@
       </div>
     </aside>
 
-    <button id="more-info" aria-label="More Info">
+    <button id="more-info" aria-label="More info">
       <div class="credits-icon" id="feedback-trigger">
         <i class="fa-solid fa-question fa-sm"></i>
       </div>
     </button>
 
-    <div id="feedback-modal" class="modal">
+    <div id="feedback-modal" class="modal" aria-label="Feedback modal">
       <div class="modal-content">
-        <button class="toggle" id="close-modal" aria-label="Close Modal">
+        <button
+          class="toggle"
+          id="close-modal"
+          aria-label="Close Modal"
+          type="button"
+        >
           <i class="fa-solid fa-xmark"></i>
         </button>
         <h2>Share Your Thoughts</h2>
@@ -225,8 +243,8 @@
       </span>
     </div>
 
-    <div class="menu" tabindex="-1">
-      <button id="close-menu" aria-label="Close Menu">
+    <div class="menu" tabindex="-1" aria-label="Menu">
+      <button id="close-menu" aria-label="Close Menu" type="button">
         <i class="fa-solid fa-xmark"></i>
       </button>
       <div class="menu-list">
