@@ -94,16 +94,31 @@ i {
 
 #uiux-vector {
   fill: #000;
-  animation: boxShadow 1s ease-out 1 forwards;
 }
 
-@keyframes boxShadow {
+#uiux-vector.one {
+  animation: boxShadow1 2s cubic-bezier(0, 0, 0.2, 1) 1s 1 forwards;
+}
+
+#uiux-vector.two {
+  animation: boxShadow2 2s cubic-bezier(0, 0, 0.2, 1) 1s 1 forwards;
+}
+
+@keyframes boxShadow1 {
   0% {
-    filter: drop-shadow(0 0 0 var(--dp-five)) drop-shadow(0 0 0 var(--dp-three));
+    filter: drop-shadow(0 0 0 var(--dp-five));
   }
   100% {
-    filter: drop-shadow(10px 10px 0 var(--dp-five))
-      drop-shadow(20px 20px 0 var(--dp-three));
+    filter: drop-shadow(10px 10px 0 var(--dp-five));
+  }
+}
+
+@keyframes boxShadow2 {
+  0% {
+    filter: drop-shadow(0 0 0 var(--dp-three));
+  }
+  100% {
+    filter: drop-shadow(20px 20px 0 var(--dp-three));
   }
 }
 
@@ -113,7 +128,7 @@ i {
   stroke-dasharray: 230;
   stroke-dashoffset: 230;
   fill: transparent;
-  animation: textAnimation 4s ease-out 1s 1 forwards;
+  animation: textAnimation 4s cubic-bezier(0, 0, 0.2, 1) 1s 1 forwards;
 }
 
 @keyframes textAnimation {
@@ -122,6 +137,9 @@ i {
   }
   70% {
     fill: transparent;
+  }
+  90% {
+    stroke-dashoffset: 0;
   }
   100% {
     fill: #fff;
@@ -198,7 +216,7 @@ body.dark-mode .glass {
 
 .toggle {
   position: fixed;
-  right: 0;
+  right: -50px;
   z-index: 3;
   background: var(--lp-two);
   border: none;
@@ -209,16 +227,44 @@ body.dark-mode .glass {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease,
+    width 0.3s ease;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   color: var(--text);
   box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
     rgba(17, 17, 26, 0.05) 0px 8px 32px;
   overflow: hidden;
+  animation: toggleAnimation 0.5s cubic-bezier(0.25, 0.86, 0.25, 0.88) 6s 1
+    forwards;
   &:focus-visible {
     outline: 2px solid var(--text);
   }
+}
+
+@keyframes toggleAnimation {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50px);
+  }
+}
+
+.toggle.tab1 {
+  animation-delay: 6s;
+}
+
+.toggle.tab2 {
+  animation-delay: 6.2s;
+}
+
+.toggle.tab3 {
+  animation-delay: 6.4s;
+}
+
+.toggle.tab4 {
+  animation-delay: 6.6s;
 }
 
 .toggle:hover {
@@ -2302,9 +2348,10 @@ body.dark-mode #dashboard {
   justify-content: space-between;
   gap: 10px;
   width: fit-content;
-  opacity: 0;
+  opacity: 1;
   transform: translateX(100%);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: opacity 0.5s ease,
+    transform 0.5s cubic-bezier(0.18, 0.89, 0.18, 1);
 }
 
 .update-notification.show {
@@ -2313,8 +2360,23 @@ body.dark-mode #dashboard {
 }
 
 .update-notification.hide {
-  opacity: 0;
-  transform: translateY(-100%);
+  animation: hideNotification 1s cubic-bezier(0, 0.07, 1, -0.72) forwards;
+}
+
+@keyframes hideNotification {
+  0% {
+    transform: translateX(0);
+  }
+  10% {
+    transform: translateX(-10px);
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(200%);
+  }
 }
 
 .update-notification p {
@@ -2372,13 +2434,13 @@ body.dark-mode #dashboard {
 }
 
 body.dark-mode ::selection {
-  background-color: #BEBFC5;
-  color: #32174D;
+  background-color: #bebfc5;
+  color: #32174d;
 }
 
 body.dark-mode ::-moz-selection {
-  background-color: #BEBFC5;
-  color: #32174D;
+  background-color: #bebfc5;
+  color: #32174d;
 }
 
 /***************************/

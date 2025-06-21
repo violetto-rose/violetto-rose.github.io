@@ -13,7 +13,7 @@ import { feedbackHandler } from "./feedbackHandler.js";
 import { setupTooltips } from "./tooltipHandler.js";
 import { setupSounds } from "./soundHandler.js";
 import { showUpdateNotification } from "./notificationHandler.js";
-import { initializeAuth } from './auth.js';
+import { initializeAuth } from "./auth.js";
 
 setupLoadingOverlay();
 setupDarkMode();
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initializeAuth();
   setTimeout(() => {
     showUpdateNotification();
-  }, 8000);
+  }, 7000);
 
   // Listen for hash changes
   window.addEventListener("hashchange", loadTutorialFromHash);

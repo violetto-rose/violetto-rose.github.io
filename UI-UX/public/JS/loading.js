@@ -35,7 +35,7 @@ export function setupLoadingOverlay() {
         },
         {
           duration: 1200,
-          easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+          easing: "cubic-bezier(1, 0.04, 0.64, 0.6)",
           fill: "forwards",
         }
       );
@@ -55,6 +55,6 @@ export function setupLoadingOverlay() {
   window.addEventListener("load", () => {
     setTimeout(() => {
       hideLoadingOverlay();
-    }, 6000);
+    }, 5000);
   });
 }
