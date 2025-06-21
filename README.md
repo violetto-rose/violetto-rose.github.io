@@ -18,7 +18,7 @@ Access a curated set of resources for your Machine Learning lab. These resources
 
 Calculate your Semester Grade Point Average (SGPA) effortlessly with our intuitive SGPA Calculator. The calculation is based on the VTU 2021 scheme, ensuring accuracy for students following this curriculum.
 
-### 🖌️ UI/UX Tutorial
+### 🖌️ UI/UX Tutorials
 
 Enhance your design skills with our UI/UX tutorial. Learn how to create user-friendly interfaces and improve user experience through practical examples and exercises. This tutorial corresponds to the VTU subject **BCGL606** for BE in Computer Science and Design.
 

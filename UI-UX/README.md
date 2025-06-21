@@ -1,4 +1,4 @@
-# UI/UX Tutorial Website
+# UI/UX Tutorials
 
 ![card](./public/assets/card.webp "Card")
 
