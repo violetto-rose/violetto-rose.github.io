@@ -242,7 +242,8 @@ body.dark-mode .glass {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, right 0.3s ease;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease,
+    right 0.3s ease;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   color: var(--text);
@@ -1101,6 +1102,10 @@ body.dark-mode .box {
   text-decoration: underline;
 }
 
+#tutorial-content span.unbounded {
+  font-family: var(--font2), var(--font1), sans-serif;
+}
+
 #tutorial-content .fa-arrow-right {
   display: inline-block;
   animation: bounce 1s infinite;
@@ -1202,10 +1207,7 @@ body.dark-mode .box {
 #tutorial-content span.brand::after {
   content: "";
   position: absolute;
-  top: -100%;
-  left: -100%;
-  right: -100%;
-  bottom: -100%;
+  inset: -100%;
   background-image: url(../assets/stroke.svg);
   background-repeat: no-repeat;
   background-position: center;

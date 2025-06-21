@@ -1,9 +1,9 @@
-# Introduction to <span style="font-family: var(--font2), var(--font1), sans-serif;">UI/UX</span>
+# Introduction to <span class="unbounded">UI/UX</span>
 
 User Interface (UI) and User Experience (UX) design are at the heart of creating digital products that are both functional and delightful. UI focuses on the visual and interactive elements users see and engage with, while UX ensures that every interaction feels seamless and meaningful.
 
 ---
-## What is <span style="font-family: var(--font2), var(--font1), sans-serif;">UI</span> Design?
+## What is <span class="unbounded">UI</span> Design?
 
 UI (User Interface) design focuses on the _look and feel_ of digital products. It involves creating visually appealing and interactive components that users engage with.
 
@@ -15,7 +15,7 @@ UI (User Interface) design focuses on the _look and feel_ of digital products. I
 - **Interactive Elements:** Designing buttons, icons, and forms that guide user actions.
 
 ---
-## What is <span style="font-family: var(--font2), var(--font1), sans-serif;">UX</span> Design?
+## What is <span class="unbounded">UX</span> Design?
 
 UX (User Experience) design centers on the _journey_ of using a product. It ensures a seamless, efficient, and enjoyable experience for users.
 
