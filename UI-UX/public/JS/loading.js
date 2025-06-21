@@ -22,7 +22,7 @@ export function setupLoadingOverlay() {
       const centerY = 0;
 
       // Calculate maximum radius to cover the entire viewport
-      const maxRadius = viewportHeight;
+      const maxRadius = viewportHeight * 1.5;
 
       // Apply circular clip-path animation directly to the loading overlay
       // Using inset to create a "hole" that expands from center

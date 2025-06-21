@@ -1,7 +1,15 @@
 export function setupSounds() {
+  // Check if device is mobile
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  
+  // Don't play sounds on mobile devices by default
+  if (isMobile) {
+    return;
+  }
+
   // Create audio element for click sound
   const clickSound = new Audio();
-  // clickSound.src = "./public/assets/click.mp3";
+  clickSound.src = "./public/assets/click.mp3";
   if (!clickSound.src) {
     console.error("Click sound not found");
     return;

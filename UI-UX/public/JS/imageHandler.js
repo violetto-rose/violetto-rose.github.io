@@ -1,290 +1,16 @@
 export function setupImageViewer() {
-  // Create overlay elements
-  const overlay = document.createElement("div");
-  overlay.className = "image-overlay";
-  overlay.style.display = "none";
-
-  const enlargedImg = document.createElement("img");
-  enlargedImg.className = "enlarged-image";
-  enlargedImg.alt = "Enlarged image";
-  enlargedImg.ariaLabel = "Enlarged image";
-  enlargedImg.draggable = false;
-
-  overlay.appendChild(enlargedImg);
-  document.body.appendChild(overlay);
-
-  // Zoom variables
-  let scale = 1;
-  let initialDistance = 0;
-  let lastTouchTime = 0;
-  let translateX = 0;
-  let translateY = 0;
-  let isDragging = false;
-  let startX = 0;
-  let startY = 0;
-
-  // Reset zoom state
-  function resetZoom() {
-    scale = 1;
-    translateX = 0;
-    translateY = 0;
-    updateImageTransform();
+  // Initialize medium-zoom for all images except SVGs
+  if (typeof mediumZoom !== 'undefined') {
+    mediumZoom('img:not([src$=".svg"])', {
+      margin: 24,
+      background: 'rgba(0, 0, 0, 0.8)',
+      scrollOffset: 0,
+      container: null,
+      template: null
+    });
+  } else {
+    console.warn('medium-zoom library not found. Please include it in your HTML.');
   }
-
-  // Update image transform
-  function updateImageTransform() {
-    enlargedImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-  }
-
-  // Get distance between two touch points
-  function getDistance(touches) {
-    const dx = touches[0].clientX - touches[1].clientX;
-    const dy = touches[0].clientY - touches[1].clientY;
-    return Math.sqrt(dx * dx + dy * dy);
-  }
-
-  // Get center point between two touches
-  function getCenter(touches) {
-    return {
-      x: (touches[0].clientX + touches[1].clientX) / 2,
-      y: (touches[0].clientY + touches[1].clientY) / 2,
-    };
-  }
-
-  // Constrain pan to keep image within bounds
-  function constrainPan() {
-    const rect = enlargedImg.getBoundingClientRect();
-    const overlayRect = overlay.getBoundingClientRect();
-
-    const maxTranslateX = Math.max(
-      0,
-      (rect.width * scale - overlayRect.width) / 2
-    );
-    const maxTranslateY = Math.max(
-      0,
-      (rect.height * scale - overlayRect.height) / 2
-    );
-
-    translateX = Math.max(-maxTranslateX, Math.min(maxTranslateX, translateX));
-    translateY = Math.max(-maxTranslateY, Math.min(maxTranslateY, translateY));
-  }
-
-  // Function to handle image click
-  function handleImageClick(event) {
-    const img = event.target;
-    if (
-      img.tagName === "IMG" &&
-      !img.closest(".image-overlay") &&
-      img.src &&
-      !img.src.toLowerCase().endsWith(".svg")
-    ) {
-      enlargedImg.src = img.src;
-      overlay.style.display = "flex";
-      document.body.style.overflow = "hidden";
-      resetZoom();
-    }
-  }
-
-  // Function to handle overlay click (close)
-  function handleOverlayClick(event) {
-    if (event.target === overlay && !isDragging) {
-      overlay.style.display = "none";
-      document.body.style.overflow = "";
-      resetZoom();
-    }
-  }
-
-  // Touch event handlers
-  function handleTouchStart(event) {
-    if (event.touches.length === 1) {
-      const touch = event.touches[0];
-      startX = touch.clientX - translateX;
-      startY = touch.clientY - translateY;
-      isDragging = false;
-
-      // Double tap detection
-      const currentTime = new Date().getTime();
-      const timeDiff = currentTime - lastTouchTime;
-      if (timeDiff < 300 && timeDiff > 0) {
-        // Double tap - toggle zoom
-        if (scale > 1) {
-          scale = 1;
-          translateX = 0;
-          translateY = 0;
-        } else {
-          scale = 2;
-          // Center zoom on tap point
-          const rect = enlargedImg.getBoundingClientRect();
-          const centerX = rect.left + rect.width / 2;
-          const centerY = rect.top + rect.height / 2;
-          translateX = (centerX - touch.clientX) * (scale - 1);
-          translateY = (centerY - touch.clientY) * (scale - 1);
-          constrainPan();
-        }
-        updateImageTransform();
-      }
-      lastTouchTime = currentTime;
-    } else if (event.touches.length === 2) {
-      initialDistance = getDistance(event.touches);
-    }
-  }
-
-  function handleTouchMove(event) {
-    event.preventDefault();
-
-    if (event.touches.length === 1 && scale > 1) {
-      // Single finger pan
-      const touch = event.touches[0];
-      translateX = touch.clientX - startX;
-      translateY = touch.clientY - startY;
-      constrainPan();
-      updateImageTransform();
-      isDragging = true;
-    } else if (event.touches.length === 2) {
-      // Two finger pinch zoom
-      const currentDistance = getDistance(event.touches);
-      const scaleChange = currentDistance / initialDistance;
-      const newScale = Math.max(0.5, Math.min(5, scale * scaleChange));
-
-      if (newScale !== scale) {
-        const center = getCenter(event.touches);
-        const rect = enlargedImg.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-
-        // Adjust translation to zoom towards center of pinch
-        const scaleDiff = newScale - scale;
-        translateX -= ((center.x - centerX) * scaleDiff) / scale;
-        translateY -= ((center.y - centerY) * scaleDiff) / scale;
-
-        scale = newScale;
-        constrainPan();
-        updateImageTransform();
-      }
-
-      initialDistance = currentDistance;
-    }
-  }
-
-  function handleTouchEnd(event) {
-    if (event.touches.length === 0) {
-      setTimeout(() => {
-        isDragging = false;
-      }, 100);
-    }
-  }
-
-  // Mouse wheel zoom
-  function handleWheel(event) {
-    if (overlay.style.display === "flex") {
-      event.preventDefault();
-
-      const delta = event.deltaY > 0 ? 0.9 : 1.1;
-      const newScale = Math.max(0.5, Math.min(5, scale * delta));
-
-      if (newScale !== scale) {
-        const rect = enlargedImg.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-
-        // Zoom towards mouse position
-        const scaleDiff = newScale - scale;
-        translateX -= ((event.clientX - centerX) * scaleDiff) / scale;
-        translateY -= ((event.clientY - centerY) * scaleDiff) / scale;
-
-        scale = newScale;
-        constrainPan();
-        updateImageTransform();
-      }
-    }
-  }
-
-  // Mouse drag for desktop
-  let isMouseDragging = false;
-  let mouseStartX = 0;
-  let mouseStartY = 0;
-
-  function handleMouseDown(event) {
-    if (event.target === enlargedImg && scale > 1) {
-      isMouseDragging = true;
-      mouseStartX = event.clientX - translateX;
-      mouseStartY = event.clientY - translateY;
-      enlargedImg.style.cursor = "grabbing";
-    }
-  }
-
-  function handleMouseMove(event) {
-    if (isMouseDragging && scale > 1) {
-      translateX = event.clientX - mouseStartX;
-      translateY = event.clientY - mouseStartY;
-      constrainPan();
-      updateImageTransform();
-    }
-  }
-
-  function handleMouseUp() {
-    isMouseDragging = false;
-    enlargedImg.style.cursor = scale > 1 ? "grab" : "default";
-  }
-
-  // Double click zoom for desktop
-  function handleDoubleClick(event) {
-    if (event.target === enlargedImg) {
-      if (scale > 1) {
-        scale = 1;
-        translateX = 0;
-        translateY = 0;
-      } else {
-        scale = 2;
-        const rect = enlargedImg.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        translateX = (centerX - event.clientX) * (scale - 1);
-        translateY = (centerY - event.clientY) * (scale - 1);
-        constrainPan();
-      }
-      updateImageTransform();
-    }
-  }
-
-  // Event listeners
-  document.addEventListener("click", handleImageClick);
-  overlay.addEventListener("click", handleOverlayClick);
-
-  // Touch events
-  overlay.addEventListener("touchstart", handleTouchStart, { passive: false });
-  overlay.addEventListener("touchmove", handleTouchMove, { passive: false });
-  overlay.addEventListener("touchend", handleTouchEnd);
-
-  // Mouse events
-  overlay.addEventListener("mousedown", handleMouseDown);
-  document.addEventListener("mousemove", handleMouseMove);
-  document.addEventListener("mouseup", handleMouseUp);
-  overlay.addEventListener("dblclick", handleDoubleClick);
-
-  // Wheel zoom
-  overlay.addEventListener("wheel", handleWheel, { passive: false });
-
-  // Add escape key handler
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && overlay.style.display === "flex") {
-      overlay.style.display = "none";
-      document.body.style.overflow = "";
-      resetZoom();
-    }
-  });
-
-  // Update cursor based on zoom level
-  function updateCursor() {
-    enlargedImg.style.cursor = scale > 1 ? "grab" : "default";
-  }
-
-  // Update cursor when zoom changes
-  const originalUpdateTransform = updateImageTransform;
-  updateImageTransform = function () {
-    originalUpdateTransform();
-    updateCursor();
-  };
 }
 
 // Function to lazy load images
@@ -299,7 +25,9 @@ export function lazyLoadImages(container) {
             ".image-placeholder-wrapper"
           );
 
-          image.src = image.dataset.src;
+          // Store original src for loading
+          const originalSrc = image.dataset.src;
+          image.src = originalSrc;
 
           image.onload = function () {
             // Remove placeholder class once image is loaded
@@ -357,6 +85,31 @@ export function lazyLoadImages(container) {
             image.style.width = "100%";
             image.style.height = "100%";
             image.style.objectFit = "contain";
+
+            // Initialize medium-zoom for this loaded image if library is available
+            if (typeof mediumZoom !== 'undefined' && !originalSrc.toLowerCase().endsWith('.svg')) {
+              mediumZoom(image, {
+                margin: 24,
+                background: 'rgba(0, 0, 0, 0.8)',
+                scrollOffset: 0
+              });
+            }
+          };
+
+          image.onerror = function () {
+            // Handle image load error
+            if (placeholderWrapper) {
+              const loader = placeholderWrapper.querySelector(
+                ".image-placeholder-loader"
+              );
+              if (loader) {
+                loader.innerHTML = "Failed to Load Image";
+              }
+              
+              // Keep the placeholder background for failed images
+              placeholderWrapper.style.backgroundColor = "var(--block-quote)";
+              placeholderWrapper.classList.add("error");
+            }
           };
 
           observer.unobserve(image);
@@ -399,6 +152,14 @@ export function lazyLoadImages(container) {
     wrapper.style.backgroundColor = "var(--block-quote)";
     wrapper.style.overflow = "hidden";
 
+    // Check if image src exists and is valid
+    const imageSrc = img.src || img.dataset.src;
+    let loaderMessage = "Loading Image";
+    
+    if (!imageSrc || imageSrc.trim() === "") {
+      loaderMessage = "No Image Found";
+    }
+
     // Style for loading state
     wrapper.innerHTML = `
       <div class="image-placeholder-loader" style="
@@ -409,7 +170,7 @@ export function lazyLoadImages(container) {
         color: #fff;
         opacity: 0.5;
       ">
-        Loading...
+        ${loaderMessage}
       </div>
     `;
 
@@ -418,8 +179,22 @@ export function lazyLoadImages(container) {
     wrapper.appendChild(img);
 
     // Prepare for lazy loading
-    img.dataset.src = img.src;
-    img.src = ""; // Clear src to prevent immediate loading
+    if (!img.dataset.src && img.src) {
+      img.dataset.src = img.src;
+    }
+    
+    // Only clear src if we have a valid dataset.src
+    if (img.dataset.src && img.dataset.src.trim() !== "") {
+      img.src = ""; // Clear src to prevent immediate loading
+    } else {
+      // If no valid src, show error immediately
+      const loader = wrapper.querySelector(".image-placeholder-loader");
+      if (loader) {
+        loader.innerHTML = "No Image Found";
+      }
+      wrapper.classList.add("error");
+      return; // Don't observe this image
+    }
 
     // Style the image to fill the wrapper
     img.style.position = "absolute";

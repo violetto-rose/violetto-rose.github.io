@@ -50,7 +50,9 @@ document.addEventListener("DOMContentLoaded", () => {
   setupTooltips();
   setupSounds();
   initializeAuth();
-  showUpdateNotification();
+  setTimeout(() => {
+    showUpdateNotification();
+  }, 8000);
 
   // Listen for hash changes
   window.addEventListener("hashchange", loadTutorialFromHash);
