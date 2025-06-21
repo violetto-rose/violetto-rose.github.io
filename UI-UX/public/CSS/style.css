@@ -1679,7 +1679,12 @@ body.dark-mode #tutorial-content table a:hover {
 @media screen and (max-width: 768px) {
   .modal-content {
     width: 70%;
-    height: 85%;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .modal-content {
+    height: 90%;
   }
 }
 
@@ -1792,6 +1797,31 @@ body.dark-mode #tutorial-content table a:hover {
   }
 }
 
+.author-link {
+  position: relative;
+  display: inline-block;
+}
+
+.real-name-reveal {
+  display: inline-block;
+  text-align: left;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  white-space: nowrap;
+  margin-left: 8px;
+  overflow: hidden;
+  width: 0;
+  opacity: 0;
+  transition: width 0.5s ease-out, opacity 0.5s ease-out;
+  font-style: italic;
+}
+
+.author-link:hover .real-name-reveal {
+  opacity: 1;
+  width: 160px;
+}
+
 /* Dark mode styles */
 body.dark-mode .form-group input,
 body.dark-mode .form-group textarea {
@@ -1829,13 +1859,8 @@ body.dark-mode .credits-info a {
   color: var(--text);
 }
 
-body.dark-mode .credits-icon {
-  background: var(--lp-one);
-  color: --text;
-}
-
-body.dark-mode .credits-icon:hover {
-  background: var(--lp-two);
+body.dark-mode .real-name-reveal {
+  color: var(--text);
 }
 
 /**************************/
