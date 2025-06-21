@@ -1,7 +1,7 @@
 import { loadTutorial, updateActiveLink } from "./utils.js";
 
 export const tutorials = [
-  { name: "Introduction to UI/UX", file: "intro.md" },
+  { name: "Introduction to UI/UX", file: "introduction.md" },
   { name: "About the course", file: "about-course.md" },
   { name: "Setting up Figma", file: "setting-up-figma.md" },
   { name: "Setting up Penpot", file: "setting-up-penpot.md" },

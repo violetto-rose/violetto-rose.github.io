@@ -188,7 +188,7 @@ function wrapTables(content) {
 // Function to adjust table for mobile devices
 export function adjustTableHeader(filename) {
   const isMobile = window.innerWidth <= 640;
-  const applicableFiles = ["intro.md", "about-course.md"];
+  const applicableFiles = ["introduction.md", "about-course.md"];
 
   if (isMobile && applicableFiles.includes(filename)) {
     const firstTh = document.querySelector("#tutorial-content th:first-child");
