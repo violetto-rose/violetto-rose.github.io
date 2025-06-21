@@ -8,7 +8,7 @@
   /*Text*/
   --text: #000000;
   --inv-text: #ffffff;
-  --alt-text: #1f1f1f;
+  --alt-text: #0e0e0e;
   /*Customs*/
   --purp: #8f3ee5;
   --blu: #4da6ff;
@@ -1510,29 +1510,90 @@ body.dark-mode #tutorial-content table a:hover {
   text-decoration: underline;
 }
 
-/*******************/
-/* Feedback Styles */
-/*******************/
+/************************/
+/* Miscellaneous Styles */
+/************************/
 
-#more-info {
-  all: unset;
-  height: 30px;
+.miscellaneous {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
   position: fixed;
   bottom: 30px;
   right: 30px;
   z-index: 1;
 }
 
-#more-info:focus-visible {
-  border-radius: 50%;
-  outline: 2px solid var(--text);
+.miscellaneous button {
+  all: unset;
+  height: 30px;
 }
 
 @media screen and (max-width: 640px) {
-  #more-info {
+  .miscellaneous {
     bottom: 60px;
     right: 10px;
   }
+}
+
+/***********************/
+/* Sound Toggle Styles */
+/***********************/
+
+#sound-toggle {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background: var(--lp-two);
+  border-radius: 50%;
+  text-align: center;
+  line-height: 30px;
+  color: var(--text);
+  font-weight: bold;
+  position: relative;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.05) 0px 8px 32px;
+  transition: background 0.3s ease;
+  &:focus-visible {
+    outline: 2px solid var(--text);
+  }
+}
+
+#sound-toggle:hover {
+  background: var(--lp-three);
+}
+
+#sound-toggle .fa-volume-high,
+#sound-toggle .fa-volume-xmark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#sound-toggle .fa-volume-high {
+  display: block;
+}
+
+#sound-toggle .fa-volume-xmark {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  #sound-toggle {
+    display: none;
+  }
+}
+
+/*******************/
+/* Feedback Styles */
+/*******************/
+
+#more-info:focus-visible {
+  border-radius: 50%;
+  outline: 2px solid var(--text);
 }
 
 .credits-icon {
@@ -2301,13 +2362,23 @@ body.dark-mode #dashboard {
 /********************/
 
 ::selection {
-  background-color: beige;
-  color: navy;
+  background-color: snow;
+  color: darkviolet;
 }
 
 ::-moz-selection {
-  background-color: beige;
-  color: navy;
+  background-color: snow;
+  color: darkviolet;
+}
+
+body.dark-mode ::selection {
+  background-color: #BEBFC5;
+  color: #32174D;
+}
+
+body.dark-mode ::-moz-selection {
+  background-color: #BEBFC5;
+  color: #32174D;
 }
 
 /***************************/

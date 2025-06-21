@@ -1,6 +1,6 @@
 import { generateStructureView } from "./structureView.js";
 import { lazyLoadImages } from "./imageHandler.js";
-import { tutorials } from "./sidebar.js";
+import { tutorials, urlMapping } from "./sidebar.js";
 import { initCodeHighlighting, addCopyButtons } from "./prismHighlighter.js";
 
 // Function to load tutorial content with lazy loading
@@ -215,7 +215,9 @@ export function adjustTableHeader(filename) {
 
 // Function to update URL
 function updateURL(filename) {
-  history.pushState(null, "", `#${filename}`);
+  const urlName = urlMapping.fileToUrl[filename] || filename.replace('.md', '');
+  const tutorialPath = `/UI-UX/${urlName}`;
+  history.pushState({ tutorial: filename }, '', tutorialPath);
 }
 
 // Function to update active link in sidebar
@@ -255,26 +257,32 @@ function addNavigationButtons(currentFile, navigationContainer) {
   if (currentIndex > 0 && prevButtonElement) {
     prevButtonElement.addEventListener("click", () => {
       const prevFile = tutorials[currentIndex - 1].file;
+      const prevUrlName = urlMapping.fileToUrl[prevFile] || prevFile.replace('.md', '');
+      const prevPath = `/UI-UX/${prevUrlName}`;
       loadTutorial(prevFile);
       const prevLink = document.querySelector(
-        `#tutorial-list a[href="#${prevFile}"]`
+        `#tutorial-list a[href="${prevPath}"]`
       );
       if (prevLink) {
         updateActiveLink(prevLink);
       }
+      history.pushState({ tutorial: prevFile }, '', prevPath);
     });
   }
 
   if (currentIndex < tutorials.length - 1 && nextButtonElement) {
     nextButtonElement.addEventListener("click", () => {
       const nextFile = tutorials[currentIndex + 1].file;
+      const nextUrlName = urlMapping.fileToUrl[nextFile] || nextFile.replace('.md', '');
+      const nextPath = `/UI-UX/${nextUrlName}`;
       loadTutorial(nextFile);
       const nextLink = document.querySelector(
-        `#tutorial-list a[href="#${nextFile}"]`
+        `#tutorial-list a[href="${nextPath}"]`
       );
       if (nextLink) {
         updateActiveLink(nextLink);
       }
+      history.pushState({ tutorial: nextFile }, '', nextPath);
     });
   }
 }
