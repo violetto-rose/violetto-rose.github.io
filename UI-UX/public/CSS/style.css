@@ -1690,6 +1690,7 @@ body.dark-mode #tutorial-content table a:hover {
 #close-modal {
   align-items: center;
   top: 260px;
+  right: 0;
 }
 
 @media screen and (max-width: 640px) {
