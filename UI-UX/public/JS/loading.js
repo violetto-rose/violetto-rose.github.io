@@ -55,6 +55,6 @@ export function setupLoadingOverlay() {
   window.addEventListener("load", () => {
     setTimeout(() => {
       hideLoadingOverlay();
-    }, 5000);
+    }, 4500);
   });
 }
