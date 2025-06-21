@@ -15,11 +15,11 @@ export function initializeAuth() {
             <form id="auth-form">
                 <div class="form-group">
                     <label for="auth-email">Email:</label>
-                    <input type="email" id="auth-email" autocomplete="email" required>
+                    <input type="email" id="auth-email" autocomplete="email" placeholder="Enter your email" required>
                 </div>
                 <div class="form-group">
                     <label for="auth-password">Password:</label>
-                    <input type="password" id="auth-password" autocomplete="current-password" required>
+                    <input type="password" id="auth-password" autocomplete="current-password" placeholder="Enter your password" required>
                 </div>
                 <div class="popup"></div>
                 <button type="submit" id="submit" class="button">Login</button>
