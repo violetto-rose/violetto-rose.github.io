@@ -301,7 +301,6 @@ img {
   padding: 20px;
   overflow: auto;
   height: 100vh;
-  height: 100dvh;
 }
 
 .content {
@@ -773,7 +772,6 @@ img {
 
 .rain {
   min-height: 100vh;
-  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -810,10 +808,10 @@ img {
   }
   50% {
     opacity: 0.8;
-    transform: translateY(50vh) translateY(50dvh) rotate(-2deg);
+    transform: translateY(50vh) rotate(-2deg);
   }
   100% {
-    transform: translateY(100vh) translateY(100dvh) rotate(2deg);
+    transform: translateY(100vh) rotate(2deg);
     opacity: 0;
   }
 }
