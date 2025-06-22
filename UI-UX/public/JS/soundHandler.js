@@ -66,6 +66,9 @@ export function setupSounds() {
   // Initialize sound settings
   initSoundSettings();
   
+  // Expose playClickSound globally for modules that use stopPropagation
+  window.playClickSound = playClickSound;
+  
   // Don't initialize audio on mobile devices by default
   if (isMobile()) {
     return;
@@ -95,9 +98,12 @@ export function setupSounds() {
     }
     
     if (
-      e.target.closest(".toggle") ||
-      (e.target.id && e.target.id.startsWith("close-")) ||
-      e.target.closest("#more-info")
+      e.target.closest("button") ||
+      e.target.closest(".title") ||
+      e.target.closest(".structure-item") ||
+      e.target.closest(".structure-section") ||
+      e.target.closest(".structure-subsection") ||
+      (e.target.closest("a") && e.target.closest("li") && e.target.closest("ul") && e.target.closest("#tutorial-list"))
     ) {
       playClickSound();
     }

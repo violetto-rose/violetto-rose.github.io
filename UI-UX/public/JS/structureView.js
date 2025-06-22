@@ -43,8 +43,6 @@ export function generateStructureView(content) {
   const structureContent = document.createElement("div");
   structureContent.id = "structure-content";
   structureContent.setAttribute("tabindex", "-1");
-  structureContent.style.overflowY = "auto";
-  structureContent.style.flex = "1";
   structureView.innerHTML = ""; // Clear previous structure
   structureView.appendChild(structureContent);
 
@@ -140,6 +138,10 @@ function createStructureItem(text, heading) {
   item.textContent = text.replace(/:/g, "");
   item.onclick = (e) => {
     e.stopPropagation();
+    // Trigger sound manually since stopPropagation prevents bubbling
+    if (window.playClickSound) {
+      window.playClickSound();
+    }
     scrollToHeading(heading);
   };
   return item;
@@ -151,6 +153,10 @@ function createStructureSection(text, heading) {
   section.textContent = text.replace(/:/g, "");
   section.onclick = (e) => {
     e.stopPropagation();
+    // Trigger sound manually since stopPropagation prevents bubbling
+    if (window.playClickSound) {
+      window.playClickSound();
+    }
     scrollToHeading(heading);
   };
   return section;
@@ -162,6 +168,10 @@ function createStructureSubsection(text, heading) {
   subsection.textContent = text.replace(/:/g, "");
   subsection.onclick = (e) => {
     e.stopPropagation();
+    // Trigger sound manually since stopPropagation prevents bubbling
+    if (window.playClickSound) {
+      window.playClickSound();
+    }
     scrollToHeading(heading);
   };
   return subsection;

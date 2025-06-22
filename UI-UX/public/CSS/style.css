@@ -574,9 +574,10 @@ body.dark-mode .button {
 }
 
 #structure-content {
-  flex: 1;
+  flex: 1 1 0%;
   overflow-y: auto;
   border-radius: 10px;
+  padding: 0.2rem;
 }
 
 #structure-view.open {

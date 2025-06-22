@@ -15,15 +15,13 @@ import { setupSounds } from "./soundHandler.js";
 import { showUpdateNotification } from "./notificationHandler.js";
 import { initializeAuth } from "./auth.js";
 
+// Initialize critical modules before DOM content loads
 setupLoadingOverlay();
+initThemeManager();
 setupDarkMode();
-setupSidebar();
-setupStructureView();
-enterFullscreen();
-setupMenuAnimation();
+setupSounds();
 
 document.addEventListener("DOMContentLoaded", () => {
-  initThemeManager();
   // Configure marked renderer with code highlighting
   const renderer = new marked.Renderer();
   configureCodeHighlighting(renderer);
@@ -40,16 +38,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   marked.setOptions({ renderer: renderer });
 
-  // Initialize modules
+  // Initialize UI components
+  setupSidebar();
+  setupStructureView();
+  setupMenuAnimation();
+  enterFullscreen();
+  
+  // Initialize content and functionality
   populateSidebar();
   loadTutorialFromHash();
-  setupImageViewer();
   setupSearch();
   setupSearchShortcut();
-  feedbackHandler();
-  setupTooltips();
-  setupSounds();
-  initializeAuth();
+  
+  // Initialize content-dependent modules (after content is loaded)
+  setTimeout(() => {
+    setupImageViewer();
+    setupTooltips();
+    feedbackHandler();
+    initializeAuth();
+  }, 100);
+  
+  // Show notifications after everything is loaded
   setTimeout(() => {
     showUpdateNotification();
   }, 7000);
