@@ -24,9 +24,13 @@ h1 {
   margin-bottom: 10px;
 }
 
-h1:last-child {
-  color: white;
-  margin-top: 20px;
+img {
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -moz-user-drag: none;
+  -moz-user-select: none;
+  -ms-user-drag: none;
+  user-select: none;
 }
 
 .headers {
@@ -91,36 +95,47 @@ h1:last-child {
 .sphere-4 {
   width: 200px;
   height: 200px;
-  background: linear-gradient(45deg,
-      #03001e 0%,
-      #7303c0 33%,
-      #ec38bc 66%,
-      #fdeff9 100%);
+  background: linear-gradient(
+    45deg,
+    #03001e 0%,
+    #7303c0 33%,
+    #ec38bc 66%,
+    #fdeff9 100%
+  );
   top: 0%;
   right: 20%;
   animation-delay: -2s;
 }
 
 @keyframes moveSphere {
-
   0%,
   100% {
-    transform: translate(var(--translate-x), var(--translate-y)) rotate(var(--rotate)) scale(var(--scale));
+    transform: translate(var(--translate-x), var(--translate-y))
+      rotate(var(--rotate)) scale(var(--scale));
   }
 
   25% {
-    transform: translate(calc(var(--translate-x) + 100px),
-        calc(var(--translate-y) + 50px)) rotate(calc(var(--rotate) + 90deg)) scale(calc(var(--scale) * 1.1));
+    transform: translate(
+        calc(var(--translate-x) + 100px),
+        calc(var(--translate-y) + 50px)
+      )
+      rotate(calc(var(--rotate) + 90deg)) scale(calc(var(--scale) * 1.1));
   }
 
   50% {
-    transform: translate(calc(var(--translate-x) + 50px),
-        calc(var(--translate-y) + 100px)) rotate(calc(var(--rotate) + 180deg)) scale(var(--scale));
+    transform: translate(
+        calc(var(--translate-x) + 50px),
+        calc(var(--translate-y) + 100px)
+      )
+      rotate(calc(var(--rotate) + 180deg)) scale(var(--scale));
   }
 
   75% {
-    transform: translate(calc(var(--translate-x) - 50px),
-        calc(var(--translate-y) + 50px)) rotate(calc(var(--rotate) + 270deg)) scale(calc(var(--scale) * 0.9));
+    transform: translate(
+        calc(var(--translate-x) - 50px),
+        calc(var(--translate-y) + 50px)
+      )
+      rotate(calc(var(--rotate) + 270deg)) scale(calc(var(--scale) * 0.9));
   }
 }
 
@@ -234,7 +249,6 @@ h1:last-child {
 }
 
 @media screen and (max-width: 768px) {
-
   .card:active,
   .card:hover {
     transform: none;
@@ -273,19 +287,19 @@ h1:last-child {
 #readme-content h1,
 #readme-content h2,
 #readme-content h3 {
-  color: #ffffff;
+  display: flex;
+  align-items: center;
   margin: 10px 0;
 }
 
 #readme-content p {
   color: #dddddd;
   line-height: 1.6;
-  margin-bottom: 15px;
+  margin-bottom: 1rem;
 }
 
 #readme-content ul {
-  list-style-position: inside;
-  margin-left: 35px;
+  margin-left: 2rem;
 }
 
 #readme-content li:last-child {
@@ -293,43 +307,87 @@ h1:last-child {
 }
 
 #readme-content a {
-  color: #1e90ff;
-  text-decoration: underline;
+  color: deepskyblue;
+  text-decoration: none;
+  position: relative;
 }
 
-#readme-content code {
-  background: rgba(255, 255, 255, 0.2);
-  padding: 2px 4px;
-  border-radius: 4px;
-  color: #ffcc00;
+#readme-content li a::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: deepskyblue;
+  transition: width 0.3s ease-in-out;
 }
 
-#readme-content pre {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 10px;
-  border-radius: 5px;
-  overflow-x: auto;
-  color: #ffffff;
-}
-
-#readme-content table {
+#readme-content li a:hover::after {
   width: 100%;
-  border-collapse: collapse;
+}
+
+#readme-content li a:not(:hover)::after {
+  width: 0;
+}
+
+#readme-content hr {
+  display: block;
+  margin: 1rem 0;
+}
+
+#readme-content .emoji {
+  display: flex;
+}
+
+#readme-content .tech-skills {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
   margin: 20px 0;
+  overflow: hidden;
+  border: 1px solid #dddddd;
+  border-radius: 10px;
 }
 
 @media screen and (max-width: 768px) {
-  #readme-content table {
+  #readme-content .tech-skills {
     overflow-x: auto;
     display: block;
   }
 }
 
-#readme-content th,
-#readme-content td {
+#readme-content .tech-skills tbody {
+  display: block;
+  width: 100%;
+}
+
+#readme-content .tech-skills tr {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid #dddddd;
+}
+
+@media screen and (max-width: 768px) {
+  #readme-content .tech-skills tr {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+}
+
+#readme-content .tech-skills tr:nth-child(3) {
+  grid-template-columns: 1fr;
+  border-bottom: none;
+}
+
+#readme-content .tech-skills th,
+#readme-content .tech-skills td {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   padding: 12px;
-  text-align: left;
-  border: 1px solid #dddddd;
+  gap: 10px;
 }
 
 #readme-content th {
@@ -337,21 +395,175 @@ h1:last-child {
   font-weight: bold;
 }
 
-#readme-content tr:nth-child(even) {
-  background-color: rgba(255, 255, 255, 0.15);
-}
-
-#readme-content tr:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
 @media screen and (max-width: 768px) {
-
   #readme-content tr:active,
   #readme-content tr:hover,
   #readme-content tr:nth-child(even) {
     background-color: inherit;
   }
+}
+
+#readme-content .tech-skills td:nth-of-type(even) {
+  border-left: 1px solid #dddddd;
+}
+
+@media screen and (max-width: 768px) {
+  #readme-content .tech-skills td:nth-of-type(even) {
+    border-left: none;
+  }
+
+  #readme-content .tech-skills td:nth-of-type(odd):not(:only-child) {
+    border-bottom: 1px solid #dddddd;
+  }
+}
+
+#readme-content .tech-skills td a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+#readme-content .projects {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#readme-content .project {
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+@media screen and (max-width: 768px) {
+  #readme-content .project * {
+    text-shadow: 0 0 10px rgb(0, 0, 0);
+  }
+}
+
+#readme-content .project .emoji {
+  position: absolute;
+  inset: 0;
+  transform: translateX(140%);
+  z-index: -1;
+  width: 40%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  #readme-content .project .emoji {
+    transform: translate(0);
+    width: 100%;
+  }
+}
+
+#readme-content .project .emoji img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+
+#readme-content .project:first-child .emoji img{
+  transform: rotate(-2deg);
+}
+
+@media screen and (max-width: 768px) {
+  #readme-content .project .emoji::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+}
+
+#readme-content .project ul {
+  width: 50%;
+}
+
+@media screen and (max-width: 768px) {
+  #readme-content .project ul {
+    width: auto;
+  }
+}
+
+#readme-content .github-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  width: 100%;
+}
+
+#readme-content .github-stats img {
+  height: 200px;
+  width: 100%;
+  object-fit: contain;
+}
+
+
+
+@media screen and (max-width: 768px) {
+  #readme-content .github-stats {
+    grid-template-columns: 1fr;
+  }
+
+  #readme-content .github-stats img {
+    height: auto;
+    max-height: 250px;
+    max-width: 100%;
+  }
+}
+
+#readme-content .socials {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1rem;
+  row-gap: 0.5rem;
+}
+
+#readme-content .socials a {
+  transition: transform 0.3s ease;
+}
+
+#readme-content .socials a img {
+  border-radius: 50px;
+}
+
+#readme-content .socials a:hover:nth-of-type(even) {
+  transform: scale(1.1) rotate(10deg);
+}
+
+#readme-content .socials a:hover:nth-of-type(odd) {
+  transform: scale(1.1) rotate(-10deg);
+}
+
+@media screen and (pointer: coarse) {
+  #readme-content .socials a:hover {
+    transform: none;
+  }
+}
+
+#readme-content .footer {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+#readme-content .footer img {
+  display: flex;
 }
 
 /*******************/

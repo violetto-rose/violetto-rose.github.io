@@ -154,52 +154,15 @@ async function processReadme() {
     const htmlContent = marked.parse(modifiedMarkdown);
     readmeContent.innerHTML = htmlContent;
 
-    removeElements();
-    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    const hintText = isTouchDevice ? '5 taps to unlock' : 'Ctrl ~ Shift ~ Alt ~ P';
+    // Check if the primary input method is touch-based
+    const isTouchPrimary = window.matchMedia("(pointer: coarse)").matches;
+    const hintText = isTouchPrimary
+      ? "5 taps to unlock"
+      : "Ctrl ~ Shift ~ Alt ~ P";
     readmeContent.innerHTML += `<p style="font-size: 0.5rem; text-align: center; margin-bottom: 0">${hintText}</p>`;
   } catch (error) {
     console.error("Error processing README:", error);
   }
-}
-
-function removeElements() {
-  const headersToRemove = [
-    "💻 Technical Skills",
-    "Programming Languages",
-    "Frontend Development",
-    "Backend Development",
-    "Database Management",
-    "Tools & Technologies",
-    "🏆 Featured Projects",
-    "BhaavChitra | Sentiment Analysis Tool",
-    "Swaad Sanchalan | Restaurant Management System",
-    "OBE Tracker | Educational Outcome Management",
-    "📈 GitHub Stats",
-    "🔗 Connect With Me",
-  ];
-  const headers = document.querySelectorAll("h2, h3");
-
-  headers.forEach((header) => {
-    if (headersToRemove.includes(header.textContent)) {
-      let nextElement = header.nextElementSibling;
-      let prevElement = header.previousElementSibling;
-      while (
-        nextElement &&
-        ["P", "TABLE", "DIV", "UL"].includes(nextElement.tagName)
-      ) {
-        const elementToRemove = nextElement;
-        nextElement = nextElement.nextElementSibling;
-        elementToRemove.remove();
-      }
-      while (prevElement && ["HR"].includes(prevElement.tagName)) {
-        const elementToRemove = prevElement;
-        prevElement = prevElement.previousElementSibling;
-        elementToRemove.remove();
-      }
-      header.remove();
-    }
-  });
 }
 
 function getRandomTransformValues() {
