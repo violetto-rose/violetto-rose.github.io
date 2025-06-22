@@ -47,7 +47,6 @@
   --line-height-relaxed: 1.625;
 
   /* Letter spacing scale */
-  --letter-spacing-tighter: -0.05em;
   --letter-spacing-tight: -0.025em;
   --letter-spacing-normal: 0em;
 
@@ -105,7 +104,7 @@ h6 {
 h1 {
   font-size: var(--font-size-5xl);
   font-weight: var(--font-weight-extrabold);
-  letter-spacing: var(--letter-spacing-tighter);
+  letter-spacing: var(--letter-spacing-tight);
   text-align: left;
   width: 100%;
   margin-bottom: 1.5rem;
@@ -438,7 +437,7 @@ img {
 }
 
 #readme-content a {
-  color: deepskyblue;
+  color: dodgerblue;
   text-decoration: none;
   position: relative;
 }
@@ -451,7 +450,7 @@ img {
   position: absolute;
   bottom: 0;
   left: 0;
-  background-color: deepskyblue;
+  background-color: dodgerblue;
   transition: width 0.3s ease-in-out;
 }
 
@@ -611,14 +610,30 @@ img {
   }
 }
 
+#readme-content .project:nth-child(2) .emoji {
+  height: 80%;
+  transform: translate(140%, 10%);
+}
+
+#readme-content .project:nth-child(4) .emoji {
+  transform: translateX(150%);
+}
+
+#readme-content .project:last-child .emoji {
+  height: 120%;
+  align-items: flex-end;
+  transform: translate(150%, -10%);
+}
+
 #readme-content .project .emoji img {
   width: 100%;
   height: 70%;
   object-fit: contain;
   transition: filter 0.3s ease;
+  overflow: visible;
 }
 
-#readme-content .project:not(:first-child):not(:nth-child(4)) .emoji img:hover {
+#readme-content .project:nth-child(3) .emoji img:hover {
   filter: drop-shadow(0 20px 10px rgba(0, 0, 0, 0.5));
 }
 
@@ -629,7 +644,7 @@ img {
 #readme-content .project:first-child .emoji:after {
   content: "";
   position: absolute;
-  inset: -100% -120% -100% -100%;
+  inset: -120% -140% -120% -120%;
   background-image: url(../UI-UX/public/assets/stroke.svg);
   background-repeat: no-repeat;
   background-position: center;
@@ -640,6 +655,37 @@ img {
 
 #readme-content .project:first-child .emoji img {
   transform: rotate(-2deg);
+}
+
+#readme-content .project:nth-child(2) .emoji:after {
+  content: "";
+  position: absolute;
+  inset: -100%;
+  background-image: url(./papers.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  object-fit: contain;
+  background-size: 20%;
+  z-index: -1;
+  rotate: 30deg;
+  filter: brightness(0.8) drop-shadow(4px -4px 1px rgba(0, 0, 0, 0.5));
+}
+
+@media screen and (min-width: 1280px) {
+  #readme-content .project:nth-child(4) .emoji:after {
+    content: "";
+    position: absolute;
+    top: -22%;
+    right: -36%;
+    width: 100%;
+    height: 100%;
+    background-image: url(./swaadsanchalan.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    object-fit: contain;
+    transform: rotate(45deg);
+    background-size: 50%;
+  }
 }
 
 #readme-content .project ul {
