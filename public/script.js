@@ -6,7 +6,7 @@ async function fetchCards() {
     const publicCards = data.filter((item) => !item.password_required);
     renderCards(publicCards);
 
-    showHeader("Apps:");
+    showHeader("APPS");
   } catch (error) {
     console.error("Error loading JSON:", error);
   }
@@ -142,7 +142,7 @@ async function processReadme() {
 
     const readmeContent = document.getElementById("readme-content");
     readmeContent.style.display = "block";
-    showHeader("README:");
+    showHeader("README");
 
     const baseUrl =
       "https://raw.githubusercontent.com/violetto-rose/violetto-rose/refs/heads/main/";
