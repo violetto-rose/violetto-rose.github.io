@@ -36,23 +36,23 @@
     },
     {
       "subject_number": "206",
-      "subject_code": "BPWSK206",
+      "subject_code": "BPWSK206 / BENGK206",
       "semester": 2,
-      "subject_name": "Professional Writing Skills in English",
+      "subject_name": "Professional Writing Skills in English / Communicative English",
       "credits": 1
     },
     {
       "subject_number": "207",
-      "subject_code": "BICOK107",
+      "subject_code": "BICOK207 / BKSKK207x / BKBKK207x",
       "semester": 2,
-      "subject_name": "Indian Constitution",
+      "subject_name": "Indian Constitution / Samskrutika Kannada / Balake Kannada",
       "credits": 1
     },
     {
       "subject_number": "208",
-      "subject_code": "BIDTK158 / BSFHK158",
+      "subject_code": "BSFHK258 / BIDTK258",
       "semester": 2,
-      "subject_name": "Innovation and Design Thinking / Scientific Foundations of Health",
+      "subject_name": "Scientific Foundations of Health / Innovation and Design Thinking",
       "credits": 1
     }
   ]
