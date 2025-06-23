@@ -54,7 +54,6 @@ html {
   padding: 0;
   font-family: var(--font1), sans-serif;
   height: 100vh;
-  height: 100dvh;
   background: linear-gradient(
     45deg,
     var(--bg-color1) 0%,
@@ -92,7 +91,6 @@ i {
   left: 0;
   width: 100vw;
   height: 100vh;
-  height: 100dvh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -170,7 +168,6 @@ i {
 .container {
   display: flex;
   height: 100vh;
-  height: 100dvh;
   padding: 20px;
   box-sizing: border-box;
 }
@@ -557,7 +554,6 @@ body.dark-mode .button {
   top: 0;
   width: 20rem;
   height: 100vh;
-  height: 100dvh;
   border-left: 1px solid var(--lp-two);
   border-right: none;
   border-top: none;
@@ -955,7 +951,6 @@ body.dark-mode #structure-view .structure-subsection:hover {
     left: -100%;
     height: -webkit-fill-available;
     height: 100vh;
-    height: 100dvh;
     transition: left 0.3s ease;
     z-index: 2;
     border-radius: unset;
@@ -980,7 +975,6 @@ body.dark-mode #structure-view .structure-subsection:hover {
 @media screen and (max-width: 640px) {
   #sidebar {
     height: 90vh;
-    height: 90dvh;
   }
 
   #sidebar.glass {
@@ -1305,7 +1299,6 @@ body.dark-mode .box {
 #tutorial-content iframe {
   width: 100%;
   height: 100vh;
-  height: 100dvh;
   border: 2px solid var(--lp-two);
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
@@ -1661,7 +1654,6 @@ body.dark-mode #tutorial-content table a:hover {
   color: var(--text);
   width: 100vw;
   height: 100vh;
-  height: 100dvh;
   top: 0;
   left: 0;
   overflow: hidden;
@@ -2024,8 +2016,6 @@ body.dark-mode .authentication .popup {
 .notification-form .form-group textarea {
   height: 30vh;
   max-height: 30vh;
-  height: 30dvh;
-  max-height: 30dvh;
 }
 
 .form-actions {
@@ -2079,7 +2069,6 @@ body.dark-mode .authentication .popup {
 
 .notifications-list {
   height: 50vh;
-  height: 50dvh;
 }
 
 .notification-item {
@@ -2196,7 +2185,6 @@ body.dark-mode #dashboard .dashboard-header {
   left: 0;
   width: 100vw;
   height: 100vh;
-  height: 100dvh;
   background-color: #000;
   z-index: 3;
   display: flex;
