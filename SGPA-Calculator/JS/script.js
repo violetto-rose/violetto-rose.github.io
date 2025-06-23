@@ -286,6 +286,19 @@ function displaySubjects(subjects) {
     return;
   }
 
+  // Group subjects by semester
+  const subjectsBySemester = subjects.reduce((acc, subject) => {
+    const semester = subject.semester;
+    if (!acc[semester]) {
+      acc[semester] = [];
+    }
+    acc[semester].push(subject);
+    return acc;
+  }, {});
+
+  // Sort semesters in ascending order
+  const sortedSemesters = Object.keys(subjectsBySemester).sort((a, b) => parseInt(a) - parseInt(b));
+
   let table = `
   <form id="marksForm" class="overflow-x-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg">
     <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700">
@@ -332,73 +345,94 @@ function displaySubjects(subjects) {
       </thead>
       <tbody class="divide-y divide-gray-200 dark:divide-gray-700">`;
 
-  subjects.forEach((subject, index) => {
-    const rowClass =
-      index % 2 === 0
-        ? 'bg-white dark:bg-gray-800'
-        : 'bg-gray-50 dark:bg-gray-900';
+  let globalIndex = 0;
+  
+  sortedSemesters.forEach((semester, semesterIndex) => {
+    const semesterSubjects = subjectsBySemester[semester];
+    
+    // Add semester separator row for all semesters
     table += `
-    <tr class="${rowClass}">
-      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-700 dark:text-gray-300">${subject.semester}</td>
-      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-fuchsia-600 dark:text-fuchsia-400">${subject.subject_code}</td>
-      <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100 font-medium">${subject.subject_name}</td>
-      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300 font-medium">${subject.credits}</td>
-      <td class="px-6 py-4">
-        <div class="flex flex-col space-y-2">
-          <label class="flex items-center space-x-1">
-            <input 
-              type="radio" 
-              name="inputType_${index}" 
-              value="marks" 
-              checked
-              onchange="handleInputTypeChange(${index})"
-              class="form-radio text-fuchsia-600 focus:ring-fuchsia-500 text-xs"
-            >
-            <span class="text-xs text-gray-700 dark:text-gray-300">Marks</span>
-          </label>
-          <label class="flex items-center space-x-1">
-            <input 
-              type="radio" 
-              name="inputType_${index}" 
-              value="grade"
-              onchange="handleInputTypeChange(${index})"
-              class="form-radio text-fuchsia-600 focus:ring-fuchsia-500 text-xs"
-            >
-            <span class="text-xs text-gray-700 dark:text-gray-300">Grade</span>
-          </label>
-        </div>
-      </td>
-      <td class="px-6 py-4">
-        <input 
-          type="number" 
-          id="marks_${index}"
-          name="marks" 
-          min="0" 
-          max="100" 
-          required
-          class="block w-full px-3 py-2.5 rounded-lg border dark:border-gray-700 focus:border-fuchsia-500 focus:ring-fuchsia-500 text-sm bg-fuchsia-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none min-w-[180px]"
-          placeholder="Enter marks"
-        >
-        <select 
-          id="grade_${index}"
-          name="grade"
-          required
-          style="display: none;"
-          class="block w-full px-3 py-2.5 rounded-lg border dark:border-gray-700 focus:border-fuchsia-500 focus:ring-fuchsia-500 text-sm bg-fuchsia-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none min-w-[180px]"
-        >
-          <option value="">Select Grade</option>
-          <option value="O">O • Outstanding (10)</option>
-          <option value="A+">A+ • Excellent (9)</option>
-          <option value="A">A • Very Good (8)</option>
-          <option value="B+">B+ • Good (7)</option>
-          <option value="B">B • Above Average (6)</option>
-          <option value="C">C • Average (5)</option>
-          <option value="P">P • Pass (4)</option>
-          <option value="F">F • Fail (0)</option>
-        </select>
-      </td>
-      <input type="hidden" name="credits" value="${subject.credits}">
-    </tr>`;
+      <tr class="bg-gradient-to-r from-fuchsia-100 to-purple-100 dark:from-fuchsia-900 dark:to-purple-900 border-t-2 border-fuchsia-300 dark:border-fuchsia-600">
+        <td colspan="6" class="px-6 py-3 text-center">
+          <div class="flex items-center justify-center space-x-2">
+            <div class="h-0.5 flex-1 bg-fuchsia-300 dark:bg-fuchsia-600"></div>
+            <span class="text-sm font-semibold text-fuchsia-700 dark:text-fuchsia-300 uppercase tracking-wider">
+              Semester ${semester}
+            </span>
+            <div class="h-0.5 flex-1 bg-fuchsia-300 dark:bg-fuchsia-600"></div>
+          </div>
+        </td>
+      </tr>`;
+
+    semesterSubjects.forEach((subject, index) => {
+      const rowClass =
+        globalIndex % 2 === 0
+          ? 'bg-white dark:bg-gray-800'
+          : 'bg-gray-50 dark:bg-gray-900';
+      table += `
+      <tr class="${rowClass}">
+        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-700 dark:text-gray-300">${subject.semester}</td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-fuchsia-600 dark:text-fuchsia-400">${subject.subject_code}</td>
+        <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100 font-medium">${subject.subject_name}</td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300 font-medium">${subject.credits}</td>
+        <td class="px-6 py-4">
+          <div class="flex flex-col space-y-2">
+            <label class="flex items-center space-x-1">
+              <input 
+                type="radio" 
+                name="inputType_${globalIndex}" 
+                value="marks" 
+                checked
+                onchange="handleInputTypeChange(${globalIndex})"
+                class="form-radio text-fuchsia-600 focus:ring-fuchsia-500 text-xs"
+              >
+              <span class="text-xs text-gray-700 dark:text-gray-300">Marks</span>
+            </label>
+            <label class="flex items-center space-x-1">
+              <input 
+                type="radio" 
+                name="inputType_${globalIndex}" 
+                value="grade"
+                onchange="handleInputTypeChange(${globalIndex})"
+                class="form-radio text-fuchsia-600 focus:ring-fuchsia-500 text-xs"
+              >
+              <span class="text-xs text-gray-700 dark:text-gray-300">Grade</span>
+            </label>
+          </div>
+        </td>
+        <td class="px-6 py-4">
+          <input 
+            type="number" 
+            id="marks_${globalIndex}"
+            name="marks" 
+            min="0" 
+            max="100" 
+            required
+            class="block w-full px-3 py-2.5 rounded-lg border dark:border-gray-700 focus:border-fuchsia-500 focus:ring-fuchsia-500 text-sm bg-fuchsia-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none min-w-[180px]"
+            placeholder="Enter marks"
+          >
+          <select 
+            id="grade_${globalIndex}"
+            name="grade"
+            required
+            style="display: none;"
+            class="block w-full px-3 py-2.5 rounded-lg border dark:border-gray-700 focus:border-fuchsia-500 focus:ring-fuchsia-500 text-sm bg-fuchsia-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none min-w-[180px]"
+          >
+            <option value="">Select Grade</option>
+            <option value="O">O • Outstanding (10)</option>
+            <option value="A+">A+ • Excellent (9)</option>
+            <option value="A">A • Very Good (8)</option>
+            <option value="B+">B+ • Good (7)</option>
+            <option value="B">B • Above Average (6)</option>
+            <option value="C">C • Average (5)</option>
+            <option value="P">P • Pass (4)</option>
+            <option value="F">F • Fail (0)</option>
+          </select>
+        </td>
+        <input type="hidden" name="credits" value="${subject.credits}">
+      </tr>`;
+      globalIndex++;
+    });
   });
 
   table += `
@@ -503,13 +537,20 @@ function displayResult(totalCredits, totalGradePoints, totalMarks) {
       'input[name="gradeType"]:checked'
     )?.value;
 
-    resultDiv.innerHTML = `
+    let resultHTML = `
       <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">
         Your ${gradeType.toUpperCase()} is: ${gpa.toFixed(2)}
-      </h2>
-      <h3 class="text-xl text-gray-700 dark:text-gray-300">
-        Total Marks: ${totalMarks}
-      </h3>`;
+      </h2>`;
+    
+    // Only show total marks for SGPA, not for CGPA
+    if (gradeType === 'sgpa') {
+      resultHTML += `
+        <h3 class="text-xl text-gray-700 dark:text-gray-300">
+          Total Marks: ${totalMarks}
+        </h3>`;
+    }
+
+    resultDiv.innerHTML = resultHTML;
   } else {
     resultDiv.innerHTML = `
       <h2 class="text-xl text-red-600 dark:text-red-400 font-medium">
