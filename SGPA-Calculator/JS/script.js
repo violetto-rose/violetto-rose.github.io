@@ -387,14 +387,14 @@ function displaySubjects(subjects) {
           class="block w-full px-3 py-2.5 rounded-lg border dark:border-gray-700 focus:border-fuchsia-500 focus:ring-fuchsia-500 text-sm bg-fuchsia-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none min-w-[180px]"
         >
           <option value="">Select Grade</option>
-          <option value="O">O - Outstanding (10)</option>
-          <option value="A+">A+ - Excellent (9)</option>
-          <option value="A">A - Very Good (8)</option>
-          <option value="B+">B+ - Good (7)</option>
-          <option value="B">B - Above Average (6)</option>
-          <option value="C">C - Average (5)</option>
-          <option value="P">P - Pass (4)</option>
-          <option value="F">F - Fail (0)</option>
+          <option value="O">O • Outstanding (10)</option>
+          <option value="A+">A+ • Excellent (9)</option>
+          <option value="A">A • Very Good (8)</option>
+          <option value="B+">B+ • Good (7)</option>
+          <option value="B">B • Above Average (6)</option>
+          <option value="C">C • Average (5)</option>
+          <option value="P">P • Pass (4)</option>
+          <option value="F">F • Fail (0)</option>
         </select>
       </td>
       <input type="hidden" name="credits" value="${subject.credits}">
