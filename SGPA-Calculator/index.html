@@ -11,58 +11,49 @@
     <meta name="author" content="Manju Madhav V A" />
     <meta
       name="description"
-      content="Easily calculate your SGPA or CGPA with our user-friendly SGPA Calculator. Calculation is done using VTU 2021 scheme point scale. Perfect for students to track their academic performance."
-    />
+      content="Easily calculate your SGPA or CGPA with our user-friendly SGPA Calculator. Calculation is done using VTU 2021 scheme point scale. Perfect for students to track their academic performance." />
     <meta
       name="keywords"
-      content="SGPA, CGPA, Calculator, Student, Academic, Performance, Grade, Semester, VTU, 2021, 2022"
-    />
+      content="SGPA, CGPA, Calculator, Student, Academic, Performance, Grade, Semester, VTU, 2021, 2022" />
     <link rel="stylesheet" href="dist/style.css" />
     <script src="JS/script.js" defer></script>
   </head>
   <body
-    class="min-h-screen bg-gradient-to-br from-fuchsia-50 to-red-50 dark:from-gray-900 dark:to-gray-800 py-12 px-4 transition-colors duration-200"
-  >
-    <div class="max-w-3xl mx-auto space-y-8">
+    class="min-h-screen bg-gradient-to-br from-fuchsia-50 to-red-50 dark:from-gray-900 dark:to-gray-800 py-12 px-4 transition-colors duration-200">
+    <div class="max-w-4xl mx-auto space-y-8">
       <div class="flex justify-end lg:fixed top-4 right-4 z-50">
         <button
           id="darkModeToggle"
           class="p-2 rounded-lg bg-white dark:bg-gray-700 shadow-lg"
-          aria-label="Toggle dark mode"
-        >
+          aria-label="Toggle dark mode">
           <svg
             class="w-6 h-6 text-gray-800 dark:hidden"
             fill="none"
             stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
+            viewBox="0 0 24 24">
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-            />
+              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
           </svg>
           <svg
             class="w-6 h-6 text-gray-200 hidden dark:block"
             fill="none"
             stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
+            viewBox="0 0 24 24">
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-            />
+              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
           </svg>
         </button>
       </div>
 
       <div class="text-center space-y-4">
         <h1
-          class="text-4xl font-bold text-fuchsia-800 dark:text-fuchsia-400 tracking-tight"
-        >
+          class="text-4xl font-bold text-fuchsia-800 dark:text-fuchsia-400 tracking-tight">
           SGPA Calculator
         </h1>
         <p class="text-lg text-gray-600 dark:text-gray-300">
@@ -72,8 +63,7 @@
 
       <form
         id="sgpaForm"
-        class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 space-y-6"
-      >
+        class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 space-y-6">
         <div class="space-y-6">
           <div class="flex justify-center gap-6">
             <label class="flex items-center space-x-2 cursor-pointer">
@@ -82,8 +72,7 @@
                 name="gradeType"
                 value="sgpa"
                 checked
-                class="form-radio text-fuchsia-600 focus:ring-fuchsia-500 dark:text-fuchsia-400 dark:focus:ring-fuchsia-400"
-              />
+                class="form-radio text-fuchsia-600 focus:ring-fuchsia-500 dark:text-fuchsia-400 dark:focus:ring-fuchsia-400" />
               <span class="text-gray-700 dark:text-gray-300">SGPA</span>
             </label>
             <label class="flex items-center space-x-2 cursor-pointer">
@@ -91,8 +80,7 @@
                 type="radio"
                 name="gradeType"
                 value="cgpa"
-                class="form-radio text-fuchsia-600 focus:ring-fuchsia-500 dark:text-fuchsia-400 dark:focus:ring-fuchsia-400"
-              />
+                class="form-radio text-fuchsia-600 focus:ring-fuchsia-500 dark:text-fuchsia-400 dark:focus:ring-fuchsia-400" />
               <span class="text-gray-700 dark:text-gray-300">CGPA</span>
             </label>
           </div>
@@ -100,15 +88,13 @@
           <div id="semesterContainer" class="space-y-2">
             <label
               for="semester"
-              class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-            >
+              class="block text-sm font-medium text-gray-700 dark:text-gray-300">
               Select your semester
             </label>
             <select
               id="semester"
               name="semester"
-              class="block p-2 w-full rounded-md border-gray-300 dark:border-gray-600 shadow-md focus:border-fuchsia-500 focus:ring-fuchsia-500 focus:outline-none dark:bg-gray-700 dark:text-gray-300"
-            >
+              class="block p-2 w-full rounded-md border-gray-300 dark:border-gray-600 shadow-md focus:border-fuchsia-500 focus:ring-fuchsia-500 focus:outline-none dark:bg-gray-700 dark:text-gray-300">
               <option value="1">1st Semester</option>
               <option value="2">2nd Semester</option>
               <option value="3" selected>3rd Semester</option>
@@ -123,15 +109,13 @@
           <div id="branchContainer" class="space-y-2">
             <label
               for="branch"
-              class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-            >
+              class="block text-sm font-medium text-gray-700 dark:text-gray-300">
               Select your branch
             </label>
             <select
               id="branch"
               name="branch"
-              class="block p-2 w-full rounded-md border-gray-300 dark:border-gray-600 shadow-md focus:border-fuchsia-500 focus:ring-fuchsia-500 focus:outline-none dark:bg-gray-700 dark:text-gray-300"
-            >
+              class="block p-2 w-full rounded-md border-gray-300 dark:border-gray-600 shadow-md focus:border-fuchsia-500 focus:ring-fuchsia-500 focus:outline-none dark:bg-gray-700 dark:text-gray-300">
               <option value="cse">Computer Science and Engineering</option>
               <option value="ise">Information Science and Engineering</option>
               <option value="aiml">
@@ -157,8 +141,7 @@
             <button
               type="button"
               id="submitBtn"
-              class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-fuchsia-600 hover:bg-fuchsia-700 dark:bg-fuchsia-500 dark:hover:bg-fuchsia-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-fuchsia-500 transition-colors duration-200"
-            >
+              class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-fuchsia-600 dark:bg-fuchsia-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-fuchsia-500 transition-colors duration-200">
               Submit
             </button>
           </div>
@@ -167,19 +150,15 @@
 
       <div
         id="subjectTableContainer"
-        class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"
-      ></div>
+        class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"></div>
       <div
         id="result"
-        class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 text-center space-y-4"
-      >
+        class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 text-center space-y-4">
         <h2
-          class="text-2xl font-semibold text-gray-800 dark:text-gray-200"
-        ></h2>
+          class="text-2xl font-semibold text-gray-800 dark:text-gray-200"></h2>
         <h3
           id="totalMarks"
-          class="text-xl text-gray-700 dark:text-gray-300"
-        ></h3>
+          class="text-xl text-gray-700 dark:text-gray-300"></h3>
       </div>
     </div>
   </body>

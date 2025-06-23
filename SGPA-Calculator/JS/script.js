@@ -149,7 +149,43 @@ function fetchSubjects(url, semester = null) {
 
 // Handle CGPA calculation
 function handleCGPA(branch) {
-  return fetchSubjects(`resources/${branch}.json`);
+  // For CGPA, we need to fetch common subjects (one.json and two.json) and branch-specific subjects
+  const commonUrls = ['resources/one.json', 'resources/two.json'];
+  const branchUrl = `resources/${branch}.json`;
+  
+  return Promise.all([
+    ...commonUrls.map(url => fetch(url).then(response => {
+      if (!response.ok) {
+        throw new Error(`Failed to fetch ${url}`);
+      }
+      return response.json();
+    })),
+    fetch(branchUrl).then(response => {
+      if (!response.ok) {
+        throw new Error(`Failed to fetch ${branchUrl}`);
+      }
+      return response.json();
+    })
+  ])
+  .then(([oneData, twoData, branchData]) => {
+    // Combine all subjects from common semesters and branch-specific semesters
+    const allSubjects = [...oneData, ...twoData, ...branchData];
+    
+    // Remove duplicates if any (based on subject_code)
+    const uniqueSubjects = allSubjects.filter((subject, index, self) => 
+      index === self.findIndex(s => s.subject_code === subject.subject_code)
+    );
+    
+    const subjectTableContainer = document.getElementById("subjectTableContainer");
+    if (subjectTableContainer) {
+      subjectTableContainer.classList.remove("hidden");
+      displaySubjects(uniqueSubjects);
+    }
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+    alert(error.message || "An error occurred while fetching CGPA data.");
+  });
 }
 
 // Display subjects in the table
@@ -187,7 +223,7 @@ function displaySubjects(subjects) {
         ? "bg-white dark:bg-gray-800"
         : "bg-gray-50 dark:bg-gray-900";
     table += `
-    <tr class="${rowClass} hover:bg-fuchsia-200 dark:hover:bg-gray-600">
+    <tr class="${rowClass}">
       <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-700 dark:text-gray-300">${subject.semester}</td>
       <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-fuchsia-600 dark:text-fuchsia-400">${subject.subject_code}</td>
       <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100 font-medium">${subject.subject_name}</td>

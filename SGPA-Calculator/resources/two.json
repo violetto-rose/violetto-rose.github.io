@@ -1,5 +1,59 @@
 [
     {
-        
+      "subject_number": "201",
+      "subject_code": "BMATS201",
+      "semester": 2,
+      "subject_name": "Mathematics-II for CSE Stream",
+      "credits": 4
+    },
+    {
+      "subject_number": "202",
+      "subject_code": "BCHES202",
+      "semester": 2,
+      "subject_name": "Applied Chemistry for CSE stream",
+      "credits": 4
+    },
+    {
+      "subject_number": "203",
+      "subject_code": "BCEDK203",
+      "semester": 2,
+      "subject_name": "Computer-Aided Engineering Drawing",
+      "credits": 3
+    },
+    {
+      "subject_number": "204",
+      "subject_code": "BESCK204x",
+      "semester": 2,
+      "subject_name": "Engineering Science Course-II",
+      "credits": 3
+    },
+    {
+      "subject_number": "205",
+      "subject_code": "BETCK205x / BPLCK205x",
+      "semester": 2,
+      "subject_name": "Emerging Technology Course-II / Programming Languages Course-II ",
+      "credits": 3
+    },
+    {
+      "subject_number": "206",
+      "subject_code": "BPWSK206",
+      "semester": 2,
+      "subject_name": "Professional Writing Skills in English",
+      "credits": 1
+    },
+    {
+      "subject_number": "207",
+      "subject_code": "BICOK107",
+      "semester": 2,
+      "subject_name": "Indian Constitution",
+      "credits": 1
+    },
+    {
+      "subject_number": "208",
+      "subject_code": "BIDTK158 / BSFHK158",
+      "semester": 2,
+      "subject_name": "Innovation and Design Thinking / Scientific Foundations of Health",
+      "credits": 1
     }
-]
+  ]
+  
