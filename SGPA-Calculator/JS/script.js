@@ -116,7 +116,7 @@ function handleSubmit() {
   )?.value;
 
   if (!semester || !branch || !gradeType) {
-    alert('Please select all required fields.');
+    showWarningPopup(['Please select all required fields.'], false);
     return;
   }
 
@@ -167,7 +167,14 @@ function fetchSubjects(url, semester = null) {
     })
     .catch((error) => {
       console.error('Error:', error);
-      alert(error.message || 'An error occurred while fetching data.');
+      const errorMessage = error.message || 'An error occurred while fetching data.';
+      
+      // Check if it's a data availability issue vs a validation error
+      if (errorMessage.includes('No subjects found') || errorMessage.includes('No data found')) {
+        showDataNotFoundPopup('Data for this criteria doesn\'t exist.');
+      } else {
+        showWarningPopup([errorMessage], false);
+      }
     });
 }
 
@@ -214,7 +221,14 @@ function handleCGPA(branch) {
     })
     .catch((error) => {
       console.error('Error:', error);
-      alert(error.message || 'An error occurred while fetching CGPA data.');
+      const errorMessage = error.message || 'An error occurred while fetching CGPA data.';
+      
+      // Check if it's a data availability issue vs a validation error
+      if (errorMessage.includes('Failed to fetch') || errorMessage.includes('No data found')) {
+        showDataNotFoundPopup('Data for this criteria doesn\'t exist.');
+      } else {
+        showWarningPopup([errorMessage], false);
+      }
     });
 }
 
@@ -271,6 +285,99 @@ function handleDefaultInputTypeChange() {
 // Make function globally accessible
 window.handleDefaultInputTypeChange = handleDefaultInputTypeChange;
 
+// Handle default input type change for specific semester
+function handleSemesterDefaultInputTypeChange(semester) {
+  const defaultInputType = document.querySelector(
+    `input[name="semesterDefaultInputType_${semester}"]:checked`
+  )?.value;
+  
+  // Find all subjects in this semester
+  const subjects = document.querySelectorAll('tbody tr');
+  let subjectIndex = 0;
+  
+  subjects.forEach((row) => {
+    const creditInput = row.querySelector('input[name="credits"]');
+    
+    // Skip rows that don't have credit inputs (semester separator rows)
+    if (!creditInput) {
+      return;
+    }
+    
+    // Check if this row belongs to the specified semester
+    const semesterCell = row.querySelector('td:first-child');
+    if (semesterCell && semesterCell.textContent == semester) {
+      const marksRadio = document.querySelector(
+        `input[name="inputType_${subjectIndex}"][value="marks"]`
+      );
+      const gradeRadio = document.querySelector(
+        `input[name="inputType_${subjectIndex}"][value="grade"]`
+      );
+
+      if (defaultInputType === 'marks') {
+        if (marksRadio) marksRadio.checked = true;
+      } else {
+        if (gradeRadio) gradeRadio.checked = true;
+      }
+
+      // Apply the change
+      handleInputTypeChange(subjectIndex);
+    }
+    
+    subjectIndex++;
+  });
+}
+
+// Make function globally accessible
+window.handleSemesterDefaultInputTypeChange = handleSemesterDefaultInputTypeChange;
+
+// Handle semester-specific default input type change (for CGPA)
+function handleSemesterDefaultInputTypeChange(semester) {
+  const defaultInputType = document.querySelector(
+    `input[name="semesterDefaultInputType_${semester}"]:checked`
+  )?.value;
+  
+  // Find all subject rows for this semester
+  const semesterRows = document.querySelectorAll('tbody tr');
+  let isInTargetSemester = false;
+  let subjectIndex = 0;
+  
+  semesterRows.forEach((row) => {
+    // Check if this is a semester separator row
+    const semesterHeader = row.querySelector('td[colspan="6"]');
+    if (semesterHeader) {
+      const headerText = semesterHeader.textContent;
+      isInTargetSemester = headerText.includes(`Semester ${semester}`);
+      return;
+    }
+    
+    // If we're in the target semester and this is a subject row
+    if (isInTargetSemester && row.querySelector('input[name="credits"]')) {
+      const marksRadio = document.querySelector(
+        `input[name="inputType_${subjectIndex}"][value="marks"]`
+      );
+      const gradeRadio = document.querySelector(
+        `input[name="inputType_${subjectIndex}"][value="grade"]`
+      );
+
+      if (defaultInputType === 'marks') {
+        if (marksRadio) marksRadio.checked = true;
+      } else {
+        if (gradeRadio) gradeRadio.checked = true;
+      }
+
+      // Apply the change
+      handleInputTypeChange(subjectIndex);
+      subjectIndex++;
+    } else if (row.querySelector('input[name="credits"]')) {
+      // Count other semester subjects to maintain correct indexing
+      subjectIndex++;
+    }
+  });
+}
+
+// Make function globally accessible
+window.handleSemesterDefaultInputTypeChange = handleSemesterDefaultInputTypeChange;
+
 // Display subjects in the table
 function displaySubjects(subjects) {
   const container = document.getElementById('subjectTableContainer');
@@ -300,13 +407,13 @@ function displaySubjects(subjects) {
   const sortedSemesters = Object.keys(subjectsBySemester).sort((a, b) => parseInt(a) - parseInt(b));
 
   let table = `
-  <form id="marksForm" class="overflow-x-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+  <form id="marksForm" class="bg-white dark:bg-gray-800 rounded-lg shadow-lg">
     <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700">
-      <div class="flex items-center justify-between">
+      <div class="flex flex-col md:flex-row items-center justify-between">
         <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">Subject Details</h3>
         <div class="flex items-center space-x-4">
           <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Default Input Type:</span>
-          <div class="flex items-center space-x-3">
+          <div class="flex flex-col md:flex-row items-center gap-2">
             <label class="flex items-center space-x-2">
               <input 
                 type="radio" 
@@ -332,7 +439,8 @@ function displaySubjects(subjects) {
         </div>
       </div>
     </div>
-    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
       <thead>
         <tr class="bg-gray-50 dark:bg-gray-700">
           <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider w-xs">Semester</th>
@@ -349,17 +457,48 @@ function displaySubjects(subjects) {
   
   sortedSemesters.forEach((semester, semesterIndex) => {
     const semesterSubjects = subjectsBySemester[semester];
+    const gradeType = document.querySelector('input[name="gradeType"]:checked')?.value;
     
     // Add semester separator row for all semesters
     table += `
       <tr class="bg-gradient-to-r from-fuchsia-100 to-purple-100 dark:from-fuchsia-900 dark:to-purple-900 border-t-2 border-fuchsia-300 dark:border-fuchsia-600">
-        <td colspan="6" class="px-6 py-3 text-center">
-          <div class="flex items-center justify-center space-x-2">
-            <div class="h-0.5 flex-1 bg-fuchsia-300 dark:bg-fuchsia-600"></div>
-            <span class="text-sm font-semibold text-fuchsia-700 dark:text-fuchsia-300 uppercase tracking-wider">
-              Semester ${semester}
-            </span>
-            <div class="h-0.5 flex-1 bg-fuchsia-300 dark:bg-fuchsia-600"></div>
+        <td colspan="6" class="px-6 py-3">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-2 flex-1">
+              <div class="h-0.5 flex-1 bg-fuchsia-300 dark:bg-fuchsia-600"></div>
+              <span class="text-sm font-semibold text-fuchsia-700 dark:text-fuchsia-300 uppercase tracking-wider">
+                Semester ${semester}
+              </span>
+              <div class="h-0.5 flex-1 bg-fuchsia-300 dark:bg-fuchsia-600"></div>
+            </div>
+            ${gradeType === 'cgpa' ? `
+            <div class="flex items-center space-x-3 ml-4">
+              <span class="text-xs font-medium text-fuchsia-700 dark:text-fuchsia-300">Default:</span>
+              <div class="flex items-center space-x-2">
+                <label class="flex items-center space-x-1">
+                  <input 
+                    type="radio" 
+                    name="semesterDefaultInputType_${semester}" 
+                    value="marks" 
+                    checked
+                    onchange="handleSemesterDefaultInputTypeChange(${semester})"
+                    class="form-radio text-fuchsia-600 focus:ring-fuchsia-500 text-xs"
+                  >
+                  <span class="text-xs text-fuchsia-700 dark:text-fuchsia-300">Marks</span>
+                </label>
+                <label class="flex items-center space-x-1">
+                  <input 
+                    type="radio" 
+                    name="semesterDefaultInputType_${semester}" 
+                    value="grade"
+                    onchange="handleSemesterDefaultInputTypeChange(${semester})"
+                    class="form-radio text-fuchsia-600 focus:ring-fuchsia-500 text-xs"
+                  >
+                  <span class="text-xs text-fuchsia-700 dark:text-fuchsia-300">Grade</span>
+                </label>
+              </div>
+            </div>
+            ` : ''}
           </div>
         </td>
       </tr>`;
@@ -371,10 +510,10 @@ function displaySubjects(subjects) {
           : 'bg-gray-50 dark:bg-gray-900';
       table += `
       <tr class="${rowClass}">
-        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-700 dark:text-gray-300">${subject.semester}</td>
-        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-fuchsia-600 dark:text-fuchsia-400">${subject.subject_code}</td>
+        <td class="px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-300">${subject.semester}</td>
+        <td class="px-6 py-4 text-sm font-medium text-fuchsia-600 dark:text-fuchsia-400">${subject.subject_code}</td>
         <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100 font-medium">${subject.subject_name}</td>
-        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300 font-medium">${subject.credits}</td>
+        <td class="px-6 py-4 text-sm text-gray-700 dark:text-gray-300 font-medium">${subject.credits}</td>
         <td class="px-6 py-4">
           <div class="flex flex-col space-y-2">
             <label class="flex items-center space-x-1">
@@ -438,18 +577,19 @@ function displaySubjects(subjects) {
   table += `
       </tbody>
     </table>
-  </form>
-  <div class="px-6 py-4 border-t border-gray-200 dark:border-gray-700">
-    <div class="flex justify-end items-center">
-      <button 
-        type="button" 
-        id="calculateBtn"
-        class="inline-flex items-center px-6 py-2.5 border border-transparent text-sm font-semibold rounded-lg text-white bg-fuchsia-600 hover:bg-fuchsia-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-fuchsia-500 shadow-sm"
-      >
-        Calculate GPA
-      </button>
     </div>
-  </div>`;
+    <div class="px-6 py-4 border-t border-gray-200 dark:border-gray-700">
+      <div class="flex justify-end items-center">
+        <button 
+          type="button" 
+          id="calculateBtn"
+          class="inline-flex items-center px-6 py-2.5 border border-transparent text-sm font-semibold rounded-lg text-white bg-fuchsia-600 hover:bg-fuchsia-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-fuchsia-500 shadow-sm"
+        >
+          Calculate GPA
+        </button>
+      </div>
+    </div>
+  </form>`;
 
   container.innerHTML = table;
 
@@ -465,45 +605,54 @@ function calculateGPA() {
   let totalCredits = 0;
   let totalGradePoints = 0;
   let totalMarks = 0;
-  let hasEmptyInputs = false;
+  let warnings = [];
+  let subjectIndex = 0; // Separate index for actual subject rows
 
-  subjects.forEach((row, index) => {
+  subjects.forEach((row) => {
     const creditInput = row.querySelector('input[name="credits"]');
+    
+    // Skip rows that don't have credit inputs (semester separator rows)
+    if (!creditInput) {
+      return;
+    }
+    
     const credit = Number.parseFloat(creditInput.value);
+    const subjectCode = row.querySelector('td:nth-child(2)')?.textContent || `Subject ${subjectIndex + 1}`;
 
     const inputTypeRadio = document.querySelector(
-      `input[name="inputType_${index}"]:checked`
+      `input[name="inputType_${subjectIndex}"]:checked`
     );
-    const marksInput = document.getElementById(`marks_${index}`);
-    const gradeSelect = document.getElementById(`grade_${index}`);
+    const marksInput = document.getElementById(`marks_${subjectIndex}`);
+    const gradeSelect = document.getElementById(`grade_${subjectIndex}`);
 
     let gradePoint = 0;
     let markValue = 0;
 
-    if (inputTypeRadio.value === 'marks') {
+    if (inputTypeRadio && inputTypeRadio.value === 'marks') {
       if (!marksInput.value) {
         if (credit !== 0) {
-          hasEmptyInputs = true;
-          return;
+          warnings.push(`${subjectCode}: Marks field is empty`);
         }
       } else {
         markValue = Number.parseFloat(marksInput.value);
         if (markValue < 0 || markValue > 100) {
-          alert('Marks should be between 0 and 100');
-          return;
+          warnings.push(`${subjectCode}: Marks should be between 0 and 100 (current: ${markValue})`);
+          // Use 0 as fallback for invalid marks
+          markValue = Math.max(0, Math.min(100, markValue));
         }
         gradePoint = getGradePoint(markValue);
       }
-    } else {
+    } else if (inputTypeRadio) {
       if (!gradeSelect.value) {
         if (credit !== 0) {
-          hasEmptyInputs = true;
-          return;
+          warnings.push(`${subjectCode}: Grade not selected`);
         }
       } else {
         gradePoint = letterGradeMapping[gradeSelect.value];
         markValue = getMarksFromGrade(gradePoint);
       }
+    } else {
+      warnings.push(`${subjectCode}: Input type not selected`);
     }
 
     if (credit !== 0) {
@@ -511,17 +660,152 @@ function calculateGPA() {
       totalGradePoints += gradePoint * credit;
     }
     totalMarks += markValue;
+    
+    subjectIndex++; // Increment only for actual subject rows
   });
 
-  if (hasEmptyInputs) {
-    alert(
-      'Please enter marks or select grades for all subjects with non-zero credits'
-    );
+  // Show warnings if any and stop calculation
+  if (warnings.length > 0) {
+    showWarningPopup(warnings, false); // false = don't continue with calculation
     return;
   }
 
   displayResult(totalCredits, totalGradePoints, totalMarks);
   scrollToElement('result');
+}
+
+// Show warning popup
+function showWarningPopup(warnings, allowContinue = true) {
+  const isError = !allowContinue;
+  const warningHtml = `
+    <div id="warningPopup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full mx-4 max-h-[40rem] overflow-y-auto">
+        <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-medium ${isError ? 'text-red-600 dark:text-red-400' : 'text-yellow-600 dark:text-yellow-400'} flex items-center">
+              <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                ${isError ? 
+                  '<path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>' :
+                  '<path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>'
+                }
+              </svg>
+              ${isError ? 'Validation Errors' : 'Validation Warnings'}
+            </h3>
+            <button id="closeWarning" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="px-6 py-4">
+          <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">
+            ${isError ? 
+              'Please fix the following issues before calculation can proceed:' : 
+              'The following issues were found. Calculation will proceed with adjustments:'
+            }
+          </p>
+          <ul class="space-y-2">
+            ${warnings.map(warning => `
+              <li class="flex items-center space-x-2">
+                <span class="${isError ? 'text-red-500' : 'text-yellow-500'}">•</span>
+                <span class="text-sm text-gray-700 dark:text-gray-300">${warning}</span>
+              </li>
+            `).join('')}
+          </ul>
+        </div>
+        <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700 rounded-b-lg">
+          <button id="acknowledgeWarning" class="w-full px-4 py-2 ${isError ? 'bg-red-600 hover:bg-red-700' : 'bg-yellow-600 hover:bg-yellow-700'} text-white rounded-lg text-sm font-medium">
+            ${isError ? 'OK, I\'ll Fix These' : 'I Understand, Continue'}
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  document.body.insertAdjacentHTML('beforeend', warningHtml);
+  
+  // Add event listeners
+  document.getElementById('closeWarning').onclick = closeWarningPopup;
+  document.getElementById('acknowledgeWarning').onclick = closeWarningPopup;
+  
+  // Close on background click
+  document.getElementById('warningPopup').onclick = (e) => {
+    if (e.target.id === 'warningPopup') {
+      closeWarningPopup();
+    }
+  };
+}
+
+// Close warning popup
+function closeWarningPopup() {
+  const popup = document.getElementById('warningPopup');
+  if (popup) {
+    popup.remove();
+  }
+}
+
+// Show data not found popup
+function showDataNotFoundPopup(message) {
+  const popupHtml = `
+    <div id="dataNotFoundPopup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full mx-4">
+        <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-medium text-blue-600 dark:text-blue-400 flex items-center">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              No Data Available
+            </h3>
+            <button id="closeDataNotFound" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="px-6 py-4">
+          <div class="flex items-center space-x-3">
+            <div class="flex-shrink-0">
+              <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <p class="text-sm text-gray-600 dark:text-gray-300">
+                ${message}
+              </p>
+              <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                This combination of semester and branch may not be available in our current database.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  document.body.insertAdjacentHTML('beforeend', popupHtml);
+  
+  // Add event listeners
+  document.getElementById('closeDataNotFound').onclick = closeDataNotFoundPopup;
+  document.getElementById('acknowledgeDataNotFound').onclick = closeDataNotFoundPopup;
+  
+  // Close on background click
+  document.getElementById('dataNotFoundPopup').onclick = (e) => {
+    if (e.target.id === 'dataNotFoundPopup') {
+      closeDataNotFoundPopup();
+    }
+  };
+}
+
+// Close data not found popup
+function closeDataNotFoundPopup() {
+  const popup = document.getElementById('dataNotFoundPopup');
+  if (popup) {
+    popup.remove();
+  }
 }
 
 // Display the calculated result
@@ -601,12 +885,58 @@ function getMarksFromGrade(gradePoint) {
   }
 }
 
+// Footer hide/show functionality
+function setupFooterScrollBehavior() {
+  let lastScrollTop = 0;
+  let ticking = false;
+  const footer = document.getElementById('footer');
+  
+  if (!footer) return;
+
+  function updateFooter() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const isTabletOrSmaller = window.innerWidth <= 1024; // lg breakpoint in Tailwind
+    
+    if (isTabletOrSmaller) {
+      if (scrollTop <= 10) {
+        // At the very top (with small tolerance) - show footer
+        footer.style.transform = 'translateY(0)';
+      } else {
+        // Not at the top - hide footer
+        footer.style.transform = 'translateY(100%)';
+      }
+    } else {
+      // Desktop - always show footer
+      footer.style.transform = 'translateY(0)';
+    }
+    
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+    ticking = false;
+  }
+
+  function requestTick() {
+    if (!ticking) {
+      requestAnimationFrame(updateFooter);
+      ticking = true;
+    }
+  }
+
+  // Scroll event listener
+  window.addEventListener('scroll', requestTick, { passive: true });
+  
+  // Resize event listener to handle orientation changes
+  window.addEventListener('resize', () => {
+    requestTick();
+  }, { passive: true });
+}
+
 // Initialize the application
 function initializeApp() {
   initializeDarkMode();
   setupDarkModeToggle();
   initializeUI();
   setupEventListeners();
+  setupFooterScrollBehavior();
 }
 
 // Run the initialization when the DOM is fully loaded

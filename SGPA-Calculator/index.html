@@ -34,7 +34,7 @@
     <script src="JS/script.js" defer></script>
   </head>
   <body
-    class="font-inter min-h-screen bg-fuchsia-50 dark:bg-gray-900 py-12 px-4 transition-colors duration-200">
+    class="font-inter min-h-screen bg-fuchsia-50 dark:bg-gray-900 lg:py-12 py-4 px-4 transition-colors duration-200">
     <div class="max-w-6xl mx-auto space-y-8 pb-20">
       <div class="flex justify-end lg:fixed top-4 right-4 z-50">
         <button
@@ -109,7 +109,7 @@
             <select
               id="semester"
               name="semester"
-              class="block p-2 w-full rounded-md border-gray-300 dark:border-gray-600 shadow-md focus:border-fuchsia-500 focus:ring-fuchsia-500 focus:outline-none dark:bg-gray-700 dark:text-gray-300">
+              class="block w-full px-3 py-2.5 rounded-lg border dark:border-gray-700 focus:border-fuchsia-500 focus:ring-fuchsia-500 bg-fuchsia-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100">
               <option value="1">1st Semester</option>
               <option value="2">2nd Semester</option>
               <option value="3" selected>3rd Semester</option>
@@ -130,7 +130,7 @@
             <select
               id="branch"
               name="branch"
-              class="block p-2 w-full rounded-md border-gray-300 dark:border-gray-600 shadow-md focus:border-fuchsia-500 focus:ring-fuchsia-500 focus:outline-none dark:bg-gray-700 dark:text-gray-300">
+              class="block w-full px-3 py-2.5 rounded-lg border dark:border-gray-700 focus:border-fuchsia-500 focus:ring-fuchsia-500 bg-fuchsia-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100">
               <option value="cse">Computer Science and Engineering</option>
               <option value="ise">Information Science and Engineering</option>
               <option value="aiml">
@@ -176,9 +176,11 @@
           class="text-xl text-gray-700 dark:text-gray-300"></h3>
       </div>
     </div>
+
     <footer
-      class="fixed inset-x-0 bottom-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-3 px-4 z-50">
-      <div class="flex justify-between items-center">
+      id="footer"
+      class="fixed inset-x-0 bottom-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-3 px-4 z-50 transition-transform duration-300 ease-in-out">
+      <div class="flex justify-between items-center gap-4">
         <div class="text-left">
           <small class="text-gray-500 dark:text-gray-400">
             Note: This calculator follows the VTU 2021/2022 scheme grading scale.
@@ -193,7 +195,7 @@
           </small>
         </div>
         <div class="text-right">
-          <small class="text-gray-500 dark:text-gray-400">
+          <small class="text-gray-500 dark:text-gray-400 whitespace-nowrap"> 
             Made by
             <a
               href="https://bit.ly/manjumadhav-xo"
