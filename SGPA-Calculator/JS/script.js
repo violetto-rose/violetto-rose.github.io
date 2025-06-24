@@ -387,7 +387,7 @@ function displaySubjects(subjects) {
 
   if (subjects.length === 0) {
     container.innerHTML = `
-      <h2 class="text-xl text-gray-700 dark:text-gray-300 text-center py-4">
+      <h2 class="text-xl text-gray-700 dark:text-gray-300 text-center py-6 text-heading">
         No subjects found for selected criteria.
       </h2>`;
     return;
@@ -410,9 +410,9 @@ function displaySubjects(subjects) {
   <form id="marksForm" class="bg-white dark:bg-gray-800 rounded-lg shadow-lg">
     <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700">
       <div class="flex flex-col md:flex-row items-center justify-between">
-        <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">Subject Details</h3>
+        <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 text-heading">Subject Details</h3>
         <div class="flex items-center space-x-4">
-          <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Default Input Type:</span>
+          <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 text-caption">Default Input Type:</span>
           <div class="flex flex-col md:flex-row items-center gap-2">
             <label class="flex items-center space-x-2">
               <input 
@@ -423,7 +423,7 @@ function displaySubjects(subjects) {
                 onchange="handleDefaultInputTypeChange()"
                 class="form-radio text-fuchsia-600 focus:ring-fuchsia-500"
               >
-              <span class="text-sm text-gray-700 dark:text-gray-300">Marks</span>
+              <span class="text-sm text-gray-700 dark:text-gray-300 text-body">Marks</span>
             </label>
             <label class="flex items-center space-x-2">
               <input 
@@ -433,7 +433,7 @@ function displaySubjects(subjects) {
                 onchange="handleDefaultInputTypeChange()"
                 class="form-radio text-fuchsia-600 focus:ring-fuchsia-500"
               >
-              <span class="text-sm text-gray-700 dark:text-gray-300">Grade</span>
+              <span class="text-sm text-gray-700 dark:text-gray-300 text-body">Grade</span>
             </label>
           </div>
         </div>
@@ -443,12 +443,12 @@ function displaySubjects(subjects) {
       <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
       <thead>
         <tr class="bg-gray-50 dark:bg-gray-700">
-          <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider w-xs">Semester</th>
-          <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider w-xs">Code</th>
-          <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider w-3xl">Subject Name</th>
-          <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider w-sm">Credits</th>
-          <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider w-sm">Input Type</th>
-          <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider w-3xl">Marks/Grade</th>
+          <th class="px-6 py-4 text-left text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider w-xs text-caption">Semester</th>
+          <th class="px-6 py-4 text-left text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider w-xs text-caption">Code</th>
+          <th class="px-6 py-4 text-left text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider w-3xl text-caption">Subject Name</th>
+          <th class="px-6 py-4 text-left text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider w-sm text-caption">Credits</th>
+          <th class="px-6 py-4 text-left text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider w-sm text-caption">Input Type</th>
+          <th class="px-6 py-4 text-left text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider w-3xl text-caption">Marks/Grade</th>
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-200 dark:divide-gray-700">`;
@@ -466,14 +466,14 @@ function displaySubjects(subjects) {
           <div class="flex items-center justify-between">
             <div class="flex items-center space-x-2 flex-1">
               <div class="h-0.5 flex-1 bg-fuchsia-300 dark:bg-fuchsia-600"></div>
-              <span class="text-sm font-semibold text-fuchsia-700 dark:text-fuchsia-300 uppercase tracking-wider">
+              <span class="text-sm font-bold text-fuchsia-700 dark:text-fuchsia-300 uppercase tracking-wider text-caption">
                 Semester ${semester}
               </span>
               <div class="h-0.5 flex-1 bg-fuchsia-300 dark:bg-fuchsia-600"></div>
             </div>
             ${gradeType === 'cgpa' ? `
             <div class="flex items-center space-x-3 ml-4">
-              <span class="text-xs font-medium text-fuchsia-700 dark:text-fuchsia-300">Default:</span>
+              <span class="text-xs font-semibold text-fuchsia-700 dark:text-fuchsia-300 text-caption">Default:</span>
               <div class="flex items-center space-x-2">
                 <label class="flex items-center space-x-1">
                   <input 
@@ -484,7 +484,7 @@ function displaySubjects(subjects) {
                     onchange="handleSemesterDefaultInputTypeChange(${semester})"
                     class="form-radio text-fuchsia-600 focus:ring-fuchsia-500 text-xs"
                   >
-                  <span class="text-xs text-fuchsia-700 dark:text-fuchsia-300">Marks</span>
+                  <span class="text-xs text-fuchsia-700 dark:text-fuchsia-300 text-caption">Marks</span>
                 </label>
                 <label class="flex items-center space-x-1">
                   <input 
@@ -494,7 +494,7 @@ function displaySubjects(subjects) {
                     onchange="handleSemesterDefaultInputTypeChange(${semester})"
                     class="form-radio text-fuchsia-600 focus:ring-fuchsia-500 text-xs"
                   >
-                  <span class="text-xs text-fuchsia-700 dark:text-fuchsia-300">Grade</span>
+                  <span class="text-xs text-fuchsia-700 dark:text-fuchsia-300 text-caption">Grade</span>
                 </label>
               </div>
             </div>
@@ -510,10 +510,10 @@ function displaySubjects(subjects) {
           : 'bg-gray-50 dark:bg-gray-900';
       table += `
       <tr class="${rowClass}">
-        <td class="px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-300">${subject.semester}</td>
-        <td class="px-6 py-4 text-sm font-medium text-fuchsia-600 dark:text-fuchsia-400">${subject.subject_code}</td>
-        <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100 font-medium">${subject.subject_name}</td>
-        <td class="px-6 py-4 text-sm text-gray-700 dark:text-gray-300 font-medium">${subject.credits}</td>
+        <td class="px-6 py-4 text-sm font-semibold text-gray-700 dark:text-gray-300 text-numeric">${subject.semester}</td>
+        <td class="px-6 py-4 text-sm font-bold text-fuchsia-600 dark:text-fuchsia-400 text-caption">${subject.subject_code}</td>
+        <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100 font-medium text-body">${subject.subject_name}</td>
+        <td class="px-6 py-4 text-sm text-gray-700 dark:text-gray-300 font-semibold text-numeric">${subject.credits}</td>
         <td class="px-6 py-4">
           <div class="flex flex-col space-y-2">
             <label class="flex items-center space-x-1">
@@ -525,7 +525,7 @@ function displaySubjects(subjects) {
                 onchange="handleInputTypeChange(${globalIndex})"
                 class="form-radio text-fuchsia-600 focus:ring-fuchsia-500 text-xs"
               >
-              <span class="text-xs text-gray-700 dark:text-gray-300">Marks</span>
+              <span class="text-xs text-gray-700 dark:text-gray-300 text-caption">Marks</span>
             </label>
             <label class="flex items-center space-x-1">
               <input 
@@ -535,7 +535,7 @@ function displaySubjects(subjects) {
                 onchange="handleInputTypeChange(${globalIndex})"
                 class="form-radio text-fuchsia-600 focus:ring-fuchsia-500 text-xs"
               >
-              <span class="text-xs text-gray-700 dark:text-gray-300">Grade</span>
+              <span class="text-xs text-gray-700 dark:text-gray-300 text-caption">Grade</span>
             </label>
           </div>
         </td>
@@ -547,7 +547,7 @@ function displaySubjects(subjects) {
             min="0" 
             max="100" 
             required
-            class="block w-full px-3 py-2.5 rounded-lg border dark:border-gray-700 focus:border-fuchsia-500 focus:ring-fuchsia-500 text-sm bg-fuchsia-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none min-w-[180px]"
+            class="block w-full px-3 py-2.5 rounded-lg border dark:border-gray-700 focus:border-fuchsia-500 focus:ring-fuchsia-500 text-sm bg-fuchsia-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none min-w-[180px] form-text"
             placeholder="Enter marks"
           >
           <select 
@@ -555,7 +555,7 @@ function displaySubjects(subjects) {
             name="grade"
             required
             style="display: none;"
-            class="block w-full px-3 py-2.5 rounded-lg border dark:border-gray-700 focus:border-fuchsia-500 focus:ring-fuchsia-500 text-sm bg-fuchsia-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none min-w-[180px]"
+            class="block w-full px-3 py-2.5 rounded-lg border dark:border-gray-700 focus:border-fuchsia-500 focus:ring-fuchsia-500 text-sm bg-fuchsia-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none min-w-[180px] form-text"
           >
             <option value="">Select Grade</option>
             <option value="O">O • Outstanding (10)</option>
@@ -583,7 +583,7 @@ function displaySubjects(subjects) {
         <button 
           type="button" 
           id="calculateBtn"
-          class="inline-flex items-center px-6 py-2.5 border border-transparent text-sm font-semibold rounded-lg text-white bg-fuchsia-600 hover:bg-fuchsia-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-fuchsia-500 shadow-sm"
+          class="inline-flex items-center px-6 py-3 border border-transparent text-sm font-semibold rounded-xl text-white bg-fuchsia-600 hover:bg-fuchsia-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-fuchsia-500 shadow-lg hover:shadow-xl transition-all duration-200 text-body"
         >
           Calculate GPA
         </button>
@@ -682,11 +682,11 @@ function showWarningPopup(warnings, allowContinue = true) {
       <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full mx-4 max-h-[40rem] overflow-y-auto">
         <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
           <div class="flex items-center justify-between">
-            <h3 class="text-lg font-medium ${isError ? 'text-red-600 dark:text-red-400' : 'text-yellow-600 dark:text-yellow-400'} flex items-center">
-              <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <h3 class="text-lg font-bold ${isError ? 'text-red-600 dark:text-red-400' : 'text-yellow-600 dark:text-yellow-400'} flex items-center text-heading">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-3">
                 ${isError ? 
-                  '<path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>' :
-                  '<path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>'
+                  '<path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />' :
+                  '<path fill-rule="evenodd" d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />'
                 }
               </svg>
               ${isError ? 'Validation Errors' : 'Validation Warnings'}
@@ -699,23 +699,23 @@ function showWarningPopup(warnings, allowContinue = true) {
           </div>
         </div>
         <div class="px-6 py-4">
-          <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">
+          <p class="text-sm text-gray-600 dark:text-gray-300 mb-4 text-body">
             ${isError ? 
               'Please fix the following issues before calculation can proceed:' : 
               'The following issues were found. Calculation will proceed with adjustments:'
             }
           </p>
-          <ul class="space-y-2">
+          <ul class="space-y-3">
             ${warnings.map(warning => `
-              <li class="flex items-center space-x-2">
-                <span class="${isError ? 'text-red-500' : 'text-yellow-500'}">•</span>
-                <span class="text-sm text-gray-700 dark:text-gray-300">${warning}</span>
+              <li class="flex items-start space-x-3">
+                <span class="${isError ? 'text-red-500' : 'text-yellow-500'} font-bold text-lg leading-none">•</span>
+                <span class="text-sm text-gray-700 dark:text-gray-300 text-body">${warning}</span>
               </li>
             `).join('')}
           </ul>
         </div>
         <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700 rounded-b-lg">
-          <button id="acknowledgeWarning" class="w-full px-4 py-2 ${isError ? 'bg-red-600 hover:bg-red-700' : 'bg-yellow-600 hover:bg-yellow-700'} text-white rounded-lg text-sm font-medium">
+          <button id="acknowledgeWarning" class="w-full px-4 py-3 ${isError ? 'bg-red-600 hover:bg-red-700' : 'bg-yellow-600 hover:bg-yellow-700'} text-white rounded-xl text-sm font-semibold text-body transition-all duration-200 hover:shadow-lg">
             ${isError ? 'OK, I\'ll Fix These' : 'I Understand, Continue'}
           </button>
         </div>
@@ -752,9 +752,9 @@ function showDataNotFoundPopup(message) {
       <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full mx-4">
         <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
           <div class="flex items-center justify-between">
-            <h3 class="text-lg font-medium text-blue-600 dark:text-blue-400 flex items-center">
-              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            <h3 class="text-lg font-bold text-blue-600 dark:text-blue-400 flex items-center text-heading">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 mr-3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
               </svg>
               No Data Available
             </h3>
@@ -768,15 +768,16 @@ function showDataNotFoundPopup(message) {
         <div class="px-6 py-4">
           <div class="flex items-center space-x-3">
             <div class="flex-shrink-0">
-              <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-8 text-blue-500">
+                <path d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5H5.625Z" />
+                <path d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z" />
               </svg>
             </div>
             <div class="flex-1">
-              <p class="text-sm text-gray-600 dark:text-gray-300">
+              <p class="text-sm text-gray-600 dark:text-gray-300 text-body">
                 ${message}
               </p>
-              <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">
+              <p class="text-xs text-gray-500 dark:text-gray-400 mt-2 text-caption">
                 This combination of semester and branch may not be available in our current database.
               </p>
             </div>
@@ -822,22 +823,22 @@ function displayResult(totalCredits, totalGradePoints, totalMarks) {
     )?.value;
 
     let resultHTML = `
-      <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">
-        Your ${gradeType.toUpperCase()} is: ${gpa.toFixed(2)}
+      <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-3 text-display">
+        Your ${gradeType.toUpperCase()} is: <span class="text-numeric text-fuchsia-600 dark:text-fuchsia-400">${gpa.toFixed(2)}</span>
       </h2>`;
     
     // Only show total marks for SGPA, not for CGPA
     if (gradeType === 'sgpa') {
       resultHTML += `
-        <h3 class="text-xl text-gray-700 dark:text-gray-300">
-          Total Marks: ${totalMarks}
+        <h3 class="text-xl text-gray-700 dark:text-gray-300 text-heading">
+          Total Marks: <span class="text-numeric font-semibold">${totalMarks}</span>
         </h3>`;
     }
 
     resultDiv.innerHTML = resultHTML;
   } else {
     resultDiv.innerHTML = `
-      <h2 class="text-xl text-red-600 dark:text-red-400 font-medium">
+      <h2 class="text-xl text-red-600 dark:text-red-400 font-semibold text-heading">
         Invalid input for calculation.
       </h2>`;
   }
@@ -930,6 +931,79 @@ function setupFooterScrollBehavior() {
   }, { passive: true });
 }
 
+// Sidebar menu functionality
+function setupSidebarMenu() {
+  const menuToggle = document.getElementById('menuToggle');
+  const sidebarMenu = document.getElementById('sidebarMenu');
+  const closeSidebar = document.getElementById('closeSidebar');
+  
+  if (!menuToggle || !sidebarMenu) return;
+
+  function openSidebar() {
+    sidebarMenu.classList.remove('opacity-0', 'pointer-events-none');
+    sidebarMenu.classList.add('opacity-100');
+    const sidebarContent = sidebarMenu.querySelector('div');
+    if (sidebarContent) {
+      sidebarContent.classList.remove('translate-x-full');
+      sidebarContent.classList.add('-translate-x-5');
+    }
+    // Prevent body scroll
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSidebarMenu() {
+    const sidebarContent = sidebarMenu.querySelector('div');
+    if (sidebarContent) {
+      sidebarContent.classList.remove('-translate-x-5');
+      sidebarContent.classList.add('translate-x-full');
+    }
+    
+    // Wait for animation, then hide overlay
+    setTimeout(() => {
+      sidebarMenu.classList.remove('opacity-100');
+      sidebarMenu.classList.add('opacity-0', 'pointer-events-none');
+      // Restore body scroll
+      document.body.style.overflow = '';
+    }, 300);
+  }
+
+  // Toggle sidebar
+  menuToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    openSidebar();
+  });
+  
+  // Close sidebar
+  if (closeSidebar) {
+    closeSidebar.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeSidebarMenu();
+    });
+  }
+  
+  // Close on background click
+  sidebarMenu.addEventListener('click', (e) => {
+    if (e.target === sidebarMenu) {
+      closeSidebarMenu();
+    }
+  });
+  
+  // Prevent clicks inside sidebar from closing it
+  const sidebarContent = sidebarMenu.querySelector('div');
+  if (sidebarContent) {
+    sidebarContent.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+  }
+  
+  // Close on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !sidebarMenu.classList.contains('opacity-0')) {
+      closeSidebarMenu();
+    }
+  });
+}
+
 // Initialize the application
 function initializeApp() {
   initializeDarkMode();
@@ -937,6 +1011,7 @@ function initializeApp() {
   initializeUI();
   setupEventListeners();
   setupFooterScrollBehavior();
+  setupSidebarMenu();
 }
 
 // Run the initialization when the DOM is fully loaded
