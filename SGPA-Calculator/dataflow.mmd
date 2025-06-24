@@ -1,0 +1,23 @@
+flowchart TD
+    subgraph Logic["Core Logic"]
+        direction TB
+        D[["GPACalculator"]]
+        C["DataManager"]
+    end
+    A(["User Interaction"]) --> B["UIManager"]
+    C --> D
+    B --> C
+    D --> E{{"Result Display"}}
+    B -- Errors/Warnings? --> F["PopupManager"]
+    F -.-> A
+    E --> G(["End"])
+    A:::start
+    E:::output
+    F:::popup
+    G:::end_node
+    classDef start fill:#25a,stroke:#fff,stroke-width:2px
+    classDef output fill:#4b4,stroke:#222,stroke-width:2px
+    classDef popup fill:#ffb347,stroke:#d2691e,stroke-width:2px
+    classDef end_node fill:#a25,stroke:#fff,stroke-width:2px
+    style E color:#000000
+    style F fill:#FF6D00

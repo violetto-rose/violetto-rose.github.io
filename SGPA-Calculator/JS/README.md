@@ -21,13 +21,13 @@ JS/
 │   ├── popupManager.js        # Warning and error popups
 │   ├── notificationManager.js # Toast notifications
 │   └── navigationManager.js   # Sidebar and footer behavior
-├── validate-modules.js        # Module validation script
 └── README.md                  # This file
 ```
 
 ## 🌟 Application Structure
 
 ### Landing Page (`index.html`)
+
 - **Smart Upload Interface**: Drag & drop PDF upload area (NLP-powered PDF reading coming soon)
 - **Dynamic Hero Section**: Animated gradient background with floating elements
 - **Method Selection**: Choose between smart upload or manual entry
@@ -35,6 +35,7 @@ JS/
 - **Modern UI**: Glass morphism design with smooth animations
 
 ### Manual Calculator (`calculator.html`)
+
 - **Traditional Input**: Manual subject entry with branch/semester selection
 - **Full Functionality**: Complete SGPA/CGPA calculation with all original features
 - **Consistent Design**: Matches the new design language
@@ -43,6 +44,7 @@ JS/
 ## 📋 Module Descriptions
 
 ### `main.js`
+
 - **Purpose**: Manual calculator entry point and orchestrator
 - **Responsibilities**:
   - Initialize all modules for the manual calculator
@@ -51,6 +53,7 @@ JS/
   - Handle application-level errors
 
 ### `landing.js`
+
 - **Purpose**: Landing page functionality and interactions
 - **Responsibilities**:
   - Handle PDF upload area with drag & drop
@@ -60,6 +63,7 @@ JS/
   - Smooth animations and transitions
 
 ### `modules/themeManager.js`
+
 - **Purpose**: Theme and dark mode management
 - **Responsibilities**:
   - Initialize dark mode based on user preference or system setting
@@ -67,6 +71,7 @@ JS/
   - Persist theme preferences in localStorage
 
 ### `modules/uiManager.js`
+
 - **Purpose**: User interface management and interactions
 - **Responsibilities**:
   - Initialize UI elements
@@ -76,6 +81,7 @@ JS/
   - Handle input type changes (marks vs. grades)
 
 ### `modules/dataManager.js`
+
 - **Purpose**: Data fetching and processing
 - **Responsibilities**:
   - Fetch subject data from JSON files
@@ -84,6 +90,7 @@ JS/
   - Error handling for data operations
 
 ### `modules/gpaCalculator.js`
+
 - **Purpose**: Core GPA calculation logic
 - **Responsibilities**:
   - Calculate SGPA and CGPA from form inputs
@@ -92,6 +99,7 @@ JS/
   - Handle calculation errors and warnings
 
 ### `modules/gradeUtils.js`
+
 - **Purpose**: Grade conversion utilities and mappings
 - **Responsibilities**:
   - Define grade-to-point mappings
@@ -100,6 +108,7 @@ JS/
   - Provide grade conversion functions
 
 ### `modules/popupManager.js`
+
 - **Purpose**: User feedback and error handling
 - **Responsibilities**:
   - Display warning and error popups
@@ -108,6 +117,7 @@ JS/
   - Provide user feedback for validation errors
 
 ### `modules/notificationManager.js`
+
 - **Purpose**: Simple toast notifications
 - **Responsibilities**:
   - Display toast notifications for user feedback
@@ -116,6 +126,7 @@ JS/
   - Provide convenient static methods for common notifications
 
 ### `modules/navigationManager.js`
+
 - **Purpose**: Navigation and layout behavior
 - **Responsibilities**:
   - Handle sidebar menu functionality
@@ -126,27 +137,32 @@ JS/
 ## 🔧 Benefits of Modular Architecture
 
 ### **Maintainability**
+
 - Each module has a single responsibility
 - Easier to locate and fix bugs
 - Cleaner code organization
 - Better separation of concerns
 
 ### **Reusability**
+
 - Modules can be imported and used independently
 - Functions are more focused and reusable
 - Easier to extend functionality
 
 ### **Testing**
+
 - Individual modules can be tested in isolation
 - Easier to write unit tests
 - Better test coverage possible
 
 ### **Collaboration**
+
 - Multiple developers can work on different modules
 - Reduced merge conflicts
 - Clear module boundaries
 
 ### **Performance**
+
 - ES6 modules enable tree shaking
 - Only necessary code is loaded
 - Better browser caching
@@ -162,15 +178,12 @@ The application automatically initializes when the DOM is loaded. The main entry
 
 ## 🔄 Data Flow
 
-```
-User Interaction → UIManager → DataManager → GPACalculator → Result Display
-                     ↓
-                PopupManager (for errors/warnings)
-```
+![](..//dataflow.svg)
 
 ## 🌐 Global Accessibility
 
 Some static methods are made globally accessible for HTML onclick handlers:
+
 - `UIManager.handleInputTypeChange()`
 - `UIManager.handleDefaultInputTypeChange()`
 - `UIManager.handleSemesterDefaultInputTypeChange()`
@@ -178,6 +191,7 @@ Some static methods are made globally accessible for HTML onclick handlers:
 ## 📝 Future Enhancements
 
 This modular structure makes it easy to:
+
 - Add new calculation methods
 - Implement new themes
 - Add data persistence features
@@ -189,9 +203,10 @@ This modular structure makes it easy to:
 ## 🔧 Development Guidelines
 
 When extending the application:
+
 1. Keep modules focused on single responsibilities
 2. Use ES6 import/export syntax
 3. Add proper JSDoc documentation
 4. Handle errors appropriately
 5. Maintain consistent coding style
-6. Update this README when adding new modules 
+6. Update this README when adding new modules

@@ -55,16 +55,30 @@ export class DataManager {
   }
 
   /**
-   * Handle CGPA data fetching - only combines 1st and 2nd semester subjects
-   * @param {string} branch - The branch code (ignored for CGPA calculation)
-   * @returns {Promise<any[]>} Array of subjects for CGPA calculation (only 1st and 2nd semester)
+   * Handle CGPA data fetching - combines all semester subjects including branch-specific data
+   * @param {string} branch - The branch code for fetching branch-specific subjects
+   * @returns {Promise<any[]>} Array of subjects for CGPA calculation (all semesters)
    */
   static fetchCGPAData(branch) {
-    // For CGPA, we only fetch common subjects (one.json and two.json) - ignore branch-specific data
+    // For CGPA, we fetch both common subjects and branch-specific data
     const commonUrls = ['data/one.json', 'data/two.json'];
+    let branchUrl = null;
+    let shouldCheckBranchData = false;
+
+    // Add branch-specific data if branch is provided and valid
+    if (branch && branch.trim() !== '') {
+      branchUrl = `data/${branch.toLowerCase()}.json`;
+      shouldCheckBranchData = true;
+    }
+
+    // Prepare all URLs to fetch
+    const urls = [...commonUrls];
+    if (branchUrl) {
+      urls.push(branchUrl);
+    }
 
     return Promise.all(
-      commonUrls.map((url) =>
+      urls.map((url, index) =>
         fetch(url)
           .then((response) => {
             if (!response.ok) {
@@ -76,19 +90,46 @@ export class DataManager {
             // Check if JSON is empty or invalid
             if (!Array.isArray(data) || data.length === 0) {
               console.warn(`${url} is empty or invalid, ignoring...`);
-              return []; // Return empty array for empty/invalid JSON
+              return { data: [], isEmpty: true, url };
             }
-            return data;
+            // Check if data has valid subjects (not just empty objects)
+            const validSubjects = data.filter(
+              (subject) =>
+                subject &&
+                Object.keys(subject).length > 0 &&
+                subject.subject_code &&
+                subject.subject_name
+            );
+            if (validSubjects.length === 0) {
+              console.warn(`${url} contains no valid subjects, ignoring...`);
+              return { data: [], isEmpty: true, url };
+            }
+            return { data: validSubjects, isEmpty: false, url };
           })
           .catch((error) => {
             console.warn(`Failed to fetch ${url}, ignoring...`, error);
-            return []; // Return empty array if fetch fails
+            return { data: [], isEmpty: true, url, error: true };
           })
       )
     )
-      .then((dataArrays) => {
+      .then((results) => {
+        // Check if branch data is missing or empty and warn user
+        if (shouldCheckBranchData && branchUrl) {
+          const branchResult = results.find(
+            (result) => result.url === branchUrl
+          );
+          if (branchResult && (branchResult.isEmpty || branchResult.error)) {
+            PopupManager.showWarningPopup([
+              `Branch data for ${branch.toUpperCase()} is not available or empty.`,
+              'CGPA calculation will proceed using only 1st and 2nd semester subjects.'
+            ]);
+          }
+        }
+
         // Filter out empty arrays and combine valid data
-        const validDataArrays = dataArrays.filter((data) => data.length > 0);
+        const validDataArrays = results
+          .filter((result) => result.data.length > 0)
+          .map((result) => result.data);
 
         if (validDataArrays.length === 0) {
           throw new Error('No valid data found for CGPA calculation.');
@@ -117,7 +158,7 @@ export class DataManager {
           errorMessage.includes('No data found')
         ) {
           PopupManager.showDataNotFoundPopup(
-            'No valid data available for CGPA calculation. Please ensure 1st and 2nd semester data files exist.'
+            'No valid data available for CGPA calculation. Please ensure semester data files exist.'
           );
         } else {
           PopupManager.showWarningPopup([errorMessage], false);
