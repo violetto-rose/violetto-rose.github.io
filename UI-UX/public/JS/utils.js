@@ -1,12 +1,12 @@
-import { generateStructureView } from "./structureView.js";
-import { lazyLoadImages } from "./imageHandler.js";
-import { tutorials } from "./sidebar.js";
-import { initCodeHighlighting, addCopyButtons } from "./prismHighlighter.js";
+import { generateStructureView } from './structureView.js';
+import { lazyLoadImages } from './imageHandler.js';
+import { tutorials } from './sidebar.js';
+import { initCodeHighlighting, addCopyButtons } from './prismHighlighter.js';
 
 // Function to load tutorial content with lazy loading
 export async function loadTutorial(filename) {
-  const tutorialContent = document.getElementById("tutorial-content");
-  const structureContent = document.getElementById("structure-content");
+  const tutorialContent = document.getElementById('tutorial-content');
+  const structureContent = document.getElementById('structure-content');
 
   // Show loading skeleton
   tutorialContent.innerHTML = `
@@ -43,7 +43,7 @@ export async function loadTutorial(filename) {
   try {
     const response = await fetch(`tutorials/${filename}`);
     if (!response.ok) {
-      throw new Error("Failed to load tutorial");
+      throw new Error('Failed to load tutorial');
     }
     let markdown = await response.text();
 
@@ -55,11 +55,11 @@ export async function loadTutorial(filename) {
 
     markdown = markdown.replace(
       /!\[([^\]]*)\]\(images\//g,
-      "![$1](/UI-UX/tutorials/images/"
+      '![$1](/UI-UX/tutorials/images/'
     );
 
-    const contentWrapper = document.createElement("div");
-    contentWrapper.className = "tutorial-content-wrapper";
+    const contentWrapper = document.createElement('div');
+    contentWrapper.className = 'tutorial-content-wrapper';
 
     const parsedContent = marked.parse(markdown);
     const processedContent = wrapHexColors(parsedContent);
@@ -69,40 +69,28 @@ export async function loadTutorial(filename) {
     initCodeHighlighting(contentWrapper);
     addCopyButtons(contentWrapper);
 
-    // Click handlers for hex colors
-    const hexColors = contentWrapper.querySelectorAll(".hex-color");
-    hexColors.forEach((span) => {
-      span.addEventListener("click", function () {
-        const color = this.getAttribute("data-color");
-        navigator.clipboard.writeText(color);
-
-        const originalText = this.textContent;
-        this.textContent = "Copied!";
-        setTimeout(() => {
-          this.textContent = originalText;
-        }, 1000);
-      });
-    });
+    // Setup hex color click handlers
+    setupHexColorHandlers(contentWrapper);
 
     // After parsing, process images to add aspect ratio
-    const images = contentWrapper.querySelectorAll("img");
+    const images = contentWrapper.querySelectorAll('img');
     images.forEach((img) => {
       const aspectRatioMatch = img.title.match(/\{data-aspect-ratio=([^}]+)\}/);
       if (aspectRatioMatch) {
-        img.setAttribute("data-aspect-ratio", aspectRatioMatch[1]);
-        img.removeAttribute("title");
+        img.setAttribute('data-aspect-ratio', aspectRatioMatch[1]);
+        img.removeAttribute('title');
       }
     });
 
-    tutorialContent.innerHTML = "";
+    tutorialContent.innerHTML = '';
     tutorialContent.appendChild(contentWrapper);
 
-    if (filename === "about-course.md") {
+    if (filename === 'about-course.md') {
       adjustTableHeader(filename);
     }
 
-    const navigationContainer = document.createElement("div");
-    navigationContainer.className = "navigation-buttons";
+    const navigationContainer = document.createElement('div');
+    navigationContainer.className = 'navigation-buttons';
     tutorialContent.appendChild(navigationContainer);
 
     // Generate structure view after content is loaded
@@ -125,7 +113,7 @@ export async function loadTutorial(filename) {
     // Lazy load images
     lazyLoadImages(contentWrapper);
 
-    window.addEventListener("resize", () => adjustTableHeader(filename));
+    window.addEventListener('resize', () => adjustTableHeader(filename));
   } catch (error) {
     tutorialContent.innerHTML = `
       <div class="error-container">
@@ -136,6 +124,30 @@ export async function loadTutorial(filename) {
       </div>
     `;
   }
+}
+
+// Function to setup hex color click handlers
+export function setupHexColorHandlers(container = document) {
+  const hexColors = container.querySelectorAll('.hex-color');
+  hexColors.forEach((span) => {
+    // Remove any existing event listeners to prevent duplicates
+    span.removeEventListener('click', hexColorClickHandler);
+    span.addEventListener('click', hexColorClickHandler);
+  });
+}
+
+// Hex color click handler function (extracted for reuse)
+function hexColorClickHandler() {
+  const color = this.getAttribute('data-color');
+  navigator.clipboard.writeText(color);
+
+  const originalText = this.textContent;
+  this.textContent = 'Copied!';
+  this.setAttribute('aria-label', 'Good job!');
+  setTimeout(() => {
+    this.textContent = originalText;
+    this.setAttribute('aria-label', 'Click to copy');
+  }, 1000);
 }
 
 // Function to wrap hex colors in clickable spans
@@ -150,7 +162,8 @@ function wrapHexColors(content) {
       const textColor = getContrastColor(fullColor);
       return `<span class="hex-color" 
         data-color="${fullColor}" 
-        style="background-color: ${fullColor}; color: ${textColor};">${match}</span>`;
+        style="background-color: ${fullColor}; color: ${textColor};"
+        aria-label="Click to copy">${match}</span>`;
     }
   );
 }
@@ -166,18 +179,18 @@ function getContrastColor(hexcolor) {
   const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
 
   // Return black or white based on background luminance
-  return luminance > 0.5 ? "#000000" : "#ffffff";
+  return luminance > 0.5 ? '#000000' : '#ffffff';
 }
 
 // Function to wrap table
 function wrapTables(content) {
-  const tempDiv = document.createElement("div");
+  const tempDiv = document.createElement('div');
   tempDiv.innerHTML = content;
 
-  const tables = tempDiv.querySelectorAll("table");
+  const tables = tempDiv.querySelectorAll('table');
   tables.forEach((table) => {
-    const wrapper = document.createElement("div");
-    wrapper.className = "table-wrapper";
+    const wrapper = document.createElement('div');
+    wrapper.className = 'table-wrapper';
     table.parentNode.insertBefore(wrapper, table);
     wrapper.appendChild(table);
   });
@@ -188,42 +201,42 @@ function wrapTables(content) {
 // Function to adjust table for mobile devices
 export function adjustTableHeader(filename) {
   const isMobile = window.innerWidth <= 640;
-  const applicableFiles = ["introduction.md", "about-course.md"];
+  const applicableFiles = ['introduction.md', 'about-course.md'];
 
   if (isMobile && applicableFiles.includes(filename)) {
-    const firstTh = document.querySelector("#tutorial-content th:first-child");
+    const firstTh = document.querySelector('#tutorial-content th:first-child');
     if (firstTh) {
-      firstTh.style.display = "none";
+      firstTh.style.display = 'none';
     }
 
-    const secondTh = document.querySelector("#tutorial-content th:last-child");
+    const secondTh = document.querySelector('#tutorial-content th:last-child');
     if (secondTh) {
-      secondTh.setAttribute("colspan", "2");
+      secondTh.setAttribute('colspan', '2');
     }
   } else {
-    const firstTh = document.querySelector("#tutorial-content th:first-child");
+    const firstTh = document.querySelector('#tutorial-content th:first-child');
     if (firstTh) {
-      firstTh.style.display = "";
+      firstTh.style.display = '';
     }
 
-    const secondTh = document.querySelector("#tutorial-content th:last-child");
+    const secondTh = document.querySelector('#tutorial-content th:last-child');
     if (secondTh) {
-      secondTh.removeAttribute("colspan");
+      secondTh.removeAttribute('colspan');
     }
   }
 }
 
 // Function to update URL
 function updateURL(filename) {
-  history.pushState(null, "", `#${filename}`);
+  history.pushState(null, '', `#${filename}`);
 }
 
 // Function to update active link in sidebar
 export async function updateActiveLink(clickedLink) {
-  document.querySelectorAll("#tutorial-list a").forEach((link) => {
-    link.classList.remove("active");
+  document.querySelectorAll('#tutorial-list a').forEach((link) => {
+    link.classList.remove('active');
   });
-  clickedLink.classList.add("active");
+  clickedLink.classList.add('active');
 }
 
 // Function to add navigation buttons
@@ -249,11 +262,11 @@ function addNavigationButtons(currentFile, navigationContainer) {
   navigationContainer.innerHTML = `${prevButton}${nextButton}`;
 
   // Add event listeners for buttons with sidebar link updates
-  const prevButtonElement = document.getElementById("prev-button");
-  const nextButtonElement = document.getElementById("next-button");
+  const prevButtonElement = document.getElementById('prev-button');
+  const nextButtonElement = document.getElementById('next-button');
 
   if (currentIndex > 0 && prevButtonElement) {
-    prevButtonElement.addEventListener("click", () => {
+    prevButtonElement.addEventListener('click', () => {
       const prevFile = tutorials[currentIndex - 1].file;
       loadTutorial(prevFile);
       const prevLink = document.querySelector(
@@ -266,7 +279,7 @@ function addNavigationButtons(currentFile, navigationContainer) {
   }
 
   if (currentIndex < tutorials.length - 1 && nextButtonElement) {
-    nextButtonElement.addEventListener("click", () => {
+    nextButtonElement.addEventListener('click', () => {
       const nextFile = tutorials[currentIndex + 1].file;
       loadTutorial(nextFile);
       const nextLink = document.querySelector(

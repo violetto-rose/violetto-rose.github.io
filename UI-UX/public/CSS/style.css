@@ -1,7 +1,7 @@
 :root {
   /*Fonts*/
-  --font1: "Poppins";
-  --font2: "Unbounded";
+  --font1: 'Poppins';
+  --font2: 'Unbounded';
   /*Background*/
   --bg-color1: #8f3ee5;
   --bg-color2: #639cfd;
@@ -185,7 +185,7 @@ i {
 }
 
 body.dark-mode .glass::before {
-  content: "";
+  content: '';
   background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
   inset: 0;
@@ -196,7 +196,7 @@ body.dark-mode .glass::before {
 }
 
 .glass::after {
-  content: "";
+  content: '';
   background-color: transparent;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)'/%3E%3C/svg%3E");
   background-repeat: repeat;
@@ -521,7 +521,7 @@ body.dark-mode .glass {
 }
 
 .button.loading::after {
-  content: "";
+  content: '';
   position: absolute;
   right: 1rem;
   top: 50%;
@@ -748,7 +748,7 @@ body.dark-mode #structure-view .structure-subsection:hover {
 }
 
 .tooltip-right::before {
-  content: "";
+  content: '';
   position: absolute;
   left: -5px;
   top: 50%;
@@ -759,7 +759,7 @@ body.dark-mode #structure-view .structure-subsection:hover {
 }
 
 .tooltip-left::before {
-  content: "";
+  content: '';
   position: absolute;
   right: -5px;
   top: 50%;
@@ -786,13 +786,15 @@ body.dark-mode #structure-view .structure-subsection:hover {
 
 #sidebar h1 {
   font-size: 1.8em;
-  margin-bottom: 1rem;
   text-align: center;
 }
 
-#sidebar .title {
+#sidebar .brand {
   font-family: var(--font2), var(--font1), sans-serif;
   font-weight: 800;
+}
+
+#sidebar .title {
   font-size: 2.5rem;
   cursor: pointer;
   position: relative;
@@ -881,7 +883,7 @@ body.dark-mode #structure-view .structure-subsection:hover {
 }
 
 #search-input:focus + .search-shortcut-hint,
-#search-results[style*="display: block"] ~ .search-shortcut-hint {
+#search-results[style*='display: block'] ~ .search-shortcut-hint {
   opacity: 0;
 }
 
@@ -1079,7 +1081,7 @@ body.dark-mode .box {
   }
 
   #tutorial-content a::after {
-    content: "";
+    content: '';
     display: block;
     width: 16px;
     height: 16px;
@@ -1200,7 +1202,7 @@ body.dark-mode .box {
 }
 
 #tutorial-content span.brand::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: -100%;
   background-image: url(../assets/stroke.svg);
@@ -1245,7 +1247,7 @@ body.dark-mode .box {
 }
 
 #tutorial-content span.brand.Google {
-  font-family: "Product Sans", var(--font1);
+  font-family: 'Product Sans', var(--font1);
   background: linear-gradient(
     to right,
     #4285f4 0%,
@@ -1273,11 +1275,11 @@ body.dark-mode .box {
   color: #34e0a1;
 }
 
-#tutorial-content img[alt="Instagram Brand Text"] {
+#tutorial-content img[alt='Instagram Brand Text'] {
   height: 1.5rem;
 }
 
-#tutorial-content span:has(img[alt="Instagram Brand Text"]) {
+#tutorial-content span:has(img[alt='Instagram Brand Text']) {
   display: inline-flex;
   flex-wrap: wrap;
   gap: 0.2rem;
@@ -1698,11 +1700,7 @@ body.dark-mode #tutorial-content table a:hover {
 }
 
 .form-group {
-  margin-bottom: 15px;
-}
-
-.form-group label {
-  margin-bottom: 5px;
+  margin-bottom: 1rem;
 }
 
 .form-group input,
@@ -2353,6 +2351,7 @@ body.dark-mode #dashboard .dashboard-header {
   gap: 10px;
   width: fit-content;
   opacity: 1;
+  overflow: hidden;
   transform: translateX(100%);
   transition: opacity 0.5s ease,
     transform 0.5s cubic-bezier(0.18, 0.89, 0.18, 1);
@@ -2406,6 +2405,33 @@ body.dark-mode #dashboard .dashboard-header {
   cursor: pointer;
   padding: 0;
   margin-left: 10px;
+}
+
+.notification-progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 8px 8px;
+  overflow: hidden;
+}
+
+.notification-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #217bfe, #4299ff);
+  border-radius: 0 0 8px 8px;
+}
+
+@keyframes notificationProgress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 640px) {

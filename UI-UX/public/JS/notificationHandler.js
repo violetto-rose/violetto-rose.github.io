@@ -53,12 +53,21 @@ export function showUpdateNotification() {
         notification.innerHTML = `
                     <p>${notificationData.description} <a href="${notificationData.link}">${notificationData.linkName}</a></p>
                     <button class="close-notification">&times;</button>
+                    <div class="notification-progress-bar">
+                      <div class="notification-progress-fill"></div>
+                    </div>
                 `;
 
         notificationContainer.appendChild(notification);
 
         setTimeout(() => {
           notification.classList.add("show");
+          
+          // Start the progress bar animation
+          const progressFill = notification.querySelector(".notification-progress-fill");
+          if (progressFill) {
+            progressFill.style.animation = "notificationProgress 5s linear forwards";
+          }
         }, 10);
 
         const removeNotification = () => {
@@ -74,11 +83,14 @@ export function showUpdateNotification() {
           }, 5000);
         };
 
-        setTimeout(removeNotification, 5000);
+        const timeoutId = setTimeout(removeNotification, 5000);
 
         notification
           .querySelector(".close-notification")
-          .addEventListener("click", removeNotification);
+          .addEventListener("click", () => {
+            clearTimeout(timeoutId);
+            removeNotification();
+          });
       }, index * 1000);
     });
   });

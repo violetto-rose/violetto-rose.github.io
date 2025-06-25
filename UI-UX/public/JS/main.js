@@ -10,7 +10,7 @@ import { setupImageViewer } from "./imageHandler.js";
 import { setupMenuAnimation } from "./menuManager.js";
 import { enterFullscreen } from "./fullScreen.js";
 import { feedbackHandler } from "./feedbackHandler.js";
-import { setupTooltips } from "./tooltipHandler.js";
+import { setupTooltips, setupContentObserver, setupTooltipObserver } from "./tooltipHandler.js";
 import { setupSounds } from "./soundHandler.js";
 import { showUpdateNotification } from "./notificationHandler.js";
 import { initializeAuth } from "./auth.js";
@@ -54,6 +54,8 @@ document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     setupImageViewer();
     setupTooltips();
+    setupContentObserver();
+    setupTooltipObserver();
     feedbackHandler();
     initializeAuth();
   }, 100);

@@ -316,8 +316,8 @@ export class UIManager {
     <form id="marksForm" class="bg-white dark:bg-gray-800 rounded-lg shadow-lg">
       <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700">
         <div class="flex flex-col md:flex-row items-center justify-between">
-          <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 text-heading">Subject Details</h3>
-          <div class="flex items-center space-x-4">
+          <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 text-heading w-full">Subject Details</h3>
+          <div class="flex items-start justify-between md:justify-end w-full space-x-4">
             <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 text-caption">Default Input Type:</span>
             <div class="flex flex-col md:flex-row items-center gap-2">
               <label class="flex items-center space-x-2">
