@@ -582,6 +582,7 @@ body.dark-mode .glass {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   font-family: inherit;
   font-size: inherit;
   background-color: var(--text);
