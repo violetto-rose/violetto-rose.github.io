@@ -6,7 +6,12 @@ export function configureCodeHighlighting(renderer) {
   const originalCodeRenderer = renderer.code;
 
   renderer.code = function (code, infostring, escaped) {
-    const originalHtml = originalCodeRenderer.call(this, code, infostring, escaped);
+    const originalHtml = originalCodeRenderer.call(
+      this,
+      code,
+      infostring,
+      escaped
+    );
 
     if (!infostring) {
       return originalHtml.replace('<pre>', '<pre class="language-none">');
@@ -41,7 +46,7 @@ export function initCodeHighlighting(container) {
 export function addCopyButtons(container) {
   const codeBlocks = container.querySelectorAll('pre');
 
-  codeBlocks.forEach(block => {
+  codeBlocks.forEach((block) => {
     // Create main wrapper
     const wrapper = document.createElement('div');
     wrapper.className = 'code-block-wrapper';
@@ -52,9 +57,12 @@ export function addCopyButtons(container) {
 
     // Get language from code block
     const code = block.querySelector('code');
-    const languageClass = Array.from(code.classList)
-      .find(className => className.startsWith('language-'));
-    const language = languageClass ? languageClass.replace('language-', '') : 'text';
+    const languageClass = Array.from(code.classList).find((className) =>
+      className.startsWith('language-')
+    );
+    const language = languageClass
+      ? languageClass.replace('language-', '')
+      : 'text';
 
     // Create language indicator
     const languageText = document.createElement('span');

@@ -1,4 +1,4 @@
-import { notificationManager } from "./notificationHandler.js";
+import { notificationManager } from './notificationHandler.js';
 
 export class DashboardHandler {
   constructor() {
@@ -9,9 +9,9 @@ export class DashboardHandler {
   initialize() {
     if (this.isInitialized) return;
 
-    this.dashboard = document.createElement("div");
-    this.dashboard.id = "dashboard";
-    this.dashboard.className = "dashboard";
+    this.dashboard = document.createElement('div');
+    this.dashboard.id = 'dashboard';
+    this.dashboard.className = 'dashboard';
 
     this.dashboard.innerHTML = `
                 <div class="dashboard-header">
@@ -71,54 +71,54 @@ export class DashboardHandler {
   }
 
   setupFormListeners() {
-    const form = this.dashboard.querySelector("#notification-form");
-    const cancelBtn = form.querySelector(".cancel-btn");
+    const form = this.dashboard.querySelector('#notification-form');
+    const cancelBtn = form.querySelector('.cancel-btn');
 
-    cancelBtn.addEventListener("click", () => {
+    cancelBtn.addEventListener('click', () => {
       form.reset();
     });
 
-    form.addEventListener("submit", async (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const formData = {
         description: form.description.value,
         link: form.link.value,
         linkName: form.linkName.value,
-        expiryDate: new Date(form.expiryDate.value).toISOString(),
+        expiryDate: new Date(form.expiryDate.value).toISOString()
       };
 
       try {
-        const submitBtn = form.querySelector(".submit-btn");
+        const submitBtn = form.querySelector('.submit-btn');
         submitBtn.disabled = true;
-        submitBtn.textContent = "Saving...";
+        submitBtn.textContent = 'Saving...';
 
         await notificationManager.createNotification(formData);
         form.reset();
 
-        submitBtn.textContent = "Saved!";
+        submitBtn.textContent = 'Saved!';
         setTimeout(() => {
           submitBtn.disabled = false;
-          submitBtn.textContent = "Save";
+          submitBtn.textContent = 'Save';
         }, 2000);
       } catch (error) {
-        alert("Error saving notification: " + error.message);
-        const submitBtn = form.querySelector(".submit-btn");
+        alert('Error saving notification: ' + error.message);
+        const submitBtn = form.querySelector('.submit-btn');
         submitBtn.disabled = false;
-        submitBtn.textContent = "Save";
+        submitBtn.textContent = 'Save';
       }
     });
   }
 
   showNotificationForm(notification = null) {
-    const form = this.dashboard.querySelector("#notification-form");
-    const formTitle = form.closest(".notification-form").querySelector("h3");
+    const form = this.dashboard.querySelector('#notification-form');
+    const formTitle = form.closest('.notification-form').querySelector('h3');
 
     formTitle.textContent = notification
-      ? "Edit Notification"
-      : "Add Notification";
-    form.description.value = notification?.description || "";
-    form.link.value = notification?.link || "";
-    form.linkName.value = notification?.linkName || "";
+      ? 'Edit Notification'
+      : 'Add Notification';
+    form.description.value = notification?.description || '';
+    form.link.value = notification?.link || '';
+    form.linkName.value = notification?.linkName || '';
     if (notification?.expiryDate) {
       const date = new Date(notification.expiryDate);
       const localDateTime = new Date(
@@ -128,27 +128,27 @@ export class DashboardHandler {
         .slice(0, 16);
       form.expiryDate.value = localDateTime;
     } else {
-      form.expiryDate.value = "";
+      form.expiryDate.value = '';
     }
 
     const newForm = form.cloneNode(true);
     form.parentNode.replaceChild(newForm, form);
 
-    newForm.dataset.editMode = notification ? notification.id : "";
+    newForm.dataset.editMode = notification ? notification.id : '';
 
-    newForm.addEventListener("submit", async (e) => {
+    newForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const formData = {
         description: newForm.description.value,
         link: newForm.link.value,
         linkName: newForm.linkName.value,
-        expiryDate: new Date(newForm.expiryDate.value).toISOString(),
+        expiryDate: new Date(newForm.expiryDate.value).toISOString()
       };
 
       try {
-        const submitBtn = newForm.querySelector(".submit-btn");
+        const submitBtn = newForm.querySelector('.submit-btn');
         submitBtn.disabled = true;
-        submitBtn.textContent = "Saving...";
+        submitBtn.textContent = 'Saving...';
 
         if (newForm.dataset.editMode) {
           await notificationManager.updateNotification(
@@ -160,37 +160,37 @@ export class DashboardHandler {
         }
 
         newForm.reset();
-        newForm.dataset.editMode = "";
-        formTitle.textContent = "Add Notification";
+        newForm.dataset.editMode = '';
+        formTitle.textContent = 'Add Notification';
 
         submitBtn.disabled = false;
-        submitBtn.textContent = "Saved!";
+        submitBtn.textContent = 'Saved!';
 
         setTimeout(() => {
           if (submitBtn) {
-            submitBtn.textContent = "Save";
+            submitBtn.textContent = 'Save';
           }
         }, 1000);
       } catch (error) {
-        alert("Error saving notification: " + error.message);
-        const submitBtn = newForm.querySelector(".submit-btn");
+        alert('Error saving notification: ' + error.message);
+        const submitBtn = newForm.querySelector('.submit-btn');
         submitBtn.disabled = false;
-        submitBtn.textContent = "Save";
+        submitBtn.textContent = 'Save';
       }
     });
 
-    newForm.querySelector(".cancel-btn").addEventListener("click", () => {
+    newForm.querySelector('.cancel-btn').addEventListener('click', () => {
       newForm.reset();
-      newForm.dataset.editMode = "";
-      formTitle.textContent = "Add Notification";
+      newForm.dataset.editMode = '';
+      formTitle.textContent = 'Add Notification';
     });
   }
 
   setupNotifications() {
-    const addBtn = this.dashboard.querySelector(".add-notification-btn");
-    addBtn.addEventListener("click", () => this.showNotificationForm());
+    const addBtn = this.dashboard.querySelector('.add-notification-btn');
+    addBtn.addEventListener('click', () => this.showNotificationForm());
 
-    const listContainer = this.dashboard.querySelector(".notifications-list");
+    const listContainer = this.dashboard.querySelector('.notifications-list');
     listContainer.innerHTML =
       '<div class="loading-spinner"><i class="fa-solid fa-spinner fa-spin-pulse"></i></div>';
 
@@ -201,8 +201,8 @@ export class DashboardHandler {
   }
 
   updateNotificationStats(notifications) {
-    const activeCount = document.getElementById("active-notifications");
-    const expiredCount = document.getElementById("expired-notifications");
+    const activeCount = document.getElementById('active-notifications');
+    const expiredCount = document.getElementById('expired-notifications');
 
     if (!notifications) {
       return;
@@ -225,7 +225,7 @@ export class DashboardHandler {
   }
 
   renderNotifications(notifications) {
-    const listContainer = this.dashboard.querySelector(".notifications-list");
+    const listContainer = this.dashboard.querySelector('.notifications-list');
     listContainer.innerHTML = notifications
       .map(
         (notification) => `
@@ -234,13 +234,13 @@ export class DashboardHandler {
                     <p>${notification.description}</p>
                     <small>Expires: ${new Date(
                       notification.expiryDate
-                    ).toLocaleString("en-GB", {
-                      day: "2-digit",
-                      month: "2-digit",
-                      year: "numeric",
-                      hour: "2-digit",
-                      minute: "2-digit",
-                      hour12: false,
+                    ).toLocaleString('en-GB', {
+                      day: '2-digit',
+                      month: '2-digit',
+                      year: 'numeric',
+                      hour: '2-digit',
+                      minute: '2-digit',
+                      hour12: false
                     })}</small>
                 </div>
                 <div class="notification-actions">
@@ -250,22 +250,22 @@ export class DashboardHandler {
             </div>
         `
       )
-      .join("");
+      .join('');
 
-    listContainer.querySelectorAll(".edit-btn").forEach((btn) => {
-      btn.addEventListener("click", (e) => {
+    listContainer.querySelectorAll('.edit-btn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
         const notificationId =
-          e.target.closest(".notification-item").dataset.id;
+          e.target.closest('.notification-item').dataset.id;
         const notification = notifications.find((n) => n.id === notificationId);
         this.showNotificationForm(notification);
       });
     });
 
-    listContainer.querySelectorAll(".delete-btn").forEach((btn) => {
-      btn.addEventListener("click", async (e) => {
-        if (confirm("Are you sure you want to delete this notification?")) {
+    listContainer.querySelectorAll('.delete-btn').forEach((btn) => {
+      btn.addEventListener('click', async (e) => {
+        if (confirm('Are you sure you want to delete this notification?')) {
           const notificationId =
-            e.target.closest(".notification-item").dataset.id;
+            e.target.closest('.notification-item').dataset.id;
           await notificationManager.deleteNotification(notificationId);
         }
       });
@@ -273,27 +273,27 @@ export class DashboardHandler {
   }
 
   setupEventListeners() {
-    const closeDashboard = this.dashboard.querySelector("#close-dashboard");
-    closeDashboard.addEventListener("click", () => this.toggle(false));
+    const closeDashboard = this.dashboard.querySelector('#close-dashboard');
+    closeDashboard.addEventListener('click', () => this.toggle(false));
   }
 
   toggle(force) {
     if (!this.dashboard) return;
 
-    if (typeof force === "boolean") {
-      this.dashboard.classList.toggle("show", force);
+    if (typeof force === 'boolean') {
+      this.dashboard.classList.toggle('show', force);
     } else {
-      this.dashboard.classList.toggle("show");
+      this.dashboard.classList.toggle('show');
     }
   }
 
   isVisible() {
-    return this.dashboard?.classList.contains("show");
+    return this.dashboard?.classList.contains('show');
   }
 
   updateContent(content) {
     if (!this.dashboard) return;
-    const dashboardBody = this.dashboard.querySelector(".dashboard-body");
+    const dashboardBody = this.dashboard.querySelector('.dashboard-body');
     if (dashboardBody) {
       dashboardBody.innerHTML = content;
     }

@@ -14,7 +14,7 @@ export class NotificationManager {
     // Create notification element
     const notification = document.createElement('div');
     notification.className = `fixed top-4 right-4 z-[70] max-w-sm p-4 rounded-lg shadow-lg transform transition-all duration-300 translate-x-full`;
-    
+
     // Set notification style based on type
     const styles = {
       success: 'bg-green-500 text-white',
@@ -22,7 +22,7 @@ export class NotificationManager {
       warning: 'bg-yellow-500 text-white',
       info: 'bg-blue-500 text-white'
     };
-    
+
     notification.classList.add(...styles[type].split(' '));
 
     // Set notification content
@@ -83,7 +83,7 @@ export class NotificationManager {
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
       </svg>`
     };
-    
+
     return icons[type] || icons.info;
   }
 
@@ -118,4 +118,4 @@ export class NotificationManager {
   static showInfo(message) {
     this.showNotification(message, 'info');
   }
-} 
+}

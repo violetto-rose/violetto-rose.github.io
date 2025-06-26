@@ -1,14 +1,14 @@
 export function setupLoadingOverlay() {
-  const loadingOverlay = document.getElementById("loading-overlay");
+  const loadingOverlay = document.getElementById('loading-overlay');
 
   // Function to hide loading overlay with view transition
   async function hideLoadingOverlay() {
     // Check if View Transitions API is supported
     if (!document.startViewTransition || !loadingOverlay) {
       // Fallback for browsers that don't support View Transitions API
-      loadingOverlay.style.opacity = "0";
+      loadingOverlay.style.opacity = '0';
       setTimeout(() => {
-        loadingOverlay.style.display = "none";
+        loadingOverlay.style.display = 'none';
       }, 1500);
       return;
     }
@@ -30,29 +30,29 @@ export function setupLoadingOverlay() {
         {
           clipPath: [
             `circle(${maxRadius}px at ${centerX}px ${centerY}px)`,
-            `circle(0px at ${centerX}px ${centerY}px)`,
-          ],
+            `circle(0px at ${centerX}px ${centerY}px)`
+          ]
         },
         {
           duration: 1200,
-          easing: "cubic-bezier(1, 0.04, 0.64, 0.6)",
-          fill: "forwards",
+          easing: 'cubic-bezier(1, 0.04, 0.64, 0.6)',
+          fill: 'forwards'
         }
       );
 
       // Wait for animation to complete, then hide the element
       await animation.finished;
-      loadingOverlay.style.display = "none";
+      loadingOverlay.style.display = 'none';
     } catch (error) {
       // If view transition fails, fall back to opacity animation
-      loadingOverlay.style.opacity = "0";
+      loadingOverlay.style.opacity = '0';
       setTimeout(() => {
-        loadingOverlay.style.display = "none";
+        loadingOverlay.style.display = 'none';
       }, 1500);
     }
   }
 
-  window.addEventListener("load", () => {
+  window.addEventListener('load', () => {
     setTimeout(() => {
       hideLoadingOverlay();
     }, 4500);

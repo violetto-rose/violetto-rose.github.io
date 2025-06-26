@@ -9,20 +9,22 @@ export function setupImageViewer() {
       template: null
     });
   } else {
-    console.warn('medium-zoom library not found. Please include it in your HTML.');
+    console.warn(
+      'medium-zoom library not found. Please include it in your HTML.'
+    );
   }
 }
 
 // Function to lazy load images
 export function lazyLoadImages(container) {
-  const images = container.querySelectorAll("img");
+  const images = container.querySelectorAll('img');
   const imageObserver = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const image = entry.target;
           const placeholderWrapper = image.closest(
-            ".image-placeholder-wrapper"
+            '.image-placeholder-wrapper'
           );
 
           // Store original src for loading
@@ -32,18 +34,18 @@ export function lazyLoadImages(container) {
           image.onload = function () {
             // Remove placeholder class once image is loaded
             if (placeholderWrapper) {
-              placeholderWrapper.classList.remove("loading");
+              placeholderWrapper.classList.remove('loading');
 
               // Remove the placeholder loader element
               const loader = placeholderWrapper.querySelector(
-                ".image-placeholder-loader"
+                '.image-placeholder-loader'
               );
               if (loader) {
                 loader.remove();
               }
 
               // Set background to transparent after image loads
-              placeholderWrapper.style.backgroundColor = "transparent";
+              placeholderWrapper.style.backgroundColor = 'transparent';
             }
 
             // Dynamically calculate aspect ratio based on actual image dimensions
@@ -73,25 +75,28 @@ export function lazyLoadImages(container) {
             // Adjust image and wrapper sizing logic
             if (isSmallImage) {
               // For smaller images, center and reduce wrapper width
-              placeholderWrapper.style.width = "60%";
-              placeholderWrapper.style.margin = "0 auto";
+              placeholderWrapper.style.width = '60%';
+              placeholderWrapper.style.margin = '0 auto';
             } else {
               // For larger images, full width
-              placeholderWrapper.style.width = "100%";
-              placeholderWrapper.style.margin = "";
+              placeholderWrapper.style.width = '100%';
+              placeholderWrapper.style.margin = '';
             }
 
             // Reset image styles to ensure it fills the wrapper
-            image.style.width = "100%";
-            image.style.height = "100%";
-            image.style.objectFit = "contain";
+            image.style.width = '100%';
+            image.style.height = '100%';
+            image.style.objectFit = 'contain';
 
             // Initialize medium-zoom for this loaded image if library is available
-            if (typeof mediumZoom !== 'undefined' && !originalSrc.toLowerCase().endsWith('.svg')) {
+            if (
+              typeof mediumZoom !== 'undefined' &&
+              !originalSrc.toLowerCase().endsWith('.svg')
+            ) {
               mediumZoom(image, {
                 margin: 24,
                 background: 'rgba(0, 0, 0, 0.8)',
-                scrollOffset: 0,
+                scrollOffset: 0
               });
             }
           };
@@ -100,15 +105,15 @@ export function lazyLoadImages(container) {
             // Handle image load error
             if (placeholderWrapper) {
               const loader = placeholderWrapper.querySelector(
-                ".image-placeholder-loader"
+                '.image-placeholder-loader'
               );
               if (loader) {
-                loader.innerHTML = "Failed to Load Image";
+                loader.innerHTML = 'Failed to Load Image';
               }
 
               // Keep the placeholder background for failed images
-              placeholderWrapper.style.backgroundColor = "var(--block-quote)";
-              placeholderWrapper.classList.add("error");
+              placeholderWrapper.style.backgroundColor = 'var(--block-quote)';
+              placeholderWrapper.classList.add('error');
             }
           };
 
@@ -117,25 +122,25 @@ export function lazyLoadImages(container) {
       });
     },
     {
-      rootMargin: "50px", // Start loading images slightly before they enter viewport
+      rootMargin: '50px' // Start loading images slightly before they enter viewport
     }
   );
 
   images.forEach((img) => {
     // Skip SVGs - load them immediately
-    if (img.src.toLowerCase().endsWith(".svg")) {
+    if (img.src.toLowerCase().endsWith('.svg')) {
       return;
     }
 
     // Create a wrapper with aspect ratio placeholder
-    const wrapper = document.createElement("div");
-    wrapper.className = "image-placeholder-wrapper loading";
+    const wrapper = document.createElement('div');
+    wrapper.className = 'image-placeholder-wrapper loading';
 
     // Determine initial aspect ratio
-    const dataAspectRatio = img.getAttribute("data-aspect-ratio");
-    const defaultAspectRatio = "16:9";
+    const dataAspectRatio = img.getAttribute('data-aspect-ratio');
+    const defaultAspectRatio = '16:9';
     const aspectRatio = dataAspectRatio || defaultAspectRatio;
-    const [width, height] = aspectRatio.split(":").map(Number);
+    const [width, height] = aspectRatio.split(':').map(Number);
 
     // Initial padding based on provided aspect ratio
     let initialPaddingPercentage;
@@ -146,18 +151,18 @@ export function lazyLoadImages(container) {
       initialPaddingPercentage = (height / width) * 100;
     }
 
-    wrapper.style.position = "relative";
-    wrapper.style.width = "100%";
+    wrapper.style.position = 'relative';
+    wrapper.style.width = '100%';
     wrapper.style.paddingTop = `${initialPaddingPercentage}%`;
-    wrapper.style.backgroundColor = "var(--block-quote)";
-    wrapper.style.overflow = "hidden";
+    wrapper.style.backgroundColor = 'var(--block-quote)';
+    wrapper.style.overflow = 'hidden';
 
     // Check if image src exists and is valid
     const imageSrc = img.src || img.dataset.src;
-    let loaderMessage = "Loading Image";
+    let loaderMessage = 'Loading Image';
 
-    if (!imageSrc || imageSrc.trim() === "") {
-      loaderMessage = "No Image Found";
+    if (!imageSrc || imageSrc.trim() === '') {
+      loaderMessage = 'No Image Found';
     }
 
     // Style for loading state
@@ -184,25 +189,25 @@ export function lazyLoadImages(container) {
     }
 
     // Only clear src if we have a valid dataset.src
-    if (img.dataset.src && img.dataset.src.trim() !== "") {
-      img.src = ""; // Clear src to prevent immediate loading
+    if (img.dataset.src && img.dataset.src.trim() !== '') {
+      img.src = ''; // Clear src to prevent immediate loading
     } else {
       // If no valid src, show error immediately
-      const loader = wrapper.querySelector(".image-placeholder-loader");
+      const loader = wrapper.querySelector('.image-placeholder-loader');
       if (loader) {
-        loader.innerHTML = "No Image Found";
+        loader.innerHTML = 'No Image Found';
       }
-      wrapper.classList.add("error");
+      wrapper.classList.add('error');
       return; // Don't observe this image
     }
 
     // Style the image to fill the wrapper
-    img.style.position = "absolute";
-    img.style.top = "0";
-    img.style.left = "0";
-    img.style.width = "100%";
-    img.style.height = "100%";
-    img.style.objectFit = "contain";
+    img.style.position = 'absolute';
+    img.style.top = '0';
+    img.style.left = '0';
+    img.style.width = '100%';
+    img.style.height = '100%';
+    img.style.objectFit = 'contain';
 
     imageObserver.observe(img);
   });

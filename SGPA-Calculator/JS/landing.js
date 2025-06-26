@@ -23,7 +23,7 @@ class LandingPageManager {
     // Initialize existing modules
     new ThemeManager();
     new NavigationManager();
-    
+
     // Setup landing page specific functionality
     this.setupUploadArea();
   }
