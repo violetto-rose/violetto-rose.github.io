@@ -578,7 +578,10 @@ body.dark-mode .glass {
 /*****************/
 
 .button {
-  position: relative;
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: inherit;
   font-size: inherit;
   background-color: var(--text);
