@@ -91,7 +91,7 @@ export function lazyLoadImages(container) {
               mediumZoom(image, {
                 margin: 24,
                 background: 'rgba(0, 0, 0, 0.8)',
-                scrollOffset: 0
+                scrollOffset: 0,
               });
             }
           };
@@ -105,7 +105,7 @@ export function lazyLoadImages(container) {
               if (loader) {
                 loader.innerHTML = "Failed to Load Image";
               }
-              
+
               // Keep the placeholder background for failed images
               placeholderWrapper.style.backgroundColor = "var(--block-quote)";
               placeholderWrapper.classList.add("error");
@@ -155,7 +155,7 @@ export function lazyLoadImages(container) {
     // Check if image src exists and is valid
     const imageSrc = img.src || img.dataset.src;
     let loaderMessage = "Loading Image";
-    
+
     if (!imageSrc || imageSrc.trim() === "") {
       loaderMessage = "No Image Found";
     }
@@ -182,7 +182,7 @@ export function lazyLoadImages(container) {
     if (!img.dataset.src && img.src) {
       img.dataset.src = img.src;
     }
-    
+
     // Only clear src if we have a valid dataset.src
     if (img.dataset.src && img.dataset.src.trim() !== "") {
       img.src = ""; // Clear src to prevent immediate loading

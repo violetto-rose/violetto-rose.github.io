@@ -62,7 +62,7 @@ export function showUpdateNotification() {
 
         setTimeout(() => {
           notification.classList.add("show");
-          
+
           // Start the progress bar animation
           const progressFill = notification.querySelector(".notification-progress-fill");
           if (progressFill) {
@@ -80,7 +80,7 @@ export function showUpdateNotification() {
               notification.style.transform =
                 idx === 0 ? "translateY(0)" : `translateY(-${100}%)`;
             });
-          }, 5000);
+          }, 1000);
         };
 
         const timeoutId = setTimeout(removeNotification, 5000);

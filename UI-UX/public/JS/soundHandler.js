@@ -17,7 +17,7 @@ function updateSoundToggleUI() {
   if (soundToggle) {
     const volumeHighIcon = soundToggle.querySelector('.fa-volume-high');
     const volumeXmarkIcon = soundToggle.querySelector('.fa-volume-xmark');
-    
+
     if (soundEnabled) {
       if (volumeHighIcon) volumeHighIcon.style.display = 'block';
       if (volumeXmarkIcon) volumeXmarkIcon.style.display = 'none';
@@ -35,7 +35,7 @@ function toggleSound() {
   soundEnabled = !soundEnabled;
   localStorage.setItem('soundEnabled', JSON.stringify(soundEnabled));
   updateSoundToggleUI();
-  
+
   // Play a test sound when enabling (if not on mobile)
   if (soundEnabled && clickSound && !isMobile()) {
     const testSound = clickSound.cloneNode();
@@ -65,10 +65,10 @@ function playClickSound() {
 export function setupSounds() {
   // Initialize sound settings
   initSoundSettings();
-  
+
   // Expose playClickSound globally for modules that use stopPropagation
   window.playClickSound = playClickSound;
-  
+
   // Don't initialize audio on mobile devices by default
   if (isMobile()) {
     return;
@@ -76,13 +76,14 @@ export function setupSounds() {
 
   // Create audio element for click sound
   clickSound = new Audio();
-  clickSound.src = "./public/assets/click.mp3";
+  clickSound.src = "./public/assets/click.ogg";
+  console.log(clickSound.src);
   if (!clickSound.src) {
     console.error("Click sound not found");
     return;
   }
   clickSound.preload = "auto";
-  clickSound.volume = 0.3;
+  // clickSound.volume = 0.3;
 
   // Setup sound toggle button
   const soundToggle = document.getElementById('sound-toggle');
@@ -96,7 +97,7 @@ export function setupSounds() {
     if (e.target.closest('#sound-toggle')) {
       return;
     }
-    
+
     if (
       e.target.closest("button") ||
       e.target.closest(".title") ||

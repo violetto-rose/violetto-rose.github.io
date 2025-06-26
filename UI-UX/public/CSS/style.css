@@ -1,9 +1,56 @@
+/* Satoshi Font Face Declarations */
+@font-face {
+  font-family: 'Satoshi';
+  src: url('https://fonts.cdnfonts.com/s/85546/Satoshi-Regular.woff')
+    format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('https://fonts.cdnfonts.com/s/85546/Satoshi-Medium.woff')
+    format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('https://fonts.cdnfonts.com/s/85546/Satoshi-Bold.woff')
+    format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('https://fonts.cdnfonts.com/s/85546/Satoshi-ExtraBold.woff')
+    format('woff');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Unbounded';
+  src: url('https://fonts.cdnfonts.com/s/107433/Unbounded[wght].woff')
+    format('woff');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  /*Fonts*/
-  --font1: 'Poppins';
-  --font2: 'Unbounded';
+  /*Fonts - Optimized Satoshi Configuration*/
+  --font1: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  --font2: 'Unbounded', 'Satoshi', system-ui, sans-serif;
   /*Background*/
-  --bg-color1: #8f3ee5;
+  --bg-color1: #d0aef4;
   --bg-color2: #639cfd;
   /*Text*/
   --text: #000000;
@@ -52,7 +99,7 @@ body,
 html {
   margin: 0;
   padding: 0;
-  font-family: var(--font1), sans-serif;
+  font-family: var(--font1);
   height: 100vh;
   background: linear-gradient(
     45deg,
@@ -60,10 +107,37 @@ html {
     var(--bg-color2) 100%
   );
   color: var(--text);
+  font-feature-settings: 'liga' 1, 'calt' 1, 'frac' 1, 'ordn' 1, 'salt' 1,
+    'tnum' 1, 'pnum' 0, 'kern' 1;
+  /* Enhanced Satoshi font rendering */
+  /* standard ligatures */
+  /* contextual alternates */
+  /* fractions */
+  /* ordinals */
+  /* stylistic alternates */
+  /* tabular numbers */
+  /* proportional numbers off */
+  /* kerning */
+  font-variant-ligatures: common-ligatures contextual;
+  font-variant-numeric: oldstyle-nums proportional-nums;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 i {
   font-size: 1rem;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--dp-seven);
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+  color: var(--lp-seven);
 }
 
 /* View Transitions API styles */
@@ -614,7 +688,7 @@ body.dark-mode .button {
 }
 
 #structure-view .structure-subsection {
-  font-size: 1rem;
+  font-size: 1.1rem;
   padding-left: 20px;
 }
 
@@ -662,7 +736,7 @@ body.dark-mode .button {
 
 @media screen and (min-width: 1280px) {
   #structure-view {
-    padding: 20px 40px 20px 20px;
+    padding: 20px 60px 20px 20px;
   }
 }
 
@@ -707,7 +781,7 @@ body.dark-mode #structure-view .structure-subsection:hover {
 
 .tooltip {
   position: fixed;
-  background: var(--dp-eight);
+  background: black;
   color: white;
   padding: 5px 10px;
   border-radius: 4px;
@@ -840,7 +914,6 @@ body.dark-mode #structure-view .structure-subsection:hover {
   top: 50%;
   transform: translateY(-50%);
   color: var(--text);
-  font-size: 16px;
 }
 
 #search-input {
@@ -856,10 +929,6 @@ body.dark-mode #structure-view .structure-subsection:hover {
   &:focus-visible {
     outline: 2px solid var(--text);
   }
-}
-
-#search-input::placeholder {
-  color: var(--dp-seven);
 }
 
 .search-shortcut-hint {
@@ -1000,8 +1069,7 @@ body.dark-mode .title.admin-mode {
   -webkit-text-fill-color: transparent;
 }
 
-body.dark-mode .search-shortcut-hint,
-body.dark-mode #search-input::placeholder {
+body.dark-mode .search-shortcut-hint {
   color: var(--lp-seven);
 }
 
@@ -1066,11 +1134,15 @@ body.dark-mode .box {
 }
 
 #tutorial-content a {
-  color: var(--inv-text);
   text-decoration: none;
+  color: var(--text);
   &:focus-visible {
     outline: none;
   }
+}
+
+#tutorial-content a:hover {
+  text-decoration: underline;
 }
 
 @media screen and (min-width: 1080px) {
@@ -1173,7 +1245,7 @@ body.dark-mode .box {
 }
 
 #tutorial-content code {
-  font-size: 1em;
+  font-size: 1rem;
   font-family: inherit;
   white-space: pre-wrap;
   word-break: break-word;
@@ -1413,6 +1485,7 @@ body.dark-mode .box {
 
 /* Dark mode styles */
 body.dark-mode #tutorial-content a {
+  text-decoration: none;
   color: var(--blu);
 }
 
@@ -2420,17 +2493,16 @@ body.dark-mode #dashboard .dashboard-header {
 
 .notification-progress-fill {
   height: 100%;
-  width: 0%;
+  width: 100%;
   background: linear-gradient(90deg, #217bfe, #4299ff);
-  border-radius: 0 0 8px 8px;
 }
 
 @keyframes notificationProgress {
   from {
-    width: 0%;
+    width: 100%;
   }
   to {
-    width: 100%;
+    width: 0%;
   }
 }
 

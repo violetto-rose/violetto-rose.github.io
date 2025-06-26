@@ -7,24 +7,35 @@
       http-equiv="refresh"
       content="0; url=https://violetto-rose.github.io/maintenance.html"
     /> -->
+    <!-- Optimized Font Loading Strategy -->
+    <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin>
+
+    <!-- Primary font (Satoshi) - Critical, load first -->
     <link
       rel="preload"
-      href="https://fonts.cdnfonts.com/css/product-sans"
+      href="https://fonts.cdnfonts.com/css/satoshi"
       as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
-    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/product-sans" />
-    <link
-      rel="preload"
-      href="https://fonts.cdnfonts.com/css/poppins"
-      as="style"
-    />
-    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/poppins" />
+    <noscript><link rel="stylesheet" href="https://fonts.cdnfonts.com/css/satoshi" /></noscript>
+
+    <!-- Secondary font (Unbounded) - For headings -->
     <link
       rel="preload"
       href="https://fonts.cdnfonts.com/css/unbounded"
       as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
-    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/unbounded" />
+    <noscript><link rel="stylesheet" href="https://fonts.cdnfonts.com/css/unbounded" /></noscript>
+
+    <!-- Tertiary font (Product Sans) - Lower priority -->
+    <link
+      rel="preload"
+      href="https://fonts.cdnfonts.com/css/product-sans"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript><link rel="stylesheet" href="https://fonts.cdnfonts.com/css/product-sans" /></noscript>
     <link rel="stylesheet" href="../public/aurora.css" />
     <link rel="stylesheet" href="public/CSS/style.css" />
     <title>UI/UX Tutorials</title>
@@ -230,15 +241,15 @@
         <form id="feedback-form">
           <div class="form-group">
             <label for="name">Name:</label>
-            <input type="text" id="name" required autocomplete="name" />
+            <input type="text" id="name" placeholder="Nameless" required autocomplete="name" />
           </div>
           <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" id="email" required autocomplete="email" />
+            <input type="email" id="email" placeholder="idonthaveanemail@email.com" required autocomplete="email" />
           </div>
           <div class="form-group">
             <label for="message">Message:</label>
-            <textarea id="message" required></textarea>
+            <textarea id="message" placeholder="I hate your website!" required></textarea>
           </div>
           <div class="feedback-btn-container">
             <button type="submit" class="button feedback-submit-btn">
