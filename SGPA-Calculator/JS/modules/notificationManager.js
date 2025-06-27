@@ -62,7 +62,7 @@ export class NotificationManager {
     const existingNotifications = document.querySelectorAll(
       '.notification-toast'
     );
-    const notificationHeight = 76; // Reduced height for better fit
+    const notificationHeight = navigator.userAgent.includes('Chrome') && !navigator.userAgent.includes('Edg') ? 100 : 90; // Chrome: 100px, Edge/others: 90px
 
     // Set position for new notification at bottom of existing notifications
     const newTop = 16 + existingNotifications.length * notificationHeight;
