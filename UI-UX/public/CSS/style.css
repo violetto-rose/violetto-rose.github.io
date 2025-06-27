@@ -1166,7 +1166,7 @@ body.dark-mode .box {
     background-size: contain;
     background-repeat: no-repeat;
     position: absolute;
-    right: 0;
+    right: 2px;
     top: 50%;
     transform: translateY(-50%);
   }
@@ -2220,6 +2220,7 @@ body.dark-mode .authentication .popup {
 
 @media screen and (max-width: 640px) {
   .notifications-section .add-notification-btn {
+    aspect-ratio: 1/1;
     padding: 0.5rem;
   }
 
@@ -2500,7 +2501,7 @@ body.dark-mode #dashboard .dashboard-header {
 .notification-progress-fill {
   height: 100%;
   width: 100%;
-  background: linear-gradient(90deg, #217bfe, #4299ff);
+  background: linear-gradient(90deg, #217bfe, #013B93);
 }
 
 @keyframes notificationProgress {

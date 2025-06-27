@@ -4,16 +4,69 @@
  */
 
 export class NotificationManager {
+  // Global notification queue system
+  static notificationQueue = [];
+  static isProcessingQueue = false;
+  static notificationDelay = 300; // Delay between notifications in milliseconds
+
   /**
-   * Show a toast notification
+   * Add notification to queue for ordered display
    * @param {string} message - The message to show
    * @param {string} type - The type of notification ('info', 'success', 'error', 'warning')
    * @param {number} duration - Duration in milliseconds (default: 5000)
    */
-  static showNotification(message, type = 'info', duration = 5000) {
-    // Create notification element
+  static addToQueue(message, type = 'info', duration = 5000) {
+    this.notificationQueue.push({ message, type, duration });
+    this.processQueue();
+  }
+
+  /**
+   * Process the notification queue with proper timing
+   */
+  static async processQueue() {
+    if (this.isProcessingQueue || this.notificationQueue.length === 0) {
+      return;
+    }
+
+    this.isProcessingQueue = true;
+
+    while (this.notificationQueue.length > 0) {
+      const notification = this.notificationQueue.shift();
+      this.showNotificationImmediate(
+        notification.message,
+        notification.type,
+        notification.duration
+      );
+
+      // Wait before showing next notification
+      await new Promise((resolve) =>
+        setTimeout(resolve, this.notificationDelay)
+      );
+    }
+
+    this.isProcessingQueue = false;
+  }
+
+  /**
+   * Show a toast notification immediately (internal method)
+   * @param {string} message - The message to show
+   * @param {string} type - The type of notification ('info', 'success', 'error', 'warning')
+   * @param {number} duration - Duration in milliseconds (default: 5000)
+   */
+  static showNotificationImmediate(message, type = 'info', duration = 5000) {
+    // Create notification element first
     const notification = document.createElement('div');
-    notification.className = `fixed top-4 right-4 z-[70] max-w-sm p-4 rounded-lg shadow-lg transform transition-all duration-300 translate-x-full`;
+    notification.className = `notification-toast fixed right-0 z-[70] max-w-sm p-4 rounded-lg shadow-lg transform transition-all duration-300 translate-x-full`;
+
+    // Calculate position - new notifications append at the bottom to maintain order
+    const existingNotifications = document.querySelectorAll(
+      '.notification-toast'
+    );
+    const notificationHeight = 76; // Reduced height for better fit
+
+    // Set position for new notification at bottom of existing notifications
+    const newTop = 16 + existingNotifications.length * notificationHeight;
+    notification.style.top = `${newTop}px`;
 
     // Set notification style based on type
     const styles = {
@@ -34,7 +87,7 @@ export class NotificationManager {
         <div class="flex-1">
           <p class="text-sm font-medium">${message}</p>
         </div>
-        <button class="flex-shrink-0 ml-2 p-1 rounded-full hover:bg-white/20 transition-colors duration-200" onclick="this.parentElement.parentElement.remove()">
+        <button class="flex-shrink-0 ml-2 p-1 rounded-full hover:bg-white/20 transition-colors duration-200" onclick="NotificationManager.removeNotification(this.parentElement.parentElement)">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
@@ -48,7 +101,7 @@ export class NotificationManager {
     // Animate in
     setTimeout(() => {
       notification.classList.remove('translate-x-full');
-      notification.classList.add('translate-x-0');
+      notification.classList.add('-translate-x-4');
     }, 100);
 
     // Auto remove after specified duration
@@ -58,6 +111,8 @@ export class NotificationManager {
       setTimeout(() => {
         if (notification.parentNode) {
           notification.remove();
+          // Reposition remaining notifications after auto-removal
+          this.repositionNotifications();
         }
       }, 300);
     }, duration);
@@ -88,11 +143,60 @@ export class NotificationManager {
   }
 
   /**
+   * Remove a notification with animation
+   * @param {HTMLElement} notification - The notification element to remove
+   */
+  static removeNotification(notification) {
+    if (!notification) return;
+
+    // Animate out
+    notification.classList.remove('translate-x-0');
+    notification.classList.add('translate-x-full');
+
+    // Remove after animation
+    setTimeout(() => {
+      if (notification.parentNode) {
+        notification.remove();
+        // Reposition remaining notifications
+        this.repositionNotifications();
+      }
+    }, 300);
+  }
+
+  /**
+   * Reposition all remaining notifications after one is removed
+   */
+  static repositionNotifications() {
+    const remainingNotifications = document.querySelectorAll(
+      '.notification-toast'
+    );
+    const notificationHeight = 76; // Height + margin between notifications
+    const baseTop = 16; // Top margin
+
+    remainingNotifications.forEach((notification, index) => {
+      const newTop = baseTop + index * notificationHeight;
+      // Add transition for smooth movement
+      notification.style.transition = 'top 0.3s ease-out';
+      notification.style.top = `${newTop}px`;
+    });
+  }
+
+  /**
+   * Show a toast notification (public method that uses queue)
+   * @param {string} message - The message to show
+   * @param {string} type - The type of notification ('info', 'success', 'error', 'warning')
+   * @param {number} duration - Duration in milliseconds (default: 5000)
+   */
+  static showNotification(message, type = 'info', duration = 5000) {
+    this.addToQueue(message, type, duration);
+  }
+
+  /**
    * Show a success notification
    * @param {string} message - The message to show
    */
   static showSuccess(message) {
-    this.showNotification(message, 'success');
+    this.addToQueue(message, 'success');
   }
 
   /**
@@ -100,7 +204,7 @@ export class NotificationManager {
    * @param {string} message - The message to show
    */
   static showError(message) {
-    this.showNotification(message, 'error');
+    this.addToQueue(message, 'error');
   }
 
   /**
@@ -108,7 +212,7 @@ export class NotificationManager {
    * @param {string} message - The message to show
    */
   static showWarning(message) {
-    this.showNotification(message, 'warning');
+    this.addToQueue(message, 'warning');
   }
 
   /**
@@ -116,6 +220,24 @@ export class NotificationManager {
    * @param {string} message - The message to show
    */
   static showInfo(message) {
-    this.showNotification(message, 'info');
+    this.addToQueue(message, 'info');
+  }
+
+  /**
+   * Clear all pending notifications from the queue
+   */
+  static clearQueue() {
+    this.notificationQueue = [];
+  }
+
+  /**
+   * Get the number of pending notifications in the queue
+   * @returns {number} Number of pending notifications
+   */
+  static getQueueLength() {
+    return this.notificationQueue.length;
   }
 }
+
+// Make NotificationManager globally accessible for onclick handlers
+window.NotificationManager = NotificationManager;

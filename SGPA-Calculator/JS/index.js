@@ -6,12 +6,14 @@
 import { ThemeManager } from './modules/themeManager.js';
 import { NavigationManager } from './modules/navigationManager.js';
 import { NotificationManager } from './modules/notificationManager.js';
+import { PDFReader } from './modules/pdfReader.js';
 
 class LandingPageManager {
   constructor() {
     this.uploadArea = null;
     this.fileInput = null;
     this.uploadCard = null;
+    this.pdfReader = null;
 
     this.initialize();
   }
@@ -24,8 +26,12 @@ class LandingPageManager {
     new ThemeManager();
     new NavigationManager();
 
+    // Initialize PDF reader
+    this.pdfReader = new PDFReader();
+
     // Setup landing page specific functionality
     this.setupUploadArea();
+    this.setupPrivacyPolicy();
   }
 
   /**
@@ -92,7 +98,7 @@ class LandingPageManager {
    * Handle file selection
    * @param {File} file - The selected file
    */
-  handleFileSelect(file) {
+  async handleFileSelect(file) {
     if (!file) return;
 
     // Validate file type
@@ -108,19 +114,87 @@ class LandingPageManager {
       return;
     }
 
-    NotificationManager.showInfo(
-      'PDF upload feature is coming soon! For now, please use the manual calculator.'
-    );
+    try {
+      // Process the PDF file
+      const parsedData = await this.pdfReader.readPDF(file);
 
-    // In the future, this would process the PDF
-    console.log(
-      'File selected:',
-      file.name,
-      'Size:',
-      file.size,
-      'Type:',
-      file.type
-    );
+      if (parsedData && parsedData.subjects.length > 0) {
+        // Store parsed data for calculator page
+        this.redirectToCalculatorWithData(parsedData);
+      }
+    } catch (error) {
+      console.error('Error processing PDF:', error);
+      NotificationManager.showError(
+        'Failed to process PDF. Please try again or use manual entry.'
+      );
+    }
+  }
+
+  /**
+   * Redirect to calculator with parsed PDF data
+   * @param {Object} parsedData - Parsed subject data
+   */
+  redirectToCalculatorWithData(parsedData) {
+    try {
+      // Store the parsed data in sessionStorage for the calculator page
+      sessionStorage.setItem('pdfParsedData', JSON.stringify(parsedData));
+
+      // Show transition message
+      NotificationManager.showInfo(
+        'Redirecting to calculator with your PDF data...'
+      );
+
+      // Redirect after a short delay
+      setTimeout(() => {
+        window.location.href = 'calculator.html?source=pdf';
+      }, 2000);
+    } catch (error) {
+      console.error('Error storing PDF data:', error);
+      NotificationManager.showError(
+        'Failed to store PDF data. Please try manual entry.'
+      );
+    }
+  }
+
+  /**
+   * Setup privacy policy modal functionality
+   */
+  setupPrivacyPolicy() {
+    const privacyBtn = document.getElementById('privacyPolicyBtn');
+    const privacyModal = document.getElementById('privacyModal');
+    const closeBtn = document.getElementById('closePrivacyModal');
+
+    if (privacyBtn && privacyModal && closeBtn) {
+      // Open modal
+      privacyBtn.addEventListener('click', () => {
+        privacyModal.classList.remove('hidden');
+        privacyModal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+      });
+
+      // Close modal
+      const closeModal = () => {
+        privacyModal.classList.add('hidden');
+        privacyModal.classList.remove('flex');
+        document.body.style.overflow = '';
+      };
+
+      closeBtn.addEventListener('click', closeModal);
+
+      // Close modal when clicking outside
+      privacyModal.addEventListener('click', (e) => {
+        if (e.target === privacyModal) {
+          closeModal();
+        }
+      });
+
+      // Close modal with Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !privacyModal.classList.contains('hidden')) {
+          closeModal();
+        }
+      });
+    }
   }
 }
 

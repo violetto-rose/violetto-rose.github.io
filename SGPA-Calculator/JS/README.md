@@ -20,7 +20,9 @@ JS/
 │   ├── gradeUtils.js          # Grade conversion utilities
 │   ├── popupManager.js        # Warning and error popups
 │   ├── notificationManager.js # Toast notifications
-│   └── navigationManager.js   # Sidebar and footer behavior
+│   ├── navigationManager.js   # Sidebar and footer behavior
+│   ├── pdfReader.js           # PDF parsing and data extraction
+│   └── transcriptPatterns.js  # University-specific parsing patterns
 └── README.md                  # This file
 ```
 
@@ -28,7 +30,8 @@ JS/
 
 ### Landing Page (`index.html`)
 
-- **Smart Upload Interface**: Drag & drop PDF upload area (NLP-powered PDF reading coming soon)
+- **Smart Upload Interface**: Drag & drop PDF upload area with intelligent parsing
+- **PDF Processing**: Automatic extraction of subject data from academic transcripts
 - **Dynamic Hero Section**: Animated gradient background with floating elements
 - **Method Selection**: Choose between smart upload or manual entry
 - **Feature Showcase**: Highlights calculator capabilities and benefits
@@ -134,6 +137,29 @@ JS/
   - Handle responsive navigation interactions
   - Manage keyboard shortcuts (ESC to close sidebar)
 
+### `modules/pdfReader.js`
+
+- **Purpose**: PDF document parsing and subject data extraction
+- **Responsibilities**:
+  - Initialize and manage PDF.js library
+  - Read and parse PDF files (academic transcripts)
+  - Extract subject information (codes, names, credits, marks/grades)
+  - Extract student information (name, USN, branch)
+  - Validate and clean extracted data
+  - Handle multiple university transcript formats
+  - Provide confidence scores for extraction quality
+
+### `modules/transcriptPatterns.js`
+
+- **Purpose**: University-specific transcript format patterns
+- **Responsibilities**:
+  - Define parsing patterns for different universities (VTU, Anna University, JNTU, KTU, etc.)
+  - Automatic pattern detection from PDF content
+  - Subject name cleaning and standardization
+  - Semester structure extraction
+  - Data quality validation and scoring
+  - University-specific grade mapping and student info patterns
+
 ## 🔧 Benefits of Modular Architecture
 
 ### **Maintainability**
@@ -179,6 +205,38 @@ The application automatically initializes when the DOM is loaded. The main entry
 ## 🔄 Data Flow
 
 ![](..//dataflow.svg)
+
+## 📄 PDF Reading Features
+
+The application now includes comprehensive PDF reading capabilities:
+
+### **Supported Formats**
+- **VTU** (Visvesvaraya Technological University)
+- **Anna University** (Tamil Nadu)
+- **JNTU** (Jawaharlal Nehru Technological University)
+- **KTU** (Kerala Technological University)
+- **Generic B.Tech** and other Indian universities
+
+### **Extraction Capabilities**
+- **Subject Information**: Code, name, credits, marks/grades
+- **Student Information**: Name, USN/Roll No., branch/department
+- **Semester Organization**: Automatic detection and grouping
+- **Data Validation**: Quality scoring and error detection
+
+### **Processing Flow**
+1. **Upload**: Drag & drop or click to select PDF
+2. **Parse**: Extract text using PDF.js library
+3. **Detect**: Identify university format automatically
+4. **Extract**: Parse subjects using pattern-specific rules
+5. **Validate**: Check data quality and completeness
+6. **Display**: Show extracted data in calculator interface
+
+### **Error Handling**
+- File type validation (PDF only)
+- File size limits (10MB max)
+- Format detection fallbacks
+- Data quality warnings
+- User-friendly error messages
 
 ## 🌐 Global Accessibility
 
