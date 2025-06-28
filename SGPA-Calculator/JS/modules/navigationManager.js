@@ -5,60 +5,7 @@
 
 export class NavigationManager {
   constructor() {
-    this.setupFooterScrollBehavior();
     this.setupSidebarMenu();
-  }
-
-  /**
-   * Footer hide/show functionality based on scroll
-   */
-  setupFooterScrollBehavior() {
-    let lastScrollTop = 0;
-    let ticking = false;
-    const footer = document.getElementById('footer');
-
-    if (!footer) return;
-
-    const updateFooter = () => {
-      const scrollTop =
-        window.pageYOffset || document.documentElement.scrollTop;
-      const isTabletOrSmaller = window.innerWidth <= 1024; // lg breakpoint in Tailwind
-
-      if (isTabletOrSmaller) {
-        if (scrollTop <= 10) {
-          // At the very top (with small tolerance) - show footer
-          footer.style.transform = 'translateY(0)';
-        } else {
-          // Not at the top - hide footer
-          footer.style.transform = 'translateY(100%)';
-        }
-      } else {
-        // Desktop - always show footer
-        footer.style.transform = 'translateY(0)';
-      }
-
-      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
-      ticking = false;
-    };
-
-    const requestTick = () => {
-      if (!ticking) {
-        requestAnimationFrame(updateFooter);
-        ticking = true;
-      }
-    };
-
-    // Scroll event listener
-    window.addEventListener('scroll', requestTick, { passive: true });
-
-    // Resize event listener to handle orientation changes
-    window.addEventListener(
-      'resize',
-      () => {
-        requestTick();
-      },
-      { passive: true }
-    );
   }
 
   /**
