@@ -55,196 +55,192 @@
           >Click here</a
         >
       </p>
-      <table>
-        <thead>
-          <tr>
-            <th>SL. NO.</th>
-            <th>Experiments</th>
-            <th>Link</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>
-              Develop a program to create histograms for all numerical features
-              and analyze the distribution of each feature. Generate box plots
-              for all numerical features and identify any outliers. Use
-              California Housing dataset.
-            </td>
-            <td>
-              <a title="Histograms" href="public/resources/Histograms.zip"
-                >Click here</a
-              >
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>
-              Develop a program to Compute the correlation matrix to understand
-              the relationships between pairs of features. Visualize the
-              correlation matrix using a heatmap to know which variables have
-              strong positive/negative correlations. Create a pair plot to
-              visualize pairwise relationships between features. Use California
-              Housing dataset.
-            </td>
-            <td>
-              <a
-                title="Correlational Matrix"
-                href="public/resources/Correlational-Matrix.zip"
-                >Click here</a
-              >
-            </td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>
-              Develop a program to implement Principal Component Analysis (PCA)
-              for reducing the dimensionality of the Iris dataset from 4
-              features to 2.
-            </td>
-            <td>
-              <a
-                title="Principal Component Analysis (PCA)"
-                href="public/resources/PCA.zip"
-                >Click here</a
-              >
-            </td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>
-              For a given set of training data examples stored in a .CSV file,
-              implement and demonstrate the Find-S algorithm to output a
-              description of the set of all hypotheses consistent with the
-              training examples.
-            </td>
-            <td>
-              <a
-                title="Find-S Algorithm"
-                href="public/resources/Find-S-Algorithm.zip"
-                >Click here</a
-              >
-              <a
-                title="Weather Dataset"
-                href="public/resources/weather_data.csv"
-                >Dataset</a
-              >
-            </td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td>
-              Develop a program to implement k-Nearest Neighbor algorithm to
-              classify the randomly generated 100 values of x in the range of
-              [0,1]. Perform the following based on dataset generated.
-              <ul>
-                <li>
-                  Label the first 50 points {x1,…,x50} as follows: if (x<sub
-                    >i</sub
-                  >
-                  ≤ 0.5), then x<sub>i</sub> ∈ Class<sub>1</sub>, else x<sub
-                    >i</sub
-                  >
-                  ∈ Class<sub>1</sub>
-                </li>
-                <li>
-                  Classify the remaining points, x51,…,x100 using KNN. Perform
-                  this for k=1, 2, 3, 4, 5, 20, 30
-                </li>
-              </ul>
-            </td>
-            <td>
-              <a title="k-Nearest Neighbor" href="public/resources/kNN.zip"
-                >Click here</a
-              >
-            </td>
-          </tr>
-          <tr>
-            <td>6</td>
-            <td>
-              Implement the non-parametric Locally Weighted Regression algorithm
-              in order to fit data points. Select appropriate data set for your
-              experiment and draw graphs
-            </td>
-            <td>
-              <a
-                title="Locally Weighted Regression Algorithm"
-                href="public/resources/LOWESS.zip"
-                >Click here</a
-              >
-            </td>
-          </tr>
-          <tr>
-            <td>7</td>
-            <td>
-              Develop a program to demonstrate the working of Linear Regression
-              and Polynomial Regression. Use Boston Housing Dataset for Linear
-              Regression and Auto MPG Dataset (for vehicle fuel efficiency
-              prediction) for Polynomial Regression.
-            </td>
-            <td>
-              <a
-                title="Linear Regression and Polynomial Regression"
-                href="public/resources/Linear-and-Polynomial-Regression.zip"
-                >Click here</a
-              >
-              <a
-                title="Boston Housing Dataset"
-                href="public/resources/housing.csv"
-                >Dataset 1</a
-              >
-              <a title="Auto MPG Dataset" href="public/resources/auto-mpg.data"
-                >Dataset 2</a
-              >
-            </td>
-          </tr>
-          <tr>
-            <td>8</td>
-            <td>
-              Develop a program to demonstrate the working of the decision tree
-              algorithm. Use Breast Cancer Data set for building the decision
-              tree and apply this knowledge to classify a new sample.
-            </td>
-            <td>
-              <a
-                title="Decision Tree Algorithm"
-                href="public/resources/Decision-Tree.zip"
-                >Click here</a
-              >
-            </td>
-          </tr>
-          <tr>
-            <td>9</td>
-            <td>
-              Develop a program to implement the Naive Bayesian classifier
-              considering Olivetti Face Data set for training. Compute the
-              accuracy of the classifier, considering a few test data sets.
-            </td>
-            <td>
-              <a
-                title="Naive Bayesian Classifier"
-                href="public/resources/Naive-Bayesian-classifier.zip"
-                >Click here</a
-              >
-            </td>
-          </tr>
-          <tr>
-            <td>10</td>
-            <td>
-              Develop a program to implement k-means clustering using Wisconsin
-              Breast Cancer data set and visualize the clustering result.
-            </td>
-            <td>
-              <a
-                title="K-means Clustering"
-                href="public/resources/K-means-Clustering.zip"
-                >Click here</a
-              >
-            </td>
-          </tr>
-        </tbody>
-      </table>
+
+      <div class="experiments-grid">
+        <div class="experiment-card">
+          <div class="experiment-number">1</div>
+          <h3 class="experiment-title">Histograms and Distribution Analysis</h3>
+          <p class="experiment-description">
+            Develop a program to create histograms for all numerical features
+            and analyze the distribution of each feature. Generate box plots
+            for all numerical features and identify any outliers. Use
+            California Housing dataset.
+          </p>
+          <div class="experiment-links">
+            <a title="Histograms" href="public/resources/Histograms.zip"
+              >Download</a
+            >
+          </div>
+        </div>
+
+        <div class="experiment-card">
+          <div class="experiment-number">2</div>
+          <h3 class="experiment-title">Correlation Matrix Analysis</h3>
+          <p class="experiment-description">
+            Develop a program to Compute the correlation matrix to understand
+            the relationships between pairs of features. Visualize the
+            correlation matrix using a heatmap to know which variables have
+            strong positive/negative correlations. Create a pair plot to
+            visualize pairwise relationships between features. Use California
+            Housing dataset.
+          </p>
+          <div class="experiment-links">
+            <a
+              title="Correlational Matrix"
+              href="public/resources/Correlational-Matrix.zip"
+              >Download</a
+            >
+          </div>
+        </div>
+
+        <div class="experiment-card">
+          <div class="experiment-number">3</div>
+          <h3 class="experiment-title">Principal Component Analysis (PCA)</h3>
+          <p class="experiment-description">
+            Develop a program to implement Principal Component Analysis (PCA)
+            for reducing the dimensionality of the Iris dataset from 4
+            features to 2.
+          </p>
+          <div class="experiment-links">
+            <a
+              title="Principal Component Analysis (PCA)"
+              href="public/resources/PCA.zip"
+              >Download</a
+            >
+          </div>
+        </div>
+
+        <div class="experiment-card">
+          <div class="experiment-number">4</div>
+          <h3 class="experiment-title">Find-S Algorithm</h3>
+          <p class="experiment-description">
+            For a given set of training data examples stored in a .CSV file,
+            implement and demonstrate the Find-S algorithm to output a
+            description of the set of all hypotheses consistent with the
+            training examples.
+          </p>
+          <div class="experiment-links">
+            <a
+              title="Find-S Algorithm"
+              href="public/resources/Find-S-Algorithm.zip"
+              >Download</a
+            >
+            <a
+              title="Weather Dataset"
+              href="public/resources/weather_data.csv"
+              >Dataset</a
+            >
+          </div>
+        </div>
+
+        <div class="experiment-card">
+          <div class="experiment-number">5</div>
+          <h3 class="experiment-title">k-Nearest Neighbor Algorithm</h3>
+          <p class="experiment-description">
+            Develop a program to implement k-Nearest Neighbor algorithm to
+            classify the randomly generated 100 values of x in the range of
+            [0,1]. Perform classification for k=1, 2, 3, 4, 5, 20, 30.
+          </p>
+          <div class="experiment-links">
+            <a title="k-Nearest Neighbor" href="public/resources/kNN.zip"
+              >Download</a
+            >
+          </div>
+        </div>
+
+        <div class="experiment-card">
+          <div class="experiment-number">6</div>
+          <h3 class="experiment-title">Locally Weighted Regression</h3>
+          <p class="experiment-description">
+            Implement the non-parametric Locally Weighted Regression algorithm
+            in order to fit data points. Select appropriate data set for your
+            experiment and draw graphs.
+          </p>
+          <div class="experiment-links">
+            <a
+              title="Locally Weighted Regression Algorithm"
+              href="public/resources/LOWESS.zip"
+              >Download</a
+            >
+          </div>
+        </div>
+
+        <div class="experiment-card">
+          <div class="experiment-number">7</div>
+          <h3 class="experiment-title">Linear & Polynomial Regression</h3>
+          <p class="experiment-description">
+            Develop a program to demonstrate the working of Linear Regression
+            and Polynomial Regression. Use Boston Housing Dataset for Linear
+            Regression and Auto MPG Dataset for Polynomial Regression.
+          </p>
+          <div class="experiment-links">
+            <a
+              title="Linear Regression and Polynomial Regression"
+              href="public/resources/Linear-and-Polynomial-Regression.zip"
+              >Download</a
+            >
+            <a
+              title="Boston Housing Dataset"
+              href="public/resources/housing.csv"
+              >Dataset 1</a
+            >
+            <a title="Auto MPG Dataset" href="public/resources/auto-mpg.data"
+              >Dataset 2</a
+            >
+          </div>
+        </div>
+
+        <div class="experiment-card">
+          <div class="experiment-number">8</div>
+          <h3 class="experiment-title">Decision Tree Algorithm</h3>
+          <p class="experiment-description">
+            Develop a program to demonstrate the working of the decision tree
+            algorithm. Use Breast Cancer Data set for building the decision
+            tree and apply this knowledge to classify a new sample.
+          </p>
+          <div class="experiment-links">
+            <a
+              title="Decision Tree Algorithm"
+              href="public/resources/Decision-Tree.zip"
+              >Download</a
+            >
+          </div>
+        </div>
+
+        <div class="experiment-card">
+          <div class="experiment-number">9</div>
+          <h3 class="experiment-title">Naive Bayesian Classifier</h3>
+          <p class="experiment-description">
+            Develop a program to implement the Naive Bayesian classifier
+            considering Olivetti Face Data set for training. Compute the
+            accuracy of the classifier, considering a few test data sets.
+          </p>
+          <div class="experiment-links">
+            <a
+              title="Naive Bayesian Classifier"
+              href="public/resources/Naive-Bayesian-classifier.zip"
+              >Download</a
+            >
+          </div>
+        </div>
+
+        <div class="experiment-card">
+          <div class="experiment-number">10</div>
+          <h3 class="experiment-title">K-means Clustering</h3>
+          <p class="experiment-description">
+            Develop a program to implement k-means clustering using Wisconsin
+            Breast Cancer data set and visualize the clustering result.
+          </p>
+          <div class="experiment-links">
+            <a
+              title="K-means Clustering"
+              href="public/resources/K-means-Clustering.zip"
+              >Download</a
+            >
+          </div>
+        </div>
+      </div>
+
       <button id="download-all-resources" onclick="downloadAllResources()">
         Download all Resources
       </button>

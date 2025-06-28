@@ -1,6 +1,6 @@
 :root {
-  --font1: "Nunito Sans", sans-serif;
-  --font2: "Funnel Display", serif;
+  --font1: 'Nunito Sans', sans-serif;
+  --font2: 'Funnel Display', serif;
   --color: #ffffff;
   --alt-color: #000000;
   --bg-color: #e0e5ec;
@@ -17,12 +17,19 @@
     -5px -5px 10px var(--shadow-light);
 }
 
+/* Dark mode neumorphism styles */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg-color: #e0e5ec;
-    --text-color: #333;
-    --shadow-light: #ffffff;
-    --shadow-dark: #a3b1c6;
+    --bg-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --primary-color: #dab9fe;
+    --gen-ai-color: #ffffff;
+    --shadow-light: #2a2a2a;
+    --shadow-dark: #0a0a0a;
+    --shadow-inset: inset 3px 3px 6px var(--shadow-dark),
+      inset -3px -3px 6px var(--shadow-light);
+    --shadow-outset: 5px 5px 10px var(--shadow-dark),
+      -5px -5px 10px var(--shadow-light);
   }
 }
 
@@ -34,18 +41,11 @@
 body {
   font-family: var(--font1);
   font-weight: 700;
-  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
-  background: var(--bg-color);
+  background: #131313;
   color: var(--text-color);
   line-height: 1.5;
-  background-image: linear-gradient(
-      45deg,
-      rgba(255, 255, 255, 0.1) 0%,
-      transparent 100%
-    ),
-    linear-gradient(135deg, rgba(0, 0, 0, 0.05) 10%, transparent 80%);
 }
 
 h1 {
@@ -56,31 +56,87 @@ h1 {
   color: var(--primary-color);
 }
 
-table {
-  width: 100%;
-  color: var(--text-color);
+/* Experiments Grid Styles */
+.experiments-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.experiment-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-color);
   border-radius: var(--border-radius);
-  background: var(--bg-color);
   box-shadow: var(--shadow-outset);
-  overflow: hidden;
-  transition: box-shadow 0.4s ease;
+  padding: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-th {
-  text-align: left;
-  padding: 1rem;
+.experiment-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
   background: var(--bg-color);
+  border-radius: 50%;
+  box-shadow: var(--shadow-inset);
   color: var(--primary-color);
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.experiment-title {
+  font-size: 1.2rem;
   font-weight: 600;
+  color: var(--primary-color);
+  margin: 0 0 1rem 0;
+  line-height: 1.3;
 }
 
-th:first-child {
-  white-space: nowrap;
+.experiment-description {
+  flex: 1;
+  color: var(--text-color);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0 0 1.5rem 0;
+  font-weight: 400;
 }
 
-td {
-  padding: 1rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
+.experiment-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.experiment-links a {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: var(--bg-color);
+  border-radius: calc(var(--border-radius) * 0.6);
+  box-shadow: var(--shadow-outset);
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.experiment-links a:active {
+  box-shadow: var(--shadow-inset);
+  transform: translateY(1px);
+}
+
+/* Hide old table styles */
+table {
+  display: none;
+}
+
+th, td {
+  display: none;
 }
 
 a {
@@ -169,13 +225,32 @@ li {
     margin-top: 2rem;
   }
 
-  table {
-    display: block;
-    overflow-x: auto;
+  .experiments-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
-  th:first-child {
-    white-space: wrap;
+  .experiment-card {
+    padding: 1.25rem;
+  }
+
+  .experiment-number {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+  }
+
+  .experiment-title {
+    font-size: 1.1rem;
+  }
+
+  .experiment-description {
+    font-size: 0.85rem;
+  }
+
+  .experiment-links a {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
   }
 
   #more-options-toggle {
@@ -262,7 +337,7 @@ li {
 
 /* Soft gradient overlay for depth */
 .card::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -292,7 +367,10 @@ li {
   color: var(--color);
 }
 
-.card.genai-card h1,
+.card.genai-card h1 {
+  color: var(--gen-ai-color);
+}
+
 .card.ml-card h1 {
   color: var(--alt-color);
 }
