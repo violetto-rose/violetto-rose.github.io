@@ -137,7 +137,7 @@ class LastEditTracker {
     // Show loading state
     lastEditInfo.innerHTML = `
       <div class="last-edit-loading">
-        <i class="fas fa-clock"></i>
+        <i class="fas fa-spinner fa-spin-pulse"></i>
         <span>Checking last update...</span>
       </div>
     `;

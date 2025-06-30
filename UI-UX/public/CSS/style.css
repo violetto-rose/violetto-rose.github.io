@@ -126,7 +126,7 @@ html {
   text-rendering: optimizeLegibility;
 }
 
-i {
+i.fas {
   font-size: 1rem;
 }
 
@@ -1632,7 +1632,7 @@ body.dark-mode #tutorial-content table a:hover {
   top: 6px;
   right: 0;
   padding: 0.5rem 0.75rem;
-  background: var(--bg-color1);
+  background: var(--bg-color2);
   border-radius: 50px;
   border: 1px solid var(--dp-five);
   font-size: 0.8rem;
@@ -1643,6 +1643,7 @@ body.dark-mode #tutorial-content table a:hover {
 .last-edit-loading {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.4rem;
   font-size: 0.75rem;
   color: var(--alt-text);
@@ -1652,34 +1653,6 @@ body.dark-mode #tutorial-content table a:hover {
 .last-edit-content i,
 .last-edit-loading i {
   font-size: 0.7rem;
-  opacity: 0.7;
-}
-
-.last-edit-loading {
-  animation: pulse 2s ease-in-out infinite;
-}
-
-.last-edit-loading i {
-  animation: rotate 2s linear infinite;
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 0.8;
-  }
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 @media screen and (max-width: 768px) {
@@ -1698,10 +1671,10 @@ body.dark-mode #tutorial-content table a:hover {
   #tutorial-content h1:first-child {
     margin-right: 0;
   }
+}
 
-  body.dark-mode .last-edit-info {
-    border: 1px solid var(--lp-five);
-  }
+body.dark-mode .last-edit-info {
+  border-color: var(--h-p-two);
 }
 
 /************************/
