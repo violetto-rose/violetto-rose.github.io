@@ -18,6 +18,7 @@ import {
 import { setupSounds } from './soundHandler.js';
 import { showUpdateNotification } from './notificationHandler.js';
 import { initializeAuth } from './auth.js';
+import './lastEditTracker.js';
 
 // Initialize critical modules before DOM content loads
 setupLoadingOverlay();

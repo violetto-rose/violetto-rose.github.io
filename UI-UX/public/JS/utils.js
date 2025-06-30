@@ -2,6 +2,7 @@ import { generateStructureView } from './structureView.js';
 import { lazyLoadImages } from './imageHandler.js';
 import { tutorials } from './sidebar.js';
 import { initCodeHighlighting, addCopyButtons } from './prismHighlighter.js';
+import { lastEditTracker } from './lastEditTracker.js';
 
 // Function to load tutorial content with lazy loading
 export async function loadTutorial(filename) {
@@ -113,6 +114,9 @@ export async function loadTutorial(filename) {
     // Lazy load images
     lazyLoadImages(contentWrapper);
 
+    // Add last edit date information to the top of content
+    lastEditTracker.displayLastEditDate(filename, contentWrapper);
+
     window.addEventListener('resize', () => adjustTableHeader(filename));
   } catch (error) {
     tutorialContent.innerHTML = `
@@ -160,8 +164,8 @@ function wrapHexColors(content) {
           ? `#${color[0]}${color[0]}${color[1]}${color[1]}${color[2]}${color[2]}`
           : `#${color}`;
       const textColor = getContrastColor(fullColor);
-      return `<span class="hex-color" 
-        data-color="${fullColor}" 
+      return `<span class="hex-color"
+        data-color="${fullColor}"
         style="background-color: ${fullColor}; color: ${textColor};"
         aria-label="Click to copy">${match}</span>`;
     }

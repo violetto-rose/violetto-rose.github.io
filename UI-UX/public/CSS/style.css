@@ -1124,6 +1124,10 @@ body.dark-mode .box {
   margin: 0 auto;
 }
 
+.tutorial-content-wrapper {
+  position: relative;
+}
+
 @media screen and (max-width: 768px) {
   #tutorial-content {
     min-width: auto;
@@ -1137,9 +1141,13 @@ body.dark-mode .box {
   margin-bottom: 10px;
 }
 
+#tutorial-content h1:first-child {
+  margin-right: 200px;
+}
+
 #tutorial-content a {
   text-decoration: none;
-  color: #002E5C;
+  color: #002e5c;
   &:focus-visible {
     outline: none;
   }
@@ -1613,6 +1621,87 @@ body.dark-mode #tutorial-content table a {
 
 body.dark-mode #tutorial-content table a:hover {
   text-decoration: underline;
+}
+
+/************************/
+/* Last Edit Info Styles */
+/************************/
+
+.last-edit-info {
+  position: absolute;
+  top: 6px;
+  right: 0;
+  padding: 0.5rem 0.75rem;
+  background: var(--bg-color1);
+  border-radius: 50px;
+  border: 1px solid var(--dp-five);
+  font-size: 0.8rem;
+  z-index: 1;
+}
+
+.last-edit-content,
+.last-edit-loading {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  color: var(--alt-text);
+  white-space: nowrap;
+}
+
+.last-edit-content i,
+.last-edit-loading i {
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+.last-edit-loading {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.last-edit-loading i {
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .last-edit-info {
+    top: unset;
+    bottom: 6px;
+    font-size: 0.75rem;
+    padding-block: 0.25rem;
+  }
+
+  .last-edit-content,
+  .last-edit-loading {
+    justify-content: flex-end;
+  }
+
+  #tutorial-content h1:first-child {
+    margin-right: 0;
+  }
+
+  body.dark-mode .last-edit-info {
+    border: 1px solid var(--lp-five);
+  }
 }
 
 /************************/
@@ -2468,7 +2557,7 @@ body.dark-mode #dashboard .dashboard-header {
 
 .update-notification a {
   font-family: var(--font1), sans-serif;
-  color: #013B93;
+  color: #013b93;
   text-decoration: none;
   font-weight: 500;
 }
@@ -2501,7 +2590,7 @@ body.dark-mode #dashboard .dashboard-header {
 .notification-progress-fill {
   height: 100%;
   width: 100%;
-  background: linear-gradient(90deg, #217bfe, #013B93);
+  background: linear-gradient(90deg, #217bfe, #013b93);
 }
 
 @keyframes notificationProgress {
