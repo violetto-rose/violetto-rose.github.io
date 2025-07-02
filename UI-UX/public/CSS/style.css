@@ -1141,10 +1141,6 @@ body.dark-mode .box {
   margin-bottom: 10px;
 }
 
-#tutorial-content h1:first-child {
-  margin-right: 200px;
-}
-
 #tutorial-content a {
   text-decoration: none;
   color: #002e5c;
@@ -1399,6 +1395,11 @@ body.dark-mode .box {
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
+body.medium-zoom--opened:not(.dark-mode) .toggle i,
+body.medium-zoom--opened:not(.dark-mode) .miscellaneous i {
+  color: var(--inv-text) !important;
+}
+
 .medium-zoom-overlay {
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
@@ -1629,13 +1630,13 @@ body.dark-mode #tutorial-content table a:hover {
 
 .last-edit-info {
   position: absolute;
-  top: 6px;
   right: 0;
-  padding: 0.5rem 0.75rem;
+  bottom: 8px;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.75rem;
   background: var(--bg-color2);
   border-radius: 50px;
   border: 1px solid var(--dp-five);
-  font-size: 0.8rem;
   z-index: 1;
 }
 
@@ -1653,24 +1654,6 @@ body.dark-mode #tutorial-content table a:hover {
 .last-edit-content i,
 .last-edit-loading i {
   font-size: 0.7rem;
-}
-
-@media screen and (max-width: 768px) {
-  .last-edit-info {
-    top: unset;
-    bottom: 6px;
-    font-size: 0.75rem;
-    padding-block: 0.25rem;
-  }
-
-  .last-edit-content,
-  .last-edit-loading {
-    justify-content: flex-end;
-  }
-
-  #tutorial-content h1:first-child {
-    margin-right: 0;
-  }
 }
 
 body.dark-mode .last-edit-info {
