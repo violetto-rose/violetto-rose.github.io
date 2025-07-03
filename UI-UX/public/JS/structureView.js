@@ -1,56 +1,56 @@
 export function setupStructureView() {
-  const structureToggle = document.getElementById("structure-toggle");
+  const structureToggle = document.getElementById('structure-toggle');
 
   if (window.innerWidth > 1280) {
     toggleStructureView();
   }
 
-  structureToggle.addEventListener("click", () => {
+  structureToggle.addEventListener('click', () => {
     toggleStructureView();
-    const sidebar = document.getElementById("sidebar");
-    if (sidebar.classList.contains("open")) {
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar.classList.contains('open')) {
       window.toggleSidebar();
     }
   });
 }
 
 function toggleStructureView() {
-  const structureToggle = document.getElementById("structure-toggle");
-  const structureView = document.getElementById("structure-view");
+  const structureToggle = document.getElementById('structure-toggle');
+  const structureView = document.getElementById('structure-view');
 
-  structureToggle.classList.toggle("open");
-  structureView.classList.toggle("open");
+  structureToggle.classList.toggle('open');
+  structureView.classList.toggle('open');
 
   // Move the content area only for screens wider than 768px
-  const main = document.querySelector("main");
+  const main = document.querySelector('main');
   if (window.innerWidth > 1280) {
-    main.classList.toggle("shifted");
+    main.classList.toggle('shifted');
   }
 }
 
 export function closeStructureView() {
-  const structureToggle = document.getElementById("structure-toggle");
-  const structureView = document.getElementById("structure-view");
-  const main = document.querySelector("main");
+  const structureToggle = document.getElementById('structure-toggle');
+  const structureView = document.getElementById('structure-view');
+  const main = document.querySelector('main');
 
-  structureToggle.classList.remove("open");
-  structureView.classList.remove("open");
-  main.classList.remove("shifted");
+  structureToggle.classList.remove('open');
+  structureView.classList.remove('open');
+  main.classList.remove('shifted');
 }
 
 export function generateStructureView(content) {
-  const structureView = document.getElementById("structure-view");
-  const structureContent = document.createElement("div");
-  structureContent.id = "structure-content";
-  structureContent.setAttribute("tabindex", "-1");
-  structureView.innerHTML = ""; // Clear previous structure
+  const structureView = document.getElementById('structure-view');
+  const structureContent = document.createElement('div');
+  structureContent.id = 'structure-content';
+  structureContent.setAttribute('tabindex', '-1');
+  structureView.innerHTML = ''; // Clear previous structure
   structureView.appendChild(structureContent);
 
   // Create headings structure
-  const headings = content.querySelectorAll("h1, h2, h3");
+  const headings = content.querySelectorAll('h1, h2, h3');
 
   if (headings.length === 0) {
-    structureContent.innerHTML = "<p>No structure found</p>";
+    structureContent.innerHTML = '<p>No structure found</p>';
     return;
   }
 
@@ -68,13 +68,13 @@ export function generateStructureView(content) {
             // Remove highlight from all items
             document
               .querySelectorAll(
-                ".structure-item, .structure-section, .structure-subsection"
+                '.structure-item, .structure-section, .structure-subsection'
               )
               .forEach((item) => {
-                item.classList.remove("active");
+                item.classList.remove('active');
               });
             // Add highlight to current item
-            structureItem.classList.add("active");
+            structureItem.classList.add('active');
 
             // Scroll the structure view to keep the active item in view
             const itemRect = structureItem.getBoundingClientRect();
@@ -89,7 +89,7 @@ export function generateStructureView(content) {
               const scrollTop = structureItem.offsetTop - 100; // Offset from top to keep it visible
               structureContent.scrollTo({
                 top: Math.max(0, scrollTop), // Ensure we don't scroll past the top
-                behavior: "smooth",
+                behavior: 'smooth'
               });
             }
           }
@@ -97,8 +97,8 @@ export function generateStructureView(content) {
       });
     },
     {
-      rootMargin: "-20% 0px -70% 0px", // Adjust these values to control when the highlight triggers
-      threshold: 0,
+      rootMargin: '-20% 0px -70% 0px', // Adjust these values to control when the highlight triggers
+      threshold: 0
     }
   );
 
@@ -107,21 +107,21 @@ export function generateStructureView(content) {
     const text = heading.textContent;
 
     // Handle h1 (top-level section)
-    if (level === "h1") {
+    if (level === 'h1') {
       const section = createStructureItem(text, heading);
       structureContent.appendChild(section);
       structureItems.set(heading, section);
     }
 
     // Handle h2 (section)
-    if (level === "h2") {
+    if (level === 'h2') {
       const section = createStructureSection(text, heading);
       structureContent.appendChild(section);
       structureItems.set(heading, section);
     }
 
     // Handle h3 (subsection)
-    if (level === "h3") {
+    if (level === 'h3') {
       const subsection = createStructureSubsection(text, heading);
       structureContent.appendChild(subsection);
       structureItems.set(heading, subsection);
@@ -133,9 +133,9 @@ export function generateStructureView(content) {
 }
 
 function createStructureItem(text, heading) {
-  const item = document.createElement("div");
-  item.classList.add("structure-item");
-  item.textContent = text.replace(/:/g, "");
+  const item = document.createElement('div');
+  item.classList.add('structure-item');
+  item.textContent = text.replace(/:/g, '');
   item.onclick = (e) => {
     e.stopPropagation();
     // Trigger sound manually since stopPropagation prevents bubbling
@@ -148,9 +148,9 @@ function createStructureItem(text, heading) {
 }
 
 function createStructureSection(text, heading) {
-  const section = document.createElement("div");
-  section.classList.add("structure-section");
-  section.textContent = text.replace(/:/g, "");
+  const section = document.createElement('div');
+  section.classList.add('structure-section');
+  section.textContent = text.replace(/:/g, '');
   section.onclick = (e) => {
     e.stopPropagation();
     // Trigger sound manually since stopPropagation prevents bubbling
@@ -163,9 +163,9 @@ function createStructureSection(text, heading) {
 }
 
 function createStructureSubsection(text, heading) {
-  const subsection = document.createElement("div");
-  subsection.classList.add("structure-subsection");
-  subsection.textContent = text.replace(/:/g, "");
+  const subsection = document.createElement('div');
+  subsection.classList.add('structure-subsection');
+  subsection.textContent = text.replace(/:/g, '');
   subsection.onclick = (e) => {
     e.stopPropagation();
     // Trigger sound manually since stopPropagation prevents bubbling
@@ -184,7 +184,7 @@ function scrollToHeading(heading) {
 
   function attemptScroll() {
     attempts++;
-    heading.scrollIntoView({ behavior: "smooth", block: "start" });
+    heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
     const rect = heading.getBoundingClientRect();
     const isScrolledToView = rect.top >= 0 && rect.top <= window.innerHeight;

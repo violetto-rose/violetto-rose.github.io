@@ -29,7 +29,9 @@ export function initThemeManager() {
   });
 
   if (window.matchMedia) {
-    const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeMediaQuery = window.matchMedia(
+      '(prefers-color-scheme: dark)'
+    );
     darkModeMediaQuery.addEventListener('change', updateTheme);
   }
 }
@@ -38,8 +40,11 @@ export function initThemeManager() {
 function updateTheme() {
   try {
     const hasClassDarkMode = document.body.classList.contains('dark-mode');
-    const systemDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const isDarkMode = hasClassDarkMode !== null ? hasClassDarkMode : systemDarkMode;
+    const systemDarkMode =
+      window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const isDarkMode =
+      hasClassDarkMode !== null ? hasClassDarkMode : systemDarkMode;
     const theme = isDarkMode ? THEMES.dark : THEMES.light;
 
     const themeLink = document.getElementById('prism-theme');
@@ -48,11 +53,11 @@ function updateTheme() {
 
       themeLink.onerror = () => {
         // Fallback to default theme
-        themeLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css';
+        themeLink.href =
+          'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css';
       };
 
-      themeLink.onload = () => {
-      };
+      themeLink.onload = () => {};
     } else {
       console.warn('Theme link element not found');
     }

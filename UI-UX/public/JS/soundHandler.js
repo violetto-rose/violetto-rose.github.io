@@ -39,7 +39,7 @@ function toggleSound() {
   // Play a test sound when enabling (if not on mobile)
   if (soundEnabled && clickSound && !isMobile()) {
     const testSound = clickSound.cloneNode();
-    testSound.volume = 0.3;
+    testSound.volume = 0.5;
     testSound.play().catch(() => {
       // Silently fail if audio can't be played
     });
@@ -48,14 +48,16 @@ function toggleSound() {
 
 // Check if device is mobile
 function isMobile() {
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  );
 }
 
 // Play click sound if enabled
 function playClickSound() {
   if (soundEnabled && clickSound && !isMobile()) {
     const soundClone = clickSound.cloneNode();
-    soundClone.volume = 0.3;
+    soundClone.volume = 0.5;
     soundClone.play().catch(() => {
       // Silently fail if audio can't be played
     });
@@ -76,14 +78,13 @@ export function setupSounds() {
 
   // Create audio element for click sound
   clickSound = new Audio();
-  clickSound.src = "./public/assets/click.ogg";
-  console.log(clickSound.src);
+  clickSound.src = './public/assets/click.ogg';
   if (!clickSound.src) {
-    console.error("Click sound not found");
+    console.error('Click sound not found');
     return;
   }
-  clickSound.preload = "auto";
-  // clickSound.volume = 0.3;
+  clickSound.preload = 'auto';
+  clickSound.volume = 0.5;
 
   // Setup sound toggle button
   const soundToggle = document.getElementById('sound-toggle');
@@ -92,19 +93,22 @@ export function setupSounds() {
   }
 
   // Add click event listeners to all interactive elements
-  document.addEventListener("click", (e) => {
+  document.addEventListener('click', (e) => {
     // Skip if the clicked element is the sound toggle itself
     if (e.target.closest('#sound-toggle')) {
       return;
     }
 
     if (
-      e.target.closest("button") ||
-      e.target.closest(".title") ||
-      e.target.closest(".structure-item") ||
-      e.target.closest(".structure-section") ||
-      e.target.closest(".structure-subsection") ||
-      (e.target.closest("a") && e.target.closest("li") && e.target.closest("ul") && e.target.closest("#tutorial-list"))
+      e.target.closest('button') ||
+      e.target.closest('.title') ||
+      e.target.closest('.structure-item') ||
+      e.target.closest('.structure-section') ||
+      e.target.closest('.structure-subsection') ||
+      (e.target.closest('a') &&
+        e.target.closest('li') &&
+        e.target.closest('ul') &&
+        e.target.closest('#tutorial-list'))
     ) {
       playClickSound();
     }

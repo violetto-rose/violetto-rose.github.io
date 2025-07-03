@@ -28,7 +28,7 @@
 
 @font-face {
   font-family: 'Satoshi';
-  src: url('https://fonts.cdnfonts.com/s/85546/Satoshi-ExtraBold.woff')
+  src: url('https://fonts.cdnfonts.com/s/85546/Satoshi-Black.woff')
     format('woff');
   font-weight: 800;
   font-style: normal;
@@ -1932,9 +1932,11 @@ body.dark-mode .last-edit-info {
   font-style: italic;
 }
 
-.author-link:hover .real-name-reveal {
-  opacity: 1;
-  width: 160px;
+@media (hover: hover) and (pointer: fine) {
+  .author-link:hover .real-name-reveal {
+    opacity: 1;
+    width: 160px;
+  }
 }
 
 /* Dark mode styles */
