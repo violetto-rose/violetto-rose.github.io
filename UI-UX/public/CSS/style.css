@@ -1661,6 +1661,7 @@ body.dark-mode #tutorial-content table a:hover {
 }
 
 body.dark-mode .last-edit-info {
+  background: hsl(0, 0%, 7%);
   border-color: var(--h-p-two);
 }
 
