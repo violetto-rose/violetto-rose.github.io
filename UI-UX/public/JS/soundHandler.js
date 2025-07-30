@@ -36,8 +36,8 @@ function toggleSound() {
   localStorage.setItem('soundEnabled', JSON.stringify(soundEnabled));
   updateSoundToggleUI();
 
-  // Play a test sound when enabling (if not on mobile)
-  if (soundEnabled && clickSound && !isMobile()) {
+  // Play a test sound when enabling
+  if (soundEnabled && clickSound) {
     const testSound = clickSound.cloneNode();
     testSound.volume = 0.5;
     testSound.play().catch(() => {
@@ -46,16 +46,9 @@ function toggleSound() {
   }
 }
 
-// Check if device is mobile
-function isMobile() {
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-    navigator.userAgent
-  );
-}
-
 // Play click sound if enabled
 function playClickSound() {
-  if (soundEnabled && clickSound && !isMobile()) {
+  if (soundEnabled && clickSound) {
     const soundClone = clickSound.cloneNode();
     soundClone.volume = 0.5;
     soundClone.play().catch(() => {
@@ -70,11 +63,6 @@ export function setupSounds() {
 
   // Expose playClickSound globally for modules that use stopPropagation
   window.playClickSound = playClickSound;
-
-  // Don't initialize audio on mobile devices by default
-  if (isMobile()) {
-    return;
-  }
 
   // Create audio element for click sound
   clickSound = new Audio();

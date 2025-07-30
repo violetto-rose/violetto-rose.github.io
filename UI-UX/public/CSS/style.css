@@ -39,7 +39,7 @@
   font-family: 'Unbounded';
   src: url('https://fonts.cdnfonts.com/s/107433/Unbounded[wght].woff')
     format('woff');
-  font-weight: 100;
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
@@ -655,7 +655,6 @@ body.dark-mode .button {
   flex: 1 1 0%;
   overflow-y: auto;
   border-radius: 10px;
-  padding: 0.2rem;
 }
 
 #structure-view.open {
@@ -993,7 +992,7 @@ body.dark-mode #structure-view .structure-subsection:hover {
 
 #sidebar ul {
   list-style-type: none;
-  padding: 0.2rem;
+  padding: 0;
   margin: 0;
 }
 
@@ -1641,7 +1640,6 @@ body.dark-mode #tutorial-content table a:hover {
   background: var(--bg-color2);
   border-radius: 50px;
   border: 1px solid var(--dp-five);
-  z-index: 1;
 }
 
 .last-edit-content,
@@ -1734,12 +1732,6 @@ body.dark-mode .last-edit-info {
 
 #sound-toggle .fa-volume-xmark {
   display: none;
-}
-
-@media screen and (max-width: 768px) {
-  #sound-toggle {
-    display: none;
-  }
 }
 
 /*******************/
@@ -2612,54 +2604,49 @@ body.dark-mode ::-moz-selection {
 /* Custom Scrollbar Styles */
 /***************************/
 
-#tutorial-list::-webkit-scrollbar,
 #content::-webkit-scrollbar,
-#search-results::-webkit-scrollbar,
-#structure-content::-webkit-scrollbar,
-.notifications-list-container::-webkit-scrollbar,
 iframe::-webkit-scrollbar {
   width: 4px;
 }
 
-#tutorial-list::-webkit-scrollbar-track,
 #content::-webkit-scrollbar-track,
-#search-results::-webkit-scrollbar-track,
-#structure-content::-webkit-scrollbar-track,
-.notifications-list-container::-webkit-scrollbar-track,
 iframe::-webkit-scrollbar-track {
   background: var(--lp-one);
   border-radius: 10px;
 }
 
-#tutorial-list::-webkit-scrollbar-thumb,
 #content::-webkit-scrollbar-thumb,
-#search-results::-webkit-scrollbar-thumb,
-#structure-content::-webkit-scrollbar-thumb,
-.notifications-list-container::-webkit-scrollbar-thumb,
 iframe::-webkit-scrollbar-thumb {
   background: var(--lp-three);
   border-radius: 10px;
   transition: background 0.3s ease;
 }
 
-#tutorial-list::-webkit-scrollbar-thumb:hover,
 #content::-webkit-scrollbar-thumb:hover,
-#search-results::-webkit-scrollbar-thumb:hover,
-#structure-content::-webkit-scrollbar-thumb:hover,
-.notifications-list-container::-webkit-scrollbar-thumb:hover,
 iframe::-webkit-scrollbar-thumb:hover {
   background: var(--lp-five);
 }
 
+/* Hide scrollbars for all elements except #content and iframe */
+#tutorial-list::-webkit-scrollbar,
+#search-results::-webkit-scrollbar,
+#structure-content::-webkit-scrollbar,
+.notifications-list-container::-webkit-scrollbar {
+  display: none !important;
+}
+
 /* For Firefox */
-#tutorial-list,
 #content,
-#search-results,
-#structure-content,
-.notifications-list-container,
 iframe {
   scrollbar-width: thin;
   scrollbar-color: var(--lp-three) var(--lp-one);
+}
+
+#tutorial-list,
+#search-results,
+#structure-content,
+.notifications-list-container {
+  scrollbar-width: none !important;
 }
 
 /********************/

@@ -185,3 +185,5 @@ The properties panel (right sidebar) shows all the properties of your selected e
 *Practice using each tool and property to understand their capabilities. The more you use them, the more intuitive they become!*
 
 For more details about other tools, visit [Figma&#39;s toolbar help page](https://help.figma.com/hc/en-us/articles/360041064174-Access-design-tools-from-the-toolbar).
+
+---
