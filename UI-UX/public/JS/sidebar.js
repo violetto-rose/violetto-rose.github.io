@@ -5,6 +5,7 @@ export const tutorials = [
   { name: 'About the course', file: 'about-course.md' },
   { name: 'Setting up Figma', file: 'setting-up-figma.md' },
   { name: 'Setting up Penpot', file: 'setting-up-penpot.md' },
+  { name: 'Get to know', file: 'get-to-know.md' },
   { name: 'Chat App Redesign', file: 'chat-app-redesign.md' },
   { name: 'Food App', file: 'food-app.md' },
   { name: 'Social Media App', file: 'social-media-app.md' },

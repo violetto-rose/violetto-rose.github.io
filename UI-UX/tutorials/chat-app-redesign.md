@@ -16,13 +16,7 @@ Lets start with creating home screen interface of WhatsApp.
 >Please ensure that all usage of WhatsApp logos, icons, and products adheres to their brand guidelines. For any commercial use or modifications, please obtain the necessary permissions from WhatsApp.
 
 ---
-## 1. Get familiar with tools in Figma
-
-![Description about tools in figma](images/chat-app-redesign/tools.webp){data-aspect-ratio="4:3"}
-For more details about other tools, visit [Figma&#39;s toolbar help page](https://help.figma.com/hc/en-us/articles/360041064174-Access-design-tools-from-the-toolbar).
-
----
-## 2. Wireframing
+## 1. Wireframing
 
 ### What is a Wireframe?
 
@@ -33,7 +27,7 @@ Create a basic wireframe using pen and paper, as demonstrated below:
 ![Wireframe](images/chat-app-redesign/wireframe.webp){data-aspect-ratio="1:1"}
 
 ---
-## 3. Designing
+## 2. Designing
 
 We're going to need icons for designing this interface. The easiest way to get icons is by using plugins in Figma.
 
