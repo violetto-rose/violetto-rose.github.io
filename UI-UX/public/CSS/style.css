@@ -1627,6 +1627,73 @@ body.dark-mode #tutorial-content table a:hover {
   text-decoration: underline;
 }
 
+
+/***********************/
+/* Progress Bar Styles */
+/***********************/
+
+.progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--lp-one);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.progress-container.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--purple) 0%, var(--blue) 100%);
+  width: 0%;
+  border-radius: 0 10px 10px 0;
+  transition: width 0.1s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent 0%, var(--lp-three) 50%, transparent 100%);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Dark mode styles */
+body.dark-mode .progress-container {
+  background: var(--dp-two);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 640px) {
+  .progress-container {
+    height: 3px;
+  }
+}
+
 /************************/
 /* Last Edit Info Styles */
 /************************/

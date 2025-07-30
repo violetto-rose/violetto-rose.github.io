@@ -18,6 +18,7 @@ import {
 import { setupSounds } from './soundHandler.js';
 import { showUpdateNotification } from './notificationHandler.js';
 import { initializeAuth } from './auth.js';
+import { setupProgressBar } from './progressBar.js';
 import './lastEditTracker.js';
 
 // Initialize critical modules before DOM content loads
@@ -63,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupTooltipObserver();
     feedbackHandler();
     initializeAuth();
+    setupProgressBar();
   }, 100);
 
   // Show notifications after everything is loaded
