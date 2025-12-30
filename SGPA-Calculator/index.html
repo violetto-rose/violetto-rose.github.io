@@ -86,45 +86,6 @@
         line-height: 1.4;
       }
 
-      /* Custom gradient background */
-      .gradient-bg {
-        background: linear-gradient(
-          135deg,
-          #f0f9ff 0%,
-          #e0e7ff 25%,
-          #fdf2f8 50%,
-          #f3e8ff 75%,
-          #f0f9ff 100%
-        );
-        background-size: 400% 400%;
-        animation: gradient-shift 15s ease infinite;
-      }
-
-      .dark .gradient-bg {
-        background: linear-gradient(
-          135deg,
-          #0f172a 0%,
-          #1e1b4b 25%,
-          #581c87 50%,
-          #4c1d95 75%,
-          #0f172a 100%
-        );
-        background-size: 400% 400%;
-        animation: gradient-shift 15s ease infinite;
-      }
-
-      @keyframes gradient-shift {
-        0% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-        100% {
-          background-position: 0% 50%;
-        }
-      }
-
       /* Upload area styling */
       .upload-area {
         transition: all 0.3s ease;
@@ -142,7 +103,8 @@
     </style>
     <script type="module" src="JS/index.js"></script>
   </head>
-  <body class="font-inter min-h-screen gradient-bg flex flex-col justify-center">
+  <body
+    class="font-inter min-h-screen bg-violet-50 dark:bg-slate-900 flex flex-col justify-center">
     <!-- Navigation Controls -->
     <div
       class="flex justify-end items-center gap-2 lg:fixed lg:top-4 lg:right-4 lg:z-50 mb-4 lg:mb-0 px-4 pt-4 lg:p-0">
@@ -235,7 +197,7 @@
             href="../"
             class="flex items-center space-x-4 p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 group">
             <div
-              class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-md">
+              class="w-10 h-10 rounded-xl bg-purple-600 flex items-center justify-center shadow-md">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -267,7 +229,7 @@
             class="current-page p-3 rounded-lg bg-fuchsia-100 dark:bg-fuchsia-900/30 border border-fuchsia-200 dark:border-fuchsia-700">
             <div class="flex items-center space-x-3">
               <div
-                class="w-10 h-10 rounded-lg bg-gradient-to-br from-fuchsia-500 to-purple-600 flex items-center justify-center">
+                class="w-10 h-10 rounded-lg bg-fuchsia-600 flex items-center justify-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -291,7 +253,7 @@
             href="calculator.html"
             class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
             <div
-              class="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center">
+              class="w-10 h-10 rounded-lg bg-amber-500 flex items-center justify-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -323,7 +285,7 @@
             href="../UI-UX/"
             class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
             <div
-              class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+              class="w-10 h-10 rounded-lg bg-purple-600 flex items-center justify-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -347,7 +309,7 @@
             href="../Gen-AI/"
             class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
             <div
-              class="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center">
+              class="w-10 h-10 rounded-lg bg-emerald-500 flex items-center justify-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -371,7 +333,7 @@
             href="../ML/"
             class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
             <div
-              class="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center">
+              class="w-10 h-10 rounded-lg bg-indigo-600 flex items-center justify-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -401,7 +363,7 @@
         <div class="text-center space-y-8">
           <div class="space-y-4">
             <h1
-              class="text-6xl md:text-7xl font-bold bg-gradient-to-r from-fuchsia-600 via-purple-600 to-pink-600 dark:from-fuchsia-200 dark:via-purple-200 dark:to-pink-200 bg-clip-text text-transparent text-display">
+              class="text-6xl md:text-7xl font-bold text-fuchsia-900 dark:text-fuchsia-200 text-display">
               SGPA Calculator
             </h1>
             <p
@@ -488,7 +450,7 @@
             id="uploadCard">
             <div class="text-center space-y-6">
               <div
-                class="mx-auto w-20 h-20 bg-gradient-to-br from-emerald-500 to-cyan-600 rounded-2xl flex items-center justify-center mb-6">
+                class="mx-auto w-20 h-20 bg-emerald-500 rounded-2xl flex items-center justify-center mb-6">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -552,7 +514,7 @@
 
               <!-- Work in Progress Badge -->
               <div
-                class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-100 to-cyan-100 dark:from-blue-900/50 dark:to-cyan-900/50 rounded-full">
+                class="inline-flex items-center px-4 py-2 bg-blue-100 dark:bg-blue-900/50 rounded-full">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -582,7 +544,7 @@
             class="flex flex-col justify-between gap-4 bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-2xl shadow-xl p-8 border border-white/20 dark:border-gray-700/20 hover:shadow-2xl transition-shadow duration-300">
             <div class="text-center space-y-6">
               <div
-                class="mx-auto w-20 h-20 bg-gradient-to-br from-fuchsia-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6">
+                class="mx-auto w-20 h-20 bg-fuchsia-600 rounded-2xl flex items-center justify-center mb-6">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -677,7 +639,7 @@
 
             <a
               href="calculator.html"
-              class="inline-flex items-center justify-center w-full px-6 py-4 border border-transparent text-base font-semibold rounded-xl text-white bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:from-fuchsia-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-fuchsia-500 transition-all duration-200 text-body shadow-lg hover:shadow-xl">
+              class="inline-flex items-center justify-center w-full px-6 py-4 border border-transparent text-base font-semibold rounded-xl text-white bg-fuchsia-600 hover:bg-fuchsia-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-fuchsia-500 transition-all duration-200 text-body shadow-lg hover:shadow-xl">
               <span>Calculate SGPA Manually</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -816,7 +778,10 @@
                 browser)
               </li>
             </ul>
-            <p class="mt-4">Our privacy-first approach is built into the application architecture:</p>
+            <p class="mt-4">
+              Our privacy-first approach is built into the application
+              architecture:
+            </p>
             <ul class="list-disc pl-5 space-y-1">
               <li>
                 <strong>Client-Side Processing:</strong> PDF.js library
