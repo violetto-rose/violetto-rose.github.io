@@ -214,5 +214,41 @@
     "semester": 6,
     "subject_name": "Indian Knowledge System",
     "credits": 0
+  },
+  {
+    "subject_code": "BCG701",
+    "semester": 7,
+    "subject_name": "Robotic Process Automation Design and Development (UiPath)",
+    "credits": 4
+  },
+  {
+    "subject_code": "BCS702",
+    "semester": 7,
+    "subject_name": "Parallel Computing",
+    "credits": 4
+  },
+  {
+    "subject_code": "BCS703",
+    "semester": 7,
+    "subject_name": "Cryptography & Network Security",
+    "credits": 4
+  },
+  {
+    "subject_code": "BCG714x",
+    "semester": 7,
+    "subject_name": "Professional Elective Course",
+    "credits": 3
+  },
+  {
+    "subject_code": "BXX755x",
+    "semester": 7,
+    "subject_name": "Open Elective Course",
+    "credits": 3
+  },
+  {
+    "subject_code": "BCG786",
+    "semester": 7,
+    "subject_name": "Major Project Phase-II",
+    "credits": 6
   }
 ]
