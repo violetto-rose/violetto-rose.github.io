@@ -6,19 +6,19 @@
 
 The toolbar is your command center in Figma. Here's what each tool does and when to use it.
 
-### ▶ Move Tools
+### Move Tools
 
 **Move Tool (V)** - Select and move objects (default tool)
 **Hand Tool (H)** - Navigate without selecting objects
 **Scale Tool (K)** - Resize objects while maintaining proportions
 
-### ▶ Region Tools
+### Region Tools
 
 **Frame Tool (F)** - Create containers for your design elements
 **Section Tool** - Organize files and mark content for development
 **Slice Tool (S)** - Define areas for export
 
-### ▶ Shape Tools
+### Shape Tools
 
 **Rectangle (R)** - Squares, rectangles, rounded corners
 **Line (L)** - Straight lines and dividers
@@ -28,32 +28,32 @@ The toolbar is your command center in Figma. Here's what each tool does and when
 **Star** - Star shapes
 **Image/Video** - Import media files
 
-### ▶ Creation Tools
+### Creation Tools
 
 **Pen Tool (P)** - Create custom vector shapes and paths
 **Pencil Tool** - Freehand drawing with automatic smoothing
 
-### ▶ Text Tool
+### Text Tool
 
 **Text Tool (T)** - Add typography to your designs
 
 - Click once for growing text
 - Click and drag for fixed-size text containers
 
-### ▶ Comment Tools
+### Comment Tools
 
 **Comment Tool (C)** - Add feedback and annotations
 **Annotation Tool** - Highlight properties for developers
 **Measurement Tool** - Show spacing and sizing
 
-### ▶ Actions Menu
+### Actions Menu
 
 **AI Tools** - Generate designs and content
 **Asset Search** - Find library components
 **Plugins** - Extend functionality
 **Quick Commands** - Common workspace actions
 
-### ▶ Special Modes
+### Special Modes
 
 **Dev Mode (Shift + D)** - Developer-focused interface for handoffs
 **Figma Draw** - Advanced drawing and illustration tools
@@ -64,7 +64,7 @@ The toolbar is your command center in Figma. Here's what each tool does and when
 
 The properties panel (right sidebar) shows all the properties of your selected element. Here's what you'll find:
 
-### ▶ Layout Properties
+### Layout Properties
 
 **Position & Size**
 
@@ -90,7 +90,7 @@ The properties panel (right sidebar) shows all the properties of your selected e
 - **Fill** - Container expands to fill available space
 - **Min/Max** - Set minimum and maximum dimensions for responsive behavior
 
-### ▶ Design Properties
+### Design Properties
 
 **Fills**
 
@@ -115,7 +115,7 @@ The properties panel (right sidebar) shows all the properties of your selected e
 - **Texture** - Apply surface patterns and materials
 - **Glass** - Create frosted glass or transparency effects
 
-### ▶ Typography Properties
+### Typography Properties
 
 **Font**
 
@@ -130,7 +130,7 @@ The properties panel (right sidebar) shows all the properties of your selected e
 - **Paragraph Spacing** - Block spacing
 - **Text Align** - Left, center, right, justify
 
-### ▶ Component Properties
+### Component Properties
 
 **Instance Properties**
 
@@ -144,7 +144,7 @@ The properties panel (right sidebar) shows all the properties of your selected e
 - **Size** - Component size variants
 - **Style** - Visual style variants
 
-### ▶ Advanced Properties
+### Advanced Properties
 
 **Prototyping**
 
@@ -182,7 +182,7 @@ The properties panel (right sidebar) shows all the properties of your selected e
 4. **Organize with Sections** - Keep large files navigable
 5. **Master Properties** - Use the properties panel for precise control
 
-*Practice using each tool and property to understand their capabilities. The more you use them, the more intuitive they become!*
+_Practice using each tool and property to understand their capabilities. The more you use them, the more intuitive they become!_
 
 For more details about other tools, visit [Figma&#39;s toolbar help page](https://help.figma.com/hc/en-us/articles/360041064174-Access-design-tools-from-the-toolbar).
 
