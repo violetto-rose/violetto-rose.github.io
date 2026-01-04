@@ -1,11 +1,12 @@
-const CACHE_NAME = 'violetto-rose-v1';
+const CACHE_NAME = 'uiux-tutorials-v1';
 const ASSETS_TO_CACHE = [
-  '/',
-  '/index.html',
-  '/public/style.css',
-  '/public/script.js',
+  '/UI-UX/',
+  '/UI-UX/index.html',
+  '/UI-UX/public/CSS/style.css',
+  '/UI-UX/public/JS/main.js',
+  '/UI-UX/public/icon/favicon.ico',
   '/public/aurora.css',
-  '/public/favicon.ico'
+  '/UI-UX/manifest.json'
 ];
 
 self.addEventListener('install', (event) => {

@@ -24,7 +24,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Create config file
+      - name: Create UI-UX config file
         run: |
           echo "export const emailConfig = {
             PUBLIC_KEY: '${{ secrets.EMAILJS_PUBLIC_KEY }}',
@@ -42,6 +42,20 @@ jobs:
             appId: '${{ secrets.FIREBASE_APP_ID }}',
             measurementId: '${{ secrets.FIREBASE_MEASUREMENT_ID }}'
           };" > UI-UX/public/JS/config.js
+
+      - name: Create public config file
+        run: |
+          echo "export const githubConfig = {
+            username: 'violetto-rose',
+            token: '${{ secrets.GH_API_TOKEN }}',
+            commitsLimit: 5
+          };
+
+          export const lastfmConfig = {
+            apiKey: '${{ secrets.LASTFM_API_KEY }}',
+            username: '${{ secrets.LASTFM_USERNAME }}',
+            limit: 1
+          };" > public/config.js
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

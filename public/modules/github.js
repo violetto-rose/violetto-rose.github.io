@@ -1,0 +1,464 @@
+import { parseLinkHeader, escapeHtml, getTimeAgo } from './utils.js';
+
+function getGitHubHeaders(githubConfig) {
+  const headers = {
+    'Accept': 'application/vnd.github+json',
+    'X-GitHub-Api-Version': '2022-11-28'
+  };
+
+  if (githubConfig.token && githubConfig.token.trim() !== '') {
+    headers['Authorization'] = `Bearer ${githubConfig.token}`;
+  }
+
+  return headers;
+}
+
+async function fetchAllPages(url, githubConfig, maxPages = 100) {
+  const allItems = [];
+  let currentUrl = url;
+  let pageCount = 0;
+
+  while (currentUrl && pageCount < maxPages) {
+    try {
+      const response = await fetch(currentUrl, {
+        headers: getGitHubHeaders(githubConfig)
+      });
+
+      if (!response.ok) {
+        if (response.status === 403) {
+          const remaining = response.headers.get('X-RateLimit-Remaining');
+          const limit = response.headers.get('X-RateLimit-Limit');
+          const resetTime = response.headers.get('X-RateLimit-Reset');
+
+          if (remaining === '0') {
+            const resetDate = new Date(parseInt(resetTime) * 1000);
+            console.warn(`GitHub API rate limit reached. Limit: ${limit}/hour. Resets at: ${resetDate.toLocaleString()}`);
+          } else {
+            console.warn(`GitHub API rate limit. Remaining: ${remaining}/${limit}`);
+          }
+          break;
+        }
+
+        if (response.status === 401) {
+          console.error('GitHub API authentication failed. Please check your token.');
+          break;
+        }
+
+        throw new Error(`GitHub API error: ${response.status}`);
+      }
+
+      const items = await response.json();
+      if (!Array.isArray(items)) {
+        break;
+      }
+
+      allItems.push(...items);
+
+      const linkHeader = response.headers.get('Link');
+      currentUrl = parseLinkHeader(linkHeader);
+
+      pageCount++;
+
+      if (items.length < 100) {
+        break;
+      }
+    } catch (error) {
+      console.error('Error fetching page:', error);
+      break;
+    }
+  }
+
+  return allItems;
+}
+
+async function fetchUserRepositories(username, githubConfig) {
+  const hasToken = githubConfig.token && githubConfig.token.trim() !== '';
+
+  let url;
+  if (hasToken) {
+    url = `https://api.github.com/user/repos?per_page=100&sort=updated&affiliation=owner`;
+  } else {
+    url = `https://api.github.com/users/${username}/repos?per_page=100&sort=updated`;
+  }
+
+  const repos = await fetchAllPages(url, githubConfig, 10);
+  return repos;
+}
+
+async function fetchRepositoryCommits(owner, repo, sinceDate, authorUsername, githubConfig) {
+  const sinceISO = sinceDate.toISOString();
+  const url = `https://api.github.com/repos/${owner}/${repo}/commits?since=${sinceISO}&author=${authorUsername}&per_page=100`;
+
+  try {
+    const commits = await fetchAllPages(url, githubConfig, 10);
+    return commits;
+  } catch (error) {
+    console.error(`Error fetching commits from ${repo}:`, error);
+    return [];
+  }
+}
+
+export async function fetchGitHubCommits(githubConfig) {
+  const commitsList = document.getElementById('commits-list');
+  if (!commitsList) return;
+
+  // Show loading state
+  commitsList.innerHTML = `
+    <div class="loading-state">
+      <img src="./public/assets/cat-loading.gif" alt="Loading" class="loading-gif" />
+      <p class="loading-text">Searching Through My Github...</p>
+    </div>
+  `;
+
+  try {
+    // Try to load from cached JSON file first (globally cached by GitHub Actions)
+    try {
+      const cachedResponse = await fetch('./public/data/github-commits.json');
+      if (cachedResponse.ok) {
+        const cachedCommits = await cachedResponse.json();
+        displayGitHubCommits(cachedCommits);
+        return;
+      }
+    } catch (cacheError) {
+      console.log('Cache not available, fetching from API...');
+    }
+
+    // Fallback to API if cache doesn't exist
+    const hasToken = githubConfig.token && githubConfig.token.trim() !== '';
+
+    if (!hasToken) {
+      throw new Error('GitHub token required to fetch commits');
+    }
+
+    const repos = await fetchUserRepositories(githubConfig.username, githubConfig);
+
+    if (repos.length === 0) {
+      throw new Error('No repositories found');
+    }
+
+    // Fetch recent commits from each repository
+    const allCommits = [];
+    const maxRepos = Math.min(repos.length, 20); // Limit to 20 most recent repos
+
+    for (let i = 0; i < maxRepos && allCommits.length < githubConfig.commitsLimit; i++) {
+      const repo = repos[i];
+      const [owner, repoName] = repo.full_name.split('/');
+
+      try {
+        // Fetch commits from default branch, filtered by author
+        const commitsUrl = `https://api.github.com/repos/${owner}/${repoName}/commits?per_page=10&author=${githubConfig.username}`;
+        const repoCommits = await fetchAllPages(commitsUrl, githubConfig, 1);
+
+        for (const commit of repoCommits) {
+          if (allCommits.length >= githubConfig.commitsLimit) break;
+
+          allCommits.push({
+            repo: repo.full_name,
+            sha: commit.sha,
+            timestamp: commit.commit.author.date || commit.commit.committer.date
+          });
+        }
+      } catch (error) {
+        // Skip repos that fail (might be inaccessible)
+        console.warn(`Skipping ${repo.full_name}:`, error.message);
+        continue;
+      }
+    }
+
+    // Sort by timestamp (most recent first) and limit
+    allCommits.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+    const commits = allCommits.slice(0, githubConfig.commitsLimit);
+
+    displayGitHubCommits(commits);
+  } catch (error) {
+    console.error('GitHub commits error:', error);
+    commitsList.innerHTML = `
+      <div class="error-state">
+        <img src="./public/assets/cat-cry.gif" alt="Error" class="error-gif" />
+        <p class="error-text">I Guess No Huh?</p>
+      </div>
+    `;
+  }
+}
+
+function displayGitHubCommits(commits) {
+  const commitsList = document.getElementById('commits-list');
+  if (!commitsList) return;
+
+  if (commits.length === 0) {
+    commitsList.innerHTML = `
+      <div class="error-state">
+        <img src="./public/assets/cat-cry.gif" alt="Error" class="error-gif" />
+        <p class="error-text">I Guess No Huh?</p>
+      </div>
+    `;
+    return;
+  }
+
+  commitsList.innerHTML = commits
+    .map(
+      (commit) => `
+    <div class="commit-item">
+      <div class="commit-repo">${escapeHtml(commit.repo)}</div>
+      <div class="commit-sha">${escapeHtml(commit.sha ? commit.sha.substring(0, 7) : '')}</div>
+      <div class="commit-time">${getTimeAgo(
+        new Date(commit.timestamp).getTime() / 1000
+      )}</div>
+    </div>
+  `
+    )
+    .join('');
+}
+
+export async function fetchGitHubContributions(githubConfig) {
+  try {
+    // Try to load from cached JSON file first (globally cached by GitHub Actions)
+    try {
+      const cachedResponse = await fetch('./public/data/github-contributions.json');
+      if (cachedResponse.ok) {
+        const cachedContributions = await cachedResponse.json();
+        // Convert date strings back to Date objects
+        return cachedContributions.map(item => ({
+          date: new Date(item.date),
+          value: item.value
+        }));
+      }
+    } catch (cacheError) {
+      console.log('Cache not available, fetching from API...');
+    }
+
+    // Fallback to API if cache doesn't exist
+    const username = githubConfig.username;
+    // Calculate date range: from today going back 365 days
+    const today = new Date();
+    today.setHours(23, 59, 59, 999); // End of today
+    const oneYearAgo = new Date(today);
+    oneYearAgo.setDate(oneYearAgo.getDate() - 365);
+    oneYearAgo.setHours(0, 0, 0, 0); // Start of that day
+
+    const repos = await fetchUserRepositories(username, githubConfig);
+
+    if (repos.length === 0) {
+      console.warn('No repositories found');
+      return [];
+    }
+
+    const maxRepos = Math.min(repos.length, 50);
+    const reposToProcess = repos.slice(0, maxRepos);
+
+    const allCommits = [];
+
+    for (let i = 0; i < reposToProcess.length; i++) {
+      const repo = reposToProcess[i];
+      const repoFullName = repo.full_name;
+      const [owner, repoName] = repoFullName.split('/');
+
+      const commits = await fetchRepositoryCommits(owner, repoName, oneYearAgo, username, githubConfig);
+      allCommits.push(...commits);
+
+      if (i < reposToProcess.length - 1) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+      }
+    }
+
+    const contributionMap = {};
+
+    allCommits.forEach(commit => {
+      if (commit.commit && commit.commit.author && commit.commit.author.date) {
+        const date = new Date(commit.commit.author.date);
+        // Include commits from oneYearAgo to today (inclusive)
+        if (date >= oneYearAgo && date <= today) {
+          const dateKey = date.toISOString().split('T')[0];
+          contributionMap[dateKey] = (contributionMap[dateKey] || 0) + 1;
+        }
+      }
+    });
+
+    const contributions = Object.entries(contributionMap).map(([dateStr, value]) => {
+      const date = new Date(dateStr + 'T00:00:00');
+      return {
+        date: date,
+        value: value
+      };
+    });
+
+    return contributions;
+  } catch (error) {
+    console.error('Error fetching GitHub contributions:', error);
+    return [];
+  }
+}
+
+export async function initializeGitHubHeatmap(githubConfig) {
+  const heatmapElement = document.getElementById('github-heatmap');
+  if (!heatmapElement) return;
+
+  // Show loading state
+  heatmapElement.innerHTML = `
+    <div class="loading-state">
+      <img src="./public/assets/cat-loading.gif" alt="Loading" class="loading-gif" />
+      <p class="loading-text">Did I Code Again?</p>
+    </div>
+  `;
+
+  try {
+    const contributionData = await fetchGitHubContributions(githubConfig);
+
+    if (!contributionData || contributionData.length === 0) {
+      heatmapElement.innerHTML = `
+        <div class="error-state">
+          <img src="./public/assets/cat-cry.gif" alt="Error" class="error-gif" />
+          <p class="error-text">Huh??</p>
+        </div>
+      `;
+      return;
+    }
+
+    // Create contribution map for quick lookup
+    const contributionMap = new Map();
+    contributionData.forEach(item => {
+      const dateKey = item.date instanceof Date
+        ? item.date.toISOString().split('T')[0]
+        : new Date(item.date).toISOString().split('T')[0];
+      contributionMap.set(dateKey, item.value);
+    });
+
+    // Calculate date range: from today going back 365 days
+    const today = new Date();
+    today.setHours(23, 59, 59, 999);
+    const oneYearAgo = new Date(today);
+    oneYearAgo.setDate(oneYearAgo.getDate() - 364); // 364 to get 365 days total
+    oneYearAgo.setHours(0, 0, 0, 0);
+
+    // Generate all dates in range
+    const allDates = [];
+    const currentDate = new Date(oneYearAgo);
+    while (currentDate <= today) {
+      allDates.push(new Date(currentDate));
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
+
+    // Clear loading state and render graph
+    heatmapElement.innerHTML = `
+      <div class="graph">
+        <ul class="months">
+          <li>Jan</li>
+          <li>Feb</li>
+          <li>Mar</li>
+          <li>Apr</li>
+          <li>May</li>
+          <li>Jun</li>
+          <li>Jul</li>
+          <li>Aug</li>
+          <li>Sep</li>
+          <li>Oct</li>
+          <li>Nov</li>
+          <li>Dec</li>
+        </ul>
+        <ul class="days">
+          <li>Sun</li>
+          <li>Mon</li>
+          <li>Tue</li>
+          <li>Wed</li>
+          <li>Thu</li>
+          <li>Fri</li>
+          <li>Sat</li>
+        </ul>
+        <ul class="squares"></ul>
+      </div>
+      <div class="graph-tooltip" id="graph-tooltip"></div>
+    `;
+
+    const squaresContainer = heatmapElement.querySelector('.squares');
+    const tooltip = heatmapElement.querySelector('#graph-tooltip');
+
+    // Function to get contribution level (0-4)
+    function getLevel(count) {
+      if (!count || count === 0) return 0;
+      if (count >= 20) return 4;
+      if (count >= 10) return 3;
+      if (count >= 5) return 2;
+      if (count >= 1) return 1;
+      return 0;
+    }
+
+    // Function to format date for tooltip
+    function formatDate(date) {
+      return date.toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+    }
+
+    // Find the first Sunday before or on the start date to align weeks properly
+    const firstDate = allDates[0];
+    const firstDayOfWeek = firstDate.getDay(); // 0 = Sunday, 1 = Monday, etc.
+
+    // Add empty squares for days before the start date in the first week (Sunday = 0)
+    for (let i = 0; i < firstDayOfWeek; i++) {
+      const emptySquare = document.createElement('li');
+      emptySquare.setAttribute('data-level', '0');
+      emptySquare.style.visibility = 'hidden';
+      squaresContainer.appendChild(emptySquare);
+    }
+
+    // Generate squares for actual dates
+    allDates.forEach((date) => {
+      const dateKey = date.toISOString().split('T')[0];
+      const count = contributionMap.get(dateKey) || 0;
+      const level = getLevel(count);
+
+      const square = document.createElement('li');
+      square.setAttribute('data-level', level);
+      square.setAttribute('data-date', dateKey);
+      square.setAttribute('data-count', count);
+
+      // Add hover event listeners for tooltip
+      square.addEventListener('mouseenter', (e) => {
+        const rect = square.getBoundingClientRect();
+        const containerRect = heatmapElement.getBoundingClientRect();
+        const tooltipText = `${count === 0 ? 'No' : count} ${count === 1 ? 'contribution' : 'contributions'} on ${formatDate(date)}`;
+        tooltip.textContent = tooltipText;
+        tooltip.style.display = 'block';
+
+        // Calculate position relative to container (absolute positioning)
+        // Horizontally centered above the square
+        const left = rect.left - containerRect.left + rect.width / 2 - tooltip.offsetWidth / 2;
+        const top = rect.top - containerRect.top - tooltip.offsetHeight - 8;
+
+        tooltip.style.left = `${Math.max(8, Math.min(left, containerRect.width - tooltip.offsetWidth - 8))}px`;
+        tooltip.style.top = `${Math.max(8, top)}px`;
+      });
+
+      square.addEventListener('mouseleave', () => {
+        tooltip.style.display = 'none';
+      });
+
+      square.addEventListener('mousemove', (e) => {
+        const rect = square.getBoundingClientRect();
+        const containerRect = heatmapElement.getBoundingClientRect();
+
+        // Calculate position relative to container (absolute positioning)
+        // Horizontally centered above the square
+        const left = rect.left - containerRect.left + rect.width / 2 - tooltip.offsetWidth / 2;
+        const top = rect.top - containerRect.top - tooltip.offsetHeight - 8;
+
+        tooltip.style.left = `${Math.max(8, Math.min(left, containerRect.width - tooltip.offsetWidth - 8))}px`;
+        tooltip.style.top = `${Math.max(8, top)}px`;
+      });
+
+      squaresContainer.appendChild(square);
+    });
+
+  } catch (error) {
+    console.error('GitHub heatmap error:', error);
+    heatmapElement.innerHTML = `
+      <div class="error-state">
+        <img src="./public/assets/cat-cry.gif" alt="Error" class="error-gif" />
+        <p class="error-text">Huh??</p>
+      </div>
+    `;
+  }
+}

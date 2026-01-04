@@ -1,0 +1,92 @@
+import { getTimeAgo, escapeHtml } from './utils.js';
+
+export async function fetchLastFmTracks(lastfmConfig) {
+  const widget = document.getElementById('lastfm-widget');
+  if (!widget) return;
+
+  // Show loading state
+  widget.innerHTML = `
+    <div class="loading-state">
+      <img src="./public/assets/cat-loading.gif" alt="Loading" class="loading-gif" />
+      <p class="loading-text">Hmm.. What Did I Listen To?</p>
+    </div>
+  `;
+
+  if (!lastfmConfig.apiKey || lastfmConfig.apiKey === 'YOUR_LASTFM_API_KEY') {
+    widget.innerHTML = `
+      <div class="error-state">
+        <img src="./public/assets/cat-cry.gif" alt="Error" class="error-gif" />
+        <p class="error-text">Please configure Last.fm API key in config.js</p>
+      </div>
+    `;
+    return;
+  }
+
+  try {
+    const url = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${lastfmConfig.username}&api_key=${lastfmConfig.apiKey}&format=json&limit=${lastfmConfig.limit}`;
+
+    const response = await fetch(url);
+    const data = await response.json();
+
+    if (data.error) {
+      throw new Error(data.message);
+    }
+
+    const tracks = data.recenttracks.track;
+    displayLastFmTracks(tracks);
+  } catch (error) {
+    console.error('Last.fm error:', error);
+    widget.innerHTML = `
+      <div class="error-state">
+        <img src="./public/assets/cat-cry.gif" alt="Error" class="error-gif" />
+        <p class="error-text">Couldn't Find Anything</p>
+      </div>
+    `;
+  }
+}
+
+function displayLastFmTracks(tracks) {
+  const widget = document.getElementById('lastfm-widget');
+  if (!widget) return;
+
+  if (!tracks || tracks.length === 0) {
+    widget.innerHTML = `
+      <div class="error-state">
+        <img src="./public/assets/cat-cry.gif" alt="Error" class="error-gif" />
+        <p class="error-text">Couldnt Find Anything</p>
+      </div>
+    `;
+    return;
+  }
+
+  widget.innerHTML = tracks
+    .map((track) => {
+      const isNowPlaying = track['@attr'] && track['@attr'].nowplaying;
+      const timeAgo = isNowPlaying
+        ? 'Now playing'
+        : getTimeAgo(track.date?.uts);
+
+      // Get album art - try large first, fallback to medium/extralarge
+      const image = Array.isArray(track.image)
+        ? track.image.find(img => img.size === 'large') ||
+        track.image.find(img => img.size === 'extralarge') ||
+        track.image.find(img => img.size === 'medium') ||
+        track.image[track.image.length - 1]
+        : null;
+      const imageUrl = image?.['#text'] || '';
+
+      return `
+      <div class="track-item">
+        ${imageUrl ? `<img src="${escapeHtml(imageUrl)}" alt="Album art" class="track-art" onerror="this.style.display='none'" />` : '<div class="track-art"></div>'}
+        <div class="track-info">
+          <div class="track-name">${escapeHtml(track.name)}</div>
+          <div class="track-artist">${escapeHtml(
+        track.artist['#text'] || track.artist
+      )}</div>
+        </div>
+        <div class="track-time">${timeAgo}</div>
+      </div>
+    `;
+    })
+    .join('');
+}

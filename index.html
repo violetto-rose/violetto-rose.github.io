@@ -1,74 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <meta
-      http-equiv="refresh"
-      content="0; url=https://violetto-rose.github.io/maintenance.html"
-    /> -->
-    <meta
-      name="description"
-      content="Manju Madhav V A - Computer Science and Design student specializing in web development. GitHub pages showcasing portfolio projects."
-    />
-    <meta
-      name="keywords"
-      content="Manju Madhav, GitHub pages, computer science, UI/UX design, portfolio projects, Karnataka, India, full-stack developer"
-    />
-    <meta name="author" content="Manju Madhav V A" />
-    <title>Manju Madhav V A's GitHub Pages</title>
-    <link rel="icon" type="image/x-icon" href="public/favicon.ico" />
-    <link rel="manifest" href="manifest.json" />
-    <meta name="theme-color" content="#000000" />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <meta name="apple-mobile-web-app-title" content="Portfolio" />
-    <link rel="apple-touch-icon" href="public/favicon.ico" />
-    <link rel="preconnect" href="https://rsms.me/">
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <link rel="stylesheet" href="public/style.css" />
-    <script
-      src="https://kit.fontawesome.com/b6a5c8db62.js"
-      crossorigin="anonymous"
-      defer
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.6/marked.min.js"
-      integrity="sha512-rvRITpPeEKe4hV9M8XntuXX6nuohzqdR5O3W6nhjTLwkrx0ZgBQuaK4fv5DdOWzs2IaXsGt5h0+nyp9pEuoTXg=="
-      crossorigin="anonymous"
-      defer
-    ></script>
-    <script src="public/script.js" defer></script>
-    <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("/public/sw.js")
-            .then((registration) => {
-              console.log("ServiceWorker registration successful");
-            })
-            .catch((err) => {
-              console.log("ServiceWorker registration failed: ", err);
-            });
-        });
-      }
-    </script>
-  </head>
-  <body>
-    <div class="background">
-      <div class="sphere sphere-1"></div>
-      <div class="sphere sphere-2"></div>
-      <div class="sphere sphere-3"></div>
-      <div class="sphere sphere-4"></div>
-    </div>
-    <div class="main">
-      <div class="content">
-        <h1 class="headers">APPS</h1>
-        <div class="container" id="card-container"></div>
 
-        <h1 class="headers">README</h1>
-        <div class="glass" id="readme-content"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Manju Madhav V A - Computer Science and Design student specializing in web development. GitHub pages showcasing portfolio projects." />
+  <meta name="keywords"
+    content="Manju Madhav, GitHub pages, computer science, UI/UX design, portfolio projects, Karnataka, India, full-stack developer" />
+  <meta name="author" content="Manju Madhav V A" />
+  <title>Manju Madhav V A's GitHub Pages</title>
+  <link rel="icon" type="image/x-icon" href="public/favicon.ico" />
+  <meta name="theme-color" content="#9c6fd9" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-title" content="Portfolio" />
+  <link rel="apple-touch-icon" href="public/favicon.ico" />
+  <link rel="stylesheet" href="public/style.css" />
+  <script type="module" src="public/script.js" defer></script>
+</head>
+
+<body>
+  <div class="main-wrapper">
+    <section class="intro-section card">
+      <h1 class="hero-title">
+        <img src="./public/assets/cat-greet.gif" alt="Greeting" class="greeting-gif" />
+        <p>Hi!!! I'm Violetto</p>
+      </h1>
+      <p class="hero-subtitle">Life's Meh <img src="./public/assets/cat-silly.gif" alt="Silly" class="silly-gif" /></p>
+    </section>
+
+    <section class="card about-card">
+      <h2 class="card-title">
+        <img src="./public/assets/cat-popup.gif" alt="Info" class="info-gif" />
+        <p>About Me</p>
+      </h2>
+      <div class="about-content">
+        <p>Hello!! Nice to meetcha. Nothing much about me to read here tho <img src="./public/assets/cat-confused.gif"
+            alt="Confused" class="confused-gif" /></p>
+
+        <div class="about-section">
+          <strong>Hobbies:</strong> Reading comics, books, and listening to music
+        </div>
+
+        <div class="about-section">
+          <strong>Learning:</strong> JavaScript
+        </div>
+
+        <div class="about-section">
+          <strong>Watching:</strong> Nothing apparently
+        </div>
+
+        <div class="about-footnote">
+          <p>This site is kinda inspired by Rice. You don't know rice? (I don't know her either) Check her out here</p>
+          <a href="https://rice.place/" target="_blank" rel="noopener noreferrer">
+            <img src="https://rice.nekoweb.org/button/riceus.gif" alt="rice" class="rice-button">
+          </a>
+          <p class="footnote">Also thanks to <a href="https://nukocities.neocities.org/" target="_blank"
+              rel="noopener noreferrer">Nuko Cities</a> for the neko gifs</p>
+        </div>
       </div>
-    </div>
-  </body>
+    </section>
+
+    <section class="card music-card">
+      <h2 class="card-title">
+        <img src="./public/assets/cat-vibe.gif" alt="Music" class="music-gif" />
+        <p>Last I Listened To</p>
+      </h2>
+      <div id="lastfm-widget" class="music-widget">
+        <div class="loading-state">
+          <img src="./public/assets/cat-loading.gif" alt="Loading" class="loading-gif" />
+          <p class="loading-text">Hmm.. What Did I Listen To?</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="apps-section card">
+      <h2 class="card-title">
+        <img src="./public/assets/cat-peek.gif" alt="Apps" class="apps-gif" />
+        <p>Check Out Some of My Apps Here</p>
+      </h2>
+      <div id="apps-grid" class="apps-grid"></div>
+    </section>
+
+    <section class="contributions-section">
+      <div class="card contributions-card">
+        <h2 class="card-title">
+          <img src="./public/assets/cat-work.gif" alt="GitHub" class="github-gif" />
+          <p>My GitHub Activity</p>
+        </h2>
+        <div class="calendar" id="github-heatmap">
+          <div class="loading-state">
+            <img src="./public/assets/cat-loading.gif" alt="Loading" class="loading-gif" />
+            <p class="loading-text">Did I Code Again?</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+
 </html>
