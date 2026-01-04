@@ -105,7 +105,7 @@ export async function fetchGitHubCommits(githubConfig) {
   // Show loading state
   commitsList.innerHTML = `
     <div class="loading-state">
-      <img src="./public/assets/cat-loading.gif" alt="Loading" class="loading-gif" />
+      <img src="./public/assets/nuko-loading.gif" alt="Loading" class="loading-gif" />
       <p class="loading-text">Searching Through My Github...</p>
     </div>
   `;
@@ -174,7 +174,7 @@ export async function fetchGitHubCommits(githubConfig) {
     console.error('GitHub commits error:', error);
     commitsList.innerHTML = `
       <div class="error-state">
-        <img src="./public/assets/cat-cry.gif" alt="Error" class="error-gif" />
+        <img src="./public/assets/nuko-cry.gif" alt="Error" class="error-gif" />
         <p class="error-text">I Guess No Huh?</p>
       </div>
     `;
@@ -188,7 +188,7 @@ function displayGitHubCommits(commits) {
   if (commits.length === 0) {
     commitsList.innerHTML = `
       <div class="error-state">
-        <img src="./public/assets/cat-cry.gif" alt="Error" class="error-gif" />
+        <img src="./public/assets/nuko-cry.gif" alt="Error" class="error-gif" />
         <p class="error-text">I Guess No Huh?</p>
       </div>
     `;
@@ -296,7 +296,7 @@ export async function initializeGitHubHeatmap(githubConfig) {
   // Show loading state
   heatmapElement.innerHTML = `
     <div class="loading-state">
-      <img src="./public/assets/cat-loading.gif" alt="Loading" class="loading-gif" />
+      <img src="./public/assets/nuko-loading.gif" alt="Loading" class="loading-gif" />
       <p class="loading-text">Did I Code Again?</p>
     </div>
   `;
@@ -307,7 +307,7 @@ export async function initializeGitHubHeatmap(githubConfig) {
     if (!contributionData || contributionData.length === 0) {
       heatmapElement.innerHTML = `
         <div class="error-state">
-          <img src="./public/assets/cat-cry.gif" alt="Error" class="error-gif" />
+          <img src="./public/assets/nuko-cry.gif" alt="Error" class="error-gif" />
           <p class="error-text">Huh??</p>
         </div>
       `;
@@ -456,7 +456,7 @@ export async function initializeGitHubHeatmap(githubConfig) {
     console.error('GitHub heatmap error:', error);
     heatmapElement.innerHTML = `
       <div class="error-state">
-        <img src="./public/assets/cat-cry.gif" alt="Error" class="error-gif" />
+        <img src="./public/assets/nuko-cry.gif" alt="Error" class="error-gif" />
         <p class="error-text">Huh??</p>
       </div>
     `;

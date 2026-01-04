@@ -7,7 +7,7 @@ export async function fetchLastFmTracks(lastfmConfig) {
   // Show loading state
   widget.innerHTML = `
     <div class="loading-state">
-      <img src="./public/assets/cat-loading.gif" alt="Loading" class="loading-gif" />
+      <img src="./public/assets/nuko-loading.gif" alt="Loading" class="loading-gif" />
       <p class="loading-text">Hmm.. What Did I Listen To?</p>
     </div>
   `;
@@ -15,7 +15,7 @@ export async function fetchLastFmTracks(lastfmConfig) {
   if (!lastfmConfig.apiKey || lastfmConfig.apiKey === 'YOUR_LASTFM_API_KEY') {
     widget.innerHTML = `
       <div class="error-state">
-        <img src="./public/assets/cat-cry.gif" alt="Error" class="error-gif" />
+        <img src="./public/assets/nuko-cry.gif" alt="Error" class="error-gif" />
         <p class="error-text">Please configure Last.fm API key in config.js</p>
       </div>
     `;
@@ -38,7 +38,7 @@ export async function fetchLastFmTracks(lastfmConfig) {
     console.error('Last.fm error:', error);
     widget.innerHTML = `
       <div class="error-state">
-        <img src="./public/assets/cat-cry.gif" alt="Error" class="error-gif" />
+        <img src="./public/assets/nuko-cry.gif" alt="Error" class="error-gif" />
         <p class="error-text">Couldn't Find Anything</p>
       </div>
     `;
@@ -52,7 +52,7 @@ function displayLastFmTracks(tracks) {
   if (!tracks || tracks.length === 0) {
     widget.innerHTML = `
       <div class="error-state">
-        <img src="./public/assets/cat-cry.gif" alt="Error" class="error-gif" />
+        <img src="./public/assets/nuko-cry.gif" alt="Error" class="error-gif" />
         <p class="error-text">Couldnt Find Anything</p>
       </div>
     `;

@@ -53,9 +53,40 @@ body {
   background: var(--bg-primary);
   line-height: 1.6;
   overflow-x: hidden;
+  position: relative;
+}
+
+.nuko-background-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.nuko-pattern-container {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  width: 100%;
+  height: 100%;
+  gap: 80px;
+  place-items: center;
+}
+
+.nuko-pattern-item {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  opacity: 0.15;
 }
 
 .main-wrapper {
+  position: relative;
+  z-index: 1;
   max-width: 1400px;
   margin: 0 auto;
   padding: var(--spacing-lg);
@@ -71,7 +102,7 @@ body {
 }
 
 .card {
-  background: var(--bg-card);
+  background: color-mix(in srgb, var(--bg-card), transparent 18%);
   padding: var(--spacing-md);
   border-radius: var(--radius-xl);
 }
@@ -93,8 +124,9 @@ body {
   grid-column: 1/-1;
   text-align: center;
   padding: var(--spacing-xl) var(--spacing-md);
-  background: var(--bg-card);
+  background: color-mix(in srgb, var(--bg-card), transparent 18%);
   border-radius: var(--radius-xl);
+  position: relative;
 }
 .intro-section .hero-title {
   display: flex;
@@ -113,6 +145,69 @@ body {
   font-family: var(--font-fancy);
   font-size: clamp(1rem, 2.5vw, 1.5rem);
   color: var(--text-secondary);
+}
+.intro-section .contact-button {
+  position: absolute;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+  border: thick double var(--accent-lavender);
+  border-radius: var(--radius-md);
+  background: var(--bg-primary);
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  z-index: 10;
+}
+.intro-section .contact-button .nuko-cool-icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+.intro-section .contact-dropdown {
+  position: absolute;
+  top: calc(var(--spacing-md) + 48px + var(--spacing-sm));
+  right: var(--spacing-md);
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm);
+  min-width: 280px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 20;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+}
+.intro-section .contact-dropdown.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.intro-section .contact-dropdown .contact-link {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-sm);
+  color: var(--text-primary);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: background-color 0.2s ease;
+  gap: 0.25rem;
+}
+.intro-section .contact-dropdown .contact-link:hover {
+  background-color: var(--bg-secondary);
+}
+.intro-section .contact-dropdown .contact-link:not(:last-child) {
+  margin-bottom: 0.25rem;
+}
+.intro-section .contact-dropdown .contact-link .contact-label {
+  font-family: var(--font-main);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: normal;
+}
+.intro-section .contact-dropdown .contact-link .contact-value {
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  color: var(--text-primary);
 }
 
 .about-card {
@@ -269,10 +364,9 @@ body {
 
 .contributions-section {
   grid-column: 1/-1;
-  margin-top: var(--spacing-md);
 }
 .contributions-section .contributions-card {
-  background: var(--bg-card);
+  background: color-mix(in srgb, var(--bg-card), transparent 18%);
 }
 .contributions-section .calendar {
   background: var(--bg-secondary);
