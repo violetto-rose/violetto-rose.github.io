@@ -49,7 +49,10 @@ function displayLastFmTracks(tracks) {
   const widget = document.getElementById('lastfm-widget');
   if (!widget) return;
 
-  if (!tracks || tracks.length === 0) {
+  // Normalize tracks to array
+  const tracksArray = Array.isArray(tracks) ? tracks : (tracks ? [tracks] : []);
+
+  if (!tracksArray || tracksArray.length === 0) {
     widget.innerHTML = `
       <div class="error-state">
         <img src="./public/assets/nuko-cry.gif" alt="Error" class="error-gif" />
@@ -59,7 +62,14 @@ function displayLastFmTracks(tracks) {
     return;
   }
 
-  widget.innerHTML = tracks
+  // Filter tracks: if there's a "now playing" track, only show those
+  const hasNowPlaying = tracksArray.some(track => track['@attr'] && track['@attr'].nowplaying);
+
+  const tracksToDisplay = hasNowPlaying
+    ? tracksArray.filter(track => track['@attr'] && track['@attr'].nowplaying)
+    : tracksArray;
+
+  widget.innerHTML = tracksToDisplay
     .map((track) => {
       const isNowPlaying = track['@attr'] && track['@attr'].nowplaying;
       const timeAgo = isNowPlaying

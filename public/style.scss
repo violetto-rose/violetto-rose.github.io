@@ -431,6 +431,7 @@ body {
 // GitHub Contributions Section
 .contributions-section {
   grid-column: 1 / -1;
+  overflow-x: hidden;
 
   .contributions-card {
     background: color-mix(in srgb, var(--bg-card), transparent 18%);
@@ -664,5 +665,13 @@ body {
   .apps-grid {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: var(--spacing-sm);
+  }
+
+  .contributions-section {
+    .calendar {
+      padding: var(--spacing-sm);
+      -webkit-overflow-scrolling: touch;
+      justify-content:flex-start;
+    }
   }
 }
