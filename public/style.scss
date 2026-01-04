@@ -2,7 +2,7 @@
 // FONTS
 // ==========================================
 @font-face {
-  font-family: 'PixeloidSans';
+  font-family: PixeloidSans;
   src: url('./assets/PixeloidSans.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
@@ -10,7 +10,7 @@
 }
 
 @font-face {
-  font-family: 'QuencyPixel';
+  font-family: QuencyPixel;
   src: url('./assets/QuencypixelRegularDemo.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
@@ -24,12 +24,10 @@
   // Colors
   --bg-primary: #f5f0ff;
   --bg-secondary: #ede5ff;
-  --bg-card: #ffffff;
-
+  --bg-card: #fff;
   --text-primary: #4a3a5c;
   --text-secondary: #6b5a7a;
   --text-muted: #8b7a9a;
-
   --accent-lavender: #d4c5ff;
   --accent-violet: #b8a3ff;
   --accent-purple: #9d82ff;
@@ -65,7 +63,6 @@
   padding: 0;
   box-sizing: border-box;
   image-rendering: pixelated;
-  image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
 }
 
@@ -209,7 +206,7 @@ body {
     border-radius: var(--radius-md);
     padding: var(--spacing-sm);
     min-width: 280px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
     z-index: 20;
     opacity: 0;
     visibility: hidden;
@@ -444,8 +441,7 @@ body {
     padding: var(--spacing-md);
     border-radius: var(--radius-md);
     width: 100%;
-    overflow-x: auto;
-    overflow-y: visible;
+    overflow: auto visible;
     position: relative;
     display: flex;
     justify-content: center;
@@ -569,7 +565,7 @@ body {
       border-radius: var(--radius-sm);
       font-size: 0.75rem;
       font-family: var(--font-main);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
       pointer-events: none;
       z-index: 1000;
       white-space: nowrap;
@@ -598,9 +594,6 @@ body {
   .loading-gif {
     width: 64px;
     height: 64px;
-    image-rendering: pixelated;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: crisp-edges;
   }
 
   .loading-text {
@@ -627,9 +620,6 @@ body {
   .error-gif {
     width: 64px;
     height: 64px;
-    image-rendering: pixelated;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: crisp-edges;
   }
 
   .error-text {

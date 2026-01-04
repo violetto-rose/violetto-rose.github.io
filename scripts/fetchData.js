@@ -74,75 +74,6 @@ async function fetchAllPages(url, token, maxPages = 10) {
   return allItems;
 }
 
-async function fetchCommits() {
-  try {
-    const token = CONFIG.github.token;
-    const username = CONFIG.github.username || 'violetto-rose';
-    const commitsLimit = CONFIG.github.commitsLimit || 5;
-
-    if (!token || token === 'YOUR_GITHUB_TOKEN_HERE' || token.trim() === '') {
-      console.log('⚠️ No token provided. Set GH_API_TOKEN environment variable or update CONFIG in script.');
-      return;
-    }
-
-    console.log('📥 Fetching GitHub commits...');
-    console.log(`Username: ${username}`);
-    console.log(`Target: ${commitsLimit} commits`);
-
-    // Fetch repositories (includes private repos with token)
-    console.log('Fetching repositories...');
-    const reposUrl = 'https://api.github.com/user/repos?per_page=100&sort=updated&affiliation=owner';
-    const repos = await fetchAllPages(reposUrl, token, 5);
-    console.log(`Found ${repos.length} repositories`);
-
-    // Fetch recent commits from each repository
-    const allCommits = [];
-    const maxRepos = Math.min(repos.length, 20);
-
-    for (let i = 0; i < maxRepos && allCommits.length < commitsLimit; i++) {
-      const repo = repos[i];
-      const [owner, repoName] = repo.full_name.split('/');
-
-      try {
-        const commitsUrl = `https://api.github.com/repos/${owner}/${repoName}/commits?per_page=10&author=${username}`;
-        const repoCommits = await fetchAllPages(commitsUrl, token, 1);
-
-        for (const commit of repoCommits) {
-          if (allCommits.length >= commitsLimit) break;
-
-          allCommits.push({
-            repo: repo.full_name,
-            sha: commit.sha,
-            timestamp: commit.commit.author.date || commit.commit.committer.date
-          });
-        }
-
-        if (repoCommits.length > 0) {
-          console.log(`📦 ${repo.full_name}: ${repoCommits.length} commits`);
-        }
-      } catch (error) {
-        // Skip repos that fail
-        continue;
-      }
-    }
-
-    // Sort by timestamp (most recent first) and limit
-    allCommits.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-    const commits = allCommits.slice(0, commitsLimit);
-
-    const commitsPath = path.join(dataDir, 'github-commits.json');
-    fs.writeFileSync(commitsPath, JSON.stringify(commits, null, 2));
-
-    if (commits.length === 0) {
-      console.log(`⚠️ No commits found`);
-    } else {
-      console.log(`✅ Fetched ${commits.length} commits → ${commitsPath}`);
-    }
-  } catch (error) {
-    console.error('❌ Error fetching commits:', error.message);
-  }
-}
-
 async function fetchContributions() {
   try {
     const token = CONFIG.github.token;
@@ -217,8 +148,6 @@ async function fetchContributions() {
 async function main() {
   console.log('Starting data fetch...\n');
 
-  await fetchCommits();
-  console.log('');
   await fetchContributions();
 
   console.log('\nDone! Data saved to public/data/');
