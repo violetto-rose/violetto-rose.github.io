@@ -231,13 +231,14 @@ body {
       border-radius: var(--radius-sm);
       transition: background-color 0.2s ease;
       gap: 0.25rem;
+      width: 100%;
 
       &:hover {
         background-color: var(--bg-secondary);
       }
 
       &:not(:last-child) {
-        margin-bottom: 0.25rem;
+        margin-bottom: calc(var(--spacing-xs) / 2);
       }
 
       .contact-label {
@@ -251,6 +252,49 @@ body {
         font-family: var(--font-fancy);
         font-size: 0.9rem;
         color: var(--text-primary);
+      }
+    }
+
+      hr {
+        margin-bottom: calc(var(--spacing-xs) / 2);
+        color: var(--bg-secondary);
+      }
+
+    .audio-container {
+      display: flex;
+      align-items: stretch;
+      gap: calc(var(--spacing-xs) / 2);
+    }
+
+    .audio-control-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing-xs);
+      border-radius: var(--radius-sm);
+      border: none;
+      background: none;
+      transition: background-color 0.2s ease;
+      cursor: pointer;
+      font-family: inherit;
+
+      &:hover {
+        background-color: var(--bg-secondary);
+      }
+
+      .audio-control-icon {
+        width: 24px;
+        height: 24px;
+        color: var(--text-primary);
+      }
+
+      .pause-icon-hidden,
+      .icon-hidden {
+        display: none;
+      }
+
+      .play-icon {
+        display: block;
       }
     }
   }
@@ -488,7 +532,8 @@ body {
           calc(var(--week-width) * 4)
           /* Nov */
           calc(var(--week-width) * 5)
-          /* Dec */;
+          /* Dec */
+        ;
         list-style: none;
         padding: 0;
         margin: 0;

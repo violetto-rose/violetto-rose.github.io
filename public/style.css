@@ -190,12 +190,13 @@ body {
   border-radius: var(--radius-sm);
   transition: background-color 0.2s ease;
   gap: 0.25rem;
+  width: 100%;
 }
 .intro-section .contact-dropdown .contact-link:hover {
   background-color: var(--bg-secondary);
 }
 .intro-section .contact-dropdown .contact-link:not(:last-child) {
-  margin-bottom: 0.25rem;
+  margin-bottom: calc(var(--spacing-xs) / 2);
 }
 .intro-section .contact-dropdown .contact-link .contact-label {
   font-family: var(--font-main);
@@ -207,6 +208,42 @@ body {
   font-family: var(--font-fancy);
   font-size: 0.9rem;
   color: var(--text-primary);
+}
+.intro-section .contact-dropdown hr {
+  margin-bottom: calc(var(--spacing-xs) / 2);
+  color: var(--bg-secondary);
+}
+.intro-section .contact-dropdown .audio-container {
+  display: flex;
+  align-items: stretch;
+  gap: calc(var(--spacing-xs) / 2);
+}
+.intro-section .contact-dropdown .audio-control-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xs);
+  border-radius: var(--radius-sm);
+  border: none;
+  background: none;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  font-family: inherit;
+}
+.intro-section .contact-dropdown .audio-control-button:hover {
+  background-color: var(--bg-secondary);
+}
+.intro-section .contact-dropdown .audio-control-button .audio-control-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--text-primary);
+}
+.intro-section .contact-dropdown .audio-control-button .pause-icon-hidden,
+.intro-section .contact-dropdown .audio-control-button .icon-hidden {
+  display: none;
+}
+.intro-section .contact-dropdown .audio-control-button .play-icon {
+  display: block;
 }
 
 .about-card {

@@ -8,6 +8,7 @@ import { fetchLastFmTracks } from './modules/lastfm.js';
 import { initializeGitHubHeatmap } from './modules/github.js';
 import { createBackgroundPattern } from './modules/background.js';
 import { initializeContactDropdown } from './modules/contactDropdown.js';
+import { initializeBackgroundAudio } from './modules/backgroundAudio.js';
 
 // Configuration
 const CONFIG = {
@@ -23,4 +24,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initializeApps(CONFIG.apps);
   fetchLastFmTracks(CONFIG.lastfm);
   initializeGitHubHeatmap(CONFIG.github);
+  initializeBackgroundAudio();
 });
