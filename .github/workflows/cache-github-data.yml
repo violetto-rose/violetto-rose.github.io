@@ -191,4 +191,4 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add public/data/github-contributions.json
-          git diff --staged --quiet || (git commit -m "Update cached GitHub data [skip ci]" && git push)
+          git diff --staged --quiet || (git commit -m "Update cached GitHub data" && git push)
