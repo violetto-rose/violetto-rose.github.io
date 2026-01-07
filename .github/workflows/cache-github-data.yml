@@ -26,6 +26,9 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Create data directory
+        run: mkdir -p public/data
+
       - name: Fetch GitHub Contributions
         id: fetch-contributions
         env:
@@ -181,10 +184,6 @@ jobs:
 
           fetchContributions();
           "
-
-      - name: Create data directory if it doesn't exist
-        run: |
-          mkdir -p public/data
 
       - name: Upload to Firebase Realtime Database
         env:
