@@ -25,7 +25,13 @@ export async function fetchLastFmTracks(lastfmConfig) {
   try {
     const url = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${lastfmConfig.username}&api_key=${lastfmConfig.apiKey}&format=json&limit=${lastfmConfig.limit}`;
 
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      cache: 'no-store', // Prevent browser caching
+      headers: {
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        Pragma: 'no-cache'
+      }
+    });
     const data = await response.json();
 
     if (data.error) {
@@ -50,7 +56,7 @@ function displayLastFmTracks(tracks) {
   if (!widget) return;
 
   // Normalize tracks to array
-  const tracksArray = Array.isArray(tracks) ? tracks : (tracks ? [tracks] : []);
+  const tracksArray = Array.isArray(tracks) ? tracks : tracks ? [tracks] : [];
 
   if (!tracksArray || tracksArray.length === 0) {
     widget.innerHTML = `
@@ -63,10 +69,12 @@ function displayLastFmTracks(tracks) {
   }
 
   // Filter tracks: if there's a "now playing" track, only show those
-  const hasNowPlaying = tracksArray.some(track => track['@attr'] && track['@attr'].nowplaying);
+  const hasNowPlaying = tracksArray.some(
+    (track) => track['@attr'] && track['@attr'].nowplaying
+  );
 
   const tracksToDisplay = hasNowPlaying
-    ? tracksArray.filter(track => track['@attr'] && track['@attr'].nowplaying)
+    ? tracksArray.filter((track) => track['@attr'] && track['@attr'].nowplaying)
     : tracksArray;
 
   widget.innerHTML = tracksToDisplay
@@ -78,10 +86,10 @@ function displayLastFmTracks(tracks) {
 
       // Get album art - try large first, fallback to medium/extralarge
       const image = Array.isArray(track.image)
-        ? track.image.find(img => img.size === 'large') ||
-        track.image.find(img => img.size === 'extralarge') ||
-        track.image.find(img => img.size === 'medium') ||
-        track.image[track.image.length - 1]
+        ? track.image.find((img) => img.size === 'large') ||
+          track.image.find((img) => img.size === 'extralarge') ||
+          track.image.find((img) => img.size === 'medium') ||
+          track.image[track.image.length - 1]
         : null;
       const imageUrl = image?.['#text'] || '';
 
@@ -91,8 +99,8 @@ function displayLastFmTracks(tracks) {
         <div class="track-info">
           <div class="track-name">${escapeHtml(track.name)}</div>
           <div class="track-artist">${escapeHtml(
-        track.artist['#text'] || track.artist
-      )}</div>
+            track.artist['#text'] || track.artist
+          )}</div>
         </div>
         <div class="track-time">${timeAgo}</div>
       </div>

@@ -2,7 +2,7 @@ name: Deploy static content to Pages
 
 on:
   push:
-    branches: ["main"]
+    branches: ['main']
   workflow_dispatch:
 
 permissions:
@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: false
 
 jobs:
@@ -46,9 +46,7 @@ jobs:
       - name: Create public config file
         run: |
           echo "export const githubConfig = {
-            username: 'violetto-rose',
-            token: '${{ secrets.GH_API_TOKEN }}',
-            commitsLimit: 5
+            username: 'violetto-rose'
           };
 
           export const lastfmConfig = {

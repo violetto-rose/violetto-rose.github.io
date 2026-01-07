@@ -2,7 +2,7 @@ import { parseLinkHeader } from './utils.js';
 
 function getGitHubHeaders(githubConfig) {
   const headers = {
-    'Accept': 'application/vnd.github+json',
+    Accept: 'application/vnd.github+json',
     'X-GitHub-Api-Version': '2022-11-28'
   };
 
@@ -32,15 +32,21 @@ async function fetchAllPages(url, githubConfig, maxPages = 100) {
 
           if (remaining === '0') {
             const resetDate = new Date(parseInt(resetTime) * 1000);
-            console.warn(`GitHub API rate limit reached. Limit: ${limit}/hour. Resets at: ${resetDate.toLocaleString()}`);
+            console.warn(
+              `GitHub API rate limit reached. Limit: ${limit}/hour. Resets at: ${resetDate.toLocaleString()}`
+            );
           } else {
-            console.warn(`GitHub API rate limit. Remaining: ${remaining}/${limit}`);
+            console.warn(
+              `GitHub API rate limit. Remaining: ${remaining}/${limit}`
+            );
           }
           break;
         }
 
         if (response.status === 401) {
-          console.error('GitHub API authentication failed. Please check your token.');
+          console.error(
+            'GitHub API authentication failed. Please check your token.'
+          );
           break;
         }
 
@@ -85,7 +91,13 @@ async function fetchUserRepositories(username, githubConfig) {
   return repos;
 }
 
-async function fetchRepositoryCommits(owner, repo, sinceDate, authorUsername, githubConfig) {
+async function fetchRepositoryCommits(
+  owner,
+  repo,
+  sinceDate,
+  authorUsername,
+  githubConfig
+) {
   const sinceISO = sinceDate.toISOString();
   const url = `https://api.github.com/repos/${owner}/${repo}/commits?since=${sinceISO}&author=${authorUsername}&per_page=100`;
 
@@ -100,20 +112,32 @@ async function fetchRepositoryCommits(owner, repo, sinceDate, authorUsername, gi
 
 export async function fetchGitHubContributions(githubConfig) {
   try {
-    // Try to load from cached JSON file first (globally cached by GitHub Actions)
+    // Try to load from Firebase Realtime Database first
     try {
-      const cachedResponse = await fetch('./public/data/github-contributions.json');
+      const firebaseDbUrl =
+        'https://uiux-tutorial-website-default-rtdb.asia-southeast1.firebasedatabase.app/contributions.json';
+      const cachedResponse = await fetch(firebaseDbUrl, {
+        cache: 'no-store', // Prevent browser caching
+        headers: {
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          Pragma: 'no-cache'
+        }
+      });
       if (cachedResponse.ok) {
         const cachedContributions = await cachedResponse.json();
-        // Convert date strings back to Date objects
-        return cachedContributions.map(item => ({
-          date: new Date(item.date),
-          value: item.value
-        }));
+        if (cachedContributions && Array.isArray(cachedContributions)) {
+          // Convert date strings back to Date objects
+          return cachedContributions.map((item) => ({
+            date: new Date(item.date),
+            value: item.value
+          }));
+        }
       }
     } catch (cacheError) {
-      console.log('Cache not available, fetching from API...');
+      console.log('Firebase data not available, fetching from API...');
     }
+
+    console.log('Fetching from API...');
 
     // Fallback to API if cache doesn't exist
     const username = githubConfig.username;
@@ -141,17 +165,23 @@ export async function fetchGitHubContributions(githubConfig) {
       const repoFullName = repo.full_name;
       const [owner, repoName] = repoFullName.split('/');
 
-      const commits = await fetchRepositoryCommits(owner, repoName, oneYearAgo, username, githubConfig);
+      const commits = await fetchRepositoryCommits(
+        owner,
+        repoName,
+        oneYearAgo,
+        username,
+        githubConfig
+      );
       allCommits.push(...commits);
 
       if (i < reposToProcess.length - 1) {
-        await new Promise(resolve => setTimeout(resolve, 100));
+        await new Promise((resolve) => setTimeout(resolve, 100));
       }
     }
 
     const contributionMap = {};
 
-    allCommits.forEach(commit => {
+    allCommits.forEach((commit) => {
       if (commit.commit && commit.commit.author && commit.commit.author.date) {
         const date = new Date(commit.commit.author.date);
         // Include commits from oneYearAgo to today (inclusive)
@@ -162,13 +192,15 @@ export async function fetchGitHubContributions(githubConfig) {
       }
     });
 
-    const contributions = Object.entries(contributionMap).map(([dateStr, value]) => {
-      const date = new Date(dateStr + 'T00:00:00');
-      return {
-        date: date,
-        value: value
-      };
-    });
+    const contributions = Object.entries(contributionMap).map(
+      ([dateStr, value]) => {
+        const date = new Date(dateStr + 'T00:00:00');
+        return {
+          date: date,
+          value: value
+        };
+      }
+    );
 
     return contributions;
   } catch (error) {
@@ -204,10 +236,11 @@ export async function initializeGitHubHeatmap(githubConfig) {
 
     // Create contribution map for quick lookup
     const contributionMap = new Map();
-    contributionData.forEach(item => {
-      const dateKey = item.date instanceof Date
-        ? item.date.toISOString().split('T')[0]
-        : new Date(item.date).toISOString().split('T')[0];
+    contributionData.forEach((item) => {
+      const dateKey =
+        item.date instanceof Date
+          ? item.date.toISOString().split('T')[0]
+          : new Date(item.date).toISOString().split('T')[0];
       contributionMap.set(dateKey, item.value);
     });
 
@@ -313,7 +346,11 @@ export async function initializeGitHubHeatmap(githubConfig) {
 
         // Calculate position relative to container (absolute positioning)
         // Horizontally centered above the square
-        const left = rect.left - containerRect.left + rect.width / 2 - tooltip.offsetWidth / 2;
+        const left =
+          rect.left -
+          containerRect.left +
+          rect.width / 2 -
+          tooltip.offsetWidth / 2;
         const top = rect.top - containerRect.top - tooltip.offsetHeight - 8;
 
         tooltip.style.left = `${Math.max(8, Math.min(left, containerRect.width - tooltip.offsetWidth - 8))}px`;
@@ -330,7 +367,11 @@ export async function initializeGitHubHeatmap(githubConfig) {
 
         // Calculate position relative to container (absolute positioning)
         // Horizontally centered above the square
-        const left = rect.left - containerRect.left + rect.width / 2 - tooltip.offsetWidth / 2;
+        const left =
+          rect.left -
+          containerRect.left +
+          rect.width / 2 -
+          tooltip.offsetWidth / 2;
         const top = rect.top - containerRect.top - tooltip.offsetHeight - 8;
 
         tooltip.style.left = `${Math.max(8, Math.min(left, containerRect.width - tooltip.offsetWidth - 8))}px`;
@@ -339,7 +380,6 @@ export async function initializeGitHubHeatmap(githubConfig) {
 
       squaresContainer.appendChild(square);
     });
-
   } catch (error) {
     console.error('GitHub heatmap error:', error);
     heatmapElement.innerHTML = `

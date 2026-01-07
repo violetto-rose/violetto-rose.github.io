@@ -186,9 +186,30 @@ jobs:
         run: |
           mkdir -p public/data
 
-      - name: Commit and push changes
+      - name: Upload to Firebase Realtime Database
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add public/data/github-contributions.json
-          git diff --staged --quiet || (git commit -m "Update cached GitHub data" && git push)
+          # Create a temporary script to upload using Firebase Admin SDK
+          cat > upload-firebase.js << 'EOF'
+          import { initializeApp, cert } from 'firebase-admin/app';
+          import { getDatabase } from 'firebase-admin/database';
+          import { readFileSync } from 'fs';
+
+          const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+          const contributions = JSON.parse(readFileSync('public/data/github-contributions.json', 'utf8'));
+
+          const app = initializeApp({
+            credential: cert(serviceAccount),
+            databaseURL: `https://${serviceAccount.project_id}-default-rtdb.asia-southeast1.firebasedatabase.app`
+          });
+
+          const db = getDatabase(app);
+          await db.ref('contributions').set(contributions);
+          console.log('✅ Data uploaded to Firebase!');
+          process.exit(0);
+          EOF
+
+          # Install firebase-admin and run the script
+          npm install firebase-admin
+          node upload-firebase.js
