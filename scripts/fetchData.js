@@ -140,7 +140,7 @@ async function fetchContributions() {
 
     // Fetch repositories (includes private repos with token)
     const reposUrl =
-      'https://api.github.com/user/repos?per_page=100&sort=updated&affiliation=owner';
+      'https://api.github.com/user/repos?per_page=100&sort=updated&affiliation=owner,collaborator,organization_member';
     const repos = await fetchAllPages(reposUrl, token, 10);
     console.log(`Found ${repos.length} repositories`);
 

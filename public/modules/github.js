@@ -82,7 +82,7 @@ async function fetchUserRepositories(username, githubConfig) {
 
   let url;
   if (hasToken) {
-    url = `https://api.github.com/user/repos?per_page=100&sort=updated&affiliation=owner`;
+    url = `https://api.github.com/user/repos?per_page=100&sort=updated&affiliation=owner,collaborator,organization_member`;
   } else {
     url = `https://api.github.com/users/${username}/repos?per_page=100&sort=updated`;
   }

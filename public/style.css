@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: PixeloidSans;
   src: url("./assets/Pixeloid Sans.ttf") format("truetype");
@@ -43,7 +44,6 @@
   padding: 0;
   box-sizing: border-box;
   image-rendering: pixelated;
-  image-rendering: crisp-edges;
 }
 
 body {
@@ -53,6 +53,15 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   position: relative;
+  cursor: url("./assets/default.cur"), auto;
+}
+
+a {
+  cursor: url("./assets/link.cur"), pointer;
+}
+
+button {
+  cursor: url("./assets/default.cur"), pointer;
 }
 
 .nuko-background-layer {
@@ -90,7 +99,7 @@ body {
   margin: 0 auto;
   padding: var(--spacing-lg);
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 2fr 1fr;
   gap: var(--spacing-md);
 }
 @media (width <= 1024px) {
@@ -152,7 +161,6 @@ body {
   border: thick double var(--accent-lavender);
   border-radius: var(--radius-md);
   background: var(--bg-primary);
-  cursor: pointer;
   padding: var(--spacing-xs);
   z-index: 10;
 }
@@ -230,7 +238,6 @@ body {
   border: none;
   background: none;
   transition: background-color 0.2s ease;
-  cursor: pointer;
   font-family: inherit;
 }
 .intro-section .contact-dropdown .audio-control-button:hover {
@@ -250,9 +257,16 @@ body {
 }
 
 .about-card {
-  flex: 1;
+  grid-column: 1;
+  grid-row: 2/4;
   display: flex;
   flex-direction: column;
+}
+@media (width <= 1024px) {
+  .about-card {
+    grid-column: 1;
+    grid-row: auto;
+  }
 }
 
 .about-content {
@@ -273,6 +287,42 @@ body {
 .about-content .about-section strong {
   font-family: var(--font-main);
   color: var(--text-primary);
+}
+.about-content .about-quote {
+  margin: var(--spacing-md) 0;
+  padding: var(--spacing-md);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  position: relative;
+}
+.about-content .about-quote::before {
+  content: "“";
+  position: absolute;
+  top: var(--spacing-xs);
+  left: var(--spacing-sm);
+  font-family: var(--font-fancy);
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--accent-purple);
+  opacity: 0.6;
+}
+.about-content .about-quote p {
+  margin-bottom: var(--spacing-xs);
+  padding-left: 1.5rem;
+  font-family: var(--font-fancy);
+  line-height: 1.5;
+  font-style: normal;
+}
+.about-content .about-quote-attribution {
+  font-family: var(--font-main);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-style: normal;
+  padding-left: 1.5rem;
+  margin-top: var(--spacing-xs);
+}
+.about-content .about-quote-attribution cite {
+  font-style: normal;
 }
 .about-content .about-footnote {
   display: flex;
@@ -302,7 +352,15 @@ body {
 }
 
 .music-card {
+  grid-column: 2;
+  grid-row: 2;
   flex-shrink: 0;
+}
+@media (width <= 1024px) {
+  .music-card {
+    grid-column: 1;
+    grid-row: auto;
+  }
 }
 
 .music-widget .track-item {
@@ -347,7 +405,7 @@ body {
 
 .apps-section {
   grid-column: 2;
-  grid-row: 2/4;
+  grid-row: 3;
   display: flex;
   flex-direction: column;
 }
@@ -359,18 +417,19 @@ body {
 }
 
 .apps-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
   flex: 1;
 }
 .apps-grid .app-item {
-  display: flex;
-  flex-direction: column;
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "icon title" "icon desc";
   align-items: center;
-  justify-content: center;
-  padding: var(--spacing-md);
+  gap: 0 var(--spacing-xs);
+  padding: var(--spacing-sm);
   background: var(--bg-secondary);
   text-decoration: none;
   color: var(--text-primary);
@@ -381,27 +440,39 @@ body {
   outline: thick double var(--accent-lavender);
 }
 .apps-grid .app-item .app-icon {
-  margin-bottom: var(--spacing-sm);
+  grid-area: icon;
+  align-self: center;
 }
 .apps-grid .app-item .app-icon svg {
-  width: 48px;
-  height: 48px;
+  width: 32px;
+  height: 32px;
   image-rendering: pixelated;
+}
+.apps-grid .app-item .app-item-star {
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  image-rendering: pixelated;
+  transform: rotate(-10deg);
 }
 .apps-grid .app-item .app-title {
   font-family: var(--font-main);
-  font-size: 0.9rem;
-  text-align: center;
-  margin-bottom: var(--spacing-xs);
+  font-size: 0.85rem;
+  text-align: left;
+  margin-bottom: 0;
   color: var(--text-primary);
   text-transform: uppercase;
 }
 .apps-grid .app-item .app-description {
+  grid-area: desc;
   font-family: var(--font-fancy);
-  font-size: 0.85rem;
-  text-align: center;
+  font-size: 0.9rem;
+  text-align: left;
   color: var(--text-secondary);
-  line-height: 1.4;
+  line-height: 1.3;
 }
 
 .contributions-section {
@@ -470,7 +541,6 @@ body {
 .contributions-section .calendar .graph .squares li {
   background-color: var(--bg-card);
   border-radius: 2px;
-  cursor: pointer;
   transition: transform 0.1s ease;
 }
 .contributions-section .calendar .graph .squares li[data-level="0"] {
@@ -557,13 +627,13 @@ body {
   .main-wrapper {
     grid-template-columns: 1fr;
   }
+  .about-card,
+  .music-card,
   .apps-section {
     grid-column: 1;
     grid-row: auto;
   }
-  .intro-section {
-    grid-column: 1;
-  }
+  .intro-section,
   .contributions-section {
     grid-column: 1;
   }
@@ -576,7 +646,6 @@ body {
     padding: var(--spacing-sm);
   }
   .apps-grid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: var(--spacing-sm);
   }
   .contributions-section .calendar {
