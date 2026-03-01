@@ -1,166 +1,276 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Violetto" />
+    <title>Violetto</title>
+    <link rel="icon" type="image/x-icon" href="public/favicon.ico" />
+    <meta name="theme-color" content="#9c6fd9" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="Portfolio" />
+    <link rel="apple-touch-icon" href="public/favicon.ico" />
+    <link rel="stylesheet" href="public/style.css" />
+    <script type="module" src="public/script.js" defer></script>
+    <script>
+      if (
+        window.location.hostname !== 'localhost' &&
+        window.location.hostname !== '127.0.0.1'
+      ) {
+        var script = document.createElement('script');
+        script.src = 'https://app.rybbit.io/api/script.js';
+        script.setAttribute('data-site-id', '21e15d4d3d0a');
+        script.defer = true;
+        document.head.appendChild(script);
+      } else {
+        console.log('Rybbit tracking skipped on localhost');
+      }
+    </script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="author" content="Violetto" />
-  <title>Violetto</title>
-  <link rel="icon" type="image/x-icon" href="public/favicon.ico" />
-  <meta name="theme-color" content="#9c6fd9" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  <meta name="apple-mobile-web-app-title" content="Portfolio" />
-  <link rel="apple-touch-icon" href="public/favicon.ico" />
-  <link rel="stylesheet" href="public/style.css" />
-  <script type="module" src="public/script.js" defer></script>
-  <script>
-    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-      var script = document.createElement('script');
-      script.src = "https://app.rybbit.io/api/script.js";
-      script.setAttribute('data-site-id', '21e15d4d3d0a')
-      script.defer = true;
-      document.head.appendChild(script);
-    } else {
-      console.log("Rybbit tracking skipped on localhost");
-    }
-  </script>
-</head>
-
-<body>
-  <div class="main-wrapper">
-    <section class="intro-section card">
-      <button class="contact-button" id="contact-button" aria-label="Contact links">
-        <img src="./public/assets/nuko-cool.gif" alt="Cool" class="nuko-cool-icon" />
-      </button>
-      <div class="contact-dropdown" id="contact-dropdown">
-        <a href="https://manjumadhav.vercel.app" target="_blank" rel="noopener noreferrer" class="contact-link">
-          <span class="contact-label">Professional Portfolio:</span>
-          <span class="contact-value">manjumadhav.vercel.app</span>
-        </a>
-        <a href="mailto:manjumadhav.va@gmail.com" class="contact-link">
-          <span class="contact-label">Mail:</span>
-          <span class="contact-value">manjumadhav.va@gmail.com</span>
-        </a>
-        <a href="https://discord.com/users/736646654693867561" target="_blank" rel="noopener noreferrer"
-          class="contact-link">
-          <span class="contact-label">Discord:</span>
-          <span class="contact-value">Violet ♪</span>
-        </a>
-        <a href="https://anilist.co/user/TheViolet" target="_blank" rel="noopener noreferrer" class="contact-link">
-          <span class="contact-label">AniList:</span>
-          <span class="contact-value">TheViolet</span>
-        </a>
-        <hr />
-        <div class="audio-container">
-          <button class="audio-control-button" id="audio-control-button" type="button"
-            aria-label="Toggle background music">
-            <svg id="audio-control-icon" class="audio-control-icon" viewBox="0 0 24 24" fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg">
-              <path id="play-icon"
-                d="M9 8.48216V15.518L15.0307 12.0001L9 8.48216ZM7.75194 5.43872L18.2596 11.5682C18.4981 11.7073 18.5787 12.0135 18.4396 12.252C18.3961 12.3265 18.3341 12.3885 18.2596 12.432L7.75194 18.5615C7.51341 18.7006 7.20725 18.62 7.06811 18.3815C7.0235 18.305 7 18.2181 7 18.1296V5.87061C7 5.59446 7.22386 5.37061 7.5 5.37061C7.58853 5.37061 7.67547 5.39411 7.75194 5.43872Z" />
-              <path id="pause-icon" class="pause-icon-hidden"
-                d="M15 7C15 6.44772 15.4477 6 16 6C16.5523 6 17 6.44772 17 7V17C17 17.5523 16.5523 18 16 18C15.4477 18 15 17.5523 15 17V7ZM7 7C7 6.44772 7.44772 6 8 6C8.55228 6 9 6.44772 9 7V17C9 17.5523 8.55228 18 8 18C7.44772 18 7 17.5523 7 17V7Z" />
-            </svg>
-          </button>
-          <a href="https://on.soundcloud.com/f7M5Q4f2Ts47s6sB0a" target="_blank" rel="noopener noreferrer"
+  <body>
+    <div class="main-wrapper">
+      <section class="intro-section card">
+        <button
+          class="contact-button"
+          id="contact-button"
+          aria-label="Contact links">
+          <img
+            src="./public/assets/nuko-cool.gif"
+            alt="Cool"
+            class="nuko-cool-icon" />
+        </button>
+        <div class="contact-dropdown" id="contact-dropdown">
+          <a
+            href="https://manjumadhav.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
             class="contact-link">
-            <span class="contact-label">Music Credit:</span>
-            <span class="contact-value">Rainy Morning — Zackross</span>
+            <span class="contact-label">Professional Portfolio:</span>
+            <span class="contact-value">manjumadhav.vercel.app</span>
           </a>
-        </div>
-      </div>
-      <h1 class="hero-title">
-        <img src="./public/assets/nuko-greet.gif" alt="Greeting" class="greeting-gif" />
-        <p>Hi!!! I'm Violetto</p>
-      </h1>
-      <p class="hero-subtitle">Life's Meh <img src="./public/assets/nuko-silly.gif" alt="Silly" class="silly-gif" /></p>
-    </section>
-
-    <section class="card about-card">
-      <h2 class="card-title">
-        <img src="./public/assets/nuko-popup.gif" alt="Info" class="info-gif" />
-        <p>About Me</p>
-      </h2>
-      <div class="about-content">
-        <p>Hello there!!! Nice to meetcha! I’m Violetto — that’s me. This shit right here (this website) defines who I am. I’m a little bad at writing about myself, so I just leave pieces of me in what I make. <img
-            src="./public/assets/nuko-campfire.gif" alt="Confused" class="confused-gif" /></p>
-
-        <div class="about-section">
-          <strong>Hobbies:</strong> Reading comics, books, and listening to music
-        </div>
-
-        <div class="about-section">
-          <strong>Watching:</strong> Some dramas
-        </div>
-
-        <div class="about-section">
-          <strong>Reading:</strong> The Fragrant Flower Blooms with Dignity
-        </div>
-
-        <div class="about-section">
-          <strong>Listening:</strong> Loser — Tame Impala; Kadalanu — Srilakshmi Belmannu
-        </div>
-
-        <div class="about-section">
-          <strong>Learning:</strong> JavaScript and itsy bitsy web development
-        </div>
-
-        <div class="about-section">
-          <strong>Building:</strong> Web apps in my free time, and projects for my portfolio
-        </div>
-
-        <div class="about-section">
-          <strong>One of my fav quotes:</strong>
-          <div id="quote-container"></div>
-        </div>
-
-        <div class="about-footnote">
-          <p>This site is kinda inspired by Rice. You don't know rice? (I don't know her either) Check her out here</p>
-          <a href="https://rice.place/" target="_blank" rel="noopener noreferrer">
-            <img src="https://rice.nekoweb.org/button/riceus.gif" alt="rice" class="rice-button">
+          <a href="mailto:manjumadhav.va@gmail.com" class="contact-link">
+            <span class="contact-label">Mail:</span>
+            <span class="contact-value">manjumadhav.va@gmail.com</span>
           </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="card music-card">
-      <h2 class="card-title">
-        <img src="./public/assets/nuko-vibe.gif" alt="Music" class="music-gif" />
-        <p>Last I Listened To</p>
-      </h2>
-      <div id="lastfm-widget" class="music-widget">
-        <div class="loading-state">
-          <img src="./public/assets/nuko-loading.gif" alt="Loading" class="loading-gif" />
-          <p class="loading-text">Hmm.. What Did I Listen To?</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="apps-section card">
-      <h2 class="card-title">
-        <img src="./public/assets/nuko-peek.gif" alt="Apps" class="apps-gif" />
-        <p>Some of My Mini Apps and Resources</p>
-      </h2>
-      <div id="apps-grid" class="apps-grid"></div>
-    </section>
-
-
-    <section class="contributions-section">
-      <div class="card contributions-card">
-        <h2 class="card-title">
-          <img src="./public/assets/nuko-work.gif" alt="GitHub" class="github-gif" />
-          <p>My GitHub Activity</p>
-        </h2>
-        <div class="calendar" id="github-heatmap">
-          <div class="loading-state">
-            <img src="./public/assets/nuko-loading.gif" alt="Loading" class="loading-gif" />
-            <p class="loading-text">Did I Code Again?</p>
+          <a
+            href="https://discord.com/users/736646654693867561"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact-link">
+            <span class="contact-label">Discord:</span>
+            <span class="contact-value">Violet ♪</span>
+          </a>
+          <a
+            href="https://anilist.co/user/TheViolet"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact-link">
+            <span class="contact-label">AniList:</span>
+            <span class="contact-value">TheViolet</span>
+          </a>
+          <hr />
+          <div class="audio-container">
+            <button
+              class="audio-control-button"
+              id="audio-control-button"
+              type="button"
+              aria-label="Toggle background music">
+              <svg
+                id="audio-control-icon"
+                class="audio-control-icon"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  id="play-icon"
+                  d="M9 8.48216V15.518L15.0307 12.0001L9 8.48216ZM7.75194 5.43872L18.2596 11.5682C18.4981 11.7073 18.5787 12.0135 18.4396 12.252C18.3961 12.3265 18.3341 12.3885 18.2596 12.432L7.75194 18.5615C7.51341 18.7006 7.20725 18.62 7.06811 18.3815C7.0235 18.305 7 18.2181 7 18.1296V5.87061C7 5.59446 7.22386 5.37061 7.5 5.37061C7.58853 5.37061 7.67547 5.39411 7.75194 5.43872Z" />
+                <path
+                  id="pause-icon"
+                  class="pause-icon-hidden"
+                  d="M15 7C15 6.44772 15.4477 6 16 6C16.5523 6 17 6.44772 17 7V17C17 17.5523 16.5523 18 16 18C15.4477 18 15 17.5523 15 17V7ZM7 7C7 6.44772 7.44772 6 8 6C8.55228 6 9 6.44772 9 7V17C9 17.5523 8.55228 18 8 18C7.44772 18 7 17.5523 7 17V7Z" />
+              </svg>
+            </button>
+            <a
+              href="https://on.soundcloud.com/f7M5Q4f2Ts47s6sB0a"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact-link">
+              <span class="contact-label">Music Credit:</span>
+              <span class="contact-value">Rainy Morning — Zackross</span>
+            </a>
           </div>
         </div>
-      </div>
-    </section>
-  </div>
-</body>
+        <h1 class="hero-title">
+          <img
+            src="./public/assets/nuko-greet.gif"
+            alt="Greeting"
+            class="greeting-gif" />
+          <p>Hi!!! I'm Violetto</p>
+        </h1>
+        <p class="hero-subtitle">
+          Life's Meh
+          <img
+            src="./public/assets/nuko-silly.gif"
+            alt="Silly"
+            class="silly-gif" />
+        </p>
+      </section>
 
+      <section class="card about-card">
+        <h2 class="card-title">
+          <img
+            src="./public/assets/nuko-popup.gif"
+            alt="Info"
+            class="info-gif" />
+          <p>About Me</p>
+        </h2>
+        <div class="about-content">
+          <p>
+            Hello there!!! Nice to meetcha! I’m Violetto — that’s me. This shit
+            right here (this website) defines who I am. I’m a little bad at
+            writing about myself, so I just leave pieces of me in what I make.
+            <img
+              src="./public/assets/nuko-campfire.gif"
+              alt="Confused"
+              class="confused-gif" />
+          </p>
+
+          <div class="about-section">
+            <strong>Hobbies:</strong> Reading comics, books, and listening to
+            music
+          </div>
+
+          <div class="about-section">
+            <strong>Watching:</strong> Some dramas
+          </div>
+
+          <div class="about-section">
+            <strong>Reading:</strong> The Fragrant Flower Blooms with Dignity
+          </div>
+
+          <div class="about-section">
+            <strong>Listening:</strong> Loser — Tame Impala; Kadalanu —
+            Srilakshmi Belmannu
+          </div>
+
+          <div class="about-section">
+            <strong>Learning:</strong> JavaScript and itsy bitsy web development
+          </div>
+
+          <div class="about-section">
+            <strong>Building:</strong> Web apps in my free time, and projects
+            for my portfolio
+          </div>
+
+          <div class="about-section">
+            <strong>Latest Project:</strong>
+          </div>
+          <div class="apps-grid">
+            <a
+              href="https://evergarden-font-manager.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="app-item">
+              <div class="app-icon">
+                <img
+                  src="./public/assets/evergarden.svg"
+                  alt="Evergarden icon"
+                  style="
+                    width: 32px;
+                    height: 32px;
+                    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
+                  " />
+              </div>
+              <h3 class="app-title">Evergarden - Font Manager</h3>
+              <p class="app-description" style="margin: 0">
+                I built this lightning-fast local font manager for Windows! It's
+                a really pretty way to organize your typography collection
+                without opening any heavy design tools.
+              </p>
+              <img
+                src="./public/assets/pixelated-golden-star-icon.png"
+                class="app-item-star"
+                alt="Star" />
+            </a>
+          </div>
+
+          <!--
+          <div class="about-section">
+            <strong>One of my fav quotes:</strong>
+            <div id="quote-container"></div>
+          </div>
+          -->
+
+          <div class="about-footnote">
+            <p>
+              This site is kinda inspired by Rice. You don't know rice? (I don't
+              know her either) Check her out here
+            </p>
+            <a
+              href="https://rice.place/"
+              target="_blank"
+              rel="noopener noreferrer">
+              <img
+                src="https://rice.nekoweb.org/button/riceus.gif"
+                alt="rice"
+                class="rice-button" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="card music-card">
+        <h2 class="card-title">
+          <img
+            src="./public/assets/nuko-vibe.gif"
+            alt="Music"
+            class="music-gif" />
+          <p>Last I Listened To</p>
+        </h2>
+        <div id="lastfm-widget" class="music-widget">
+          <div class="loading-state">
+            <img
+              src="./public/assets/nuko-loading.gif"
+              alt="Loading"
+              class="loading-gif" />
+            <p class="loading-text">Hmm.. What Did I Listen To?</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="apps-section card">
+        <h2 class="card-title">
+          <img
+            src="./public/assets/nuko-peek.gif"
+            alt="Apps"
+            class="apps-gif" />
+          <p>Some of My Mini Apps and Resources</p>
+        </h2>
+        <div id="apps-grid" class="apps-grid"></div>
+      </section>
+
+      <section class="contributions-section">
+        <div class="card contributions-card">
+          <h2 class="card-title">
+            <img
+              src="./public/assets/nuko-work.gif"
+              alt="GitHub"
+              class="github-gif" />
+            <p>My GitHub Activity</p>
+          </h2>
+          <div class="calendar" id="github-heatmap">
+            <div class="loading-state">
+              <img
+                src="./public/assets/nuko-loading.gif"
+                alt="Loading"
+                class="loading-gif" />
+              <p class="loading-text">Did I Code Again?</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
 </html>

@@ -9,7 +9,7 @@ import { initializeGitHubHeatmap } from './modules/github.js';
 import { createBackgroundPattern } from './modules/background.js';
 import { initializeContactDropdown } from './modules/contactDropdown.js';
 import { initializeBackgroundAudio } from './modules/backgroundAudio.js';
-import { initializeQuotes } from './modules/quotes.js';
+// import { initializeQuotes } from './modules/quotes.js';
 
 // Configuration
 const CONFIG = {
@@ -26,5 +26,5 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchLastFmTracks(CONFIG.lastfm);
   initializeGitHubHeatmap(CONFIG.github);
   initializeBackgroundAudio();
-  initializeQuotes();
+  // initializeQuotes();
 });

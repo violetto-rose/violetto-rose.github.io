@@ -387,6 +387,7 @@ button {
     }
   }
 
+
   .about-footnote {
     display: flex;
     flex-direction: column;
@@ -518,6 +519,7 @@ button {
     .app-icon {
       grid-area: icon;
       align-self: center;
+      display: flex;
 
       svg {
         width: 32px;
